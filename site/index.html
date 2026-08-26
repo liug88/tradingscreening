@@ -1,0 +1,130 @@
+<!doctype html>
+<!--
+  DIRECTION CONTRACT
+
+  THESIS: Quantities are counted, not read. Refuses the fintech table where
+  every figure has to be translated before it means anything.
+
+  OWN-WORLD: Vienna Isotype. Cool offset stock; flat saturated fields owning
+  whole regions - drenched blue masthead, solid blue guide blocks with reversed
+  lettering. Four declared inks: blue structural, ochre premium, red risk only,
+  green confirmed. Jost throughout. Hairline rules, zero radius, no depth.
+
+  STORY: She counts each name's passes and its odds of keeping the premium,
+  reads why it fell, picks two or three to research. She never retypes criteria.
+
+  FIRST VIEWPORT: Full-bleed blue masthead - date, "ten names", delayed-quote
+  notice, cross-check button right. Below it the key, declared once. Then rows
+  one and two: blue guide block, eleven-mark check tally, ten-mark ochre odds
+  tally, the strike.
+
+  FORM: Isotype, candidate 3 of 7 by resonance, seed ed34c172. Staging: the
+  source's own - title band, key declared once, stacked rows on a shared
+  baseline. Dealt stagings declined; the object-time fan suits history/ later.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daily Put Screen</title>
+<meta name="description" content="Ten cash-secured put candidates, screened against the same criteria every morning.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#names">Skip to the ten names</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <div class="masthead__title">
+      <h1>Daily Put Screen</h1>
+      <p class="masthead__sub" id="masthead-sub">Loading today&rsquo;s list&hellip;</p>
+    </div>
+    <div class="masthead__actions">
+      <button type="button" id="copy-btn" class="btn" data-idle="Copy for cross-check">Copy for cross-check</button>
+      <label class="switch">
+        <input type="checkbox" id="numbers-toggle">
+        <span>Show the numbers</span>
+      </label>
+    </div>
+  </div>
+</header>
+
+<div class="band band--notice" id="notice-band" hidden>
+  <div class="wrap"><p id="notice-text"></p></div>
+</div>
+
+<main class="wrap">
+
+  <div class="copyout" id="copy-fallback" hidden>
+    <p id="copy-fallback-note"></p>
+    <textarea id="copy-fallback-text" rows="10" readonly
+      aria-label="The cross-check prompt"></textarea>
+  </div>
+
+  <details class="key" id="key" open>
+    <summary><span class="key__label">How to read this</span></summary>
+    <div class="key__body">
+      <p class="key__lede">
+        Every quantity here is counted, not read. More marks means more of the
+        thing &mdash; the marks never change size.
+      </p>
+      <ul class="key__list">
+        <li><span class="mark mark--filled" aria-hidden="true"></span> <span>Passes one of the eleven criteria</span></li>
+        <li><span class="mark mark--hollow" aria-hidden="true"></span> <span>Misses it. Normal &mdash; these are the best ten available, not ten perfect matches</span></li>
+        <li><span class="mark mark--unknown" aria-hidden="true"></span> <span>Couldn&rsquo;t tell. Never counted as a miss</span></li>
+        <li><span class="mark mark--kept" aria-hidden="true"></span> <span>One tenth of the chance you keep the premium</span></li>
+      </ul>
+      <p class="key__flagline">
+        <span class="flag flag--sample" aria-hidden="true">risk</span>
+        <span>A red tag is a genuine risk flag &mdash; earnings before expiry, or a
+        selloff that looks structural. Red is used for nothing else.</span>
+      </p>
+      <p class="key__note" id="key-note"></p>
+    </div>
+  </details>
+
+  <h2 class="section-head" id="names">The ten names</h2>
+  <p class="section-note">
+    Ranked by score. Every name here already clears the safety filters &mdash;
+    tradeable price, real volume, and a put that would actually fill.
+  </p>
+
+  <div id="rows" class="rows" aria-live="polite">
+    <p class="loading">Reading today&rsquo;s screen&hellip;</p>
+  </div>
+
+  <section class="reddit" id="reddit-section" hidden>
+    <h2 class="section-head">Most discussed on Reddit</h2>
+    <p class="section-note">
+      Context only. This never moves a name up or down the list.
+    </p>
+    <ol class="reddit__list" id="reddit-list"></ol>
+  </section>
+
+  <footer class="footer">
+    <h2 class="section-head">What this is</h2>
+    <p>
+      A screener, not advice. It runs the same criteria every morning against
+      every US stock with weekly options and shows the ten that score highest.
+      It surfaces names to research. It does not tell you to place a trade.
+    </p>
+    <p>
+      <strong>Selling puts on stocks that have fallen means deliberately
+      catching falling knives.</strong> High implied volatility is the market
+      pricing a real chance of a large move &mdash; the premium is not free.
+    </p>
+    <p id="footer-note"></p>
+    <p class="footer__meta" id="footer-meta"></p>
+  </footer>
+</main>
+
+<noscript>
+  <div class="wrap"><p class="loading">This page needs JavaScript to read the day&rsquo;s data file.</p></div>
+</noscript>
+
+<script src="app.js"></script>
+</body>
+</html>
