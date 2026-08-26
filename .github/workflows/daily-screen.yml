@@ -1,0 +1,155 @@
+name: Daily put screen
+
+# Publishes the morning list to GitHub Pages. Three ways in:
+#   schedule          -- the real one, every weekday morning
+#   workflow_dispatch -- a manual re-run, with a switch to skip the paid step
+#   push to site/**   -- redeploy the page after a design change, no spend
+on:
+  schedule:
+    # 10:45 UTC on weekdays: 6:45am ET in summer, 5:45am ET in winter. Both are
+    # before the open, which is the point -- every quote is the prior close
+    # either way, and the page says so on its face.
+    - cron: "45 10 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      no_ai:
+        description: "Skip the Claude call (the only step that costs money)"
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    paths: ["site/**"]
+
+# One run at a time. A second run waits rather than racing the commit or the
+# Pages deployment.
+concurrency:
+  group: daily-screen
+  cancel-in-progress: false
+
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write # to commit cache/ and history/ back
+    outputs:
+      screen_outcome: ${{ steps.screen.outcome }}
+      fell_back: ${{ steps.publish.outputs.fell_back }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Is the market open today?
+        id: calendar
+        run: |
+          today=$(date -u +%F)
+          # US market holidays. Add next year's each December -- the check at the
+          # bottom starts warning in the log once this list runs out.
+          holidays="
+          2026-01-01 2026-01-19 2026-02-16 2026-04-03 2026-05-25
+          2026-06-19 2026-07-03 2026-09-07 2026-11-26 2026-12-25
+          2027-01-01 2027-01-18 2027-02-15 2027-03-26 2027-05-31
+          2027-06-18 2027-07-05 2027-09-06 2027-11-25 2027-12-24
+          "
+          covered_through=2027
+
+          open=yes
+          why=""
+          # The cron only fires on weekdays, but a manual run can land on one.
+          if [ "$(date -u +%u)" -gt 5 ]; then open=no; why="the weekend"; fi
+          if echo "$holidays" | tr ' ' '\n' | grep -qx "$today"; then
+            open=no; why="a market holiday"
+          fi
+
+          if [ "$open" = no ]; then
+            echo "$today is $why -- no new closing prices, so no run."
+          fi
+          if [ "$(date -u +%Y)" -gt "$covered_through" ]; then
+            echo "::warning::The holiday list in this workflow ends at $covered_through. Add the next year's dates."
+          fi
+          echo "open=$open" >> "$GITHUB_OUTPUT"
+
+      - name: Run the screen
+        id: screen
+        if: github.event_name != 'push' && steps.calendar.outputs.open == 'yes'
+        continue-on-error: true
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python -m screener.run ${{ inputs.no_ai && '--no-ai' || '' }}
+
+      - name: Make sure there is a list to publish
+        id: publish
+        run: |
+          if [ -s site/data/latest.json ] && python -c "import json,sys; sys.exit(0 if json.load(open('site/data/latest.json'))['picks'] else 1)"; then
+            echo "Publishing today's run."
+            echo "fell_back=no" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          # site/data/*.json is gitignored, so a fresh checkout never has one. On
+          # a holiday, on a design push, or after a failed run the page falls
+          # back to the last list that actually ran. That file carries its own
+          # date, and the page raises a stale banner once the date is old enough
+          # to matter. A blank page would be the worse answer.
+          last=$(ls history/*.json 2>/dev/null | sort | tail -1)
+          if [ -z "$last" ]; then
+            echo "::error::No list today and nothing in history/ to fall back on."
+            exit 1
+          fi
+          mkdir -p site/data
+          cp "$last" site/data/latest.json
+          echo "Falling back to $last."
+          echo "fell_back=yes" >> "$GITHUB_OUTPUT"
+
+      - name: Commit the caches
+        if: steps.screen.outcome == 'success'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cache history
+          if git diff --cached --quiet; then
+            echo "Nothing changed."
+            exit 0
+          fi
+          git commit -m "Screen for $(date -u +%F)"
+          git pull --rebase --autostash
+          git push
+
+      - name: Package the page
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: screen
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Publish to Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
+
+      # The page is live either way. This turns the run red so a broken screen is
+      # visible, instead of yesterday's list quietly standing in for today's.
+      #
+      # Falling back is only ever expected when the screen was skipped -- on a
+      # holiday, or on a push that only touched the page. On a real run day it
+      # means something went wrong, whether the run crashed or came back with no
+      # names at all. A run that returns nothing is the failure that matters most
+      # here, and it exits zero, so outcome alone would not catch it.
+      - name: Flag a screen that did not publish
+        if: needs.screen.outputs.screen_outcome != 'skipped' && needs.screen.outputs.fell_back == 'yes'
+        run: |
+          echo "::error::The screen produced no list. The page is showing the last one that ran."
+          exit 1
