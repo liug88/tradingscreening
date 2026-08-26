@@ -1,0 +1,81 @@
+# Every threshold and weight the screener uses lives here.
+# Edit this file to tune the screen -- you should not need to touch the code.
+
+universe:
+  refresh_days: 7          # re-download the CBOE weeklys list this often
+
+# Fail any gate and the stock is dropped. These are the "can she actually
+# trade it" filters -- not opinions about the stock.
+gates:
+  min_price: 10.0
+  min_avg_volume_30d: 500000
+  min_market_cap: 1000000000
+  # Two-sided, because the setup is "oversold BUT bouncing" and one threshold
+  # can only express half of it. Neither of these is an opinion about the stock.
+  #
+  # max_rsi_recent: it has to have actually been stretched inside the lookback.
+  # Without this, names rank into the top ten on premium and yield alone while
+  # failing the oversold thesis the whole strategy rests on.
+  max_rsi_recent: 50
+  # max_rsi: and it can't have already run away. A single "is it oversold today"
+  # test can't do both jobs -- set at 50 it drops the bouncing half of the setup
+  # (BE reclaimed its EMAs at RSI 49, one green day from exclusion); measured
+  # only on the recent low it readmits stocks that ripped (ASST went 49 -> 83 in
+  # ten sessions on a 10-day minimum of 48.9). This is the "hasn't run away yet"
+  # ceiling, deliberately looser than the oversold bar above.
+  max_rsi: 65
+
+# Which put contract to suggest.
+option:
+  target_dte: 35
+  # The window has to be wider than one monthly cycle (~35 days) or a stock with
+  # monthly-only expiries can straddle it -- CROX had expiries at 23 and 51 days
+  # and a 25-50 window excluded both.
+  min_dte: 21
+  max_dte: 56
+  target_delta: 0.20       # ~80% chance of expiring worthless
+  min_delta: 0.10
+  max_delta: 0.35
+  min_bid: 0.20            # below this the premium isn't worth the commission
+  min_open_interest: 100
+  max_spread_pct: 0.15     # (ask - bid) / mid -- wider than this won't fill well
+
+# How many names survive each narrowing stage.
+funnel:
+  after_technicals: 150
+  after_fundamentals: 75
+  final: 10
+
+# Must sum to 100.
+weights:
+  oversold: 20
+  bounce: 15
+  premium_richness: 20
+  sales_growth: 15
+  margin_trend: 10
+  strike_safety: 10
+  trade_quality: 10
+
+scoring:
+  rsi_ideal_low: 28        # full credit inside this band
+  rsi_ideal_high: 38
+  rsi_zero_above: 50       # no credit at or above this
+  williams_r_oversold: -80
+  rev_yoy_target: 0.10     # full credit at +10% YoY
+  iv_hv_rich: 1.30         # full credit at or above -- premium is rich vs realized
+  ann_yield_target: 0.20   # full credit at 20% annualized on cash secured
+
+# Subtracted from the composite score.
+penalties:
+  earnings_before_expiry: 25
+  iv_hv_extreme: 15        # IV/HV above the threshold below = binary event risk
+  iv_hv_extreme_above: 2.50
+  gap_down_5d: 15          # dropped more than gap_down_5d_pct in 5 sessions
+  gap_down_5d_pct: 0.15
+  new_low_under_ema200: 10
+  catalyst_structural: 30  # the AI layer judged the selloff structural
+
+catalyst:
+  model: claude-opus-5
+  effort: medium
+  max_web_searches: 20

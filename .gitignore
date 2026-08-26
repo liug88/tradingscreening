@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.env
+# Written fresh every run, and history/ already keeps a dated copy.
+site/data/*.json
+
+# Her own document. GitHub Pages on a free account needs a public repo, so
+# nothing of hers goes in. The criteria it describes live in config.yaml.
+Trading Screening.docx
