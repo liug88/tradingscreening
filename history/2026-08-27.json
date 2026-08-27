@@ -1,0 +1,1976 @@
+{
+ "ai_enabled": true,
+ "as_of": "2026-08-27",
+ "catalyst_ran": false,
+ "elapsed_seconds": 186.0,
+ "generated_at": "2026-08-27T14:25:53+00:00",
+ "note": "Prices and option quotes are delayed and reflect the prior close. Verify the strike and premium live before placing any trade.",
+ "picks": [
+  {
+   "badges": [
+    {
+     "label": "RSI below 35",
+     "passed": true
+    },
+    {
+     "label": "Williams %R below -80",
+     "passed": true
+    },
+    {
+     "label": "Sales up >10% YoY",
+     "passed": true
+    },
+    {
+     "label": "Sales up QoQ",
+     "passed": true
+    },
+    {
+     "label": "Margins improving",
+     "passed": true
+    },
+    {
+     "label": "Above 9-day EMA",
+     "passed": false
+    },
+    {
+     "label": "Above 20-day EMA",
+     "passed": false
+    },
+    {
+     "label": "MACD crossing up",
+     "passed": false
+    },
+    {
+     "label": "Volume expanding on green",
+     "passed": false
+    },
+    {
+     "label": "Near support",
+     "passed": true
+    },
+    {
+     "label": "Volume over 500k",
+     "passed": true
+    }
+   ],
+   "buzz": {
+    "mention_change": 0.0,
+    "mentions": 1,
+    "mentions_24h_ago": 1,
+    "name": "Nextera Energy",
+    "rank": 300,
+    "rank_24h_ago": 303,
+    "ticker": "NEE",
+    "upvotes": 1
+   },
+   "catalyst": null,
+   "change_5d": -0.02175700929883506,
+   "components": {
+    "bounce": {
+     "max": 15,
+     "points": 0.0,
+     "raw": 0.0
+    },
+    "margin_trend": {
+     "max": 10,
+     "points": 10.0,
+     "raw": 1.0
+    },
+    "oversold": {
+     "max": 20,
+     "points": 20.0,
+     "raw": 1.0
+    },
+    "premium_richness": {
+     "max": 20,
+     "points": 20.0,
+     "raw": 1.0
+    },
+    "sales_growth": {
+     "max": 15,
+     "points": 15.0,
+     "raw": 1.0
+    },
+    "strike_safety": {
+     "max": 10,
+     "points": 9.34,
+     "raw": 0.9341
+    },
+    "trade_quality": {
+     "max": 10,
+     "points": 5.24,
+     "raw": 0.5236
+    }
+   },
+   "fundamentals": {
+    "gross_margin": 0.6239713299707991,
+    "gross_margin_change": 0.034507070904987946,
+    "latest_quarter": "2026-06-30",
+    "next_earnings": "2026-10-27",
+    "operating_margin": 0.3022298911600743,
+    "operating_margin_change": 0.011079316618961055,
+    "profitable": true,
+    "revenue_history": [
+     {
+      "quarter": "2025-06-30",
+      "revenue": 6700000000.0
+     },
+     {
+      "quarter": "2025-09-30",
+      "revenue": 7966000000.0
+     },
+     {
+      "quarter": "2025-12-31",
+      "revenue": 6500000000.0
+     },
+     {
+      "quarter": "2026-03-31",
+      "revenue": 6701000000.0
+     },
+     {
+      "quarter": "2026-06-30",
+      "revenue": 7534000000.0
+     }
+    ],
+    "revenue_qoq": 0.12430980450679008,
+    "revenue_yoy": 0.1244776119402986
+   },
+   "iv": 0.1857,
+   "iv_hv": 1.445,
+   "iv_percentile": null,
+   "market_cap": 173553385472,
+   "name": "NextEra Energy, Inc.",
+   "penalties": [],
+   "price": 83.18,
+   "rank": 1,
+   "score": 79.6,
+   "symbol": "NEE",
+   "technicals": {
+    "above_ema20": false,
+    "above_ema200": false,
+    "above_ema9": false,
+    "atr14": 1.403514710160507,
+    "avg_volume_30d": 10082738.733333332,
+    "ema20": 85.39233193879632,
+    "ema200": 86.38451911423725,
+    "ema50": 86.7108266548857,
+    "ema9": 84.48743703936277,
+    "high_52w": 98.75,
+    "hv20": 0.1285083840583734,
+    "last_date": "2026-08-27",
+    "low_52w": 69.23999786376953,
+    "macd": -0.9644329713489554,
+    "macd_below_zero": true,
+    "macd_cross_up": false,
+    "macd_signal": -0.784019663436939,
+    "pct_above_52w_low": 0.201328753198886,
+    "rsi14": 31.536115339554684,
+    "support_60d": 82.7750015258789,
+    "up_day_volume_expansion": false,
+    "volume_vs_20d": 0.1599988801797375,
+    "williams_r14": -91.46471662679119
+   },
+   "trade": {
+    "annualized_pct": 0.14517,
+    "ask": 0.75,
+    "bid": 0.65,
+    "breakeven": 79.3,
+    "cash_secured": 8000.0,
+    "credit": 0.7,
+    "delta": 0.2682,
+    "dte": 22,
+    "expiry": "2026-09-18",
+    "iv": 0.2086,
+    "keep_premium_odds": 0.7318,
+    "open_interest": 11411,
+    "pct_below_spot": 0.0354,
+    "return_pct": 0.00875,
+    "spread_pct": 0.1429,
+    "strike": 80.0,
+    "volume": 2
+   }
+  },
+  {
+   "badges": [
+    {
+     "label": "RSI below 35",
+     "passed": false
+    },
+    {
+     "label": "Williams %R below -80",
+     "passed": false
+    },
+    {
+     "label": "Sales up >10% YoY",
+     "passed": true
+    },
+    {
+     "label": "Sales up QoQ",
+     "passed": true
+    },
+    {
+     "label": "Margins improving",
+     "passed": true
+    },
+    {
+     "label": "Above 9-day EMA",
+     "passed": true
+    },
+    {
+     "label": "Above 20-day EMA",
+     "passed": true
+    },
+    {
+     "label": "MACD crossing up",
+     "passed": true
+    },
+    {
+     "label": "Volume expanding on green",
+     "passed": false
+    },
+    {
+     "label": "Near support",
+     "passed": false
+    },
+    {
+     "label": "Volume over 500k",
+     "passed": true
+    }
+   ],
+   "buzz": {
+    "mention_change": -0.333,
+    "mentions": 12,
+    "mentions_24h_ago": 18,
+    "name": "Bloom Energy",
+    "rank": 57,
+    "rank_24h_ago": 30,
+    "ticker": "BE",
+    "upvotes": 45
+   },
+   "catalyst": null,
+   "change_5d": 0.08336628427001025,
+   "components": {
+    "bounce": {
+     "max": 15,
+     "points": 11.25,
+     "raw": 0.75
+    },
+    "margin_trend": {
+     "max": 10,
+     "points": 10.0,
+     "raw": 1.0
+    },
+    "oversold": {
+     "max": 20,
+     "points": 14.63,
+     "raw": 0.7314
+    },
+    "premium_richness": {
+     "max": 20,
+     "points": 14.6,
+     "raw": 0.73
+    },
+    "sales_growth": {
+     "max": 15,
+     "points": 15.0,
+     "raw": 1.0
+    },
+    "strike_safety": {
+     "max": 10,
+     "points": 5.77,
+     "raw": 0.5774
+    },
+    "trade_quality": {
+     "max": 10,
+     "points": 8.09,
+     "raw": 0.8086
+    }
+   },
+   "fundamentals": {
+    "gross_margin": 0.3337560366634909,
+    "gross_margin_change": 0.033452729577715445,
+    "latest_quarter": "2026-06-30",
+    "next_earnings": "2026-10-27",
+    "operating_margin": 0.17105592918858795,
+    "operating_margin_change": 0.07493767404315234,
+    "profitable": true,
+    "revenue_history": [
+     {
+      "quarter": "2025-06-30",
+      "revenue": 401242000.0
+     },
+     {
+      "quarter": "2025-09-30",
+      "revenue": 519048000.0
+     },
+     {
+      "quarter": "2025-12-31",
+      "revenue": 777683000.0
+     },
+     {
+      "quarter": "2026-03-31",
+      "revenue": 751054000.0
+     },
+     {
+      "quarter": "2026-06-30",
+      "revenue": 1065365000.0
+     }
+    ],
+    "revenue_qoq": 0.418493210874318,
+    "revenue_yoy": 1.655168202730522
+   },
+   "iv": 0.8701,
+   "iv_hv": 1.192,
+   "iv_percentile": null,
+   "market_cap": 64557477888,
+   "name": "Bloom Energy Corporation",
+   "penalties": [],
+   "price": 219.36,
+   "rank": 2,
+   "score": 79.3,
+   "symbol": "BE",
+   "technicals": {
+    "above_ema20": true,
+    "above_ema200": true,
+    "above_ema9": true,
+    "atr14": 20.994872099721757,
+    "avg_volume_30d": 15601168.7,
+    "ema20": 216.85471329967334,
+    "ema200": 192.3131279381526,
+    "ema50": 227.77506030835852,
+    "ema9": 214.7523495965271,
+    "high_52w": 351.2799987792969,
+    "hv20": 0.7298771864592706,
+    "last_date": "2026-08-27",
+    "low_52w": 48.869998931884766,
+    "macd": -4.219037640290679,
+    "macd_below_zero": true,
+    "macd_cross_up": true,
+    "macd_signal": -5.625356965997904,
+    "pct_above_52w_low": 3.4886434500662986,
+    "rsi14": 49.862690537211336,
+    "support_60d": 157.33399963378906,
+    "up_day_volume_expansion": false,
+    "volume_vs_20d": 0.4152299199074612,
+    "williams_r14": -50.38586299791477
+   },
+   "trade": {
+    "annualized_pct": 0.35631,
+    "ask": 6.5,
+    "bid": 5.8,
+    "breakeven": 168.85,
+    "cash_secured": 17500.0,
+    "credit": 6.15,
+    "delta": 0.1747,
+    "dte": 36,
+    "expiry": "2026-10-02",
+    "iv": 0.8525,
+    "keep_premium_odds": 0.8253,
+    "open_interest": 207,
+    "pct_below_spot": 0.1913,
+    "return_pct": 0.03514,
+    "spread_pct": 0.1138,
+    "strike": 175.0,
+    "volume": 5
+   }
+  },
+  {
+   "badges": [
+    {
+     "label": "RSI below 35",
+     "passed": false
+    },
+    {
+     "label": "Williams %R below -80",
+     "passed": false
+    },
+    {
+     "label": "Sales up >10% YoY",
+     "passed": true
+    },
+    {
+     "label": "Sales up QoQ",
+     "passed": true
+    },
+    {
+     "label": "Margins improving",
+     "passed": true
+    },
+    {
+     "label": "Above 9-day EMA",
+     "passed": true
+    },
+    {
+     "label": "Above 20-day EMA",
+     "passed": true
+    },
+    {
+     "label": "MACD crossing up",
+     "passed": true
+    },
+    {
+     "label": "Volume expanding on green",
+     "passed": false
+    },
+    {
+     "label": "Near support",
+     "passed": false
+    },
+    {
+     "label": "Volume over 500k",
+     "passed": true
+    }
+   ],
+   "buzz": {
+    "mention_change": 2.0,
+    "mentions": 6,
+    "mentions_24h_ago": 2,
+    "name": "TSMC",
+    "rank": 84,
+    "rank_24h_ago": 206,
+    "ticker": "TSM",
+    "upvotes": 19
+   },
+   "catalyst": null,
+   "change_5d": 0.020745204045222287,
+   "components": {
+    "bounce": {
+     "max": 15,
+     "points": 9.75,
+     "raw": 0.65
+    },
+    "margin_trend": {
+     "max": 10,
+     "points": 10.0,
+     "raw": 1.0
+    },
+    "oversold": {
+     "max": 20,
+     "points": 10.9,
+     "raw": 0.5448
+    },
+    "premium_richness": {
+     "max": 20,
+     "points": 20.0,
+     "raw": 1.0
+    },
+    "sales_growth": {
+     "max": 15,
+     "points": 15.0,
+     "raw": 1.0
+    },
+    "strike_safety": {
+     "max": 10,
+     "points": 6.15,
+     "raw": 0.6146
+    },
+    "trade_quality": {
+     "max": 10,
+     "points": 5.73,
+     "raw": 0.5732
+    }
+   },
+   "fundamentals": {
+    "gross_margin": 0.677207074098243,
+    "gross_margin_change": 0.014749493509297773,
+    "latest_quarter": "2026-06-30",
+    "next_earnings": "2026-10-15",
+    "operating_margin": 0.6034433764358881,
+    "operating_margin_change": 0.022412726356914714,
+    "profitable": true,
+    "revenue_history": [
+     {
+      "quarter": "2025-06-30",
+      "revenue": 933792000000.0
+     },
+     {
+      "quarter": "2025-09-30",
+      "revenue": 989918318000.0
+     },
+     {
+      "quarter": "2025-12-31",
+      "revenue": 1046090449000.0
+     },
+     {
+      "quarter": "2026-03-31",
+      "revenue": 1134103440000.0
+     },
+     {
+      "quarter": "2026-06-30",
+      "revenue": 1270381000000.0
+     }
+    ],
+    "revenue_qoq": 0.12016325424425123,
+    "revenue_yoy": 0.36045393406668724
+   },
+   "iv": 0.3123,
+   "iv_hv": 1.308,
+   "iv_percentile": null,
+   "market_cap": 2203162247168,
+   "name": "Taiwan Semiconductor Manufacturing Company Limited",
+   "penalties": [],
+   "price": 424.63,
+   "rank": 3,
+   "score": 77.5,
+   "symbol": "TSM",
+   "technicals": {
+    "above_ema20": true,
+    "above_ema200": true,
+    "above_ema9": true,
+    "atr14": 12.517297982470847,
+    "avg_volume_30d": 11850214.866666667,
+    "ema20": 418.04266718327824,
+    "ema200": 371.66989717247054,
+    "ema50": 417.1781370252588,
+    "ema9": 418.74253529159193,
+    "high_52w": 479.0,
+    "hv20": 0.2386715392992297,
+    "last_date": "2026-08-27",
+    "low_52w": 225.6300048828125,
+    "macd": 0.3629331689138553,
+    "macd_below_zero": false,
+    "macd_cross_up": true,
+    "macd_signal": -0.07687632703525034,
+    "pct_above_52w_low": 0.8819748955966935,
+    "rsi14": 53.86586032840412,
+    "support_60d": 372.7200012207031,
+    "up_day_volume_expansion": false,
+    "volume_vs_20d": 0.34172761467141444,
+    "williams_r14": -36.93751457216134
+   },
+   "trade": {
+    "annualized_pct": 0.14038,
+    "ask": 5.7,
+    "bid": 5.1,
+    "breakeven": 384.6,
+    "cash_secured": 39000.0,
+    "credit": 5.4,
+    "delta": 0.2066,
+    "dte": 36,
+    "expiry": "2026-10-02",
+    "iv": 0.3378,
+    "keep_premium_odds": 0.7934,
+    "open_interest": 318,
+    "pct_below_spot": 0.078,
+    "return_pct": 0.01385,
+    "spread_pct": 0.1111,
+    "strike": 390.0,
+    "volume": 5
+   }
+  },
+  {
+   "badges": [
+    {
+     "label": "RSI below 35",
+     "passed": false
+    },
+    {
+     "label": "Williams %R below -80",
+     "passed": false
+    },
+    {
+     "label": "Sales up >10% YoY",
+     "passed": false
+    },
+    {
+     "label": "Sales up QoQ",
+     "passed": false
+    },
+    {
+     "label": "Margins improving",
+     "passed": true
+    },
+    {
+     "label": "Above 9-day EMA",
+     "passed": false
+    },
+    {
+     "label": "Above 20-day EMA",
+     "passed": false
+    },
+    {
+     "label": "MACD crossing up",
+     "passed": true
+    },
+    {
+     "label": "Volume expanding on green",
+     "passed": false
+    },
+    {
+     "label": "Near support",
+     "passed": false
+    },
+    {
+     "label": "Volume over 500k",
+     "passed": true
+    }
+   ],
+   "buzz": {
+    "mention_change": 2.0,
+    "mentions": 3,
+    "mentions_24h_ago": 1,
+    "name": "UnitedHealth",
+    "rank": 140,
+    "rank_24h_ago": 299,
+    "ticker": "UNH",
+    "upvotes": 0
+   },
+   "catalyst": null,
+   "change_5d": 0.030596319890189072,
+   "components": {
+    "bounce": {
+     "max": 15,
+     "points": 4.5,
+     "raw": 0.3
+    },
+    "margin_trend": {
+     "max": 10,
+     "points": 10.0,
+     "raw": 1.0
+    },
+    "oversold": {
+     "max": 20,
+     "points": 20.0,
+     "raw": 1.0
+    },
+    "premium_richness": {
+     "max": 20,
+     "points": 19.5,
+     "raw": 0.975
+    },
+    "sales_growth": {
+     "max": 15,
+     "points": 9.08,
+     "raw": 0.6053
+    },
+    "strike_safety": {
+     "max": 10,
+     "points": 9.78,
+     "raw": 0.9784
+    },
+    "trade_quality": {
+     "max": 10,
+     "points": 4.23,
+     "raw": 0.4226
+    }
+   },
+   "fundamentals": {
+    "gross_margin": 0.2274326223359977,
+    "gross_margin_change": 0.06407970973607718,
+    "latest_quarter": "2026-03-31",
+    "next_earnings": "2026-10-27",
+    "operating_margin": 0.08046830944943206,
+    "operating_margin_change": 0.07711186374877402,
+    "profitable": true,
+    "revenue_history": [
+     {
+      "quarter": "2025-03-31",
+      "revenue": 109575000000.0
+     },
+     {
+      "quarter": "2025-06-30",
+      "revenue": 111616000000.0
+     },
+     {
+      "quarter": "2025-09-30",
+      "revenue": 113161000000.0
+     },
+     {
+      "quarter": "2025-12-31",
+      "revenue": 113215000000.0
+     },
+     {
+      "quarter": "2026-03-31",
+      "revenue": 111721000000.0
+     }
+    ],
+    "revenue_qoq": -0.013196131254692434,
+    "revenue_yoy": 0.01958475929728487
+   },
+   "iv": 0.269,
+   "iv_hv": 1.29,
+   "iv_percentile": null,
+   "market_cap": 355896328192,
+   "name": "UnitedHealth Group Incorporated",
+   "penalties": [],
+   "price": 396.62,
+   "rank": 4,
+   "score": 77.1,
+   "symbol": "UNH",
+   "technicals": {
+    "above_ema20": false,
+    "above_ema200": true,
+    "above_ema9": false,
+    "atr14": 9.309720393742898,
+    "avg_volume_30d": 4456809.766666667,
+    "ema20": 401.3920342753278,
+    "ema200": 372.7251196375036,
+    "ema50": 402.9472204325014,
+    "ema9": 396.93280205309776,
+    "high_52w": 461.6199951171875,
+    "hv20": 0.20847390914696354,
+    "last_date": "2026-08-27",
+    "low_52w": 255.97000122070312,
+    "macd": -5.279814504591968,
+    "macd_below_zero": true,
+    "macd_cross_up": true,
+    "macd_signal": -5.448795027405543,
+    "pct_above_52w_low": 0.549497980656026,
+    "rsi14": 44.656440199267465,
+    "support_60d": 376.80999755859375,
+    "up_day_volume_expansion": false,
+    "volume_vs_20d": 0.11378858068904348,
+    "williams_r14": -56.24143520185527
+   },
+   "trade": {
+    "annualized_pct": 0.11051,
+    "ask": 5.8,
+    "bid": 5.1,
+    "breakeven": 354.55,
+    "cash_secured": 36000.0,
+    "credit": 5.45,
+    "delta": 0.1947,
+    "dte": 50,
+    "expiry": "2026-10-16",
+    "iv": 0.3323,
+    "keep_premium_odds": 0.8053,
+    "open_interest": 1523,
+    "pct_below_spot": 0.095,
+    "return_pct": 0.01514,
+    "spread_pct": 0.1284,
+    "strike": 360.0,
+    "volume": 1
+   }
+  },
+  {
+   "badges": [
+    {
+     "label": "RSI below 35",
+     "passed": false
+    },
+    {
+     "label": "Williams %R below -80",
+     "passed": false
+    },
+    {
+     "label": "Sales up >10% YoY",
+     "passed": false
+    },
+    {
+     "label": "Sales up QoQ",
+     "passed": true
+    },
+    {
+     "label": "Margins improving",
+     "passed": true
+    },
+    {
+     "label": "Above 9-day EMA",
+     "passed": false
+    },
+    {
+     "label": "Above 20-day EMA",
+     "passed": false
+    },
+    {
+     "label": "MACD crossing up",
+     "passed": false
+    },
+    {
+     "label": "Volume expanding on green",
+     "passed": false
+    },
+    {
+     "label": "Near support",
+     "passed": true
+    },
+    {
+     "label": "Volume over 500k",
+     "passed": true
+    }
+   ],
+   "buzz": {
+    "mention_change": -0.167,
+    "mentions": 10,
+    "mentions_24h_ago": 12,
+    "name": "ON Semiconductor",
+    "rank": 63,
+    "rank_24h_ago": 47,
+    "ticker": "ON",
+    "upvotes": 15
+   },
+   "catalyst": null,
+   "change_5d": -0.00629100825140827,
+   "components": {
+    "bounce": {
+     "max": 15,
+     "points": 0.0,
+     "raw": 0.0
+    },
+    "margin_trend": {
+     "max": 10,
+     "points": 5.92,
+     "raw": 0.592
+    },
+    "oversold": {
+     "max": 20,
+     "points": 20.0,
+     "raw": 1.0
+    },
+    "premium_richness": {
+     "max": 20,
+     "points": 18.5,
+     "raw": 0.925
+    },
+    "sales_growth": {
+     "max": 15,
+     "points": 14.47,
+     "raw": 0.9644
+    },
+    "strike_safety": {
+     "max": 10,
+     "points": 10.0,
+     "raw": 1.0
+    },
+    "trade_quality": {
+     "max": 10,
+     "points": 7.66,
+     "raw": 0.766
+    }
+   },
+   "fundamentals": {
+    "gross_margin": 0.3843467415029623,
+    "gross_margin_change": -0.0009701156965354896,
+    "latest_quarter": "2026-06-30",
+    "next_earnings": "2026-11-02",
+    "operating_margin": 0.18696601184908013,
+    "operating_margin_change": 0.004649220730333026,
+    "profitable": true,
+    "revenue_history": [
+     {
+      "quarter": "2025-06-30",
+      "revenue": 1468700000.0
+     },
+     {
+      "quarter": "2025-09-30",
+      "revenue": 1550900000.0
+     },
+     {
+      "quarter": "2025-12-31",
+      "revenue": 1530100000.0
+     },
+     {
+      "quarter": "2026-03-31",
+      "revenue": 1513300000.0
+     },
+     {
+      "quarter": "2026-06-30",
+      "revenue": 1603500000.0
+     }
+    ],
+    "revenue_qoq": 0.05960483711094966,
+    "revenue_yoy": 0.09178184789269417
+   },
+   "iv": 0.504,
+   "iv_hv": 1.27,
+   "iv_percentile": null,
+   "market_cap": 28903014400,
+   "name": "ON Semiconductor Corporation",
+   "penalties": [],
+   "price": 74.24,
+   "rank": 5,
+   "score": 76.5,
+   "symbol": "ON",
+   "technicals": {
+    "above_ema20": false,
+    "above_ema200": false,
+    "above_ema9": false,
+    "atr14": 3.7987686613513825,
+    "avg_volume_30d": 8738852.033333333,
+    "ema20": 78.72410958069241,
+    "ema200": 80.75348377905388,
+    "ema50": 86.26412164800682,
+    "ema9": 75.30448225137116,
+    "high_52w": 134.9199981689453,
+    "hv20": 0.39689434762952636,
+    "last_date": "2026-08-27",
+    "low_52w": 44.560001373291016,
+    "macd": -4.361307876496781,
+    "macd_below_zero": true,
+    "macd_cross_up": false,
+    "macd_signal": -4.341844664283411,
+    "pct_above_52w_low": 0.6660681233342268,
+    "rsi14": 38.0130362455514,
+    "support_60d": 70.91999816894531,
+    "up_day_volume_expansion": false,
+    "volume_vs_20d": 0.12423948458374603,
+    "williams_r14": -77.3069132825472
+   },
+   "trade": {
+    "annualized_pct": 0.25438,
+    "ask": 2.41,
+    "bid": 2.12,
+    "breakeven": 62.73,
+    "cash_secured": 6500.0,
+    "credit": 2.265,
+    "delta": 0.2362,
+    "dte": 50,
+    "expiry": "2026-10-16",
+    "iv": 0.5472,
+    "keep_premium_odds": 0.7638,
+    "open_interest": 981,
+    "pct_below_spot": 0.1148,
+    "return_pct": 0.03485,
+    "spread_pct": 0.128,
+    "strike": 65.0,
+    "volume": 3
+   }
+  },
+  {
+   "badges": [
+    {
+     "label": "RSI below 35",
+     "passed": false
+    },
+    {
+     "label": "Williams %R below -80",
+     "passed": false
+    },
+    {
+     "label": "Sales up >10% YoY",
+     "passed": true
+    },
+    {
+     "label": "Sales up QoQ",
+     "passed": true
+    },
+    {
+     "label": "Margins improving",
+     "passed": true
+    },
+    {
+     "label": "Above 9-day EMA",
+     "passed": false
+    },
+    {
+     "label": "Above 20-day EMA",
+     "passed": false
+    },
+    {
+     "label": "MACD crossing up",
+     "passed": false
+    },
+    {
+     "label": "Volume expanding on green",
+     "passed": false
+    },
+    {
+     "label": "Near support",
+     "passed": false
+    },
+    {
+     "label": "Volume over 500k",
+     "passed": true
+    }
+   ],
+   "buzz": null,
+   "catalyst": null,
+   "change_5d": 0.017628227171343713,
+   "components": {
+    "bounce": {
+     "max": 15,
+     "points": 0.0,
+     "raw": 0.0
+    },
+    "margin_trend": {
+     "max": 10,
+     "points": 10.0,
+     "raw": 1.0
+    },
+    "oversold": {
+     "max": 20,
+     "points": 20.0,
+     "raw": 1.0
+    },
+    "premium_richness": {
+     "max": 20,
+     "points": 12.7,
+     "raw": 0.635
+    },
+    "sales_growth": {
+     "max": 15,
+     "points": 15.0,
+     "raw": 1.0
+    },
+    "strike_safety": {
+     "max": 10,
+     "points": 10.0,
+     "raw": 1.0
+    },
+    "trade_quality": {
+     "max": 10,
+     "points": 7.83,
+     "raw": 0.7828
+    }
+   },
+   "fundamentals": {
+    "gross_margin": 0.34843705190708346,
+    "gross_margin_change": 0.010795694879619788,
+    "latest_quarter": "2026-06-30",
+    "next_earnings": "2026-10-29",
+    "operating_margin": 0.07026096931459708,
+    "operating_margin_change": 0.03924319871685879,
+    "profitable": true,
+    "revenue_history": [
+     {
+      "quarter": "2025-06-30",
+      "revenue": 2766000000.0
+     },
+     {
+      "quarter": "2025-09-30",
+      "revenue": 3187000000.0
+     },
+     {
+      "quarter": "2025-12-31",
+      "revenue": 3330000000.0
+     },
+     {
+      "quarter": "2026-03-31",
+      "revenue": 3095000000.0
+     },
+     {
+      "quarter": "2026-06-30",
+      "revenue": 3487000000.0
+     }
+    ],
+    "revenue_qoq": 0.12665589660743137,
+    "revenue_yoy": 0.2606652205350688
+   },
+   "iv": 0.5008,
+   "iv_hv": 1.154,
+   "iv_percentile": null,
+   "market_cap": 45316497408,
+   "name": "STMicroelectronics N.V.",
+   "penalties": [],
+   "price": 50.8,
+   "rank": 6,
+   "score": 75.5,
+   "symbol": "STM",
+   "technicals": {
+    "above_ema20": false,
+    "above_ema200": true,
+    "above_ema9": false,
+    "atr14": 2.4099382567534025,
+    "avg_volume_30d": 9953163.9,
+    "ema20": 52.90121556404228,
+    "ema200": 48.630656843765365,
+    "ema50": 57.07059304656865,
+    "ema9": 50.896484381307054,
+    "high_52w": 81.41999816894531,
+    "hv20": 0.43382546366319613,
+    "last_date": "2026-08-27",
+    "low_52w": 21.110000610351562,
+    "macd": -2.7136695804635167,
+    "macd_below_zero": true,
+    "macd_cross_up": false,
+    "macd_signal": -2.9109838886269817,
+    "pct_above_52w_low": 1.4064423386207818,
+    "rsi14": 40.98953889618301,
+    "support_60d": 47.880001068115234,
+    "up_day_volume_expansion": false,
+    "volume_vs_20d": 0.28945501746285274,
+    "williams_r14": -77.13228134452751
+   },
+   "trade": {
+    "annualized_pct": 0.20324,
+    "ask": 1.3,
+    "bid": 1.15,
+    "breakeven": 42.77,
+    "cash_secured": 4400.0,
+    "credit": 1.225,
+    "delta": 0.2035,
+    "dte": 50,
+    "expiry": "2026-10-16",
+    "iv": 0.526,
+    "keep_premium_odds": 0.7965,
+    "open_interest": 2100,
+    "pct_below_spot": 0.1304,
+    "return_pct": 0.02784,
+    "spread_pct": 0.1224,
+    "strike": 44.0,
+    "volume": 6
+   }
+  },
+  {
+   "badges": [
+    {
+     "label": "RSI below 35",
+     "passed": false
+    },
+    {
+     "label": "Williams %R below -80",
+     "passed": true
+    },
+    {
+     "label": "Sales up >10% YoY",
+     "passed": true
+    },
+    {
+     "label": "Sales up QoQ",
+     "passed": true
+    },
+    {
+     "label": "Margins improving",
+     "passed": true
+    },
+    {
+     "label": "Above 9-day EMA",
+     "passed": false
+    },
+    {
+     "label": "Above 20-day EMA",
+     "passed": false
+    },
+    {
+     "label": "MACD crossing up",
+     "passed": false
+    },
+    {
+     "label": "Volume expanding on green",
+     "passed": false
+    },
+    {
+     "label": "Near support",
+     "passed": false
+    },
+    {
+     "label": "Volume over 500k",
+     "passed": true
+    }
+   ],
+   "buzz": {
+    "mention_change": 0.0,
+    "mentions": 2,
+    "mentions_24h_ago": 2,
+    "name": "GE Vernova",
+    "rank": 201,
+    "rank_24h_ago": 198,
+    "ticker": "GEV",
+    "upvotes": 4
+   },
+   "catalyst": null,
+   "change_5d": -0.013695490041516156,
+   "components": {
+    "bounce": {
+     "max": 15,
+     "points": 0.0,
+     "raw": 0.0
+    },
+    "margin_trend": {
+     "max": 10,
+     "points": 10.0,
+     "raw": 1.0
+    },
+    "oversold": {
+     "max": 20,
+     "points": 20.0,
+     "raw": 1.0
+    },
+    "premium_richness": {
+     "max": 20,
+     "points": 18.0,
+     "raw": 0.9
+    },
+    "sales_growth": {
+     "max": 15,
+     "points": 15.0,
+     "raw": 1.0
+    },
+    "strike_safety": {
+     "max": 10,
+     "points": 4.72,
+     "raw": 0.4724
+    },
+    "trade_quality": {
+     "max": 10,
+     "points": 7.14,
+     "raw": 0.7138
+    }
+   },
+   "fundamentals": {
+    "gross_margin": 0.21262608069164265,
+    "gross_margin_change": 0.021900015152983426,
+    "latest_quarter": "2026-06-30",
+    "next_earnings": "2026-10-28",
+    "operating_margin": 0.058987752161383286,
+    "operating_margin_change": 0.03981876522627941,
+    "profitable": true,
+    "revenue_history": [
+     {
+      "quarter": "2025-06-30",
+      "revenue": 9111000000.0
+     },
+     {
+      "quarter": "2025-09-30",
+      "revenue": 9969000000.0
+     },
+     {
+      "quarter": "2025-12-31",
+      "revenue": 10956000000.0
+     },
+     {
+      "quarter": "2026-03-31",
+      "revenue": 9338000000.0
+     },
+     {
+      "quarter": "2026-06-30",
+      "revenue": 11104000000.0
+     }
+    ],
+    "revenue_qoq": 0.18911972585135994,
+    "revenue_yoy": 0.218746570080123
+   },
+   "iv": 0.4537,
+   "iv_hv": 1.26,
+   "iv_percentile": null,
+   "market_cap": 253754654720,
+   "name": "GE Vernova Inc.",
+   "penalties": [],
+   "price": 952.78,
+   "rank": 7,
+   "score": 74.9,
+   "symbol": "GEV",
+   "technicals": {
+    "above_ema20": false,
+    "above_ema200": true,
+    "above_ema9": false,
+    "atr14": 47.08180106683017,
+    "avg_volume_30d": 2433583.466666667,
+    "ema20": 988.509631884142,
+    "ema200": 890.1811851261065,
+    "ema50": 1006.2430858725442,
+    "ema9": 967.6528376870721,
+    "high_52w": 1195.93994140625,
+    "hv20": 0.3601171614922103,
+    "last_date": "2026-08-27",
+    "low_52w": 530.1599731445312,
+    "macd": -20.138317577799285,
+    "macd_below_zero": true,
+    "macd_cross_up": false,
+    "macd_signal": -13.213080715276874,
+    "pct_above_52w_low": 0.7971557219713564,
+    "rsi14": 42.32849424094527,
+    "support_60d": 856.010009765625,
+    "up_day_volume_expansion": false,
+    "volume_vs_20d": 0.22803036611357996,
+    "williams_r14": -82.67475887922902
+   },
+   "trade": {
+    "annualized_pct": 0.32363,
+    "ask": 42.8,
+    "bid": 37.0,
+    "breakeven": 860.1,
+    "cash_secured": 90000.0,
+    "credit": 39.9,
+    "delta": 0.3303,
+    "dte": 50,
+    "expiry": "2026-10-16",
+    "iv": 0.4715,
+    "keep_premium_odds": 0.6697,
+    "open_interest": 662,
+    "pct_below_spot": 0.0798,
+    "return_pct": 0.04433,
+    "spread_pct": 0.1454,
+    "strike": 900.0,
+    "volume": 13
+   }
+  },
+  {
+   "badges": [
+    {
+     "label": "RSI below 35",
+     "passed": false
+    },
+    {
+     "label": "Williams %R below -80",
+     "passed": false
+    },
+    {
+     "label": "Sales up >10% YoY",
+     "passed": true
+    },
+    {
+     "label": "Sales up QoQ",
+     "passed": true
+    },
+    {
+     "label": "Margins improving",
+     "passed": true
+    },
+    {
+     "label": "Above 9-day EMA",
+     "passed": false
+    },
+    {
+     "label": "Above 20-day EMA",
+     "passed": false
+    },
+    {
+     "label": "MACD crossing up",
+     "passed": true
+    },
+    {
+     "label": "Volume expanding on green",
+     "passed": false
+    },
+    {
+     "label": "Near support",
+     "passed": false
+    },
+    {
+     "label": "Volume over 500k",
+     "passed": true
+    }
+   ],
+   "buzz": {
+    "mention_change": 13.0,
+    "mentions": 14,
+    "mentions_24h_ago": 1,
+    "name": "Applied Blockchain",
+    "rank": 48,
+    "rank_24h_ago": 188,
+    "ticker": "APLD",
+    "upvotes": 22
+   },
+   "catalyst": null,
+   "change_5d": -0.021640451662825244,
+   "components": {
+    "bounce": {
+     "max": 15,
+     "points": 4.5,
+     "raw": 0.3
+    },
+    "margin_trend": {
+     "max": 10,
+     "points": 10.0,
+     "raw": 1.0
+    },
+    "oversold": {
+     "max": 20,
+     "points": 17.46,
+     "raw": 0.873
+    },
+    "premium_richness": {
+     "max": 20,
+     "points": 12.65,
+     "raw": 0.6325
+    },
+    "sales_growth": {
+     "max": 15,
+     "points": 15.0,
+     "raw": 1.0
+    },
+    "strike_safety": {
+     "max": 10,
+     "points": 4.29,
+     "raw": 0.4285
+    },
+    "trade_quality": {
+     "max": 10,
+     "points": 8.59,
+     "raw": 0.8587
+    }
+   },
+   "fundamentals": {
+    "gross_margin": 0.42487582618034225,
+    "gross_margin_change": 0.21920234744206327,
+    "latest_quarter": "2026-02-28",
+    "next_earnings": "2026-10-08",
+    "operating_margin": -0.20466372387217005,
+    "operating_margin_change": 0.039883590665428015,
+    "profitable": false,
+    "revenue_history": [
+     {
+      "quarter": "2025-02-28",
+      "revenue": 52921000.0
+     },
+     {
+      "quarter": "2025-05-31",
+      "revenue": -33300000.0
+     },
+     {
+      "quarter": "2025-08-31",
+      "revenue": 64216000.0
+     },
+     {
+      "quarter": "2025-11-30",
+      "revenue": 126589000.0
+     },
+     {
+      "quarter": "2026-02-28",
+      "revenue": 126637000.0
+     }
+    ],
+    "revenue_qoq": 0.0003791798655490286,
+    "revenue_yoy": 1.392944199845052
+   },
+   "iv": 0.8306,
+   "iv_hv": 1.153,
+   "iv_percentile": null,
+   "market_cap": 7971878912,
+   "name": "Applied Digital Corporation",
+   "penalties": [],
+   "price": 28.03,
+   "rank": 8,
+   "score": 72.5,
+   "symbol": "APLD",
+   "technicals": {
+    "above_ema20": false,
+    "above_ema200": false,
+    "above_ema9": false,
+    "atr14": 2.2739448721245963,
+    "avg_volume_30d": 18339100.266666666,
+    "ema20": 28.842404166444165,
+    "ema200": 30.67198143638814,
+    "ema50": 31.126811763035626,
+    "ema9": 28.207500553849712,
+    "high_52w": 50.724998474121094,
+    "hv20": 0.7203884080296485,
+    "last_date": "2026-08-27",
+    "low_52w": 13.15999984741211,
+    "macd": -0.8871277066944465,
+    "macd_below_zero": true,
+    "macd_cross_up": true,
+    "macd_signal": -0.8938286467125162,
+    "pct_above_52w_low": 1.1299392865994264,
+    "rsi14": 45.81480264522209,
+    "support_60d": 22.93000030517578,
+    "up_day_volume_expansion": false,
+    "volume_vs_20d": 0.27983893839181423,
+    "williams_r14": -71.77649267078213
+   },
+   "trade": {
+    "annualized_pct": 0.68355,
+    "ask": 1.08,
+    "bid": 0.98,
+    "breakeven": 23.97,
+    "cash_secured": 2500.0,
+    "credit": 1.03,
+    "delta": 0.272,
+    "dte": 22,
+    "expiry": "2026-09-18",
+    "iv": 0.8157,
+    "keep_premium_odds": 0.728,
+    "open_interest": 3967,
+    "pct_below_spot": 0.0958,
+    "return_pct": 0.0412,
+    "spread_pct": 0.0971,
+    "strike": 25.0,
+    "volume": 6
+   }
+  },
+  {
+   "badges": [
+    {
+     "label": "RSI below 35",
+     "passed": false
+    },
+    {
+     "label": "Williams %R below -80",
+     "passed": true
+    },
+    {
+     "label": "Sales up >10% YoY",
+     "passed": true
+    },
+    {
+     "label": "Sales up QoQ",
+     "passed": true
+    },
+    {
+     "label": "Margins improving",
+     "passed": true
+    },
+    {
+     "label": "Above 9-day EMA",
+     "passed": false
+    },
+    {
+     "label": "Above 20-day EMA",
+     "passed": false
+    },
+    {
+     "label": "MACD crossing up",
+     "passed": false
+    },
+    {
+     "label": "Volume expanding on green",
+     "passed": false
+    },
+    {
+     "label": "Near support",
+     "passed": true
+    },
+    {
+     "label": "Volume over 500k",
+     "passed": true
+    }
+   ],
+   "buzz": null,
+   "catalyst": null,
+   "change_5d": 0.018971840368468218,
+   "components": {
+    "bounce": {
+     "max": 15,
+     "points": 0.0,
+     "raw": 0.0
+    },
+    "margin_trend": {
+     "max": 10,
+     "points": 10.0,
+     "raw": 1.0
+    },
+    "oversold": {
+     "max": 20,
+     "points": 20.0,
+     "raw": 1.0
+    },
+    "premium_richness": {
+     "max": 20,
+     "points": 11.2,
+     "raw": 0.56
+    },
+    "sales_growth": {
+     "max": 15,
+     "points": 15.0,
+     "raw": 1.0
+    },
+    "strike_safety": {
+     "max": 10,
+     "points": 7.52,
+     "raw": 0.752
+    },
+    "trade_quality": {
+     "max": 10,
+     "points": 8.34,
+     "raw": 0.8341
+    }
+   },
+   "fundamentals": {
+    "gross_margin": 0.1787272184045414,
+    "gross_margin_change": 0.016996338588555204,
+    "latest_quarter": "2026-06-30",
+    "next_earnings": "2026-10-22",
+    "operating_margin": 0.02706901703017628,
+    "operating_margin_change": 0.029009787587968114,
+    "profitable": true,
+    "revenue_history": [
+     {
+      "quarter": "2025-06-30",
+      "revenue": 14392000000.0
+     },
+     {
+      "quarter": "2025-09-30",
+      "revenue": 13691000000.0
+     },
+     {
+      "quarter": "2025-12-31",
+      "revenue": 13999000000.0
+     },
+     {
+      "quarter": "2026-03-31",
+      "revenue": 13912000000.0
+     },
+     {
+      "quarter": "2026-06-30",
+      "revenue": 16735000000.0
+     }
+    ],
+    "revenue_qoq": 0.20291834387579066,
+    "revenue_yoy": 0.16279877709838808
+   },
+   "iv": 0.459,
+   "iv_hv": 1.124,
+   "iv_percentile": null,
+   "market_cap": 9121879040,
+   "name": "American Airlines Group Inc.",
+   "penalties": [],
+   "price": 13.78,
+   "rank": 9,
+   "score": 72.1,
+   "symbol": "AAL",
+   "technicals": {
+    "above_ema20": false,
+    "above_ema200": false,
+    "above_ema9": false,
+    "atr14": 0.51460308665106,
+    "avg_volume_30d": 69619077.16666667,
+    "ema20": 14.49693251481559,
+    "ema200": 13.955144917793223,
+    "ema50": 14.84427441011125,
+    "ema9": 14.0193647646731,
+    "high_52w": 18.790000915527344,
+    "hv20": 0.4083768385962553,
+    "last_date": "2026-08-27",
+    "low_52w": 10.09000015258789,
+    "macd": -0.4976543170110901,
+    "macd_below_zero": true,
+    "macd_cross_up": false,
+    "macd_signal": -0.40534864913352575,
+    "pct_above_52w_low": 0.36536169870092355,
+    "rsi14": 39.109718263500326,
+    "support_60d": 13.180000305175781,
+    "up_day_volume_expansion": false,
+    "volume_vs_20d": 0.10829643533571288,
+    "williams_r14": -85.12877878111414
+   },
+   "trade": {
+    "annualized_pct": 0.36372,
+    "ask": 0.3,
+    "bid": 0.27,
+    "breakeven": 12.71,
+    "cash_secured": 1300.0,
+    "credit": 0.285,
+    "delta": 0.2741,
+    "dte": 22,
+    "expiry": "2026-09-18",
+    "iv": 0.4657,
+    "keep_premium_odds": 0.7259,
+    "open_interest": 9463,
+    "pct_below_spot": 0.0576,
+    "return_pct": 0.02192,
+    "spread_pct": 0.1053,
+    "strike": 13.0,
+    "volume": 307
+   }
+  },
+  {
+   "badges": [
+    {
+     "label": "RSI below 35",
+     "passed": false
+    },
+    {
+     "label": "Williams %R below -80",
+     "passed": false
+    },
+    {
+     "label": "Sales up >10% YoY",
+     "passed": true
+    },
+    {
+     "label": "Sales up QoQ",
+     "passed": true
+    },
+    {
+     "label": "Margins improving",
+     "passed": true
+    },
+    {
+     "label": "Above 9-day EMA",
+     "passed": false
+    },
+    {
+     "label": "Above 20-day EMA",
+     "passed": false
+    },
+    {
+     "label": "MACD crossing up",
+     "passed": false
+    },
+    {
+     "label": "Volume expanding on green",
+     "passed": false
+    },
+    {
+     "label": "Near support",
+     "passed": true
+    },
+    {
+     "label": "Volume over 500k",
+     "passed": true
+    }
+   ],
+   "buzz": null,
+   "catalyst": null,
+   "change_5d": -0.0065888552702741965,
+   "components": {
+    "bounce": {
+     "max": 15,
+     "points": 0.0,
+     "raw": 0.0
+    },
+    "margin_trend": {
+     "max": 10,
+     "points": 10.0,
+     "raw": 1.0
+    },
+    "oversold": {
+     "max": 20,
+     "points": 20.0,
+     "raw": 1.0
+    },
+    "premium_richness": {
+     "max": 20,
+     "points": 10.2,
+     "raw": 0.51
+    },
+    "sales_growth": {
+     "max": 15,
+     "points": 15.0,
+     "raw": 1.0
+    },
+    "strike_safety": {
+     "max": 10,
+     "points": 8.6,
+     "raw": 0.8595
+    },
+    "trade_quality": {
+     "max": 10,
+     "points": 8.18,
+     "raw": 0.8176
+    }
+   },
+   "fundamentals": {
+    "gross_margin": 0.6135822807980963,
+    "gross_margin_change": 0.03347865385509108,
+    "latest_quarter": "2026-06-30",
+    "next_earnings": "2026-10-27",
+    "operating_margin": 0.42595643419366647,
+    "operating_margin_change": 0.04771809222475454,
+    "profitable": true,
+    "revenue_history": [
+     {
+      "quarter": "2025-06-30",
+      "revenue": 4448000000.0
+     },
+     {
+      "quarter": "2025-09-30",
+      "revenue": 4742000000.0
+     },
+     {
+      "quarter": "2025-12-31",
+      "revenue": 4423000000.0
+     },
+     {
+      "quarter": "2026-03-31",
+      "revenue": 4825000000.0
+     },
+     {
+      "quarter": "2026-06-30",
+      "revenue": 5463000000.0
+     }
+    ],
+    "revenue_qoq": 0.1322279792746115,
+    "revenue_yoy": 0.22819244604316546
+   },
+   "iv": 0.369,
+   "iv_hv": 1.104,
+   "iv_percentile": null,
+   "market_cap": 240937582592,
+   "name": "Texas Instruments Incorporated",
+   "penalties": [],
+   "price": 263.85,
+   "rank": 10,
+   "score": 72.0,
+   "symbol": "TXN",
+   "technicals": {
+    "above_ema20": false,
+    "above_ema200": true,
+    "above_ema9": false,
+    "atr14": 9.304036531289821,
+    "avg_volume_30d": 6965422.366666666,
+    "ema20": 271.83598436891236,
+    "ema200": 249.56083584616854,
+    "ema50": 278.9910386118691,
+    "ema9": 265.858480871424,
+    "high_52w": 334.0299987792969,
+    "hv20": 0.33413431163143187,
+    "last_date": "2026-08-27",
+    "low_52w": 152.72999572753906,
+    "macd": -6.695800845025246,
+    "macd_below_zero": true,
+    "macd_cross_up": false,
+    "macd_signal": -5.837662932582559,
+    "pct_above_52w_low": 0.7275585247459041,
+    "rsi14": 40.806995714091165,
+    "support_60d": 255.17999267578125,
+    "up_day_volume_expansion": false,
+    "volume_vs_20d": 0.15571273481015405,
+    "williams_r14": -74.82574676791933
+   },
+   "trade": {
+    "annualized_pct": 0.25039,
+    "ask": 9.05,
+    "bid": 8.1,
+    "breakeven": 241.43,
+    "cash_secured": 25000.0,
+    "credit": 8.575,
+    "delta": 0.3265,
+    "dte": 50,
+    "expiry": "2026-10-16",
+    "iv": 0.3843,
+    "keep_premium_odds": 0.6735,
+    "open_interest": 1072,
+    "pct_below_spot": 0.0477,
+    "return_pct": 0.0343,
+    "spread_pct": 0.1108,
+    "strike": 250.0,
+    "volume": 0
+   }
+  }
+ ],
+ "reddit": [
+  {
+   "mention_change": 2.504,
+   "mentions": 1703,
+   "mentions_24h_ago": 486,
+   "name": "NVIDIA",
+   "rank": 1,
+   "rank_24h_ago": 1,
+   "ticker": "NVDA",
+   "upvotes": 7286
+  },
+  {
+   "mention_change": 0.536,
+   "mentions": 258,
+   "mentions_24h_ago": 168,
+   "name": "SPDR S&P 500 ETF Trust",
+   "rank": 2,
+   "rank_24h_ago": 2,
+   "ticker": "SPY",
+   "upvotes": 578
+  },
+  {
+   "mention_change": 1.843,
+   "mentions": 236,
+   "mentions_24h_ago": 83,
+   "name": "Micron Technology",
+   "rank": 3,
+   "rank_24h_ago": 5,
+   "ticker": "MU",
+   "upvotes": 644
+  },
+  {
+   "mention_change": 0.427,
+   "mentions": 137,
+   "mentions_24h_ago": 96,
+   "name": "Sandisk",
+   "rank": 4,
+   "rank_24h_ago": 4,
+   "ticker": "SNDK",
+   "upvotes": 495
+  },
+  {
+   "mention_change": -0.029,
+   "mentions": 136,
+   "mentions_24h_ago": 140,
+   "name": "Meta Platforms (Facebook)",
+   "rank": 5,
+   "rank_24h_ago": 12,
+   "ticker": "META",
+   "upvotes": 428
+  },
+  {
+   "mention_change": 5.381,
+   "mentions": 134,
+   "mentions_24h_ago": 21,
+   "name": "Salesforce",
+   "rank": 6,
+   "rank_24h_ago": 34,
+   "ticker": "CRM",
+   "upvotes": 555
+  },
+  {
+   "mention_change": 1.071,
+   "mentions": 116,
+   "mentions_24h_ago": 56,
+   "name": "Invesco QQQ ETF",
+   "rank": 7,
+   "rank_24h_ago": 9,
+   "ticker": "QQQ",
+   "upvotes": 307
+  },
+  {
+   "mention_change": 2.083,
+   "mentions": 111,
+   "mentions_24h_ago": 36,
+   "name": "Nebius Group",
+   "rank": 8,
+   "rank_24h_ago": 15,
+   "ticker": "NBIS",
+   "upvotes": 278
+  },
+  {
+   "mention_change": 3.684,
+   "mentions": 89,
+   "mentions_24h_ago": 19,
+   "name": "Marvell Technology Group",
+   "rank": 9,
+   "rank_24h_ago": 28,
+   "ticker": "MRVL",
+   "upvotes": 249
+  },
+  {
+   "mention_change": 6.2,
+   "mentions": 72,
+   "mentions_24h_ago": 10,
+   "name": "CrowdStrike",
+   "rank": 10,
+   "rank_24h_ago": 59,
+   "ticker": "CRWD",
+   "upvotes": 150
+  },
+  {
+   "mention_change": 0.203,
+   "mentions": 71,
+   "mentions_24h_ago": 59,
+   "name": "Broadcom",
+   "rank": 11,
+   "rank_24h_ago": 8,
+   "ticker": "AVGO",
+   "upvotes": 173
+  },
+  {
+   "mention_change": 6.667,
+   "mentions": 69,
+   "mentions_24h_ago": 9,
+   "name": "Iris Energy",
+   "rank": 12,
+   "rank_24h_ago": 51,
+   "ticker": "IREN",
+   "upvotes": 207
+  },
+  {
+   "mention_change": 3.4,
+   "mentions": 66,
+   "mentions_24h_ago": 15,
+   "name": "Intel",
+   "rank": 13,
+   "rank_24h_ago": 49,
+   "ticker": "INTC",
+   "upvotes": 81
+  },
+  {
+   "mention_change": 2.095,
+   "mentions": 65,
+   "mentions_24h_ago": 21,
+   "name": "Microsoft",
+   "rank": 14,
+   "rank_24h_ago": 31,
+   "ticker": "MSFT",
+   "upvotes": 158
+  },
+  {
+   "mention_change": 0.267,
+   "mentions": 57,
+   "mentions_24h_ago": 45,
+   "name": "DTE Energy",
+   "rank": 15,
+   "rank_24h_ago": 11,
+   "ticker": "DTE",
+   "upvotes": 216
+  }
+ ],
+ "universe_size": 570
+}
