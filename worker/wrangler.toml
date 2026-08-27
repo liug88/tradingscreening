@@ -31,7 +31,7 @@ DAILY_TURNS = "12"
 # Paste the printed id here before the first deploy.
 [[kv_namespaces]]
 binding = "COUNTER"
-id = "REPLACE_WITH_KV_NAMESPACE_ID"
+id = "389f2b9136ea4ad8bccdc11aa738f097"
 
 # Secrets, set once and never committed:
 #   npx wrangler secret put GEMINI_API_KEY
