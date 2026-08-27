@@ -80,8 +80,9 @@ consistent day over day, which was her actual complaint.
 
 **Hard constraints**
 
-- **Free.** Every data source is free and unauthenticated. The single paid
-  component is the LLM API call, which the user explicitly approved.
+- **Free.** Every data source is free and unauthenticated, and the LLM layer
+  runs on Gemini's free tier with no card on file. Nothing here is billed, and
+  with no card there is no way for it to start being billed by accident.
 - **No sensitive data.** No brokerage connection, no account data, no positions,
   no personal information anywhere in the repository or on the page. This is a
   standing constraint, stated by the user, and applies to every future change.

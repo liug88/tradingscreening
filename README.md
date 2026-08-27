@@ -11,13 +11,14 @@ Nothing to install, nothing to log into.
 
 ```bash
 pip install -r requirements.txt
-python -m screener.run --no-ai        # full run, no spend, ~80 seconds
+python -m screener.run --no-ai        # full run, no AI, ~80 seconds
 python -m http.server -d site 8000    # then open http://localhost:8000
 ```
 
 `--dry-run` prints the table and writes nothing. `--limit 20` scans 20 symbols.
-Drop `--no-ai` to include the catalyst step, which needs `ANTHROPIC_API_KEY` and
-costs roughly $0.50 a day.
+Drop `--no-ai` to include the catalyst step — one grounded Gemini call that asks
+why each of the ten sold off. It needs `GEMINI_API_KEY` and runs on the free
+tier; nothing in this project is billed.
 
 Every threshold and weight lives in `config.yaml`. Tuning the screen does not
 mean touching the code.

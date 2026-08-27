@@ -2,18 +2,19 @@ name: Daily put screen
 
 # Publishes the morning list to GitHub Pages. Three ways in:
 #   schedule          -- the real one, every weekday morning
-#   workflow_dispatch -- a manual re-run, with a switch to skip the paid step
-#   push to site/**   -- redeploy the page after a design change, no spend
+#   workflow_dispatch -- a manual re-run, with a switch to skip the catalyst
+#   push to site/**   -- redeploy the page without re-running the screen
 on:
   schedule:
-    # 10:45 UTC on weekdays: 6:45am ET in summer, 5:45am ET in winter. Both are
+    # 12:30 UTC on weekdays: 8:30am ET in summer, 7:30am ET in winter. Both are
     # before the open, which is the point -- every quote is the prior close
-    # either way, and the page says so on its face.
-    - cron: "45 10 * * 1-5"
+    # either way, and the page says so on its face. Late enough to be waiting
+    # for her over coffee rather than sitting there since before dawn.
+    - cron: "30 12 * * 1-5"
   workflow_dispatch:
     inputs:
       no_ai:
-        description: "Skip the Claude call (the only step that costs money)"
+        description: "Skip the catalyst step (the one call to Gemini)"
         type: boolean
         default: false
   push:
