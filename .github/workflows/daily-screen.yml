@@ -81,7 +81,7 @@ jobs:
         if: github.event_name != 'push' && steps.calendar.outputs.open == 'yes'
         continue-on-error: true
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python -m screener.run ${{ inputs.no_ai && '--no-ai' || '' }}
 
       - name: Make sure there is a list to publish

@@ -10,3 +10,8 @@ site/data/*.json
 # Her own document. GitHub Pages on a free account needs a public repo, so
 # nothing of hers goes in. The criteria it describes live in config.yaml.
 Trading Screening.docx
+
+# The Worker's dependencies and wrangler's local state. Never the source.
+worker/node_modules/
+worker/package-lock.json
+worker/.wrangler/

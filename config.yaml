@@ -76,6 +76,7 @@ penalties:
   catalyst_structural: 30  # the AI layer judged the selloff structural
 
 catalyst:
-  model: claude-opus-5
-  effort: medium
-  max_web_searches: 20
+  # Gemini, on the free tier, grounded with Google Search. Flash rather
+  # than Pro: the free tier's daily allowance is far larger on Flash, and this
+  # is a summarising job over search results, not a reasoning one.
+  model: gemini-3.7-flash

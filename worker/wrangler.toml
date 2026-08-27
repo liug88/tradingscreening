@@ -1,0 +1,33 @@
+# The chat lives here rather than in the Action so the morning pipeline stays
+# exactly as it is: cron -> screen -> commit -> Pages. Nothing about this Worker
+# can break the list she reads.
+
+name = "put-screen-chat"
+main = "src/index.js"
+compatibility_date = "2026-08-26"
+
+[vars]
+# The only origin allowed to call this. The page is served from GitHub Pages,
+# so the browser sends this exact origin and nothing else may.
+ALLOWED_ORIGIN = "https://liug88.github.io"
+DATA_URL = "https://liug88.github.io/tradingscreening/data/latest.json"
+
+# Gemini, on the free tier. Change it here rather than in the code; the daily
+# screen picks its own model in config.yaml, for the same reason.
+MODEL = "gemini-3.7-flash"
+
+# A stop that comes with a sentence, ahead of the one that comes with a 429.
+# Google enforces the real daily limit; this exists so a stuck tab hits a line
+# she can read instead of quietly eating the questions she meant to ask. Check
+# your actual free-tier limit in AI Studio and set this below it.
+DAILY_TURNS = "80"
+
+# Created with:  npx wrangler kv namespace create COUNTER
+# Paste the printed id here before the first deploy.
+[[kv_namespaces]]
+binding = "COUNTER"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+# Secrets, set once and never committed:
+#   npx wrangler secret put GEMINI_API_KEY
+#   npx wrangler secret put PASSPHRASE
