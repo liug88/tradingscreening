@@ -182,7 +182,7 @@ def penalties(row: dict, cfg: dict) -> list[dict]:
     if iv_hv is not None and iv_hv > cfg["iv_hv_extreme_above"]:
         found.append(
             {
-                "reason": f"IV is {iv_hv:.1f}x realized volatility -- the market is pricing a specific event",
+                "reason": f"IV is {iv_hv:.1f}x realized volatility — the market is pricing a specific event",
                 "points": cfg["iv_hv_extreme"],
             }
         )
@@ -191,7 +191,7 @@ def penalties(row: dict, cfg: dict) -> list[dict]:
     if change_5d is not None and change_5d < -cfg["gap_down_5d_pct"]:
         found.append(
             {
-                "reason": f"Down {abs(change_5d):.0%} in five sessions -- still falling",
+                "reason": f"Down {abs(change_5d):.0%} in five sessions — still falling",
                 "points": cfg["gap_down_5d"],
             }
         )
