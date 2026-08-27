@@ -186,9 +186,9 @@ def atm_iv(chain: Chain, as_of: date, min_dte: int = 20, max_dte: int = 60) -> f
     return nearest.iv
 
 
-def _best_in_expiry(puts: list[Contract], spot: float, opt: dict) -> Contract | None:
-    """The strike closest to the target delta, among contracts that would fill."""
-    tradeable = [
+def _fillable(puts: list[Contract], spot: float, opt: dict) -> list[Contract]:
+    """The contracts in one expiry that would actually fill at a sane price."""
+    return [
         put
         for put in puts
         if opt["min_delta"] <= abs(put.delta) <= opt["max_delta"]
@@ -198,9 +198,88 @@ def _best_in_expiry(puts: list[Contract], spot: float, opt: dict) -> Contract | 
         and put.spread_pct <= opt["max_spread_pct"]
         and put.strike < spot  # out of the money only
     ]
+
+
+def _best_in_expiry(puts: list[Contract], spot: float, opt: dict) -> Contract | None:
+    """The strike closest to the target delta, among contracts that would fill."""
+    tradeable = _fillable(puts, spot, opt)
     if not tradeable:
         return None
     return min(tradeable, key=lambda p: abs(abs(p.delta) - opt["target_delta"]))
+
+
+def _describe(put: Contract, spot: float, as_of: date) -> dict:
+    """One contract as the page and the scorer read it.
+
+    Shared by the suggested put and every alternative beside it, so a strike she
+    switches to carries exactly the fields the score was computed from -- there
+    is no second, thinner shape to keep in step.
+    """
+    dte = (put.expiry - as_of).days
+    credit = put.mid
+    return_pct = credit / put.strike
+    return {
+        # Strike alone stops identifying a contract once the ladder crosses
+        # expiries, and the page needs a key it can put in a radio button.
+        "id": f"{put.expiry.isoformat()}@{put.strike:g}",
+        "expiry": put.expiry.isoformat(),
+        "dte": dte,
+        "strike": put.strike,
+        "bid": put.bid,
+        "ask": put.ask,
+        "credit": round(credit, 3),
+        "spread_pct": round(put.spread_pct, 4),
+        "delta": round(abs(put.delta), 4),
+        "keep_premium_odds": round(1.0 - abs(put.delta), 4),
+        "iv": round(put.iv, 4),
+        "open_interest": put.open_interest,
+        "volume": put.volume,
+        "cash_secured": round(put.strike * 100.0, 2),
+        "return_pct": round(return_pct, 5),
+        "annualized_pct": round(return_pct * 365.0 / dte, 5) if dte > 0 else None,
+        "breakeven": round(put.strike - credit, 2),
+        "pct_below_spot": round((spot - put.strike) / spot, 4),
+    }
+
+
+# The rungs the alternatives ladder aims at. Anything outside the configured
+# delta range is filtered out before it is reached, so this can stay wider than
+# any one config.
+DELTA_LADDER = (0.10, 0.15, 0.20, 0.25, 0.30, 0.35)
+
+
+def _ladder(
+    puts: list[Contract], spot: float, opt: dict, as_of: date, chosen: Contract
+) -> list[dict]:
+    """The other puts worth considering on this name, safest first.
+
+    The chain is already downloaded and every one of these was already thrown
+    away, so this costs nothing but the bytes. It is what turns "how safe do you
+    want the strike?" into a control on the page rather than a re-run: the whole
+    point of the screen is not being assigned, and the strike is the dial that
+    decides it.
+
+    Drawn from every expiry in the DTE window rather than just the chosen one,
+    because measured on real chains a single expiry usually holds nought to four
+    fillable puts -- the open-interest and spread filters are strict, and they
+    should be. Restricted to one expiry this shipped 33 alternatives across 43
+    names, which is not a control. Ordered by delta rather than by strike, since
+    across expiries the strike is no longer what says which one is safer.
+    """
+    tradeable = _fillable(puts, spot, opt)
+
+    picked: dict[tuple, Contract] = {}
+    for target in DELTA_LADDER:
+        nearest = min(tradeable, key=lambda p: abs(abs(p.delta) - target), default=None)
+        # Rungs collide on a coarse chain, and the suggested put is not an
+        # alternative to itself.
+        if nearest is not None and nearest is not chosen:
+            picked[(nearest.expiry, nearest.strike)] = nearest
+
+    return [
+        _describe(put, spot, as_of)
+        for put in sorted(picked.values(), key=lambda p: abs(p.delta))
+    ]
 
 
 def select_put(chain: Chain, config: dict, as_of: date | None = None) -> dict | None:
@@ -229,27 +308,7 @@ def select_put(chain: Chain, config: dict, as_of: date | None = None) -> dict | 
     if best is None:
         return None
 
-    expiry = best.expiry
-    dte = (expiry - as_of).days
-    credit = best.mid
-    cash_secured = best.strike * 100.0
-    return_pct = credit / best.strike
-    return {
-        "expiry": expiry.isoformat(),
-        "dte": dte,
-        "strike": best.strike,
-        "bid": best.bid,
-        "ask": best.ask,
-        "credit": round(credit, 3),
-        "spread_pct": round(best.spread_pct, 4),
-        "delta": round(abs(best.delta), 4),
-        "keep_premium_odds": round(1.0 - abs(best.delta), 4),
-        "iv": round(best.iv, 4),
-        "open_interest": best.open_interest,
-        "volume": best.volume,
-        "cash_secured": round(cash_secured, 2),
-        "return_pct": round(return_pct, 5),
-        "annualized_pct": round(return_pct * 365.0 / dte, 5) if dte > 0 else None,
-        "breakeven": round(best.strike - credit, 2),
-        "pct_below_spot": round((chain.spot - best.strike) / chain.spot, 4),
-    }
+    trade = _describe(best, chain.spot, as_of)
+    every = [put for puts in by_expiry.values() for put in puts]
+    trade["alternatives"] = _ladder(every, chain.spot, opt, as_of, best)
+    return trade

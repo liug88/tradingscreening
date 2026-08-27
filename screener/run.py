@@ -176,23 +176,97 @@ def _add_buzz(rows: list[dict]) -> list[dict]:
     return buzz.top(mentions)
 
 
-def _add_catalyst(rows: list[dict], config: dict) -> bool:
-    """Why each name sold off. The only part of the run that costs money.
+def _add_catalyst(rows: list[dict], config: dict) -> dict:
+    """Why each name sold off. The only part of the run that leaves the country.
 
-    Wrapped: a page with today's numbers and no news beats a traceback at 6:45
-    in the morning.
+    One grounded Gemini call, on the free tier. Wrapped: a page with today's
+    numbers and no news beats a traceback at 6:45 in the morning.
     """
     from . import catalyst
 
     try:
-        verdicts = catalyst.explain(rows, config)
+        answer = catalyst.explain(rows, config)
     except Exception as exc:
         log.warning("catalyst layer failed (%s) -- publishing without it", exc)
-        return False
+        return {"ran": False, "brief": None}
 
+    verdicts = answer["verdicts"]
     for row in rows:
         row["catalyst"] = verdicts.get(row["symbol"])
-    return bool(verdicts)
+    return {"ran": bool(verdicts), "brief": answer["brief"]}
+
+
+REPEAT_LOOKBACK = 6  # runs to look back over -- about a trading week
+
+
+def _contract(row: dict) -> tuple | None:
+    """The strike and expiry that identify one put, or None if there isn't one."""
+    trade = row.get("trade") or {}
+    if trade.get("strike") is None or not trade.get("expiry"):
+        return None
+    return (trade["strike"], trade["expiry"])
+
+
+def _past_runs(as_of: date, limit: int = REPEAT_LOOKBACK) -> list[dict]:
+    """Recent published lists, newest first, not counting today's.
+
+    Reads what every run already commits to history/, so knowing what she has
+    already seen costs no new data and stores nothing about her.
+    """
+    runs: list[dict] = []
+    for path in sorted(HISTORY_DIR.glob("*.json"), reverse=True):
+        if path.stem >= as_of.isoformat():
+            continue
+        try:
+            runs.append(json.loads(path.read_text(encoding="utf-8")))
+        except (OSError, json.JSONDecodeError):
+            log.warning("history: could not read %s, skipping it", path.name)
+        if len(runs) >= limit:
+            break
+    return runs
+
+
+def _mark_repeats(rows: list[dict], past: list[dict]) -> None:
+    """Say whether she has seen this name -- and this exact contract -- before.
+
+    select_put takes the expiry nearest 35 days out and the delta nearest 0.20.
+    Day over day those inputs barely move, so a name that keeps scoring well
+    hands back the identical strike and expiry, and the screener has no memory
+    to notice. Three states matter:
+
+        new today
+        back, same contract      -- nothing new to look at
+        back, different contract -- a second angle on a setup still live
+
+    Nothing is suppressed either way. A name still oversold and bouncing on day
+    three is a true result, and hiding it would misrepresent the screen.
+
+    Only past `picks` count, not the bench: she never saw the bench.
+    """
+    seen_in = [
+        (run.get("as_of"), {pick["symbol"]: pick for pick in (run.get("picks") or [])})
+        for run in past
+    ]
+
+    for row in rows:
+        streak, since = 0, None
+        for as_of, by_symbol in seen_in:  # newest first; a gap ends the run
+            if row["symbol"] not in by_symbol:
+                break
+            streak += 1
+            since = as_of
+
+        if not streak:
+            row["seen"] = None
+            continue
+
+        previous = seen_in[0][1][row["symbol"]]
+        mine, theirs = _contract(row), _contract(previous)
+        row["seen"] = {
+            "days": streak + 1,  # counting today
+            "same_contract": bool(mine and theirs and mine == theirs),
+            "since": since,
+        }
 
 
 def _present(row: dict, result: dict, rank: int) -> dict:
@@ -212,14 +286,22 @@ def _present(row: dict, result: dict, rank: int) -> dict:
         "components": result["components"],
         "catalyst": row.get("catalyst"),
         "buzz": row.get("buzz"),
+        "seen": row.get("seen"),
+        # A superset of what the page draws, because the page also re-scores.
+        # Every key score.py reads is here under the name score.py reads it by,
+        # so the browser can recompute a rank from the published file alone --
+        # `close`, the two recent minimums and `at_52w_low` earn their bytes
+        # that way rather than by being rendered.
         "technicals": {
             key: tech.get(key)
             for key in (
-                "rsi14", "williams_r14", "macd", "macd_signal", "macd_cross_up",
+                "close", "change_5d", "rsi14", "rsi_min_recent", "williams_r14",
+                "williams_r_min_recent", "macd", "macd_signal", "macd_cross_up",
                 "macd_below_zero", "ema9", "ema20", "ema50", "ema200",
                 "above_ema9", "above_ema20", "above_ema200", "atr14", "hv20",
                 "avg_volume_30d", "volume_vs_20d", "up_day_volume_expansion",
-                "high_52w", "low_52w", "pct_above_52w_low", "support_60d", "last_date",
+                "high_52w", "low_52w", "at_52w_low", "pct_above_52w_low",
+                "support_60d", "last_date",
             )
         },
         "fundamentals": row.get("fund"),
@@ -246,32 +328,58 @@ def build(config: dict, limit: int | None = None, use_ai: bool = True, as_of: da
     rows = _fundamentals_stage(rows, session, config)
     rows = _options_stage(rows, config, as_of)
 
-    scored = sorted(
+    # Everything that survived the options stage already has a chain, a chosen
+    # put and a score. Ranking keeps all of it: the ten she reads, and the rest
+    # as a bench she can pull from when the top of the list looks familiar.
+    # Publishing the bench costs one slice and no extra fetches.
+    ranked = sorted(
         ((row, score.score(row, config)) for row in rows),
         key=lambda pair: pair[1]["score"],
         reverse=True,
-    )[: config["funnel"]["final"]]
+    )
+    final = config["funnel"]["final"]
+    scored, bench = ranked[:final], ranked[final:]
 
     picks = [row for row, _ in scored]
     reddit = _add_buzz(picks) if picks else []
 
-    catalyst_ran = False
+    brief, catalyst_ran = None, False
     if use_ai and picks:
-        catalyst_ran = _add_catalyst(picks, config)
+        answer = _add_catalyst(picks, config)
+        catalyst_ran, brief = answer["ran"], answer["brief"]
         # The catalyst verdict is a penalty, so the final order can only be
-        # settled after it lands.
+        # settled after it lands. Only these ten were researched, so the bench
+        # stays put rather than being promoted past a name that now carries a
+        # verdict she can read.
         scored = sorted(
             ((row, score.score(row, config)) for row in picks),
             key=lambda pair: pair[1]["score"],
             reverse=True,
         )
 
+    _mark_repeats([row for row, _ in ranked], _past_runs(as_of))
+
     return {
         "reddit": reddit,
         "catalyst_ran": catalyst_ran,
+        "brief": brief,
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "as_of": as_of.isoformat(),
         "universe_size": len(symbols),
+        # The tuning the page re-scores with. Published rather than restated in
+        # JavaScript so that a weight has exactly one home: change config.yaml
+        # and the browser's sliders start from the new number the next morning.
+        "config": {
+            "weights": config["weights"],
+            "scoring": config["scoring"],
+            "penalties": config["penalties"],
+            "gates": config["gates"],
+            "option": {
+                key: config["option"][key]
+                for key in ("target_delta", "min_delta", "max_delta",
+                            "target_dte", "min_dte", "max_dte")
+            },
+        },
         "elapsed_seconds": round(time.time() - started, 1),
         "ai_enabled": use_ai,
         "note": (
@@ -279,6 +387,10 @@ def build(config: dict, limit: int | None = None, use_ai: bool = True, as_of: da
             "Verify the strike and premium live before placing any trade."
         ),
         "picks": [_present(row, result, i + 1) for i, (row, result) in enumerate(scored)],
+        "bench": [
+            _present(row, result, len(scored) + i + 1)
+            for i, (row, result) in enumerate(bench)
+        ],
     }
 
 
@@ -308,10 +420,18 @@ def _print_table(payload: dict) -> None:
         print(f"{pick['symbol']:<6} {pick['name'][:38]:<38} misses: {', '.join(failed) or 'nothing'}")
         for flag in flags:
             print(f"       ! {flag}")
+        if pick.get("seen"):
+            seen = pick["seen"]
+            same = "same contract" if seen["same_contract"] else "different contract"
+            print(f"       ~ day {seen['days']} on the list, {same}, back since {seen['since']}")
         if pick.get("catalyst"):
             print(f"       > [{pick['catalyst']['verdict']}] {pick['catalyst'].get('headline', '')}")
 
-    print(f"\n{len(picks)} names from {payload['universe_size']} symbols in {payload['elapsed_seconds']}s")
+    bench = payload.get("bench") or []
+    print(f"\n{len(picks)} names ({len(bench)} more on the bench) "
+          f"from {payload['universe_size']} symbols in {payload['elapsed_seconds']}s")
+    if payload.get("brief"):
+        print(f"\n{payload['brief']}")
 
 
 def _num(value, spec: str) -> str:
@@ -326,16 +446,20 @@ def _pct(value, width: int) -> str:
 def _write(payload: dict) -> None:
     SITE_DATA.mkdir(parents=True, exist_ok=True)
     HISTORY_DIR.mkdir(parents=True, exist_ok=True)
-    body = json.dumps(payload, indent=1, sort_keys=True)
-    (SITE_DATA / "latest.json").write_text(body, encoding="utf-8")
-    (HISTORY_DIR / f"{payload['as_of']}.json").write_text(body, encoding="utf-8")
+    # The browser downloads latest.json on every visit and now carries the
+    # bench too, so it goes out compact. history/ is committed and read by
+    # people, so it stays indented and diffable.
+    (SITE_DATA / "latest.json").write_text(
+        json.dumps(payload, sort_keys=True, separators=(",", ":")), encoding="utf-8")
+    (HISTORY_DIR / f"{payload['as_of']}.json").write_text(
+        json.dumps(payload, indent=1, sort_keys=True), encoding="utf-8")
     log.info("wrote site/data/latest.json and history/%s.json", payload["as_of"])
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Daily put-selling screen.")
     parser.add_argument("--limit", type=int, help="only scan the first N symbols (for testing)")
-    parser.add_argument("--no-ai", action="store_true", help="skip the Claude call (the only paid step)")
+    parser.add_argument("--no-ai", action="store_true", help="skip the catalyst step (the one call to Gemini)")
     parser.add_argument("--dry-run", action="store_true", help="print the table, write nothing")
     parser.add_argument("--date", help="run as of YYYY-MM-DD (default: today)")
     parser.add_argument("--config", default=str(ROOT / "config.yaml"))

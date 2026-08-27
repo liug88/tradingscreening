@@ -86,15 +86,91 @@
     </div>
   </details>
 
+  <section class="brief" id="brief-section" hidden>
+    <h2 class="section-head">What today&rsquo;s list looks like</h2>
+    <p id="brief-text"></p>
+  </section>
+
   <h2 class="section-head" id="names">The ten names</h2>
-  <p class="section-note">
+  <p class="section-note" id="section-note">
     Ranked by score. Every name here already clears the safety filters &mdash;
     tradeable price, real volume, and a put that would actually fill.
   </p>
 
+  <div class="controls" id="controls" hidden>
+    <p class="controls__count" id="list-count"></p>
+    <div class="controls__actions">
+      <label class="switch" id="new-only-label" hidden>
+        <input type="checkbox" id="new-only">
+        <span>Only what&rsquo;s new</span>
+      </label>
+      <button type="button" class="btn btn--quiet" id="reset-btn" hidden>Back to the top ten</button>
+      <button type="button" class="btn btn--quiet" id="more-btn">Show ten different names</button>
+    </div>
+    <p class="controls__note" id="deep-note" hidden>
+      These sit further down the ranking. They cleared the same safety filters,
+      but only the top ten are researched for &ldquo;why it fell&rdquo; &mdash;
+      these show their numbers alone.
+    </p>
+  </div>
+
+  <details class="tuning" id="tuning" hidden>
+    <summary><span class="tuning__label">Change what counts</span></summary>
+    <div class="tuning__body">
+      <p class="tuning__lede">
+        These are the weights the screen ran with this morning. Move one and the
+        list re-sorts in front of you &mdash; nothing is fetched and nothing is
+        sent anywhere. They only matter relative to each other, so the score
+        stays out of 100 however far you push them.
+      </p>
+
+      <div class="tuning__grid" id="tuning-weights"></div>
+
+      <div class="tuning__strike" id="tuning-strike" hidden>
+        <p class="tuning__strike-label" id="strike-label">How safe should the strike be?</p>
+        <div class="segmented" role="radiogroup" aria-labelledby="strike-label" id="strike-choice"></div>
+        <p class="tuning__note">
+          Every one of these was quoted this morning and would fill at a sane
+          price. A safer strike sits further below the price: less chance of
+          being assigned, less premium for taking it on. Some sit on a later
+          expiry, which is where the safe strikes usually are.
+        </p>
+      </div>
+
+      <div class="tuning__actions">
+        <button type="button" class="btn btn--quiet" id="tuning-reset" hidden>Back to this morning&rsquo;s settings</button>
+      </div>
+
+      <p class="tuning__floor" id="tuning-floor"></p>
+    </div>
+  </details>
+
+  <p class="tuned-note" id="tuned-note" hidden></p>
+
   <div id="rows" class="rows" aria-live="polite">
     <p class="loading">Reading today&rsquo;s screen&hellip;</p>
   </div>
+
+  <section class="chat" id="chat-section" hidden>
+    <h2 class="section-head">Ask about this list</h2>
+    <p class="section-note" id="chat-lede">
+      It reads today&rsquo;s file &mdash; the ten, the names ranked below them, and
+      every number behind the ranking. It explains what the screen found. It will
+      not tell you what to trade.
+    </p>
+
+    <div class="chat__log" id="chat-log" aria-live="polite" aria-label="The conversation"></div>
+
+    <div class="chat__starters" id="chat-starters"></div>
+
+    <form class="chat__form" id="chat-form">
+      <label class="chat__label" for="chat-input">Your question</label>
+      <textarea id="chat-input" rows="2" maxlength="1500"
+        placeholder="Why did this one rank first?"></textarea>
+      <button type="submit" class="btn btn--quiet" id="chat-send">Ask</button>
+    </form>
+    <p class="chat__note" id="chat-note" hidden></p>
+  </section>
 
   <section class="reddit" id="reddit-section" hidden>
     <h2 class="section-head">Most discussed on Reddit</h2>
@@ -125,6 +201,7 @@
   <div class="wrap"><p class="loading">This page needs JavaScript to read the day&rsquo;s data file.</p></div>
 </noscript>
 
+<script src="score.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

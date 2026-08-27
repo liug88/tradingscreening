@@ -89,6 +89,74 @@ function unitMarks(fraction, kind = "kept", total = 10) {
   return out;
 }
 
+/* ---- the score, broken out ------------------------------------------ */
+
+/* The weights differ -- oversold is worth 20 points, margin trend 10 -- so a
+   mark has to be worth the same everywhere or the rows can't be compared down
+   the column. One mark is 2.5 points: the breakdown is 40 marks, and what she
+   counts is the score itself. */
+const POINTS_PER_MARK = 2.5;
+
+/* In weight order, matching the table in docs/specs/screener.md. */
+const COMPONENTS = [
+  ["oversold",         "Oversold enough"],
+  ["premium_richness", "Premium is rich"],
+  ["bounce",           "Bounce confirmed"],
+  ["sales_growth",     "Sales growing"],
+  ["margin_trend",     "Margins improving"],
+  ["strike_safety",    "Strike sits safe"],
+  ["trade_quality",    "Trade is worth taking"],
+];
+
+/* "Ranked third" should never be a black box -- PRODUCT.md principle 4. The
+   figures were always computed; this is where they become readable. */
+function renderBreakdown(components) {
+  if (!components) return null;
+  const wrap = el("div", "breakdown");
+  wrap.appendChild(el("p", "breakdown__lede",
+    "Where the score came from. One mark is 2.5 points, so a longer row earned " +
+    "more — the marks stay the same size."));
+
+  COMPONENTS.forEach(([key, label]) => {
+    const part = components[key];
+    if (!part || !part.max) return;
+    const line = el("div", "breakdown__line");
+    line.appendChild(el("span", "breakdown__label", label));
+    line.appendChild(tally(
+      unitMarks(part.points / part.max, "filled", Math.round(part.max / POINTS_PER_MARK)),
+      `${label}: ${part.points.toFixed(1)} of ${part.max} points`));
+    line.appendChild(el("span", "breakdown__value",
+      `${part.points.toFixed(1)} / ${part.max}`));
+    wrap.appendChild(line);
+  });
+  return wrap;
+}
+
+/* ---- names she has already seen ------------------------------------- */
+
+const ordinal = (n) => {
+  const teens = n % 100;
+  if (teens >= 11 && teens <= 13) return n + "th";
+  return n + (["th", "st", "nd", "rd"][n % 10] || "th");
+};
+
+/* A name can come back for a good reason -- still oversold, still bouncing --
+   so nothing is ever hidden. What she needs at a glance is whether there is
+   anything new to look at: the screener picks the expiry nearest 35 days out
+   and the delta nearest 0.20, so a name that keeps scoring well hands back the
+   identical contract until something moves. */
+function seenChip(seen) {
+  if (!seen) return null;
+  const chip = el("span", "seen",
+    `${ordinal(seen.days)} day · ${seen.same_contract ? "same put" : "new put"}`);
+  chip.dataset.fresh = seen.same_contract ? "no" : "yes";
+  chip.title = seen.same_contract
+    ? `Same strike and expiry as the last list. On the list since ${longDate(seen.since)}.`
+    : `On the list since ${longDate(seen.since)}, but today the screen picked a ` +
+      `different strike or expiry.`;
+  return chip;
+}
+
 /* ---- rows ----------------------------------------------------------- */
 
 function renderRow(pick) {
@@ -113,6 +181,8 @@ function renderRow(pick) {
   /* name and price */
   const name = el("div", "name");
   name.appendChild(el("h3", null, cleanName(pick.name)));
+  const chip = seenChip(pick.seen);
+  if (chip) name.appendChild(chip);
   name.appendChild(el("div", "name__price", money(pick.price)));
   if (pick.change_5d != null) {
     const pctMove = Math.abs(pick.change_5d * 100);
@@ -232,6 +302,11 @@ function renderNumbers(pick, trade) {
   });
   det.appendChild(grid);
 
+  /* The score breakdown lives here rather than in the row: the row carries two
+     tallies and a third would compete with the two she acts on. */
+  const breakdown = renderBreakdown(pick.components);
+  if (breakdown) det.appendChild(breakdown);
+
   /* Kept out of the grid: a caveat this long wraps a cell onto two ragged
      lines and breaks the rhythm of every row beside it. */
   if (pick.iv_percentile == null) {
@@ -291,7 +366,9 @@ function renderReddit(rows) {
 /* She deliberately runs the same question past Gemini and Perplexity. That is
    a feature of how she works, so the job here is to make it take ten seconds
    instead of an hour -- not to talk her out of it. */
-function buildPrompt(data) {
+function buildPrompt() {
+  const data = view.data;
+  const names = shownNames();
   const lines = [];
   lines.push(
     "I sell cash-secured puts on stocks that have sold off but are showing signs " +
@@ -299,11 +376,12 @@ function buildPrompt(data) {
   lines.push("");
   lines.push(
     `My screener ran on ${data.as_of} against ${data.universe_size} US stocks with ` +
-    "weekly options and returned these ten, ranked. All quotes are delayed and " +
-    "reflect the prior close.");
+    `weekly options. These are the ${names.length} I am looking at, and the number ` +
+    "against each is where it ranked. All quotes are delayed and reflect the prior " +
+    "close.");
   lines.push("");
 
-  data.picks.forEach((p) => {
+  names.forEach((p) => {
     const t = p.trade || {};
     const tech = p.technicals || {};
     const f = p.fundamentals || {};
@@ -336,7 +414,7 @@ function buildPrompt(data) {
   return lines.join("\n");
 }
 
-function wireCopy(data) {
+function wireCopy() {
   const btn = $("#copy-btn");
   const box = $("#copy-fallback");
   const note = $("#copy-fallback-note");
@@ -352,7 +430,7 @@ function wireCopy(data) {
   };
 
   btn.addEventListener("click", async () => {
-    const text = buildPrompt(data);
+    const text = buildPrompt();
     box.hidden = true;
     try {
       await navigator.clipboard.writeText(text);
@@ -383,21 +461,24 @@ function wireCopy(data) {
 
 /* ---- the numbers toggle --------------------------------------------- */
 
+/* Rows are rebuilt whenever she pages or filters, so the toggle has to be
+   re-applied to the new ones rather than only wired once. */
+function applyNumbers() {
+  const open = $("#numbers-toggle").checked;
+  document.querySelectorAll("details.numbers").forEach((d) => { d.open = open; });
+}
+
 function wireNumbersToggle() {
   const box = $("#numbers-toggle");
   let saved = null;
   try { saved = localStorage.getItem("show-numbers"); } catch { /* private mode */ }
   box.checked = saved === "yes";
-  const apply = () => {
-    document.querySelectorAll("details.numbers")
-      .forEach((d) => { d.open = box.checked; });
-  };
   box.addEventListener("change", () => {
-    apply();
+    applyNumbers();
     try { localStorage.setItem("show-numbers", box.checked ? "yes" : "no"); }
     catch { /* nothing to do; the toggle still works for this visit */ }
   });
-  apply();
+  applyNumbers();
 }
 
 /* ---- page ----------------------------------------------------------- */
@@ -415,13 +496,476 @@ function notice(text) {
   $("#notice-band").hidden = false;
 }
 
+/* ---- what she is looking at ----------------------------------------- */
+
+/* The screener scores every name that survives the options stage -- about
+   seventy-five of them, each with a chain and a chosen put -- and only the top
+   ten used to be published. The rest now ride along in the same file, so "show
+   me ten different ones" is a slice of data already on the page: no re-run, no
+   network, nothing to wait for.
+
+   There is deliberately no "run it again" button. A re-run puts the same data
+   through the same criteria and returns the same list. The control worth
+   having is this one. */
+const view = {
+  data: null,
+  offset: 0,
+  newOnly: false,
+  settings: null,   // her weights; starts as this morning's and can be put back
+  baseline: null,   // this morning's, kept so "changed" is a fact not a guess
+  strikePref: null,
+};
+
+const everyName = () => (view.data.picks || []).concat(view.data.bench || []);
+const pageSize = () => (view.data.picks || []).length || 10;
+
+/* Nothing she has moved. Worth asking rather than always re-scoring, because
+   the published order is not quite score order: the catalyst penalty lands
+   after the ten are chosen, so a researched name carrying a structural flag
+   stays in the ten rather than being overtaken by a bench name nobody looked
+   into. Re-sorting on arrival would quietly undo that. Once she has changed
+   something, re-sorting is the entire point. */
+const untouched = () =>
+  !view.strikePref &&
+  (!view.settings ||
+    JSON.stringify(view.settings) === JSON.stringify(view.baseline));
+
+/* The delta each preference aims at. Delta is roughly the market's own odds of
+   assignment, so this really is a safety dial and not a cosmetic one. */
+const STRIKE_TARGETS = { safe: 0.12, balanced: 0.20, rich: 0.30 };
+
+/* The put closest to the delta she asked for, out of the ones already quoted
+   in this name's chosen expiry. */
+function preferredStrike(row) {
+  if (!view.strikePref || !row.trade) return row;
+  const target = STRIKE_TARGETS[view.strikePref];
+  const choices = [row.trade].concat(row.trade.alternatives || []);
+  const nearest = choices.reduce((best, alt) =>
+    Math.abs(alt.delta - target) < Math.abs(best.delta - target) ? alt : best);
+  return Score.withStrike(row, nearest.id);
+}
+
+/* The list as she has tuned it. Names are never added or removed here -- these
+   are the forty-odd the gates already admitted this morning. */
+const tunedNames = () =>
+  untouched()
+    ? everyName()
+    : Score.rescoreAll(everyName().map(preferredStrike), view.settings);
+
+const pool = () => {
+  const names = tunedNames();
+  return view.newOnly ? names.filter((p) => !p.seen) : names;
+};
+const shownNames = () => pool().slice(view.offset, view.offset + pageSize());
+
+const scrollToNames = () => $("#names").scrollIntoView({
+  behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+  block: "start",
+});
+
+function renderList() {
+  const names = pool();
+  const shown = shownNames();
+  const rows = $("#rows");
+
+  rows.textContent = "";
+  if (!shown.length) {
+    rows.appendChild(el("p", "empty", view.newOnly
+      ? "Every name on today’s list has been on it before. That is a real " +
+        "answer, not a gap — the same setups are still the best ones available."
+      : "Nothing cleared the safety filters today. That is a real answer, not a " +
+        "failure — it means no stock had both the setup and a put worth selling."));
+  } else {
+    rows.dataset.counted = "no";
+    shown.forEach((p) => rows.appendChild(renderRow(p)));
+    setTimeout(() => { rows.dataset.counted = "yes"; }, 1200);
+  }
+
+  applyNumbers();
+  updateControls(names.length);
+  tunedNote();
+}
+
+function updateControls(count) {
+  const size = pageSize();
+  const last = Math.min(view.offset + size, count);
+
+  /* The heading has to describe what is actually underneath it. Leaving "the
+     ten names" over ranks 11 to 20 is a small lie the page can avoid. */
+  $("#names").textContent = view.offset > 0
+    ? "Ranked below the ten"
+    : view.newOnly
+      ? "New on the list today"
+      : untouched()
+        ? "The ten names"
+        : "The ten names, your weights";
+
+  $("#list-count").textContent = count
+    ? `Showing ${view.offset + 1}–${last} of ${count} ranked names.`
+    : "";
+  $("#more-btn").disabled = view.offset + size >= count;
+  $("#reset-btn").hidden = view.offset === 0;
+
+  /* Only this morning's ten were researched, so anything else is numbers
+     alone -- whether she paged down to it or her own weights lifted it into
+     view. Better to say that than to let a blank note read as "no news". */
+  const researched = (view.data.picks || []).map((p) => p.symbol);
+  $("#deep-note").hidden = !view.data.catalyst_ran ||
+    shownNames().every((p) => researched.includes(p.symbol));
+}
+
+function wireControls() {
+  const repeats = everyName().some((p) => p.seen);
+
+  /* An older list republished by the fallback has no bench and no repeat marks,
+     so there is nothing here to operate. */
+  $("#controls").hidden = !(view.data.bench || []).length && !repeats;
+  $("#new-only-label").hidden = !repeats;
+
+  $("#more-btn").addEventListener("click", () => {
+    view.offset += pageSize();
+    renderList();
+    scrollToNames();
+  });
+  $("#reset-btn").addEventListener("click", () => {
+    view.offset = 0;
+    renderList();
+    scrollToNames();
+  });
+  $("#new-only").addEventListener("change", (e) => {
+    view.newOnly = e.target.checked;
+    view.offset = 0;
+    renderList();
+  });
+}
+
+/* ---- her own settings ------------------------------------------------ */
+
+/* The screen ran on one set of weights this morning. These move the same ones,
+   in her browser, over the names already in the file: no re-run, no network,
+   nothing stored. A reload is this morning's list again.
+
+   The limit is worth stating plainly, and the panel does. Weights re-rank; they
+   cannot admit a name the gates dropped, because that name was never published.
+   Price, volume, market cap and the RSI ceiling ran against all 570 symbols. */
+
+const clone = (value) => JSON.parse(JSON.stringify(value));
+
+const WORDS = ["none", "one", "two", "three", "four", "five",
+               "six", "seven", "eight", "nine", "ten"];
+const count = (n) => WORDS[n] || String(n);
+
+const STRIKE_CHOICES = [
+  ["safe", "Safer", "Further below the price. Less premium, and less chance of being assigned."],
+  ["balanced", "As screened", "The put the screen picked this morning."],
+  ["rich", "Richer", "Closer to the price. More premium, and more chance of being assigned."],
+];
+
+function renderWeights() {
+  const grid = $("#tuning-weights");
+  grid.textContent = "";
+
+  COMPONENTS.forEach(([key, label]) => {
+    if (view.baseline.weights[key] === undefined) return;
+
+    const line = el("div", "weight");
+    const name = el("label", "weight__label", label);
+    name.htmlFor = "w-" + key;
+    line.appendChild(name);
+
+    const slider = document.createElement("input");
+    slider.type = "range";
+    slider.id = "w-" + key;
+    slider.className = "weight__slider";
+    slider.min = "0";
+    slider.max = "40";
+    slider.step = "1";
+    slider.value = String(view.settings.weights[key]);
+    slider.addEventListener("input", () => {
+      view.settings.weights[key] = Number(slider.value);
+      readout.textContent = slider.value;
+      view.offset = 0;
+      renderList();
+    });
+    line.appendChild(slider);
+
+    const readout = el("span", "weight__value", String(view.settings.weights[key]));
+    line.appendChild(readout);
+    grid.appendChild(line);
+  });
+}
+
+function renderStrikeChoice() {
+  const wrap = $("#tuning-strike");
+  /* Thin chains are normal -- the open-interest and spread filters are strict.
+     If nothing on the list has a second quoted put, there is no dial to offer. */
+  const swappable = everyName().filter(
+    (p) => ((p.trade || {}).alternatives || []).length).length;
+  wrap.hidden = !swappable;
+  if (!swappable) return;
+
+  const box = $("#strike-choice");
+  box.textContent = "";
+  STRIKE_CHOICES.forEach(([value, label, why]) => {
+    const button = el("button", "segmented__option", label);
+    button.type = "button";
+    button.setAttribute("role", "radio");
+    button.title = why;
+    const chosen = (view.strikePref || "balanced") === value;
+    button.setAttribute("aria-checked", chosen ? "true" : "false");
+    button.addEventListener("click", () => {
+      view.strikePref = value === "balanced" ? null : value;
+      view.offset = 0;
+      renderStrikeChoice();
+      renderList();
+    });
+    box.appendChild(button);
+  });
+}
+
+/* What actually changed, in names. This is the answer to the question the
+   sliders exist to ask -- "do the stocks change?" -- and a re-sorted list on
+   its own does not answer it. */
+function tunedNote() {
+  const note = $("#tuned-note");
+  $("#tuning-reset").hidden = untouched();
+
+  if (untouched()) {
+    note.hidden = true;
+    return;
+  }
+
+  const morning = (view.data.picks || []).map((p) => p.symbol);
+  const now = tunedNames().slice(0, pageSize());
+  const arrived = now.filter((p) => !morning.includes(p.symbol));
+  const swapped = now.filter((p) => (p.trade || {}).swapped).length;
+
+  let text;
+  if (!arrived.length) {
+    text = now.some((p, i) => p.symbol !== morning[i])
+      ? "Your settings. The same ten names as this morning, in a different order."
+      : "Your settings. The same ten names, in the same order — these weights " +
+        "do not change the ranking.";
+  } else {
+    text = `Your settings. ${cap(count(now.length - arrived.length))} of this ` +
+      `morning's ten are still in the top ten; ` +
+      `${arrived.map((p) => p.symbol).join(", ")} moved up from the bench.`;
+  }
+  if (swapped) {
+    text += ` ${cap(count(swapped))} ${swapped === 1 ? "name shows" : "names show"} ` +
+      `a different put from the one screened.`;
+  }
+  note.textContent = text;
+  note.hidden = false;
+}
+
+const cap = (word) => word.charAt(0).toUpperCase() + word.slice(1);
+
+function wireTuning() {
+  const config = view.data.config;
+  /* An older list republished by the fallback predates the published config,
+     and there is nothing to tune against. */
+  if (!config || !config.weights) return;
+
+  view.baseline = clone(config);
+  view.settings = clone(config);
+
+  $("#tuning").hidden = false;
+  $("#tuning-floor").textContent =
+    `What this cannot do is widen the net. Price, volume, market cap and the ` +
+    `RSI ceiling were applied to all ${view.data.universe_size} symbols this ` +
+    `morning, and only the ${everyName().length} that came through are in this ` +
+    `file. Moving those means a fresh run.`;
+
+  renderWeights();
+  renderStrikeChoice();
+
+  $("#tuning-reset").addEventListener("click", () => {
+    view.settings = clone(view.baseline);
+    view.strikePref = null;
+    view.offset = 0;
+    renderWeights();
+    renderStrikeChoice();
+    renderList();
+  });
+}
+
+/* ---- the chat -------------------------------------------------------- */
+
+/* The deployed Worker. Empty until it is deployed, and empty is a working
+   state: the page is a list first, and it has to render its ten names with the
+   chat switched off, unreachable, or out of budget. */
+const CHAT_URL = "";
+
+const chat = { key: "", turns: [], busy: false };
+
+/* She opens a bookmark that carries the passphrase, so she never types one.
+   It is taken out of the address bar immediately -- it is a lock on the spend,
+   not a login, but there is no reason to leave it sitting in a screenshot. */
+function readChatKey() {
+  const url = new URL(location.href);
+  const given = url.searchParams.get("k");
+  if (given) {
+    try { sessionStorage.setItem("chat-key", given); } catch { /* private mode */ }
+    url.searchParams.delete("k");
+    history.replaceState(null, "", url.pathname + url.search + url.hash);
+    return given;
+  }
+  try { return sessionStorage.getItem("chat-key") || ""; } catch { return ""; }
+}
+
+/* Her turn takes the solid blue field with reversed lettering, the answer sits
+   on the stock: the same two-weight relationship the guide blocks use, so the
+   conversation reads as part of the page rather than a widget dropped onto it. */
+function bubble(who, text) {
+  const wrap = el("div", "bubble bubble--" + who);
+  wrap.appendChild(el("p", "bubble__who", who === "you" ? "You" : "The screen"));
+  const body = el("div", "bubble__body");
+  body.textContent = text;
+  wrap.appendChild(body);
+  $("#chat-log").appendChild(wrap);
+  return body;
+}
+
+function chatNote(text) {
+  const note = $("#chat-note");
+  note.textContent = text || "";
+  note.hidden = !text;
+}
+
+function chatBusy(busy) {
+  chat.busy = busy;
+  $("#chat-send").disabled = busy;
+  $("#chat-send").textContent = busy ? "Thinking…" : "Ask";
+}
+
+async function ask(question) {
+  const text = question.trim();
+  if (!text || chat.busy) return;
+
+  chatNote("");
+  bubble("you", text);
+  $("#chat-starters").hidden = true;
+  chat.turns.push({ role: "user", content: text });
+  chatBusy(true);
+
+  const body = bubble("screen", "");
+  let answer = "";
+
+  try {
+    const res = await fetch(CHAT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ key: chat.key, messages: chat.turns }),
+    });
+
+    if (!res.ok) {
+      const why = await res.json().catch(() => ({}));
+      body.parentNode.remove();
+      chat.turns.pop();
+      chatNote(why.error || `The chat is not answering (${res.status}).`);
+      return;
+    }
+
+    const reader = res.body.getReader();
+    const decode = new TextDecoder();
+    for (;;) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      answer += decode.decode(value, { stream: true });
+      body.textContent = answer;
+    }
+  } catch {
+    if (!answer) {
+      body.parentNode.remove();
+      chat.turns.pop();
+      chatNote("The chat could not be reached. Everything above still stands — " +
+               "it is computed here, not written by a model.");
+      return;
+    }
+  } finally {
+    chatBusy(false);
+  }
+
+  chat.turns.push({ role: "assistant", content: answer });
+}
+
+/* Openers built from today's own list. "What should I ask it" is the real
+   barrier, and a name she can see on the page is a better prompt than an
+   empty box. */
+function chatStarters(data) {
+  const box = $("#chat-starters");
+  box.textContent = "";
+  const top = (data.picks || [])[0];
+  const first = (data.bench || [])[0];
+  const repeat = (data.picks || []).find((p) => p.seen && p.seen.same_contract);
+
+  const asks = [
+    top && `Why did ${top.symbol} rank first?`,
+    first && `Why isn't ${first.symbol} in the ten?`,
+    repeat && `${repeat.symbol} is back with the same put — has anything changed?`,
+    "Which of these is least likely to leave me holding the shares?",
+  ].filter(Boolean).slice(0, 3);
+
+  asks.forEach((q) => {
+    const btn = el("button", "starter", q);
+    btn.type = "button";
+    btn.addEventListener("click", () => ask(q));
+    box.appendChild(btn);
+  });
+}
+
+function wireChat(data) {
+  if (!CHAT_URL) return;
+  chat.key = readChatKey();
+  if (!chat.key) return;
+
+  $("#chat-section").hidden = false;
+  chatStarters(data);
+
+  const input = $("#chat-input");
+  $("#chat-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const q = input.value;
+    input.value = "";
+    ask(q);
+  });
+  /* Enter sends, shift-enter breaks the line: she is asking a question, not
+     drafting. */
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      $("#chat-form").requestSubmit();
+    }
+  });
+}
+
+/* The page never said it had run. "Screened Wednesday" reads like an archive;
+   the time it finished reads like something that happened this morning. */
+const ranAt = (iso) => {
+  if (!iso) return "";
+  const when = new Date(iso);
+  if (isNaN(when.getTime())) return "";
+  return ", finished " + when.toLocaleTimeString(undefined,
+    { hour: "numeric", minute: "2-digit" });
+};
+
+function renderBrief(data) {
+  if (!data.brief) return;
+  $("#brief-text").textContent = data.brief;
+  $("#brief-section").hidden = false;
+}
+
 function render(data) {
+  view.data = data;
   const picks = data.picks || [];
+  const deeper = (data.bench || []).length;
 
   $("#masthead-sub").textContent =
     `${picks.length} names from ${data.universe_size} stocks with weekly options. ` +
-    `Screened ${longDate(data.as_of)}. Prices and option quotes are delayed and ` +
-    `reflect the prior close — check the strike live before you trade.`;
+    `Screened ${longDate(data.as_of)}${ranAt(data.generated_at)}. Prices and option ` +
+    `quotes are delayed and reflect the prior close — check the strike live before ` +
+    `you trade.`;
 
   /* A weekend or a holiday is not staleness; four clear days is. */
   const age = daysBetween(data.as_of);
@@ -430,27 +974,29 @@ function render(data) {
            `since ${longDate(data.as_of)}. Treat every price here as out of date.`);
   }
 
-  const rows = $("#rows");
-  rows.textContent = "";
-  if (!picks.length) {
-    rows.appendChild(el("p", "empty",
-      "Nothing cleared the safety filters today. That is a real answer, not a " +
-      "failure — it means no stock had both the setup and a put worth selling."));
-  } else {
-    rows.dataset.counted = "no";
-    picks.forEach((p) => rows.appendChild(renderRow(p)));
-    setTimeout(() => { rows.dataset.counted = "yes"; }, 1200);
-  }
-
   $("#key-note").textContent =
     "The checks come straight from your own written criteria. The ranking is a " +
     "weighted score, not a count of ticks — open “the numbers” on any name to " +
-    "see exactly what it passed, missed, and what could not be measured.";
+    "see where every point came from, what it missed, and what could not be " +
+    "measured.";
 
+  $("#section-note").textContent = deeper
+    ? `Ranked by score. Every name here already clears the safety filters — ` +
+      `tradeable price, real volume, and a put that would actually fill. ` +
+      `${deeper} more cleared them too and are ranked below.`
+    : "Ranked by score. Every name here already clears the safety filters — " +
+      "tradeable price, real volume, and a put that would actually fill.";
+
+  renderBrief(data);
+  wireNumbersToggle();
+  wireControls();
+  wireTuning();
+  renderList();
+  wireChat(data);
   renderReddit(data.reddit);
 
   $("#footer-note").textContent = data.catalyst_ran
-    ? "The “why it fell” note on each name is written by Claude from recent " +
+    ? "The “why it fell” note on each name is written by Gemini from recent " +
       "news. It never picks or ranks the stocks — every number above is computed."
     : "The “why it fell” notes did not run for this list, so each name shows " +
       "its numbers only. Every number above is computed, never written by a model.";
@@ -460,8 +1006,7 @@ function render(data) {
     `in ${data.elapsed_seconds}s. Sources: Yahoo Finance, Cboe delayed quotes, ` +
     `ApeWisdom. No account, brokerage, or personal data is used anywhere.`;
 
-  wireCopy(data);
-  wireNumbersToggle();
+  wireCopy();
 }
 
 fetch("data/latest.json", { cache: "no-store" })
