@@ -795,7 +795,7 @@ function wireTuning() {
 /* The deployed Worker. Empty until it is deployed, and empty is a working
    state: the page is a list first, and it has to render its ten names with the
    chat switched off, unreachable, or out of budget. */
-const CHAT_URL = "";
+const CHAT_URL = "https://put-screen-chat.tradingscreening.workers.dev/";
 
 const chat = { key: "", turns: [], busy: false };
 
