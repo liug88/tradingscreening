@@ -151,9 +151,11 @@ def _body(rows: list[dict], settings: dict, schema: bool) -> dict:
 def _text(data: dict) -> str:
     """The model's answer, however this response happens to be shaped.
 
-    `output_text` is the documented accessor; the walk under it is there because
-    a grounded turn returns its search steps in the same timeline, and losing a
-    morning's research to a shape change is not worth the two lines saved.
+    `output_text` is the documented accessor, but a real call does not return
+    it: the answer arrives as a model_output step in a timeline that also holds
+    the model's thought and its search calls. The walk is the path that runs.
+    Both are kept -- losing a morning's research to a shape change is not worth
+    the two lines saved.
     """
     direct = data.get("output_text")
     if isinstance(direct, str) and direct.strip():

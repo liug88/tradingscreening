@@ -115,9 +115,23 @@ curl -sS -X POST "https://generativelanguage.googleapis.com/v1beta/interactions"
   -d '{"model":"gemini-3.7-flash","system_instruction":"Answer in three words.","input":"Say hello.","store":false}'
 ```
 
-A JSON object with `output_text` in it means the key works and every field name
-in `src/index.js` is still current. An error naming a field means Google has
-moved something, and that name is what to fix.
+On Windows PowerShell, put the body in a file rather than fighting the quoting:
+
+```powershell
+'{"model":"gemini-3.7-flash","system_instruction":"Answer in three words.","input":"Say hello.","store":false}' | Set-Content -Encoding ascii "$env:TEMPody.json"
+curl.exe -sS -X POST "https://generativelanguage.googleapis.com/v1beta/interactions" -H "x-goog-api-key: $env:GEMINI_API_KEY" -H "Content-Type: application/json" -H "Api-Revision: 2026-05-20" -d "@$env:TEMPody.json"
+```
+
+What comes back is `"status":"completed"` and a `steps` array. The answer is the
+`model_output` step, behind a `thought` step that carries a signature and no
+content. There is no `output_text`, whatever the docs say — `_text()` in
+`catalyst.py` tries it first and then walks the timeline, and the walk is the
+path that runs. An error naming a field means Google has moved something, and
+that name is what to fix.
+
+This only checks the non-streaming shape. The Worker reads the streamed one —
+`step.delta` events with `delta.type == "text"` — which `wrangler dev` in the
+next section is what actually exercises.
 
 Then the Worker itself:
 

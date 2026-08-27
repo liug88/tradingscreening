@@ -176,6 +176,21 @@ class TestParsing:
         ]})])
         assert len(catalyst.explain(ROWS, config, session=session)["verdicts"]) == 2
 
+    def test_reads_the_shape_the_live_api_actually_returns(self, config):
+        """Checked against a real call on 2026-08-27: there is no output_text.
+        The answer arrives as a model_output step behind a thought step, and
+        that thought step carries a signature and no content at all."""
+        session = StubSession([Response(payload={
+            "status": "completed",
+            "model": "gemini-3.7-flash",
+            "steps": [
+                {"type": "thought", "signature": "EtwGCtkGARFNMg8fC9f5"},
+                {"type": "model_output",
+                 "content": [{"type": "text", "text": json.dumps(VERDICTS)}]},
+            ],
+        })])
+        assert len(catalyst.explain(ROWS, config, session=session)["verdicts"]) == 2
+
     def test_unfences_json_the_model_wrapped_in_a_code_block(self, config):
         """Only reachable once the schema has been dropped, which is exactly
         when the answer stops being guaranteed clean."""
