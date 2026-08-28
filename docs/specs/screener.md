@@ -335,6 +335,9 @@ screener/
   run.py         the orchestrator and CLI
 site/            the page: index.html, style.css, app.js, data/
   score.js       score.py again, in the browser, for the sliders
+  method.html    the backtest, written out once, limits above numbers
+tools/
+  backtest.py    what the screen would have picked, run over past dates
 worker/          the chat, deployed separately to Cloudflare
   src/index.js   passphrase, daily cap, the Gemini call, the streamed answer
   wrangler.toml  the origin it trusts and the file it reads
@@ -404,13 +407,47 @@ gives away. Until then the page says "building" rather than guessing.
 `history/` keeps every past list, so the question of whether the weights are any
 good becomes answerable later.
 
+## The backtest
+
+`tools/backtest.py` re-runs the screen on a past date and measures what happened
+next. `python -m tools.backtest --monthly` walks it forward a month at a time
+from September 2024 — 23 dates, 230 trades. `site/method.html` is that output
+written out by hand, once, for her to read.
+
+`technicals.compute()` only ever reads the tail of the frame it is handed, so
+truncating a price history to a past date yields exactly the indicators that
+morning's run would have computed. That part is honest. Four things are not, and
+the page states all four above its first number:
+
+- **The option is estimated.** CBOE serves the current chain and nothing else,
+  and no free source keeps historical quotes. The strike comes from
+  Black-Scholes on realised vol at r=0, which sits closer to the money than the
+  real one — the error runs toward being too strict. `trade_quality` and the
+  fillable-put gate are gone outright, and most of `strike_safety` with them.
+- **The fundamentals are gone too.** Today's revenue against a year-ago pick is
+  look-ahead, so `sales_growth` and `margin_trend` are dropped rather than
+  faked. What is left reconstructs 49 of the shipped 100 points.
+- **The universe survived.** It is today's CBOE weeklys list, so anything
+  delisted in the last two years was never a candidate.
+- **The tape only went one way.** Two years, mostly rising. Nothing here has
+  been through a market that fell for a year.
+
+It runs two variants — price signals alone, and price signals plus the
+recoverable halves of premium and strike — because the gap between them is the
+finding. The tilt cut assignments from 26% to 18% for the same average return,
+which is the thesis working. Against every name that merely qualified, though,
+the top ten returned less: +0.7% against +1.8% over 35 days. It buys safety, and
+safety costs upside. Both readings are on the page.
+
 ## What it does not do
 
 - It does not connect to a broker, and holds no account data, positions, or
   personal information. It never will.
 - It does not tell her to place a trade. It surfaces names to research.
-- There is no backtest, no win rate, and no evidence that the screen picks
-  winners. Nothing on the page implies otherwise.
+- It does not claim a track record. There is a backtest now, and it is on the
+  page, but it reconstructs half the model against an estimated option and its
+  limits are printed above its numbers. It is evidence about the ranking. It is
+  not a win rate, and nothing on the page may round it up into one.
 
 Selling puts on stocks that have fallen means deliberately catching falling
 knives, and high implied volatility is the market pricing a real chance of a

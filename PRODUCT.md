@@ -118,11 +118,16 @@ hedging, and — given the subject — no implied promises about outcomes.
 - `history/` — every past daily list, accumulating from first run.
 - `cache/iv_history.json` — per-symbol implied volatility, accumulating daily. It
   becomes a true IV percentile after roughly three months.
+- `tools/backtest.py` and `site/method.html` — what the screen would have picked
+  each month since September 2024, and what happened over the 35 days after.
+  Half the model, an estimated strike, a surviving universe, and a rising tape.
 
 **Absences future work must not fabricate:** there are no users besides her, no
-testimonials, no performance record, no backtest, no win rate, and no evidence
-whatsoever that the screen picks winners. Nothing on the page may imply any of
-these exist.
+testimonials, no performance record, no win rate, and no evidence whatsoever
+that the screen picks winners. The backtest is the single narrow exception: 230
+reconstructed trades scoring half the model against an estimated strike,
+published with its four limits stated above its numbers. Nothing may round that
+up into a track record.
 
 ## Product Principles
 

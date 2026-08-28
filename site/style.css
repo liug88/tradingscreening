@@ -311,6 +311,21 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   margin-bottom: var(--sp-lg);
 }
 
+/* Until now the page had no links in its body, so it never needed a rule and
+   the browser's own violet-and-underline was never seen. It is seen now. Blue
+   is the structural ink; the underline stays because a link that does not
+   look like one is a link that does not get clicked. */
+main a:not(.btn) {
+  color: var(--blue);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+main a:not(.btn):hover { text-decoration-thickness: var(--sp-hair); }
+
+/* Sits directly under the note app.js rewrites, so it reads as one block with
+   it rather than a stray line. */
+.section-note--link { margin-top: calc(var(--sp-lg) * -1 + var(--sp-sm)); }
+
 /* ---- the mark: the atom of the whole page ---- */
 
 .tally {

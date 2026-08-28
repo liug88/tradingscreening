@@ -251,7 +251,9 @@ entirely and the page is complete without it.
 - Don't set ochre as a letterform.
 - Don't spend red on anything that is not genuine risk.
 - Don't add a shadow, gradient, glow or rounded container.
-- Don't imply a track record. There is no backtest, no win rate and no
-  performance history, and nothing on the page may suggest otherwise.
+- Don't imply a track record. `method.html` is the one place past numbers are
+  allowed, it states its limits above them, and it is reached by a link rather
+  than sat on top of the morning list. Nowhere else may suggest a win rate or a
+  performance history exists.
 - Don't let a name silently vanish. Missing data is a stated unknown, never an
   absence — inconsistency is the failure this product exists to remove.

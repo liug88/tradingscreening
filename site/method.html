@@ -1,0 +1,333 @@
+<!doctype html>
+<!--
+  The evidence page. Static on purpose: this is a study run once, not a live
+  metric, and a number that fetches implies it refreshes. Every figure here
+  came from `python -m tools.backtest --monthly` and `--months 3 6 12` on the
+  date stamped at the top, and the tool writes its full JSON alongside so any
+  of it can be checked rather than taken.
+
+  It leads with what the test could not do. That order is deliberate. The
+  results are mildly encouraging and the limits are severe, and a reader who
+  meets the numbers first has already formed a view by the time she reaches
+  the caveats.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How this screen has done</title>
+<meta name="description" content="What the daily put screen would have picked over the last two years, and what happened to those names.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="method.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+<a class="skip" href="#numbers">Skip to the numbers</a>
+
+<header class="masthead">
+  <div class="masthead__inner">
+    <div class="masthead__title">
+      <h1>How this screen has done</h1>
+      <p class="masthead__sub">
+        Tested 27 August 2026 &mdash; 23 monthly entries, 230 trades, back to
+        September 2024
+      </p>
+    </div>
+    <div class="masthead__actions">
+      <a class="btn" href="./">Back to today&rsquo;s list</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="lede">
+    <p class="lede__text">
+      This asks one question: if the screen had run on a morning two years ago,
+      and you had sold the put it suggested, would you have been assigned?
+    </p>
+    <p>
+      It is worth reading because the answer is <em>mildly</em> encouraging and
+      the reasons to distrust it are <em>severe</em>. Both halves matter. What
+      follows puts the limits first, because a number read before its caveat
+      has already done its work.
+    </p>
+  </section>
+
+  <section class="panel panel--red" id="limits">
+    <h2 class="section-head">Four reasons this proves less than it looks like</h2>
+
+    <ol class="limits">
+      <li>
+        <h3>Only half the model could be rebuilt.</h3>
+        <p>
+          The screen scores seven things out of 100 points. Rebuilding a past
+          morning recovers <strong>49 of those 100</strong>. Option quotes are
+          the problem: the free source serves today&rsquo;s chain and keeps no
+          history, so there is no record of what a put cost in March 2025. That
+          removes the yield component outright, removes the check that the put
+          would actually fill, and removes half the strike-cushion score. The
+          revenue and margin components were dropped on purpose &mdash; using
+          today&rsquo;s filings to rank a year-ago pick is reading the answer
+          before the exam.
+        </p>
+      </li>
+      <li>
+        <h3>The strike is a guess, not a quote.</h3>
+        <p>
+          With no historical chain, the test estimates where the strike would
+          have been from how much the stock was actually moving, using
+          Black-Scholes at a zero interest rate. That estimate lands
+          <em>closer</em> to the money than a real strike would have &mdash;
+          which means the test assigns more often than the real thing would.
+          The bias runs toward pessimism, which is the safer direction, but it
+          is still a guess.
+        </p>
+      </li>
+      <li>
+        <h3>The universe is today&rsquo;s list of names.</h3>
+        <p>
+          Every test date is screened against the stocks that have weekly
+          options <em>now</em>. Anything that was delisted, acquired or fell
+          off the list in between has quietly vanished from the sample.
+          Survivors are easier to look good on.
+        </p>
+      </li>
+      <li>
+        <h3>Two hundred and thirty trades is not many.</h3>
+        <p>
+          One monthly entry, ten names, twenty-three windows. Across a period
+          in which the market mostly rose. That is enough to say the ranking is
+          not random. It is nowhere near enough to say what it will do next
+          year.
+        </p>
+      </li>
+    </ol>
+  </section>
+
+  <section id="numbers">
+    <h2 class="section-head">What the test did</h2>
+    <p class="section-note">
+      On the first of each month, take the price history exactly as it stood
+      that morning &mdash; no later bars &mdash; run the reduced screen over
+      every name that cleared the safety filters, and take the top ten. Sell a
+      cash-secured put roughly five weeks out, at the strike the estimate puts
+      about 11% below the price. Then look at the next 35 trading days and ask
+      whether the stock closed below the strike.
+    </p>
+
+    <h2 class="section-head">The headline</h2>
+
+    <div class="figure">
+      <table class="tbl">
+        <caption>230 trades, September 2024 to July 2026</caption>
+        <thead>
+          <tr>
+            <th scope="col">&nbsp;</th>
+            <th scope="col">This screen&rsquo;s ten</th>
+            <th scope="col">Price signals only</th>
+            <th scope="col">Every name that qualified</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Assigned</th>
+            <td class="good"><strong>18%</strong></td>
+            <td>26%</td>
+            <td>22%</td>
+          </tr>
+          <tr>
+            <th scope="row">Strike touched at any point</th>
+            <td class="good">38%</td>
+            <td>50%</td>
+            <td>45%</td>
+          </tr>
+          <tr>
+            <th scope="row">Average move over 35 days</th>
+            <td>+0.7%</td>
+            <td>+0.7%</td>
+            <td class="good">+1.8%</td>
+          </tr>
+          <tr>
+            <th scope="row">Median move</th>
+            <td>&minus;1.0%</td>
+            <td>&minus;0.7%</td>
+            <td class="good">+0.5%</td>
+          </tr>
+          <tr>
+            <th scope="row">Average worst dip</th>
+            <td class="good">&minus;9.5%</td>
+            <td>&minus;10.3%</td>
+            <td>&minus;10.5%</td>
+          </tr>
+          <tr>
+            <th scope="row">Strike sat below the price by</th>
+            <td>10.9%</td>
+            <td>9.5%</td>
+            <td>10.3%</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="figure__note">
+        &ldquo;Every name that qualified&rdquo; is all 6,959 trades that cleared
+        the same safety filters &mdash; the fair comparison, because it is what
+        picking at random from the eligible list would have given you.
+      </p>
+    </div>
+
+    <div class="reading">
+      <h3>Which is to say: two findings, pulling opposite ways</h3>
+      <p>
+        <strong>The screen gets assigned less often than chance.</strong> 18%
+        against 22%, and it beat its own pool in 15 of the 23 months. Since not
+        being assigned is the entire point of the exercise, that is the number
+        that matters, and it points the right way. The fuller model also beats
+        the price-only version by a wide margin &mdash; 18% against 26% &mdash;
+        which says the premium and cushion components are earning their weight
+        rather than decorating it.
+      </p>
+      <p>
+        <strong>But the names it picks go up less than average.</strong> +0.7%
+        against +1.8%, and the median is negative. This is not a defect; it is
+        the strategy stated arithmetically. The screen deliberately buys into
+        things that have just fallen. If you are ever assigned, you are holding
+        a stock that was going down for a reason, and the discount you paid may
+        not cover it.
+      </p>
+    </div>
+
+    <h2 class="section-head">Month by month</h2>
+    <div class="figure">
+      <table class="tbl tbl--dense">
+        <caption>Assignments out of ten, and the average 35-day move</caption>
+        <thead>
+          <tr>
+            <th scope="col">Entered</th>
+            <th scope="col">Assigned</th>
+            <th scope="col">35-day move</th>
+            <th scope="col">S&amp;P over the same days</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Sep 2024</th><td>0 / 10</td><td>+9.3%</td><td>+1.6%</td></tr>
+          <tr><th scope="row">Oct 2024</th><td>1 / 10</td><td>+8.1%</td><td>+1.4%</td></tr>
+          <tr><th scope="row">Nov 2024</th><td>1 / 10</td><td>&minus;0.8%</td><td>+6.4%</td></tr>
+          <tr><th scope="row">Dec 2024</th><td>2 / 10</td><td>&minus;5.6%</td><td>&minus;1.8%</td></tr>
+          <tr><th scope="row">Jan 2025</th><td>5 / 10</td><td>&minus;5.2%</td><td>+3.1%</td></tr>
+          <tr><th scope="row">Feb 2025</th><td>4 / 10</td><td>&minus;7.6%</td><td>&minus;4.3%</td></tr>
+          <tr class="worst"><th scope="row">Mar 2025</th><td>8 / 10</td><td>&minus;10.5%</td><td>&minus;15.0%</td></tr>
+          <tr><th scope="row">Apr 2025</th><td>2 / 10</td><td>+1.9%</td><td>&minus;0.4%</td></tr>
+          <tr><th scope="row">May 2025</th><td>1 / 10</td><td>+2.9%</td><td>+6.2%</td></tr>
+          <tr><th scope="row">Jun 2025</th><td>1 / 10</td><td>+13.5%</td><td>+6.1%</td></tr>
+          <tr><th scope="row">Jul 2025</th><td>2 / 10</td><td>&minus;2.1%</td><td>+1.7%</td></tr>
+          <tr><th scope="row">Aug 2025</th><td>1 / 10</td><td>+4.6%</td><td>+4.1%</td></tr>
+          <tr><th scope="row">Sep 2025</th><td>1 / 10</td><td>&minus;0.9%</td><td>+4.1%</td></tr>
+          <tr><th scope="row">Oct 2025</th><td>4 / 10</td><td>&minus;7.0%</td><td>+1.4%</td></tr>
+          <tr><th scope="row">Nov 2025</th><td>0 / 10</td><td>+5.1%</td><td>+0.5%</td></tr>
+          <tr><th scope="row">Dec 2025</th><td>0 / 10</td><td>+6.7%</td><td>+1.1%</td></tr>
+          <tr><th scope="row">Jan 2026</th><td>1 / 10</td><td>+3.5%</td><td>&minus;0.6%</td></tr>
+          <tr><th scope="row">Feb 2026</th><td>2 / 10</td><td>+0.7%</td><td>&minus;2.8%</td></tr>
+          <tr><th scope="row">Mar 2026</th><td>2 / 10</td><td>&minus;7.9%</td><td>&minus;4.4%</td></tr>
+          <tr><th scope="row">Apr 2026</th><td>0 / 10</td><td>+7.3%</td><td>+12.0%</td></tr>
+          <tr><th scope="row">May 2026</th><td>2 / 10</td><td>&minus;0.2%</td><td>+2.3%</td></tr>
+          <tr><th scope="row">Jun 2026</th><td>2 / 10</td><td>&minus;3.3%</td><td>&minus;1.0%</td></tr>
+          <tr><th scope="row">Jul 2026</th><td>0 / 10</td><td>+3.9%</td><td>+3.2%</td></tr>
+        </tbody>
+      </table>
+      <p class="figure__note">
+        Five months assigned nothing at all. One month &mdash; March 2025
+        &mdash; assigned eight of ten. The S&amp;P fell 15% over those same
+        days, so nothing was going to survive it, but that is what the bad case
+        looks like and it is not rare enough to ignore. Across all 230 trades
+        the worst single name fell 29%; fifteen fell more than 20%.
+      </p>
+    </div>
+
+    <h2 class="section-head">Three dates, and what happened since</h2>
+    <p class="section-note">
+      The month-by-month table asks whether the put survived five weeks. This
+      asks the other question: where are those stocks now?
+    </p>
+
+    <div class="figure">
+      <table class="tbl">
+        <caption>The ten it would have picked, and their return to today</caption>
+        <thead>
+          <tr>
+            <th scope="col">Picked on</th>
+            <th scope="col">Assigned</th>
+            <th scope="col">Since, average</th>
+            <th scope="col">Since, middle name</th>
+            <th scope="col">A random qualifying name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">27 Aug 2025 <span class="ago">a year ago</span></th>
+            <td>0 / 10</td><td class="good">+26.6%</td><td>+24.9%</td><td>+21.4%</td>
+          </tr>
+          <tr>
+            <th scope="row">27 Feb 2026 <span class="ago">six months</span></th>
+            <td>2 / 10</td><td>+3.0%</td><td>+7.1%</td><td class="good">+15.0%</td>
+          </tr>
+          <tr>
+            <th scope="row">27 May 2026 <span class="ago">three months</span></th>
+            <td>0 / 10</td><td>+7.1%</td><td>+2.3%</td><td>+6.8%</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="figure__note">
+        Last August&rsquo;s ten, name by name: OKTA +86%, ARM +81%, SNOW +64%,
+        CNQ +59%, S +32%, IOT +17%, XP +3%, DOCU &minus;15%, MOS &minus;29%,
+        SHAK &minus;34%. That spread is the shape of the whole thing &mdash;
+        a screen for high implied volatility is a screen for names the market
+        expects to move a long way, and it is right about that in both
+        directions.
+      </p>
+    </div>
+  </section>
+
+  <section class="panel panel--blue">
+    <h2 class="section-head">What would make this worth more</h2>
+    <p>
+      Historical option quotes, mostly. With a real chain the test could use
+      the strike the screen would genuinely have chosen, score the yield and
+      fill-quality components that are currently missing, and count the premium
+      collected rather than only whether the stock stayed above a line. That is
+      the difference between &ldquo;the ranking is not random&rdquo; and
+      &ldquo;here is what the account would have done.&rdquo; The data exists;
+      it is not free.
+    </p>
+    <p>
+      Point-in-time fundamentals would restore the other 25 points. Same
+      answer: it exists, it is not free.
+    </p>
+  </section>
+
+  <footer class="footer">
+    <h2 class="section-head">The standing caveat</h2>
+    <p>
+      This is a record of what a piece of software would have selected, not a
+      forecast and not advice. A backtest is the most flattering thing a
+      strategy will ever look like, because it is the only run in which nothing
+      unexpected happens.
+    </p>
+    <p>
+      <strong>Selling puts on stocks that have just fallen means deliberately
+      catching falling knives.</strong> High implied volatility is the market
+      pricing a real chance of a large move. The premium is not free, and the
+      numbers above are exactly the record of it not being free.
+    </p>
+    <p class="footer__meta">
+      Generated by <code>tools/backtest.py</code> on 27 August 2026, over 569
+      symbols of daily bars. Run <code>python -m tools.backtest --monthly</code>
+      to reproduce it.
+    </p>
+  </footer>
+</main>
+
+</body>
+</html>

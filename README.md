@@ -36,6 +36,7 @@ score, the data sources, the schedule, and what happens when a run fails.
 Quotes are delayed and reflect the prior close. Verify the strike live before
 placing any trade.
 
-This is a research tool, not advice. There is no backtest and no track record.
-Selling puts on stocks that have fallen means deliberately catching falling
-knives — the premium is not free.
+This is a research tool, not advice. There is a backtest — 230 trades since
+September 2024, and four reasons it proves less than it looks like, all set out
+on the page — but no track record. Selling puts on stocks that have fallen means
+deliberately catching falling knives; the premium is not free.
