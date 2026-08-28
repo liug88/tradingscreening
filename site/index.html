@@ -115,8 +115,8 @@
     </p>
   </div>
 
-  <details class="tuning" id="tuning" hidden>
-    <summary><span class="tuning__label">Change what counts</span></summary>
+  <section class="tuning" id="tuning" hidden>
+    <h2 class="tuning__label">Change what counts</h2>
     <div class="tuning__body">
       <p class="tuning__lede">
         These are the weights the screen ran with this morning. Move one and the
@@ -144,34 +144,39 @@
 
       <p class="tuning__floor" id="tuning-floor"></p>
     </div>
-  </details>
+  </section>
 
   <p class="tuned-note" id="tuned-note" hidden></p>
 
-  <div id="rows" class="rows" aria-live="polite">
-    <p class="loading">Reading today&rsquo;s screen&hellip;</p>
+  <!-- The list and the chat sit side by side from 1440px up, and the chat
+       rides along as she scrolls. Below that it drops back under the list,
+       which is where it was before it had a column of its own. -->
+  <div class="spread">
+    <div id="rows" class="rows" aria-live="polite">
+      <p class="loading">Reading today&rsquo;s screen&hellip;</p>
+    </div>
+
+    <section class="chat" id="chat-section" hidden>
+      <h2 class="section-head">Ask about this list</h2>
+      <p class="section-note" id="chat-lede">
+        It reads today&rsquo;s file &mdash; the ten, the names ranked below them, and
+        every number behind the ranking. It explains what the screen found. It will
+        not tell you what to trade.
+      </p>
+
+      <div class="chat__log" id="chat-log" aria-live="polite" aria-label="The conversation"></div>
+
+      <div class="chat__starters" id="chat-starters"></div>
+
+      <form class="chat__form" id="chat-form">
+        <label class="chat__label" for="chat-input">Your question</label>
+        <textarea id="chat-input" rows="2" maxlength="1500"
+          placeholder="Why did this one rank first?"></textarea>
+        <button type="submit" class="btn btn--quiet" id="chat-send">Ask</button>
+      </form>
+      <p class="chat__note" id="chat-note" hidden></p>
+    </section>
   </div>
-
-  <section class="chat" id="chat-section" hidden>
-    <h2 class="section-head">Ask about this list</h2>
-    <p class="section-note" id="chat-lede">
-      It reads today&rsquo;s file &mdash; the ten, the names ranked below them, and
-      every number behind the ranking. It explains what the screen found. It will
-      not tell you what to trade.
-    </p>
-
-    <div class="chat__log" id="chat-log" aria-live="polite" aria-label="The conversation"></div>
-
-    <div class="chat__starters" id="chat-starters"></div>
-
-    <form class="chat__form" id="chat-form">
-      <label class="chat__label" for="chat-input">Your question</label>
-      <textarea id="chat-input" rows="2" maxlength="1500"
-        placeholder="Why did this one rank first?"></textarea>
-      <button type="submit" class="btn btn--quiet" id="chat-send">Ask</button>
-    </form>
-    <p class="chat__note" id="chat-note" hidden></p>
-  </section>
 
   <section class="reddit" id="reddit-section" hidden>
     <h2 class="section-head">Most discussed on Reddit</h2>

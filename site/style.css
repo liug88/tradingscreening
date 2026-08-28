@@ -661,28 +661,14 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   padding: var(--sp-lg);
 }
 
-.tuning summary {
-  cursor: pointer;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: var(--sp-sm);
-}
-.tuning summary::-webkit-details-marker { display: none; }
-.tuning summary::after {
-  content: "+";
-  font-size: var(--text-lg);
-  line-height: 1;
-  color: var(--ink-2);
-}
-.tuning[open] summary::after { content: "2"; }
-
+/* No longer a disclosure. The sliders are the answer to "what if I cared
+   about something else", and a question that has to be found before it can be
+   asked mostly does not get asked. */
 .tuning__label {
   font-size: var(--text-xs);
   font-weight: 500;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  flex: 1;
 }
 
 .tuning__body { padding-top: var(--sp-lg); }
@@ -832,6 +818,54 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
    the stock behind a hairline. Same two-weight relationship as the guide
    blocks, so a conversation reads as part of the sheet. */
 .chat { margin: var(--sp-xxl) 0; }
+
+/* The list and the chat, side by side.
+
+   The split only opens at 1440px because .row needs 1050px to hold its two
+   tally columns on one line each -- 132 + 170 + 214 + 194 + 180, plus four
+   40px gaps -- and marks that reflow are worse than a chat that waits. The
+   page widens to 1480 there to buy the rail its width rather than take it from
+   the rows. Below the breakpoint the chat drops back under the list, which is
+   where it sat before it had a column.
+
+   :has() carries the whole rule, and deliberately: with no passphrase the chat
+   is hidden, and a plain grid would still hold its 280px open. A browser
+   without :has() drops the block and gets the stacked layout, which is the
+   state everything already renders in. */
+.spread > .rows { min-width: 0; }
+
+@media (min-width: 1440px) {
+  .spread:has(#chat-section:not([hidden])) {
+    display: grid;
+    grid-template-columns: minmax(1050px, 1fr) 280px;
+    gap: var(--sp-xl);
+    align-items: start;
+  }
+
+  /* The width has to be set here rather than on .spread: a custom property
+     only reaches the elements inside it, and main.wrap is .spread's parent. */
+  body:has(.spread #chat-section:not([hidden])) { --wrap: 1480px; }
+
+  .spread .chat {
+    position: sticky;
+    top: var(--sp-lg);
+    margin: 0;
+    background: var(--sheet);
+    border-top: var(--sp-xs) solid var(--ink);
+    padding: var(--sp-lg);
+    /* Tall enough to read, short enough that the send button never falls
+       below the fold once the log fills up. */
+    max-height: calc(100vh - var(--sp-xl));
+    overflow-y: auto;
+  }
+  .spread .chat .section-head { margin-top: 0; }
+  .spread .chat .bubble,
+  .spread .chat .chat__note { max-width: none; }
+  .spread .chat .chat__starters { flex-direction: column; align-items: stretch; }
+  .spread .chat .chat__form { flex-direction: column; align-items: stretch; }
+  .spread .chat .chat__form textarea { flex: 1 1 auto; }
+  .spread .chat .chat__form .btn { align-self: flex-start; }
+}
 .chat__log {
   display: flex;
   flex-direction: column;
