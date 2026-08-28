@@ -103,15 +103,51 @@ function unitMarks(fraction, kind = "kept", total = 10) {
    counts is the score itself. */
 const POINTS_PER_MARK = 2.5;
 
-/* In weight order, matching the table in docs/specs/screener.md. */
+/* In weight order, matching the table in docs/specs/screener.md.
+
+   Named for what they measure, not for how they feel. The first draft said
+   "Oversold enough" and "Premium is rich", which tell a reader who already
+   knows nothing, and tell a reader who sells puts for a living less than she
+   walked up with. The audience here reads an option chain in the morning.
+
+   note() gets the live config, so every threshold it quotes is the number the
+   screen actually ran under this morning rather than one written down once and
+   left to drift. */
 const COMPONENTS = [
-  ["oversold",         "Oversold enough"],
-  ["premium_richness", "Premium is rich"],
-  ["bounce",           "Bounce confirmed"],
-  ["sales_growth",     "Sales growing"],
-  ["margin_trend",     "Margins improving"],
-  ["strike_safety",    "Strike sits safe"],
-  ["trade_quality",    "Trade is worth taking"],
+  ["oversold", "RSI + Williams %R", (c) =>
+    `The lowest RSI of the last 10 sessions, not today's. Full credit inside ` +
+    `${c.rsi_ideal_low}–${c.rsi_ideal_high}, none at ${c.rsi_zero_above} or above, ` +
+    `and less again below ${c.rsi_ideal_low} — past a point it stops looking stretched ` +
+    `and starts looking broken. Williams %R under ` +
+    `${String(c.williams_r_oversold).replace("-", "−")} is the other 30%.`],
+
+  ["premium_richness", "IV richness", (c) =>
+    `Half IV ÷ realised volatility, full credit at ${c.iv_hv_rich.toFixed(2)}×. Half where ` +
+    `IV sits in this name's own 12-month range, which is the fairer question — ` +
+    `IV 30 is expensive for a utility and cheap for a biotech.`],
+
+  ["bounce", "EMA / MACD / volume", () =>
+    `Four checks that the fall has stopped: above the 9-day EMA (30%), above ` +
+    `the 20-day (15%), MACD crossing up (20%, plus 10% if it crosses below the ` +
+    `zero line), volume expanding on an up day (25%).`],
+
+  ["sales_growth", "Revenue growth", (c) =>
+    `65% year-on-year, full credit at ${pct(c.rev_yoy_target, 0)}. 35% quarter-on-quarter. ` +
+    `Scores 0.4 when the filing is missing — unknown, not punished.`],
+
+  ["margin_trend", "Margin trend", () =>
+    `Gross and operating margin against the same quarter last year. Full credit ` +
+    `at +1 point, nothing at −1. Also 0.4 when unknown.`],
+
+  ["strike_safety", "Strike cushion", () =>
+    `60% the gap from today's price to breakeven, measured in ATRs — how many ` +
+    `normal days of movement before the trade is underwater, full credit at 2.5. ` +
+    `40% the strike sitting below the 60-day low.`],
+
+  ["trade_quality", "Annualised yield", (c) =>
+    `Annualised return on the cash secured, full credit at ${pct(c.ann_yield_target, 0)}. Cut by ` +
+    `up to 30% as the bid-ask spread widens: a yield you cannot fill at the mid ` +
+    `is not a yield.`],
 ];
 
 /* "Ranked third" should never be a black box -- PRODUCT.md principle 4. The
@@ -773,7 +809,7 @@ function renderWeights() {
   const grid = $("#tuning-weights");
   grid.textContent = "";
 
-  COMPONENTS.forEach(([key, label]) => {
+  COMPONENTS.forEach(([key, label, note]) => {
     if (view.baseline.weights[key] === undefined) return;
 
     const line = el("div", "weight");
@@ -799,6 +835,13 @@ function renderWeights() {
 
     const readout = el("span", "weight__value", String(view.settings.weights[key]));
     line.appendChild(readout);
+
+    /* What the slider is actually weighing, with the thresholds it ran under.
+       A slider she cannot see the mechanics of is a slider she has to trust,
+       and the whole reason this panel exists is that she should not have to. */
+    if (note && view.baseline.scoring) {
+      line.appendChild(el("p", "weight__note", note(view.baseline.scoring)));
+    }
     grid.appendChild(line);
   });
 }

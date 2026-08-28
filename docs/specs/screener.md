@@ -78,13 +78,18 @@ Nothing below is a gate, which is what keeps the list ten deep every day.
 
 | Component | Weight | What it measures |
 |---|---|---|
-| Oversold | 20 | RSI (full credit 28–38), Williams %R under −80 |
-| Bounce confirmed | 15 | price over EMA9/EMA20, MACD crossing up below zero, volume on up days |
-| Premium richness | 20 | the put's IV against 20-day realised volatility |
-| Sales growth | 15 | revenue up more than 10% year over year, positive quarter over quarter |
-| Margin trend | 10 | gross and operating margin, quarter over quarter |
-| Strike safety | 10 | strike against support and the 52-week low, breakeven in ATRs |
-| Trade quality | 10 | annualised yield on the cash secured, docked for a wide spread |
+| RSI + Williams %R | 20 | the *lowest* RSI of the last 10 sessions, full credit 28–38; Williams %R under −80 |
+| IV richness | 20 | half the put's IV against 20-day realised volatility, half where that IV sits in this name's own year |
+| EMA / MACD / volume | 15 | price over EMA9/EMA20, MACD crossing up below zero, volume expanding on up days |
+| Revenue growth | 15 | revenue up more than 10% year over year, positive quarter over quarter |
+| Margin trend | 10 | gross and operating margin against the same quarter last year |
+| Strike cushion | 10 | breakeven measured in ATRs, and the strike sitting under the 60-day low |
+| Annualised yield | 10 | annualised return on the cash secured, docked for a wide spread |
+
+Each is named for what it measures rather than for what it feels like, and the
+tuning sliders on the page print these same names — a component is called one
+thing in one place. The oversold test reads the *recent low* RSI, not today's,
+so a name can score well on it while today's reading has already recovered.
 
 ### Penalties — subtracted from the score
 

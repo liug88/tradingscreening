@@ -697,7 +697,12 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .tuning__grid {
   display: grid;
   gap: var(--sp-md) var(--sp-xl);
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  /* 340 rather than 280: each weight now carries a sentence explaining what it
+     weighs, and at 280 the sentence is taller than the control it describes.
+     min() rather than a bare 340px, because below a 340px container an auto-fit
+     track overflows instead of shrinking, and the panel is 48px narrower than
+     the phone it sits on. */
+  grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr));
   margin-top: var(--sp-md);
 }
 
@@ -726,6 +731,17 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   font-variant-numeric: tabular-nums;
   color: var(--ink);
   font-weight: 500;
+}
+
+/* Under the slider, not behind a tooltip. The thresholds are the argument for
+   moving the handle at all, and a title attribute does not exist on a phone. */
+.weight__note {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  margin: var(--sp-sm) 0 0;
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  color: var(--ink-2);
 }
 
 /* A hairline for the track and a solid square for the thumb. No groove, no
