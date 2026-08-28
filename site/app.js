@@ -7,9 +7,15 @@ const $ = (sel) => document.querySelector(sel);
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
                 "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-const money = (v, dp = 2) =>
-  v == null ? "—" : "$" + v.toLocaleString("en-US",
+/* Coerced rather than trusted. Two of these land in innerHTML, and a string
+   passed through toLocaleString comes back unchanged -- so a text value
+   arriving where a number was expected would be written to the page as markup.
+   Number() makes that impossible instead of merely unlikely. */
+const money = (v, dp = 2) => {
+  const n = Number(v);
+  return v == null || !Number.isFinite(n) ? "—" : "$" + n.toLocaleString("en-US",
     { minimumFractionDigits: dp, maximumFractionDigits: dp });
+};
 
 const pct = (v, dp = 0) =>
   v == null ? "—" : (v * 100).toFixed(dp) + "%";
@@ -372,8 +378,11 @@ function renderNumbers(pick, trade) {
     ["Williams %R", t.williams_r14 == null ? "—" : t.williams_r14.toFixed(1)],
     ["Implied volatility", pct(pick.iv, 0)],
     ["IV ÷ realised vol", pick.iv_hv == null ? "—" : pick.iv_hv.toFixed(2)],
+    /* Already a percentage -- run.py:iv_percentile multiplies by 100 before it
+       rounds. pct() would do it a second time and print 8830%. Not visible
+       yet only because the cache needs 20 daily readings and has 2. */
     ["IV percentile", pick.iv_percentile == null
-      ? "building" : pct(pick.iv_percentile, 0)],
+      ? "building" : pick.iv_percentile.toFixed(0) + "%"],
     ["Delta", trade.delta == null ? "—" : trade.delta.toFixed(3)],
     ["Annualised on cash", pct(trade.annualized_pct, 1)],
     ["Breakeven", money(trade.breakeven)],
