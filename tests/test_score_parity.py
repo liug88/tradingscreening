@@ -206,6 +206,11 @@ def live_config(published) -> dict:
     merged = dict(published["config"])
     merged["penalties"] = live["penalties"]
     merged["scoring"] = live["scoring"]
+    # The rankings that did not exist when the fixture was frozen. Taken whole
+    # from config.yaml, so the comparison below runs on the shipping weights.
+    for key, value in live.items():
+        if key.startswith(("weights_", "penalties_")):
+            merged[key] = value
     return merged
 
 
@@ -323,3 +328,127 @@ class TestPenaltiesAgainstPython:
         mine, theirs = both["everything at once"]
         assert len(mine) == 5
         assert len(theirs) == 5
+
+
+# Rows that span the three components the buy and long rankings add. The
+# fixture predates all of them, so nothing in the published file exercises
+# these paths -- and a ramp that runs the other way in JavaScript would move
+# the list she is actually shown.
+def quarters(*figures):
+    return [{"quarter": "2026-%02d-01" % (i + 1), "revenue": float(v)}
+            for i, v in enumerate(figures)]
+
+
+RANKING_CASES = [
+    # The chart she asked for: everything stacked, the cross three weeks old.
+    {"tech": {"above_ema200": True, "golden_cross": True, "full_stack": True,
+              "golden_cross_days_ago": 21, "pct_below_52w_high": 0.30},
+     "fund": {"revenue_history": quarters(100, 110, 120, 130, 140),
+              "revenue_yoy": 0.40}},
+    # Above the 200-day, but the 50 is still under it: a bounce in a downtrend,
+    # which is the case that stops trend_structure being one fact four times.
+    {"tech": {"above_ema200": True, "golden_cross": False, "full_stack": False,
+              "golden_cross_days_ago": None, "pct_below_52w_high": 0.20},
+     "fund": {"revenue_history": quarters(100, 90, 95, 92, 99),
+              "revenue_yoy": -0.01}},
+    # The RBLX shape. room_to_run must read this as no upside at all.
+    {"tech": {"above_ema200": False, "golden_cross": False, "full_stack": False,
+              "golden_cross_days_ago": None, "pct_below_52w_high": 0.74},
+     "fund": {"revenue_history": quarters(100, 101, 99, 98, 97),
+              "revenue_yoy": -0.03}},
+    # An old cross: golden_cross true, days_ago past the frame, so freshness is
+    # withheld without the name being punished for it.
+    {"tech": {"above_ema200": True, "golden_cross": True, "full_stack": False,
+              "golden_cross_days_ago": None, "pct_below_52w_high": 0.42},
+     "fund": {"revenue_history": quarters(100, 105, 104, 112, 118),
+              "revenue_yoy": 0.18}},
+    # Right at the far ramp's hinge, where the two branches meet.
+    {"tech": {"above_ema200": True, "golden_cross": True, "full_stack": True,
+              "golden_cross_days_ago": 0, "pct_below_52w_high": 0.35},
+     "fund": {"revenue_history": quarters(100, 100, 100, 100, 100),
+              "revenue_yoy": 0.0}},
+    # No fundamentals at all, and no distance measured: both unknown paths.
+    {"tech": {"above_ema200": None, "golden_cross": None, "full_stack": None,
+              "golden_cross_days_ago": None, "pct_below_52w_high": None},
+     "fund": None},
+]
+
+
+@pytest.fixture(scope="module", params=["buy", "long"])
+def ranked(request, published, live_config):
+    """Each case scored by both implementations, on one ranking."""
+    profile = request.param
+    rows = []
+    for i, case in enumerate(RANKING_CASES):
+        row = json.loads(json.dumps(published["names"][i % len(published["names"])]))
+        row["technicals"].update(case["tech"])
+        row["fundamentals"] = case["fund"]
+        row["symbol"] = f"{row['symbol']}-{profile}-{i}"
+        rows.append(row)
+    answer = run_bridge({"config": live_config, "rows": rows, "profile": profile})
+    mine = [score.score(as_internal(r), live_config, profile) for r in rows]
+    return profile, list(zip(rows, mine, answer["scored"]))
+
+
+class TestTheOtherRankings:
+    """Same equality, asked of the two lists that rank what she would own.
+
+    The put's parity is checked against the published file, which is the
+    stronger test but can only cover the components that existed when the file
+    was written. These rows cover the three that came after."""
+
+    def test_the_cases_actually_span_the_components(self, ranked):
+        _, pairs = ranked
+        for key in ("trend_structure", "room_to_run", "revenue_expanding"):
+            raws = {p[1]["components"][key]["raw"] for p in pairs}
+            assert len(raws) >= 4, f"{key} barely moves across these cases"
+            assert min(raws) == 0.0 or min(raws) < 0.3
+            assert max(raws) > 0.8
+
+    def test_a_collapse_is_not_upside_in_either_implementation(self, ranked):
+        """The name her mother flagged, 74% down with the 50 under the 200."""
+        _, pairs = ranked
+        _, mine, theirs = pairs[2]
+        assert mine["components"]["room_to_run"]["raw"] == 0.0
+        assert theirs["components"]["room_to_run"]["raw"] == 0.0
+
+    def test_both_agree_on_every_component_and_the_total(self, ranked):
+        profile, pairs = ranked
+        for row, mine, theirs in pairs:
+            assert theirs["score"] == mine["score"], f"{row['symbol']} on {profile}"
+            for key, part in mine["components"].items():
+                assert theirs["components"][key] == part, f"{row['symbol']} {key}"
+
+    def test_the_weight_block_decides_which_components_are_scored(self, ranked, live_config):
+        """A profile is a weight block and nothing more. Scoring the whole
+        registry and multiplying the rest by zero would give the same total
+        and a breakdown full of empty rows."""
+        profile, pairs = ranked
+        expected = set(live_config["weights_" + profile])
+        for _, mine, theirs in pairs:
+            assert set(mine["components"]) == expected
+            assert set(theirs["components"]) == expected
+
+    def test_the_seller_pays_for_earnings_and_the_owner_does_not(self, live_config):
+        """An expiry is what makes an earnings date expensive. Both copies have
+        to agree about that, or a row carries a red flag in one and not the
+        other."""
+        row = as_published({
+            "symbol": "EARN",
+            "tech": {"close": 50.0, "change_5d": 0.01},
+            "fund": {"next_earnings": "2026-10-15"},
+            "trade": {"expiry": "2026-10-16", "strike": 45.0},
+        })
+        job = {"config": live_config, "penalty_rows": [row]}
+        for profile in ("put", "buy", "long"):
+            merged = score.penalty_config(live_config, profile)
+            mine = score.penalties(as_internal(row), merged, profile)
+            theirs = run_bridge({**job, "penalty_profile": profile})["penalties"][0]
+            assert [p["reason"] for p in mine] == [p["reason"] for p in theirs]
+            assert bool(mine) is (profile == "put")
+
+    def test_the_long_ranking_charges_more_for_a_broken_chart(self, live_config):
+        """Published as an override rather than folded in, so the page can show
+        what a six-month horizon charges extra for."""
+        assert (score.penalty_config(live_config, "long")["downtrend_confirmed"]
+                > live_config["penalties"]["downtrend_confirmed"])

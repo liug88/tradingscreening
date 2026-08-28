@@ -204,6 +204,74 @@ function tradeQuality(row, cfg) {
   return yieldPart * (1 - 0.3 * ramp(trade.spread_pct, 0.05, 0.15));
 }
 
+/* ---- what the other rankings ask ------------------------------------- */
+
+/* The chart she asked for by name, as a number: above the 200-day (30%), the
+   50 over the 200 (25%), the averages in order (25%), and how young the cross
+   is (20%). Four facts, not one fact four times -- price can be over the
+   200-day while the 50 is still under it, which is a bounce inside a
+   downtrend. */
+function trendStructure(row, cfg) {
+  const tech = row.technicals || {};
+  let parts = 0;
+  if (tech.above_ema200) parts += 0.30;
+  if (tech.golden_cross) parts += 0.25;
+  if (tech.full_stack) parts += 0.25;
+  /* Null means the cross is older than the frame, not that it never happened;
+     golden_cross tells those apart. An old cross scores no freshness either
+     way, so both read zero and neither is punished. */
+  if (!nil(tech.golden_cross_days_ago) && tech.golden_cross) {
+    parts += 0.20 * ramp(tech.golden_cross_days_ago, cfg.trend_cross_fresh_days, 0);
+  }
+  return parts;
+}
+
+/* Revenue that keeps rising, not revenue that rose once: half how many of the
+   published quarters rose, a fifth an unbroken run ending at the latest, and
+   three tenths how far it actually travelled year on year. The last term is
+   there because counting steps alone ties a business growing 5% a year with
+   one growing 157%. */
+function revenueExpanding(row, cfg) {
+  const history = (row.fundamentals || {}).revenue_history || [];
+  const figures = history.map((q) => q.revenue).filter((v) => !nil(v));
+  if (figures.length < 2) return 0.4;  /* unknown, as the other fundamentals read it */
+
+  const steps = figures.slice(1).map((later, i) => later > figures[i]);
+  const share = steps.filter(Boolean).length / steps.length;
+
+  let streak = 0;
+  for (let i = steps.length - 1; i >= 0 && steps[i]; i -= 1) streak += 1;
+
+  const size = ramp((row.fundamentals || {}).revenue_yoy, 0, cfg.rev_yoy_strong);
+  return 0.5 * share + 0.2 * (streak / steps.length) + 0.3 * size;
+}
+
+/* Distance below the 52-week high, read as upside only where it is upside.
+   Taken straight this would score a name 74% down as maximum room to run,
+   which is the exact case her mother flagged, so it ramps twice: a fall is a
+   discount up to room_ideal_below_high and a verdict past it. A broken trend
+   then cuts what is left -- not the downtrend penalty twice over, because
+   withholding credit and taking points are different claims. */
+function roomToRun(row, cfg) {
+  const tech = row.technicals || {};
+  const offHigh = tech.pct_below_52w_high;
+  if (nil(offHigh)) return 0;
+
+  const ideal = cfg.room_ideal_below_high;
+  let room = offHigh <= ideal
+    ? ramp(offHigh, 0, ideal)
+    : ramp(offHigh, cfg.room_broken_below_high, ideal);
+  if (tech.golden_cross === false) room *= cfg.room_broken_trend_factor;
+  return room;
+}
+
+/* Oversold and the turn, folded into the one question a buyer asks. The 60/40
+   mirrors the 20 and 15 the put ranking gives the two separately, so a name
+   does not change character between lists for a reason she cannot see. */
+function entryTiming(row, cfg) {
+  return 0.6 * oversold(row, cfg) + 0.4 * bounce(row);
+}
+
 const COMPONENT_FNS = {
   oversold,
   bounce: (row) => bounce(row),
@@ -212,6 +280,10 @@ const COMPONENT_FNS = {
   margin_trend: marginTrend,
   strike_safety: (row) => strikeSafety(row),
   trade_quality: tradeQuality,
+  trend_structure: trendStructure,
+  revenue_expanding: revenueExpanding,
+  room_to_run: roomToRun,
+  entry_timing: entryTiming,
 };
 
 /* ---- penalties ------------------------------------------------------- */
@@ -219,15 +291,19 @@ const COMPONENT_FNS = {
 const asPct = (v) => Math.round(Math.abs(v) * 100) + "%";
 
 /* Reasons to knock a name down, each with the points it costs. */
-function penalties(row, cfg) {
+function penalties(row, cfg, profile = "put") {
   const found = [];
   const tech = row.technicals || {};
   const fund = row.fundamentals;
   const trade = row.trade;
 
-  /* Both are YYYY-MM-DD, which sorts correctly as text -- no parsing, and no
+  /* An expiry is what makes an earnings date expensive. An owner with no
+     contract to lose simply holds through the print, so this charge is the
+     seller's alone -- it is a flag on the other rows, not a deduction.
+
+     Both are YYYY-MM-DD, which sorts correctly as text -- no parsing, and no
      timezone to get wrong. */
-  if (trade && fund && fund.next_earnings && trade.expiry
+  if (profile === "put" && trade && fund && fund.next_earnings && trade.expiry
       && fund.next_earnings <= trade.expiry) {
     found.push({
       reason: `Reports earnings ${fund.next_earnings}, before the ${trade.expiry} expiry`,
@@ -327,21 +403,37 @@ function normalise(weights) {
     Object.entries(weights).map(([k, v]) => [k, (v * 100) / total]));
 }
 
-function rescore(row, settings) {
-  const { scoring, penalties: penaltyPoints } = settings;
-  const weights = normalise(settings.weights);
+/* One ranking's penalty points: the shared block, with its own overrides on
+   top. A 52-week low under a falling 200-day costs more over six months than
+   over five weeks, and the published file carries both blocks so the page can
+   say which is which. */
+function penaltyConfig(settings, profile) {
+  return Object.assign({}, settings.penalties, settings["penalties_" + profile] || {});
+}
 
+/* The weight block naming the components one ranking scores. `put` keeps the
+   unsuffixed name every published file has used. */
+const weightsFor = (settings, profile) =>
+  profile === "put" ? settings.weights : settings["weights_" + profile];
+
+function rescore(row, settings, profile = "put") {
+  const { scoring } = settings;
+  const weights = normalise(weightsFor(settings, profile));
+
+  /* Only the components this ranking asks for. A profile is a weight block and
+     nothing more -- scoring the whole registry and multiplying the rest by
+     zero would give the same total and a breakdown full of empty rows. */
   const components = {};
-  for (const [name, fn] of Object.entries(COMPONENT_FNS)) {
-    const raw = fn(row, scoring);
+  for (const [name, weight] of Object.entries(weights)) {
+    const raw = COMPONENT_FNS[name](row, scoring);
     components[name] = {
       raw: round(raw, 4),
-      points: round(raw * weights[name], 2),
-      max: round(weights[name], 1),
+      points: round(raw * weight, 2),
+      max: round(weight, 1),
     };
   }
 
-  const applied = penalties(row, penaltyPoints);
+  const applied = penalties(row, penaltyConfig(settings, profile), profile);
   const gross = fsum(Object.values(components).map((c) => c.points));
   const total = Math.max(0, gross - fsum(applied.map((p) => p.points)));
 
@@ -359,9 +451,9 @@ function rescore(row, settings) {
    Ranks are reassigned, because a rank is a position in the list she is
    looking at and it would be a lie to keep the old one. Nothing is added or
    dropped: these are the names the gates already admitted. */
-function rescoreAll(names, settings) {
+function rescoreAll(names, settings, profile = "put") {
   return names
-    .map((row) => ({ ...row, ...rescore(row, settings) }))
+    .map((row) => ({ ...row, ...rescore(row, settings, profile) }))
     .sort((a, b) => b.score - a.score)
     .map((row, i) => ({ ...row, rank: i + 1 }));
 }
@@ -380,4 +472,5 @@ function withStrike(row, id) {
   return { ...row, trade: { ...swap, alternatives, swapped: true } };
 }
 
-window.Score = { rescore, rescoreAll, withStrike, normalise, ramp, penalties };
+window.Score = { rescore, rescoreAll, withStrike, normalise, ramp, penalties,
+                 weightsFor, penaltyConfig };
