@@ -547,6 +547,71 @@ main a:not(.btn):hover { text-decoration-thickness: var(--sp-hair); }
   max-width: 84ch;
 }
 
+/* The chart, in figures. Set between the prose read and the collapsed jargon:
+   she has just been told why the name is here, and this is the evidence, at
+   full size rather than behind a disclosure. No axes and no line -- a range
+   band with today's tick in it, and the averages in the order they actually
+   sit. Both are Isotype devices: position carries the quantity. */
+.chart {
+  grid-column: 2 / -1;
+  margin-top: var(--sp-md);
+  border-top: 1px solid var(--rule);
+  padding-top: var(--sp-md);
+  max-width: 84ch;
+}
+.chart .metric__label { margin-bottom: var(--sp-sm); }
+
+.chart__range {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  font-size: var(--text-xs);
+  color: var(--ink-2);
+}
+.chart__end { flex: none; }
+.chart__track {
+  position: relative;
+  flex: 1 1 auto;
+  height: var(--sp-sm);
+  background: var(--rule);
+}
+/* Overshoots the band top and bottom so it reads as a tick against a scale
+   rather than as a segment of it. */
+.chart__mark {
+  position: absolute;
+  top: calc(var(--sp-hair) * -1);
+  bottom: calc(var(--sp-hair) * -1);
+  width: 3px;
+  margin-left: -1.5px;
+  background: var(--ink);
+}
+
+.chart__line {
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+  margin-top: var(--sp-sm);
+}
+
+.chart__stack {
+  margin-top: var(--sp-sm);
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+  line-height: 1.7;
+}
+.chart__caption {
+  font-size: var(--text-xs);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin-right: var(--sp-sm);
+}
+.chart__level:not(:last-child)::after {
+  content: "\00A0\00B7\00A0";
+  color: var(--rule);
+}
+/* The one figure in the row that is hers rather than the model's. */
+.chart__level[data-price] { color: var(--ink); font-weight: 500; }
+
 .numbers {
   grid-column: 2 / -1;
   margin-top: var(--sp-md);
@@ -1055,7 +1120,7 @@ main a:not(.btn):hover { text-decoration-thickness: var(--sp-hair); }
     gap: var(--sp-lg) var(--sp-lg);
   }
   .trade { grid-column: 2 / -1; }
-  .flags, .catalyst, .why, .numbers { grid-column: 2 / -1; }
+  .flags, .catalyst, .why, .chart, .numbers { grid-column: 2 / -1; }
 }
 
 @media (max-width: 760px) {
@@ -1074,7 +1139,7 @@ main a:not(.btn):hover { text-decoration-thickness: var(--sp-hair); }
     flex-wrap: wrap;
   }
   .guide__score { margin-top: 0; width: 100%; }
-  .trade, .flags, .catalyst, .why, .numbers { grid-column: 1; }
+  .trade, .flags, .catalyst, .why, .chart, .numbers { grid-column: 1; }
   .wrap { padding: 0 var(--sp-md); }
 
   /* Label and figure keep the same line; the tally drops below rather than

@@ -301,6 +301,9 @@ function renderRow(pick) {
   const why = whyPicked(pick, trade);
   if (why) row.appendChild(el("p", "why", why));
 
+  const chart = renderChart(pick);
+  if (chart) row.appendChild(chart);
+
   row.appendChild(renderNumbers(pick, trade));
   return row;
 }
@@ -401,6 +404,97 @@ function list(items) {
   return items.slice(0, -1).join(", ") + " and " + items[items.length - 1];
 }
 
+/* ---- the chart, in figures ------------------------------------------ */
+
+/* Three things she has been opening a chart beside the page to check: where
+   the moving averages sit against each other, what MACD reads against its
+   signal line, and how far the stock is off its high. All three were in the
+   payload already and none of them was on the row, so she was reading the page
+   and then checking the page. This is a rendering gap, not a data one, which
+   is why it works on files published before it shipped.
+
+   The averages are sorted rather than given a verdict. Where "price" lands in
+   the order *is* the trend, and reading it takes no arithmetic: price at the
+   front is an uptrend, price at the back is the shape that frightened her. */
+const STACK = [
+  ["price",   (t, fallback) => (t.close == null ? fallback : t.close)],
+  ["20-day",  (t) => t.ema20],
+  ["50-day",  (t) => t.ema50],
+  ["200-day", (t) => t.ema200],
+];
+
+function macdLine(t) {
+  if (t.macd == null) return null;
+  const parts = ["MACD " + t.macd.toFixed(2)];
+  if (t.macd_signal != null) {
+    parts.push("signal " + t.macd_signal.toFixed(2));
+    parts.push(t.macd > t.macd_signal ? "above its signal" : "below its signal");
+  }
+  parts.push(t.macd < 0 ? "under zero" : "over zero");
+  return parts.join(" · ");
+}
+
+function renderChart(pick) {
+  const t = pick.technicals || {};
+  const price = t.close == null ? pick.price : t.close;
+  const box = el("div", "chart");
+  box.appendChild(el("span", "metric__label", "The chart, in figures"));
+  let filled = false;
+
+  /* The 52-week range with today marked inside it. Distance from the high is a
+     number she asked for; a bar is the one way to show it without her doing
+     the subtraction. */
+  const lo = t.low_52w;
+  const hi = t.high_52w;
+  if (lo != null && hi != null && hi > lo && price != null) {
+    const at = Math.min(100, Math.max(0, ((price - lo) / (hi - lo)) * 100));
+    const range = el("div", "chart__range");
+    range.appendChild(el("span", "chart__end", money(lo)));
+    const track = el("span", "chart__track");
+    const mark = el("i", "chart__mark");
+    mark.style.left = at.toFixed(1) + "%";
+    mark.title = money(price) + " today";
+    track.appendChild(mark);
+    range.appendChild(track);
+    range.appendChild(el("span", "chart__end", money(hi)));
+    box.appendChild(range);
+    /* Distance from the high is the figure she asked for. The low side is kept
+       because a name sitting on it is what the downtrend penalty charges for --
+       but BE is 347% above its low, and past a few hundred percent a multiple
+       is the only reading that stays legible. Same rule as growth(). */
+    const off = (price - lo) / lo;
+    box.appendChild(el("div", "chart__line",
+      `${pct((hi - price) / hi)} below its 52-week high, and ` +
+      (off > 3 ? `${(1 + off).toFixed(1)} times its low`
+               : `${pct(off)} above its low`)));
+    filled = true;
+  }
+
+  const levels = STACK
+    .map(([label, read]) => [label, read(t, pick.price)])
+    .filter((pair) => pair[1] != null)
+    .sort((a, b) => b[1] - a[1]);
+  if (levels.length > 1) {
+    const stack = el("div", "chart__stack");
+    stack.appendChild(el("span", "chart__caption", "High to low"));
+    levels.forEach(([label, value]) => {
+      const item = el("span", "chart__level", `${label} ${money(value)}`);
+      if (label === "price") item.dataset.price = "1";
+      stack.appendChild(item);
+    });
+    box.appendChild(stack);
+    filled = true;
+  }
+
+  const macd = macdLine(t);
+  if (macd) {
+    box.appendChild(el("div", "chart__line", macd));
+    filled = true;
+  }
+
+  return filled ? box : null;
+}
+
 /* The jargon layer. Plain English is the page; this is what she opens when she
    wants to check the actual figure. */
 function renderNumbers(pick, trade) {
@@ -432,9 +526,10 @@ function renderNumbers(pick, trade) {
     ["Operating margin", f.operating_margin == null
       ? "—" : pct(f.operating_margin, 1)],
     ["Next earnings", f.next_earnings || "not scheduled"],
-    ["50-day EMA", t.ema50 == null ? "—" : money(t.ema50)],
-    ["200-day EMA", t.ema200 == null ? "—" : money(t.ema200)],
-    ["52-week low", t.low_52w == null ? "—" : money(t.low_52w)],
+    /* The moving averages and the 52-week range used to sit here. They are in
+       the chart block now, in the order they actually stand, which is the
+       reading -- and a figure that appears twice on one row is a figure she has
+       to reconcile. */
   ];
 
   const grid = el("div", "numbers__grid");
