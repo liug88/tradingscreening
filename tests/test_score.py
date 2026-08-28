@@ -416,3 +416,201 @@ class TestBadges:
         badges = score.badges(make_row(), config)
         assert len(badges) == 11
         assert all(b["label"] and "passed" in b for b in badges)
+
+
+def quarters(*figures):
+    """A revenue history, oldest first, in the published shape."""
+    return [{"quarter": "q%d" % i, "revenue": float(v)} for i, v in enumerate(figures)]
+
+
+def trending(**overrides):
+    """A row with the chart she asked for: stacked averages, a young cross."""
+    tech = {"above_ema200": True, "golden_cross": True, "full_stack": True,
+            "golden_cross_days_ago": 0, "pct_below_52w_high": 0.35}
+    return make_row(tech={**tech, **overrides})
+
+
+class TestTrendStructure:
+    """The four facts her mother named, and the ways they come apart."""
+
+    def test_the_whole_chart_in_order_scores_full(self, config):
+        assert score._trend_structure(trending(), config["scoring"]) == pytest.approx(1.0)
+
+    def test_a_fully_inverted_stack_scores_nothing(self, config):
+        broken = trending(above_ema200=False, golden_cross=False, full_stack=False)
+        assert score._trend_structure(broken, config["scoring"]) == 0.0
+
+    def test_above_the_200_with_the_50_still_under_it_is_not_an_uptrend(self, config):
+        """The distinction the component exists for: a bounce inside a downtrend
+        reads as one fact out of four, not as a healthy chart."""
+        bouncing = trending(golden_cross=False, full_stack=False, golden_cross_days_ago=None)
+        assert score._trend_structure(bouncing, config["scoring"]) == pytest.approx(0.30)
+
+    def test_an_old_cross_keeps_the_level_and_loses_the_freshness(self, config):
+        cfg = config["scoring"]
+        old = trending(golden_cross_days_ago=cfg["trend_cross_fresh_days"])
+        assert score._trend_structure(old, cfg) == pytest.approx(0.80)
+        assert score._trend_structure(trending(), cfg) > score._trend_structure(old, cfg)
+
+    def test_a_cross_older_than_the_frame_is_not_a_crash(self, config):
+        """None means the cross predates the history, not that it never happened.
+        It scores the same as any other old cross rather than raising."""
+        assert score._trend_structure(trending(golden_cross_days_ago=None),
+                                      config["scoring"]) == pytest.approx(0.80)
+
+    def test_freshness_needs_the_cross_to_have_actually_happened(self, config):
+        """A death cross 3 days old is not a young golden cross."""
+        crossed_down = trending(golden_cross=False, full_stack=False, golden_cross_days_ago=3)
+        assert score._trend_structure(crossed_down, config["scoring"]) == pytest.approx(0.30)
+
+
+class TestRevenueExpanding:
+    def test_four_rises_and_fast_growth_score_full(self, config):
+        row = make_row(fund={"revenue_history": quarters(10, 11, 12, 13, 14),
+                             "revenue_yoy": 0.40})
+        assert score._revenue_expanding(row, config["scoring"]) == pytest.approx(1.0)
+
+    def test_revenue_falling_every_quarter_scores_nothing(self, config):
+        row = make_row(fund={"revenue_history": quarters(14, 13, 12, 11, 10),
+                             "revenue_yoy": -0.30})
+        assert score._revenue_expanding(row, config["scoring"]) == 0.0
+
+    def test_a_missing_history_is_unknown_rather_than_bad(self, config):
+        """The same reading the other fundamental terms give: 0.4, not zero."""
+        assert score._revenue_expanding(make_row(fund=None), config["scoring"]) == 0.4
+        assert score._revenue_expanding(make_row(fund={"revenue_history": quarters(10)}),
+                                        config["scoring"]) == 0.4
+
+    def test_a_run_ending_now_beats_the_same_rises_scattered(self, config):
+        cfg = config["scoring"]
+        ending_now = make_row(fund={"revenue_history": quarters(10, 9, 10, 11, 12)})
+        ended_early = make_row(fund={"revenue_history": quarters(10, 11, 12, 13, 9)})
+        assert score._revenue_expanding(ending_now, cfg) > score._revenue_expanding(ended_early, cfg)
+
+    def test_growing_5_percent_does_not_score_like_growing_50(self, config):
+        """Counting up-quarters alone tied 36 of 214 real names at full marks,
+        from +4.9% a year to +157%. The size of the growth is the third term."""
+        cfg = config["scoring"]
+        shape = quarters(10, 11, 12, 13, 14)
+        slow = make_row(fund={"revenue_history": shape, "revenue_yoy": 0.05})
+        fast = make_row(fund={"revenue_history": shape, "revenue_yoy": 0.50})
+        assert score._revenue_expanding(fast, cfg) > score._revenue_expanding(slow, cfg)
+        assert score._revenue_expanding(fast, cfg) == pytest.approx(1.0)
+
+
+class TestRoomToRun:
+    def test_the_ideal_distance_below_the_high_scores_full(self, config):
+        cfg = config["scoring"]
+        row = trending(pct_below_52w_high=cfg["room_ideal_below_high"])
+        assert score._room_to_run(row, cfg) == pytest.approx(1.0)
+
+    def test_a_stock_at_its_high_has_no_room_left(self, config):
+        assert score._room_to_run(trending(pct_below_52w_high=0.0), config["scoring"]) == 0.0
+
+    def test_a_collapse_is_not_upside(self, config):
+        """RBLX as published: 74% off its high, the 50 under the 200. A single
+        ramp would have handed this the maximum. It scores zero."""
+        rblx = trending(pct_below_52w_high=0.74, golden_cross=False, full_stack=False)
+        assert score._room_to_run(rblx, config["scoring"]) == 0.0
+
+    def test_the_credit_ramps_back_down_past_the_ideal(self, config):
+        cfg = config["scoring"]
+        middle = (cfg["room_ideal_below_high"] + cfg["room_broken_below_high"]) / 2
+        assert score._room_to_run(trending(pct_below_52w_high=middle), cfg) == pytest.approx(0.5)
+
+    def test_a_broken_trend_cuts_what_is_left(self, config):
+        cfg = config["scoring"]
+        intact = trending(pct_below_52w_high=cfg["room_ideal_below_high"])
+        broken = trending(pct_below_52w_high=cfg["room_ideal_below_high"], golden_cross=False)
+        assert score._room_to_run(broken, cfg) == pytest.approx(cfg["room_broken_trend_factor"])
+        assert score._room_to_run(broken, cfg) < score._room_to_run(intact, cfg)
+
+    def test_an_unknown_high_scores_nothing(self, config):
+        assert score._room_to_run(trending(pct_below_52w_high=None), config["scoring"]) == 0.0
+
+
+class TestEntryTiming:
+    def test_sits_between_the_two_readings_it_folds(self, config):
+        cfg = config["scoring"]
+        row = make_row()
+        pair = sorted([score._oversold(row, cfg), score._bounce(row, cfg)])
+        assert pair[0] <= score._entry_timing(row, cfg) <= pair[1]
+
+    def test_a_falling_knife_times_badly(self, config):
+        cfg = config["scoring"]
+        turning = make_row()
+        falling = make_row(tech={"macd_cross_up": False, "above_ema9": False,
+                                 "up_day_volume_expansion": False, "change_5d": -0.12})
+        assert score._entry_timing(turning, cfg) > score._entry_timing(falling, cfg)
+
+
+class TestProfiles:
+    """One screen, three rankings. A profile is a weight block and nothing more."""
+
+    def test_every_profile_names_only_components_that_exist(self, config):
+        for profile, key in score.PROFILES.items():
+            unknown = set(config[key]) - set(score._COMPONENTS)
+            assert not unknown, f"{profile} weights name no such component: {unknown}"
+
+    def test_every_profile_is_scored_out_of_100(self, config):
+        for profile, key in score.PROFILES.items():
+            assert sum(config[key].values()) == 100, profile
+
+    def test_a_ranking_scores_only_what_its_block_names(self, config):
+        result = score.score(trending(), config, profile="buy")
+        assert set(result["components"]) == set(config["weights_buy"])
+        assert "premium_richness" not in result["components"]
+
+    def test_the_put_ranking_is_untouched_by_the_others(self, config):
+        """The default stays what it was, so today's published list does not move
+        because two more rankings were added beside it."""
+        result = score.score(make_row(), config)
+        assert set(result["components"]) == set(config["weights"])
+        assert 0 <= result["score"] <= 100
+
+    def test_a_name_with_no_put_can_still_be_bought(self, config):
+        """The only put-specific gate. She can buy a stock there is no contract
+        worth selling against, and those names are dropped from the funnel today
+        for a reason that has nothing to do with the company."""
+        no_contract = make_row(trade=None)
+        assert score.check_gates(no_contract, config) == [
+            "no put in the target delta and liquidity range"]
+        assert score.check_gates(no_contract, config, profile="buy") == []
+        assert score.check_gates(no_contract, config, profile="long") == []
+
+    def test_every_other_gate_still_applies(self, config):
+        thin = make_row(trade=None, tech={"avg_volume_30d": 10_000})
+        assert score.check_gates(thin, config, profile="buy") != []
+
+    def test_earnings_costs_a_seller_and_not_an_owner(self, config):
+        """An expiry is what makes the date expensive. Holding the stock, she can
+        simply hold through it."""
+        row = make_row(fund={"next_earnings": "2026-09-01"})
+        cfg = config["penalties"]
+        assert [p["reason"] for p in score.penalties(row, cfg) if "earnings" in p["reason"]]
+        assert score.penalties(row, cfg, profile="buy") == []
+
+    def test_a_profile_overrides_only_what_it_names(self, config):
+        base, held = config["penalties"], score.penalty_config(config, "long")
+        assert held["new_low_under_ema200"] > base["new_low_under_ema200"]
+        assert held["catalyst_structural"] == base["catalyst_structural"]
+        assert score.penalty_config(config, "buy") == base
+
+    def test_the_confirmed_downtrend_stays_the_heavier_charge(self, config):
+        """It is the worse condition wherever it fires, and raising the other one
+        on LONG must not invert that."""
+        for profile in score.PROFILES:
+            cfg = score.penalty_config(config, profile)
+            assert cfg["downtrend_confirmed"] > cfg["new_low_under_ema200"], profile
+
+    def test_the_falling_knife_ranks_last_on_every_list(self, config):
+        """RBLX as her mother found it, against the chart she asked for."""
+        rblx = make_row(tech={"above_ema200": False, "golden_cross": False,
+                              "full_stack": False, "golden_cross_days_ago": 4,
+                              "pct_below_52w_high": 0.74, "pct_above_52w_low": 0.11,
+                              "macd_cross_up": False, "above_ema9": False,
+                              "up_day_volume_expansion": False, "change_5d": -0.08})
+        healthy = trending()
+        for profile in score.PROFILES:
+            assert (score.score(rblx, config, profile)["score"]
+                    < score.score(healthy, config, profile)["score"]), profile

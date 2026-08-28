@@ -56,6 +56,31 @@ weights:
   strike_safety: 10
   trade_quality: 10
 
+# The same 62 names, ranked by a second question: what do I want to own, over
+# two lengths of time. Three of the weights above read a contract and are absent
+# here, because a stock is worth buying whether or not there is a put on it
+# worth selling. A profile is just a block like these -- `score()` computes only
+# the components its block names.
+
+# Hold for weeks. The dip is the trade, so timing the entry is the biggest term.
+weights_buy:
+  entry_timing: 30
+  trend_structure: 25
+  revenue_expanding: 20
+  room_to_run: 15
+  margin_trend: 10
+
+# Hold for months. Entry timing is left at zero deliberately: over six months
+# today's RSI is noise, and if both horizons scored the dip they would be one
+# list. It is listed rather than omitted so the slider still appears -- she can
+# raise it if she disagrees, which is the whole point of the sliders.
+weights_long:
+  trend_structure: 35
+  revenue_expanding: 35
+  room_to_run: 15
+  margin_trend: 15
+  entry_timing: 0
+
 scoring:
   rsi_ideal_low: 28        # full credit inside this band
   rsi_ideal_high: 38
@@ -73,7 +98,24 @@ scoring:
   # that a washout still registers, little enough that it cannot carry a
   # falling knife into the ten on cheapness alone.
   oversold_unconfirmed_floor: 0.35
+  # A cross younger than this still has runway; older than this it is history.
+  # One quarter, which is about how long the 50-day takes to matter.
+  trend_cross_fresh_days: 60
+  # Distance below the 52-week high, read as upside up to a point and as a
+  # collapse past it: full credit at the first, none again by the second. The
+  # second number is why RBLX, 74% down, scores zero room to run rather than
+  # the maximum a single ramp would have handed it.
+  room_ideal_below_high: 0.35
+  room_broken_below_high: 0.70
+  # What survives of that when the 50-day sits under the 200-day. The fall is
+  # real; the recovery is not evidence yet.
+  room_broken_trend_factor: 0.25
   rev_yoy_target: 0.10     # full credit at +10% YoY
+  # And the other question about the same number, asked by the two rankings
+  # built to hold a name: not "is it growing" but "how hard". Full credit at
+  # +40% year on year, which is roughly where a business stops growing and
+  # starts compounding.
+  rev_yoy_strong: 0.40
   iv_hv_rich: 1.30         # full credit at or above -- premium is rich vs realized
   ann_yield_target: 0.20   # full credit at 20% annualized on cash secured
 
@@ -93,6 +135,17 @@ penalties:
   downtrend_confirmed: 20
   downtrend_bounce_max: 0.15   # "no turn": at most one weak bounce signal
   catalyst_structural: 30  # the AI layer judged the selloff structural
+
+# What one ranking charges differently. Only the numbers that change: everything
+# else falls through to the block above, so a rule keeps a single home.
+#
+# Holding for months, a name cutting new lows under a falling 200-day is not a
+# discount, it is the exact opposite of the chart the ranking is built to find.
+# It costs more here than anywhere else, and the confirmed downtrend stays the
+# heavier of the two, as it is the worse condition.
+penalties_long:
+  downtrend_confirmed: 35
+  new_low_under_ema200: 20
 
 catalyst:
   # Gemini, on the free tier, grounded with Google Search. Flash rather

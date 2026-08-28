@@ -195,6 +195,150 @@ def _trade_quality(row: dict, cfg: dict) -> float:
     return yield_part * spread_factor
 
 
+# ---- what the other rankings ask ----------------------------------------
+#
+# Selling a put, buying the stock and buying a call are one directional bet
+# with three payoffs, so the gates that find "beaten up but not broken" find
+# the setup for all of them. Only the ranking differs. These four components
+# are what BUY and LONG rank on; the three above them that read a contract are
+# what the put ranking adds.
+
+
+def _trend_structure(row: dict, cfg: dict) -> float:
+    """The chart she asked for by name, as a number.
+
+    Her words, relayed: "which one has the best technical chart as defined by
+    best parameters, like best average, 50 days crossing over to 200 days."
+    That is four separate facts, and they are not the same fact said four
+    times -- price can be over the 200-day while the 50 is still under it,
+    which is a bounce inside a downtrend rather than an uptrend.
+
+        above the 200-day   30%   the base case: is this thing above water
+        golden cross        25%   the one she named, 50 over 200
+        full stack          25%   price > 20 > 50 > 200, the order not the level
+        cross freshness     20%   how young the cross is
+
+    Freshness is in both profiles rather than LONG alone. A cross three weeks
+    old has more runway left than one from two years ago on either horizon,
+    and LONG already says what it means by weighting the whole component 35
+    against BUY's 25. A second near-identical component to carry one term
+    would be worse code and no more honest.
+    """
+    tech = row["tech"]
+    parts = 0.0
+    if tech.get("above_ema200"):
+        parts += 0.30
+    if tech.get("golden_cross"):
+        parts += 0.25
+    if tech.get("full_stack"):
+        parts += 0.25
+
+    # None means the cross is older than the frame, not that it never happened
+    # -- `golden_cross` tells those two apart. An old cross scores no freshness
+    # either way, so both read zero here and neither is punished for it.
+    days = tech.get("golden_cross_days_ago")
+    if days is not None and tech.get("golden_cross"):
+        parts += 0.20 * _ramp(days, cfg["trend_cross_fresh_days"], 0.0)
+    return parts
+
+
+def _revenue_expanding(row: dict, cfg: dict) -> float:
+    """Revenue that keeps rising, not revenue that rose once.
+
+    `_sales_growth` already asks how fast the latest quarter grew. This asks a
+    different question -- how many of the published quarters rose at all --
+    because "expanding revenue" is a shape over time, and one good quarter
+    against a weak one a year ago can fake it.
+
+    Five quarters ship on every name, so there are four comparisons. That is
+    also the ceiling on what can be asked: five quarters cannot answer whether
+    growth is accelerating, and they cannot separate a seasonal Q4 from a real
+    one -- sequential steps read a retailer's January as a fall every year,
+    which is why the shape terms below are a share of the steps rather than a
+    verdict.
+
+    Counting steps alone is not enough, though, and the pool says so plainly:
+    36 of 214 names rose in all four quarters, which ties a business growing 5%
+    a year with one growing 157%. So a third of this reads how far revenue
+    actually travelled. It takes that from `revenue_yoy` -- the latest quarter
+    against the same quarter a year before -- rather than deriving it from the
+    sequential steps, because a year-on-year comparison is seasonality-proof by
+    construction and that is exactly what the steps are not.
+
+    `_sales_growth` reads the same field on a lower ramp and is not in these
+    weight blocks. The two are not the same question at a different scale: that
+    one asks whether the business is still growing at all, this one asks how
+    hard, because over months the size of the growth is a third of the thesis
+    rather than a sanity check on it.
+    """
+    fund = row.get("fund")
+    history = (fund or {}).get("revenue_history") or []
+    figures = [q.get("revenue") for q in history if q.get("revenue") is not None]
+    if len(figures) < 2:
+        return 0.4  # unknown, the same reading the other fundamental terms give
+
+    steps = [later > earlier for earlier, later in zip(figures, figures[1:])]
+    share = sum(steps) / len(steps)
+
+    # An unbroken run ending at the latest quarter is worth more than the same
+    # count of rises scattered through the year: it is the difference between a
+    # business expanding and one that bounces around.
+    streak = 0
+    for rose in reversed(steps):
+        if not rose:
+            break
+        streak += 1
+
+    size = _ramp(fund.get("revenue_yoy"), 0.0, cfg["rev_yoy_strong"])
+    return 0.5 * share + 0.2 * (streak / len(steps)) + 0.3 * size
+
+
+def _room_to_run(row: dict, cfg: dict) -> float:
+    """Distance below the 52-week high, read as upside only where it is upside.
+
+    The naive form of this component is the reason it needs a docstring. Taken
+    straight, "how far below its high" would have scored RBLX -- 74% down, the
+    50 under the 200, nothing turning -- as maximum room to run, which is the
+    exact name her mother flagged and the exact opposite of the truth.
+
+    So it ramps twice. Up to `room_ideal_below_high` the fall is a discount and
+    more of it is better. Past that it stops being a discount and starts being
+    a verdict, and the credit ramps back down to nothing by
+    `room_broken_below_high`.
+
+    Then a broken trend cuts what is left. This reads `golden_cross`, which the
+    downtrend penalty reads too, but it is not the same charge twice: the
+    penalty deducts for danger, and this simply declines to call a collapse
+    upside. Withholding credit and taking points are different claims.
+    """
+    off_high = row["tech"].get("pct_below_52w_high")
+    if off_high is None:
+        return 0.0
+
+    ideal = cfg["room_ideal_below_high"]
+    if off_high <= ideal:
+        room = _ramp(off_high, 0.0, ideal)
+    else:
+        room = _ramp(off_high, cfg["room_broken_below_high"], ideal)
+
+    if row["tech"].get("golden_cross") is False:
+        room *= cfg["room_broken_trend_factor"]
+    return room
+
+
+def _entry_timing(row: dict, cfg: dict) -> float:
+    """Oversold and the turn, folded into the one question a buyer asks.
+
+    The put ranking scores these separately because a seller weighs them
+    differently -- the premium is paid for the fear, and the turn only decides
+    whether she keeps it. A buyer is asking one thing: is this a good morning
+    to own it. The 60/40 split mirrors the 20 and 15 the put profile gives the
+    two, so a name does not change character between lists for a reason she
+    cannot see.
+    """
+    return 0.6 * _oversold(row, cfg) + 0.4 * _bounce(row, cfg)
+
+
 _COMPONENTS = {
     "oversold": _oversold,
     "bounce": _bounce,
@@ -203,7 +347,20 @@ _COMPONENTS = {
     "margin_trend": _margin_trend,
     "strike_safety": _strike_safety,
     "trade_quality": _trade_quality,
+    "trend_structure": _trend_structure,
+    "revenue_expanding": _revenue_expanding,
+    "room_to_run": _room_to_run,
+    "entry_timing": _entry_timing,
 }
+
+# Which config block holds each ranking's weights. A profile is nothing more
+# than a weight block: the names here are what run.py publishes under and what
+# the page toggles between, and adding one is adding a block to config.yaml.
+#
+# `score()` computes only the components its profile names, so the put ranking
+# never pays for a trend reading it does not use, and the buy ranking never
+# asks a name with no contract about its bid-ask spread.
+PROFILES = {"put": "weights", "buy": "weights_buy", "long": "weights_long"}
 
 # The funnel narrows in stages, and each stage can only rank on what it has
 # already paid to fetch. Ranking on a subset keeps the expensive calls -- option
@@ -218,12 +375,30 @@ def partial_score(row: dict, config: dict, names: tuple[str, ...]) -> float:
     return sum(_COMPONENTS[name](row, cfg) * weights[name] for name in names)
 
 
-def penalties(row: dict, cfg: dict) -> list[dict]:
+def penalty_config(config: dict, profile: str = "put") -> dict:
+    """One ranking's penalty block: the shared numbers, with its overrides.
+
+    Most charges cost the same whatever she means to do with the name -- a
+    structural catalyst is bad news for a buyer and a seller alike. The few
+    that differ are written in config.yaml as `penalties_long` and hold only
+    the numbers that change, so each rule keeps one home and a profile says
+    only how it differs from the rest.
+    """
+    return {**config["penalties"], **config.get("penalties_" + profile, {})}
+
+
+def penalties(row: dict, cfg: dict, profile: str = "put") -> list[dict]:
     """Reasons to knock a name down, each with the points it costs."""
     found = []
     tech, fund, trade = row["tech"], row.get("fund"), row.get("trade")
 
-    if trade and fund and fund.get("next_earnings"):
+    # An expiry is what makes an earnings date expensive: the option is priced
+    # and gone before the stock has finished reacting. Owning the stock, the
+    # date is a thing to know -- the row still says so -- rather than a thing to
+    # charge for, because she can simply hold through it. CALLS will rejoin this
+    # when it ships, and should cost more than the put does: a call is a wasting
+    # asset and a gap against it is unrecoverable.
+    if profile == "put" and trade and fund and fund.get("next_earnings"):
         try:
             reports = date.fromisoformat(fund["next_earnings"])
             if reports <= date.fromisoformat(trade["expiry"]):
@@ -364,7 +539,7 @@ def badges(row: dict, config: dict) -> list[dict]:
     ]
 
 
-def check_gates(row: dict, config: dict) -> list[str]:
+def check_gates(row: dict, config: dict, profile: str = "put") -> list[str]:
     """Empty list means tradeable. Anything in it means dropped, with the reason."""
     tech, gates = row["tech"], config["gates"]
     failures = []
@@ -387,26 +562,37 @@ def check_gates(row: dict, config: dict) -> list[str]:
     market_cap = row.get("market_cap")
     if market_cap is not None and market_cap < gates["min_market_cap"]:
         failures.append(f"market cap ${market_cap / 1e9:.2f}B below ${gates['min_market_cap'] / 1e9:.0f}B")
-    if row.get("trade") is None:
+    # The one gate that asks about a contract rather than about a company. She
+    # can buy a stock there is no put worth selling against, so the other
+    # rankings drop this and keep every other gate: price, volume, market cap
+    # and the two RSI bounds describe the name, not the trade.
+    if profile == "put" and row.get("trade") is None:
         failures.append("no put in the target delta and liquidity range")
 
     return failures
 
 
-def score(row: dict, config: dict) -> dict:
-    """Composite 0-100 for one candidate, with the breakdown that produced it."""
-    weights, cfg = config["weights"], config["scoring"]
+def score(row: dict, config: dict, profile: str = "put") -> dict:
+    """Composite 0-100 for one candidate, with the breakdown that produced it.
+
+    `profile` picks the question being asked -- income, weeks, months -- and
+    with it a weight block naming the components that answer it. The same 62
+    names go through all of them, and a name can rank first on one and last on
+    another for a reason: high implied volatility pays a seller and costs a
+    buyer. That disagreement is the useful part.
+    """
+    weights, cfg = config[PROFILES[profile]], config["scoring"]
 
     components = {}
-    for name, function in _COMPONENTS.items():
-        value = function(row, cfg)
+    for name in weights:
+        value = _COMPONENTS[name](row, cfg)
         components[name] = {
             "raw": round(value, 4),
             "points": round(value * weights[name], 2),
             "max": weights[name],
         }
 
-    applied = penalties(row, config["penalties"])
+    applied = penalties(row, penalty_config(config, profile), profile=profile)
     gross = sum(c["points"] for c in components.values())
     total = max(0.0, gross - sum(p["points"] for p in applied))
 

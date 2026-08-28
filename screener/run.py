@@ -45,7 +45,7 @@ MAX_IV_HISTORY = 500
 # scorer reads but this tuple omits is simply absent in the browser, which
 # reads absent as "an older file" and falls back -- so the list she is shown
 # and the list a slider produces would come from two different models, with
-# nothing on screen to say so. `tests/test_publish_contract.py` pins it.
+# nothing on screen to say so. `tests/test_run.py` pins it.
 PUBLISHED_TECHNICALS = (
     "close", "change_5d", "rsi14", "rsi_min_recent", "williams_r14",
     "williams_r_min_recent",
@@ -56,7 +56,10 @@ PUBLISHED_TECHNICALS = (
     "mfi14", "mfi_min_recent", "bb_percent_b", "bb_percent_b_min_recent",
     "macd", "macd_signal", "macd_cross_up", "macd_below_zero",
     "ema9", "ema20", "ema50", "ema200",
-    "above_ema9", "above_ema20", "above_ema200", "golden_cross",
+    "above_ema9", "above_ema20", "above_ema50", "above_ema200",
+    # The trend the BUY and LONG rankings score: the cross she named, the
+    # averages in order, and how young the cross is.
+    "golden_cross", "golden_cross_days_ago", "full_stack",
     "atr14", "hv20", "avg_volume_30d", "volume_vs_20d",
     "up_day_volume_expansion",
     "high_52w", "low_52w", "at_52w_low", "pct_above_52w_low",
