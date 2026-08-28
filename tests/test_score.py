@@ -189,6 +189,95 @@ class TestOversoldAndBounceTogether:
         assert score._oversold(row, config["scoring"]) == pytest.approx(1.0)
 
 
+# The three readings that joined RSI in the composite, all at their oversold
+# extreme. A row carrying none of these scores on the old two-reading mix.
+DEEP = {
+    "stoch_d": 12.0, "stoch_cross_up": False,
+    "mfi14": 15.0, "bb_percent_b": -0.05,
+}
+
+
+class TestTheOversoldComposite:
+    """She read that the standard set is RSI, stochastics and others, so the
+    component reads four things instead of two. Williams %R is not one of them:
+    it is `100 + raw %K`, and scoring both would count one measurement twice."""
+
+    def _row(self, **tech):
+        return make_row(tech={"rsi14": 33.0, "williams_r14": -90.0,
+                              **CONFIRMING, **DEEP, **tech})
+
+    def test_every_reading_at_its_extreme_scores_full_marks(self, config):
+        # The cross is the last fifth of the stochastic term, so full marks
+        # needs it: four readings at the bottom AND %K turning up through %D.
+        row = self._row(stoch_cross_up=True)
+        assert score._oversold(row, config["scoring"]) == pytest.approx(1.0)
+
+    def test_each_reading_carries_its_own_weight(self, config):
+        """Neutralise one at a time; the drop is that reading's share."""
+        cfg = config["scoring"]
+        full = score._oversold(self._row(), cfg)
+        drops = {
+            "rsi": full - score._oversold(self._row(rsi14=60.0), cfg),
+            "stoch": full - score._oversold(self._row(stoch_d=60.0), cfg),
+            "mfi": full - score._oversold(self._row(mfi14=60.0), cfg),
+            "bb": full - score._oversold(self._row(bb_percent_b=0.6), cfg),
+        }
+        assert drops["rsi"] == pytest.approx(0.50)
+        assert drops["stoch"] == pytest.approx(0.20 * 0.8)
+        assert drops["mfi"] == pytest.approx(0.20)
+        assert drops["bb"] == pytest.approx(0.10)
+
+    def test_the_stochastic_cross_is_worth_a_fifth_of_its_term(self, config):
+        cfg = config["scoring"]
+        flat = score._oversold(self._row(stoch_d=60.0), cfg)
+        turning = score._oversold(self._row(stoch_d=60.0, stoch_cross_up=True), cfg)
+        assert turning - flat == pytest.approx(0.20 * 0.2)
+
+    def test_volume_is_the_thing_mfi_adds(self, config):
+        """RSI sliding while money flow holds up is selling without conviction,
+        and it is the only disagreement a price-only reading cannot see."""
+        cfg = config["scoring"]
+        conviction = score._oversold(self._row(mfi14=15.0), cfg)
+        no_conviction = score._oversold(self._row(mfi14=55.0), cfg)
+        assert conviction > no_conviction
+
+    def test_williams_r_is_not_counted_a_second_time(self, config):
+        """Once the composite is live, %R moves nothing -- %D carries it."""
+        cfg = config["scoring"]
+        assert score._oversold(self._row(williams_r14=-95.0), cfg) == pytest.approx(
+            score._oversold(self._row(williams_r14=-5.0), cfg)
+        )
+
+    def test_it_reads_the_recent_low_not_todays_number(self, config):
+        """Same rule RSI already follows: the washout is the setup, and today's
+        reading having recovered is the turn, not a disqualification."""
+        cfg = config["scoring"]
+        recovered = self._row(stoch_cross_up=True,
+                              stoch_d=70.0, stoch_d_min_recent=12.0,
+                              mfi14=70.0, mfi_min_recent=15.0,
+                              bb_percent_b=0.8, bb_percent_b_min_recent=-0.05)
+        assert score._oversold(recovered, cfg) == pytest.approx(1.0)
+
+    def test_a_file_from_before_it_shipped_scores_the_old_way(self, config):
+        """No stochastic in the payload means the two-reading mix, exactly as
+        published -- a site-only push republishes old history files."""
+        cfg = config["scoring"]
+        old = make_row(tech={"rsi14": 60.0, "williams_r14": -90.0, **CONFIRMING})
+        rsi_part = score._ramp(60.0, cfg["rsi_zero_above"], cfg["rsi_ideal_high"])
+        assert score._oversold(old, cfg) == pytest.approx(0.7 * rsi_part + 0.3)
+
+    def test_the_composite_does_not_rescue_a_falling_knife(self, config):
+        """Four oversold readings agreeing on a stock in free fall is still a
+        stock in free fall. The bounce multiplier applies to all of them."""
+        cfg = config["scoring"]
+        knife = make_row(tech={"rsi14": 33.0, "williams_r14": -90.0,
+                               **NO_TURN, **DEEP})
+        # 0.96 is every reading at its extreme except the cross, which a name
+        # that has not turned cannot have. The floor is what caps it.
+        assert score._oversold(knife, cfg) == pytest.approx(
+            0.96 * cfg["oversold_unconfirmed_floor"])
+
+
 class TestOversoldNeedsConfirming:
     """RBLX, 2026-08-26: 74% below its high, EMAs fully inverted, no turn at
     all -- and it scored 19.55 of 20 here, because being cheap was measured

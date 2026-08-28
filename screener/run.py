@@ -36,6 +36,34 @@ HISTORY_DIR = ROOT / "history"
 MIN_IV_OBSERVATIONS = 20  # below this a percentile is noise, not information
 MAX_IV_HISTORY = 500
 
+# What travels with every published name. A superset of what the page draws,
+# because the page also re-scores: every key score.py reads is here under the
+# name score.py reads it by, so the browser can recompute a rank from the
+# published file alone.
+#
+# That is an invariant, not a convenience, and it fails quietly. A key the
+# scorer reads but this tuple omits is simply absent in the browser, which
+# reads absent as "an older file" and falls back -- so the list she is shown
+# and the list a slider produces would come from two different models, with
+# nothing on screen to say so. `tests/test_publish_contract.py` pins it.
+PUBLISHED_TECHNICALS = (
+    "close", "change_5d", "rsi14", "rsi_min_recent", "williams_r14",
+    "williams_r_min_recent",
+    # The rest of the oversold composite. `stoch_k` is the odd one out: the
+    # scorer never reads it, the row prints it, and it is published so the
+    # page can say in figures that %K and %R are one reading.
+    "stoch_k", "stoch_d", "stoch_d_min_recent", "stoch_cross_up",
+    "mfi14", "mfi_min_recent", "bb_percent_b", "bb_percent_b_min_recent",
+    "macd", "macd_signal", "macd_cross_up", "macd_below_zero",
+    "ema9", "ema20", "ema50", "ema200",
+    "above_ema9", "above_ema20", "above_ema200", "golden_cross",
+    "atr14", "hv20", "avg_volume_30d", "volume_vs_20d",
+    "up_day_volume_expansion",
+    "high_52w", "low_52w", "at_52w_low", "pct_above_52w_low",
+    "pct_below_52w_high",
+    "support_60d", "last_date",
+)
+
 
 def iv_percentile(history: list[float], current: float | None) -> float | None:
     """Where today's IV sits in this stock's own range.
@@ -287,23 +315,9 @@ def _present(row: dict, result: dict, rank: int) -> dict:
         "catalyst": row.get("catalyst"),
         "buzz": row.get("buzz"),
         "seen": row.get("seen"),
-        # A superset of what the page draws, because the page also re-scores.
-        # Every key score.py reads is here under the name score.py reads it by,
-        # so the browser can recompute a rank from the published file alone --
-        # `close`, the two recent minimums and `at_52w_low` earn their bytes
-        # that way rather than by being rendered.
-        "technicals": {
-            key: tech.get(key)
-            for key in (
-                "close", "change_5d", "rsi14", "rsi_min_recent", "williams_r14",
-                "williams_r_min_recent", "macd", "macd_signal", "macd_cross_up",
-                "macd_below_zero", "ema9", "ema20", "ema50", "ema200",
-                "above_ema9", "above_ema20", "above_ema200", "atr14", "hv20",
-                "avg_volume_30d", "volume_vs_20d", "up_day_volume_expansion",
-                "high_52w", "low_52w", "at_52w_low", "pct_above_52w_low",
-                "support_60d", "last_date",
-            )
-        },
+        # `close`, the two recent minimums and `at_52w_low` earn their bytes by
+        # being re-scored rather than by being rendered. See the tuple.
+        "technicals": {key: tech.get(key) for key in PUBLISHED_TECHNICALS},
         "fundamentals": row.get("fund"),
         "iv": row.get("iv"),
         "iv_hv": row.get("iv_hv"),

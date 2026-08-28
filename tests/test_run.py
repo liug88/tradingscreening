@@ -6,12 +6,35 @@ where to cut the list, and whether a name is a repeat.
 """
 
 import json
+import re
 from datetime import date
+from pathlib import Path
 
 import pytest
 import yaml
 
 from screener import run
+
+ROOT = Path(__file__).resolve().parents[1]
+
+# Every way either scorer names a technicals field: `tech.get("x")`,
+# `tech["x"]`, `_recent(tech, "low", "today")`, and the two JS spellings.
+# Literals go in character classes rather than behind backslashes -- the
+# patterns read no worse and cannot be mangled by whatever writes this file.
+PY_READS = re.compile(
+    'tech[.]get[(][ ]*"([a-z0-9_]+)"'
+    # The bare dot is the subscript bracket: nothing but `tech["x"]` puts a
+    # quote one character after `tech`, and a class holding `[` warns.
+    '|tech.[ ]*"([a-z0-9_]+)"'
+    '|_recent[(][ ]*tech,[ ]*"([a-z0-9_]+)",[ ]*"([a-z0-9_]+)"')
+JS_READS = re.compile(
+    'tech[.]([A-Za-z_][A-Za-z0-9_]*)'
+    '|recent[(][ ]*tech,[ ]*"([a-z0-9_]+)",[ ]*"([a-z0-9_]+)"')
+
+
+def keys_read(pattern, path):
+    source = (ROOT / path).read_text(encoding="utf-8")
+    return {g for m in pattern.finditer(source) for g in m.groups() if g}
 
 
 @pytest.fixture(scope="module")
@@ -49,6 +72,35 @@ class TestContract:
         """A missing strike must not compare equal to another missing strike."""
         assert run._contract({"trade": {"expiry": "2026-09-30"}}) is None
         assert run._contract({"trade": {"strike": 50.0}}) is None
+
+
+class TestPublishedTechnicals:
+    """The page re-scores from the published file and nothing else.
+
+    So a field the scorer reads but `_present` does not publish is not a
+    cosmetic omission: it is absent in the browser, the browser reads absent as
+    "a file from before this rule shipped" and falls back to the old model, and
+    the ranking she is handed stops matching the one her sliders produce. There
+    is nothing on screen to say so, which is what makes it worth a test rather
+    than care.
+
+    Both directions of the funnel are pinned here: what the scorers read has to
+    be published, and what is published has to be computable.
+    """
+
+    def test_python_reads_nothing_the_payload_leaves_out(self):
+        missing = keys_read(PY_READS, "screener/score.py") - set(run.PUBLISHED_TECHNICALS)
+        assert not missing, f"score.py reads but run.py never publishes: {sorted(missing)}"
+
+    def test_the_browser_reads_nothing_the_payload_leaves_out(self):
+        missing = keys_read(JS_READS, "site/score.js") - set(run.PUBLISHED_TECHNICALS)
+        assert not missing, f"score.js reads but run.py never publishes: {sorted(missing)}"
+
+    def test_the_scan_actually_finds_the_fields(self):
+        """A regex that quietly matches nothing would pass both tests above."""
+        found = keys_read(PY_READS, "screener/score.py")
+        assert {"rsi_min_recent", "stoch_d", "golden_cross"} <= found
+        assert "close" in keys_read(JS_READS, "site/score.js")
 
 
 class TestMarkRepeats:

@@ -61,6 +61,13 @@ scoring:
   rsi_ideal_high: 38
   rsi_zero_above: 50       # no credit at or above this
   williams_r_oversold: -80
+  # The other three readings in the oversold composite, each on the same 0-1
+  # ramp as RSI: full credit at the value below, none at the midpoint. 20 is the
+  # conventional oversold mark for both the stochastic and MFI; 0 is the lower
+  # Bollinger band, which is a definition rather than a convention.
+  stoch_oversold: 20
+  mfi_oversold: 20
+  bb_oversold: 0.0
   # Oversold is scaled by how much of `bounce` has confirmed, not added
   # alongside it. This is the credit a name keeps with no turn at all: enough
   # that a washout still registers, little enough that it cannot carry a

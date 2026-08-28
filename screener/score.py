@@ -34,13 +34,25 @@ def _recent(tech: dict, recent_key: str, today_key: str) -> float | None:
 
 
 def _oversold(row: dict, cfg: dict) -> float:
-    """How stretched this name got recently, confirmed by Williams %R.
+    """How stretched this name got recently, across four readings.
 
-    Scored on the recent minimum rather than today's reading. Measured only as
-    of today, this component and `_bounce` are mathematically opposed: reclaiming
-    the 9-day EMA drags RSI back toward 50, so a name could score on one or the
+    Scored on the recent minimum rather than today's. Measured only as of today,
+    this component and `_bounce` are mathematically opposed: reclaiming the
+    9-day EMA drags RSI back toward 50, so a name could score on one or the
     other but essentially never both -- and the falling knives won every time.
-    The washout and the turn are both part of the setup, not alternatives to it.
+    The washout and the turn are both part of the setup, not alternatives.
+
+    The four are weighted for how much each adds, not equally:
+
+        RSI            50%   momentum, the reading she works from
+        stochastic %D  20%   where it closed in its own range, plus the cross
+        MFI            20%   the same shape as RSI but weighted by volume
+        Bollinger %B   10%   position inside its own volatility, not momentum
+
+    Williams %R is deliberately NOT a fifth term. It is `100 + raw %K`, the same
+    arithmetic on the same window, so scoring both would count one measurement
+    twice and make a single signal look like two that agree. It stays published
+    under the name she knows, and %D is what carries its weight here.
     """
     tech = row["tech"]
     rsi = _recent(tech, "rsi_min_recent", "rsi14")
@@ -55,9 +67,27 @@ def _oversold(row: dict, cfg: dict) -> float:
     else:
         rsi_part = _ramp(rsi, cfg["rsi_zero_above"], cfg["rsi_ideal_high"])
 
-    wr = _recent(tech, "williams_r_min_recent", "williams_r14")
-    wr_part = _ramp(wr, -50.0, cfg["williams_r_oversold"])
-    stretched = 0.7 * rsi_part + 0.3 * wr_part
+    if "stoch_oversold" not in cfg or tech.get("stoch_d") is None:
+        # Published before the composite shipped, or too short a history to
+        # compute it. Reproduce the two-reading mix exactly as it scored.
+        wr = _recent(tech, "williams_r_min_recent", "williams_r14")
+        stretched = 0.7 * rsi_part + 0.3 * _ramp(wr, -50.0, cfg["williams_r_oversold"])
+    else:
+        d = _recent(tech, "stoch_d_min_recent", "stoch_d")
+        # The level says how far it fell; only the cross says it stopped. Kept
+        # to a fifth of the term because the turn is already priced below, by
+        # the bounce multiplier -- this is the stochastic's own read of it.
+        stoch_part = 0.8 * _ramp(d, 50.0, cfg["stoch_oversold"])
+        if tech.get("stoch_cross_up"):
+            stoch_part += 0.2
+        mfi = _recent(tech, "mfi_min_recent", "mfi14")
+        pct_b = _recent(tech, "bb_percent_b_min_recent", "bb_percent_b")
+        stretched = (
+            0.50 * rsi_part
+            + 0.20 * stoch_part
+            + 0.20 * _ramp(mfi, 50.0, cfg["mfi_oversold"])
+            + 0.10 * _ramp(pct_b, 0.5, cfg["bb_oversold"])
+        )
 
     # Being cheap only counts once something has turned. Without this the two
     # components are parallel and a stock in free fall earns near-full credit

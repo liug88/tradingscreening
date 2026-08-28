@@ -62,9 +62,20 @@ function fsum(values) {
 
 /* ---- the seven components ------------------------------------------- */
 
-/* How stretched this name got recently, confirmed by Williams %R. Scored on
-   the recent minimum rather than today's reading: measured only as of today,
-   this and bounce() are opposed, and the falling knives win every time. */
+/* How stretched this name got recently, across four readings, weighted for how
+   much each adds rather than equally:
+
+       RSI            50%   momentum, the reading she works from
+       stochastic %D  20%   where it closed in its own range, plus the cross
+       MFI            20%   the same shape as RSI but weighted by volume
+       Bollinger %B   10%   position inside its own volatility, not momentum
+
+   Scored on the recent minimum rather than today's reading: measured only as of
+   today, this and bounce() are opposed, and the falling knives win every time.
+
+   Williams %R is deliberately not a fifth term. It is `100 + raw %K`, the same
+   arithmetic on the same window, so scoring both would count one measurement
+   twice and make a single signal look like two agreeing. */
 function oversold(row, cfg) {
   const tech = row.technicals || {};
   const rsi = recent(tech, "rsi_min_recent", "rsi14");
@@ -82,8 +93,27 @@ function oversold(row, cfg) {
     rsiPart = ramp(rsi, cfg.rsi_zero_above, cfg.rsi_ideal_high);
   }
 
-  const wr = recent(tech, "williams_r_min_recent", "williams_r14");
-  const stretched = 0.7 * rsiPart + 0.3 * ramp(wr, -50, cfg.williams_r_oversold);
+  let stretched;
+  if (nil(cfg.stoch_oversold) || nil(tech.stoch_d)) {
+    /* Published before the composite shipped, or too short a history to
+       compute it. Reproduce the two-reading mix exactly as it scored. */
+    const wr = recent(tech, "williams_r_min_recent", "williams_r14");
+    stretched = 0.7 * rsiPart + 0.3 * ramp(wr, -50, cfg.williams_r_oversold);
+  } else {
+    const d = recent(tech, "stoch_d_min_recent", "stoch_d");
+    /* The level says how far it fell; only the cross says it stopped. Kept to
+       a fifth of the term because the turn is already priced below, by the
+       bounce multiplier -- this is the stochastic's own read of it. */
+    let stochPart = 0.8 * ramp(d, 50, cfg.stoch_oversold);
+    if (tech.stoch_cross_up) stochPart += 0.2;
+    const mfi = recent(tech, "mfi_min_recent", "mfi14");
+    const pctB = recent(tech, "bb_percent_b_min_recent", "bb_percent_b");
+    stretched =
+      0.50 * rsiPart +
+      0.20 * stochPart +
+      0.20 * ramp(mfi, 50, cfg.mfi_oversold) +
+      0.10 * ramp(pctB, 0.5, cfg.bb_oversold);
+  }
 
   /* Being cheap only counts once something has turned. Without this the two
      components are parallel and a stock in free fall earns near-full credit

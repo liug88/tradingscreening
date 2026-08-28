@@ -205,7 +205,89 @@ def live_config(published) -> dict:
     live = yaml.safe_load((ROOT / "config.yaml").read_text(encoding="utf-8"))
     merged = dict(published["config"])
     merged["penalties"] = live["penalties"]
+    merged["scoring"] = live["scoring"]
     return merged
+
+
+def as_internal(row: dict) -> dict:
+    """Published shape back to the one score.py reads.
+
+    The two halves of the model name the same block differently -- run.py
+    publishes `technicals`, score.py takes `tech` -- so a row can only be handed
+    to both after one of them is renamed.
+    """
+    inner = dict(row)
+    inner["tech"] = row.get("technicals") or {}
+    inner["fund"] = row.get("fundamentals")
+    return inner
+
+
+# Four readings, at a spread of levels, plus the two "not published yet" cases
+# the guard has to survive. Cycled over the fixture's names so the comparison
+# covers a real row's other fields rather than a hand-built stub.
+COMPOSITE_CASES = [
+    {"stoch_d": 8.0, "stoch_cross_up": True, "mfi14": 11.0, "bb_percent_b": -0.2},
+    {"stoch_d": 19.9, "stoch_cross_up": False, "mfi14": 20.0, "bb_percent_b": 0.0},
+    {"stoch_d": 35.0, "stoch_cross_up": True, "mfi14": 62.0, "bb_percent_b": 0.35},
+    {"stoch_d": 80.0, "stoch_cross_up": False, "mfi14": 90.0, "bb_percent_b": 1.4},
+    {"stoch_d": 12.0, "stoch_cross_up": False, "mfi14": 15.0, "bb_percent_b": -0.05,
+     "stoch_d_min_recent": 4.0, "mfi_min_recent": 9.0, "bb_percent_b_min_recent": -0.3},
+    # Present but null, the shape a short history publishes.
+    {"stoch_d": None, "stoch_cross_up": False, "mfi14": None, "bb_percent_b": None},
+    {},  # the key absent entirely -- a file from before the composite shipped
+]
+
+
+@pytest.fixture(scope="module")
+def paired(published, live_config):
+    """Each case scored by both implementations, on a real row's other fields."""
+    rows = []
+    for i, extra in enumerate(COMPOSITE_CASES):
+        row = json.loads(json.dumps(published["names"][i]))
+        row["technicals"].update(extra)
+        row["symbol"] = f"{row['symbol']}-{i}"
+        rows.append(row)
+    answer = run_bridge({"config": live_config, "rows": rows})
+    mine = [score.score(as_internal(r), live_config) for r in rows]
+    return list(zip(rows, mine, answer["scored"]))
+
+
+class TestTheOversoldComposite:
+    """The composite reads four things where the published fixture has two, so
+    nothing in the file exercises it. These rows do, in both implementations at
+    once: a value that ramps differently in JavaScript would move the ten."""
+
+    def test_the_cases_actually_span_the_component(self, paired):
+        """A parity test that only ever compares 0.0 to 0.0 proves nothing."""
+        seen = {round(m["components"]["oversold"]["raw"], 4) for _, m, _ in paired}
+        assert len(seen) >= 5, f"only {len(seen)} distinct readings: {seen}"
+
+    def test_both_implementations_agree_on_the_raw_reading(self, paired):
+        wrong = [
+            (row["symbol"], mine["components"]["oversold"]["raw"],
+             theirs["components"]["oversold"]["raw"])
+            for row, mine, theirs in paired
+            if mine["components"]["oversold"]["raw"]
+            != theirs["components"]["oversold"]["raw"]
+        ]
+        assert not wrong
+
+    def test_both_agree_on_every_component_and_the_total(self, paired):
+        for row, mine, theirs in paired:
+            assert mine["score"] == theirs["score"], row["symbol"]
+            for name, got in mine["components"].items():
+                assert got == theirs["components"][name], (row["symbol"], name)
+
+    def test_a_row_without_the_new_fields_scores_the_old_way(self, published, live_config):
+        """The guard, in both copies. A site-only push republishes a history
+        file that has no stochastic in it, and it must re-score to what it says.
+        """
+        rows = json.loads(json.dumps(published["names"]))
+        for row in rows:
+            assert "stoch_d" not in row["technicals"]
+        answer = run_bridge({"config": published["config"], "rows": rows})
+        for row, theirs in zip(rows, answer["scored"]):
+            assert theirs["score"] == row["score"], row["symbol"]
 
 
 @pytest.fixture(scope="module")

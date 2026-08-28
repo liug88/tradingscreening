@@ -51,6 +51,68 @@ def williams_r(high: pd.Series, low: pd.Series, close: pd.Series, period: int = 
     return (-100.0 * (hh - close) / span).where(span != 0)
 
 
+def stochastic(
+    high: pd.Series, low: pd.Series, close: pd.Series,
+    period: int = 14, smooth: int = 3,
+) -> tuple[pd.Series, pd.Series]:
+    """Slow stochastic: %K is the smoothed raw line, %D the average of that.
+
+    Before any smoothing, this is Williams %R flipped -- `raw %K = 100 + %R`
+    exactly, since both divide the same distance by the same range. A test
+    asserts it to floating point on the real universe. So the level carries no
+    information this module does not already report, and the reason to compute
+    it is the pair: %D lags %K, and the crossing is where a stochastic actually
+    says something. Smoothed with 3 to match what a chart draws, because she
+    reads these numbers off one.
+
+    The page states the identity rather than printing two ticks and letting
+    them look like two signals agreeing.
+    """
+    hh = high.rolling(period).max()
+    ll = low.rolling(period).min()
+    span = hh - ll
+    raw_k = (100.0 * (close - ll) / span).where(span != 0)
+    k = raw_k.rolling(smooth).mean()
+    return k, k.rolling(smooth).mean()
+
+
+def money_flow_index(
+    high: pd.Series, low: pd.Series, close: pd.Series, volume: pd.Series,
+    period: int = 14,
+) -> pd.Series:
+    """RSI weighted by volume -- the one oversold reading that is not price.
+
+    Same ratio-of-ups-to-downs shape as RSI, but each day is counted by the
+    money that changed hands rather than by the size of the move. RSI sliding
+    while this holds up is selling without conviction; both sliding together is
+    selling with it. That difference is the only thing here a price-only
+    indicator cannot tell her.
+    """
+    typical = (high + low + close) / 3.0
+    flow = typical * volume
+    rising = typical > typical.shift(1)
+    up = flow.where(rising, 0.0).rolling(period).sum()
+    down = flow.where(~rising, 0.0).rolling(period).sum()
+    # All-up windows would divide by zero. 100 is the correct reading there:
+    # nothing sold into the period at all.
+    return (100.0 - 100.0 / (1.0 + up / down)).where(down != 0, 100.0)
+
+
+def bollinger_percent_b(
+    close: pd.Series, period: int = 20, stdevs: float = 2.0
+) -> pd.Series:
+    """Where price sits inside its own bands: 0 at the lower, 1 at the upper.
+
+    Volatility-relative rather than momentum-relative, which is why it earns a
+    place beside RSI instead of duplicating it. A quiet stock 5% off its mean
+    is at the band; a violent one 5% off is halfway there, and only this says
+    so. Values outside 0-1 are real -- price closed beyond the band.
+    """
+    mid = close.rolling(period).mean()
+    width = close.rolling(period).std(ddof=0) * stdevs
+    return ((close - (mid - width)) / (2.0 * width)).where(width != 0)
+
+
 def ema(values: pd.Series, span: int) -> pd.Series:
     return values.ewm(span=span, adjust=False).mean()
 
@@ -114,6 +176,9 @@ def compute(
 
     rsi14 = rsi(close)
     wr14 = williams_r(high, low, close)
+    stoch_k, stoch_d = stochastic(high, low, close)
+    mfi14 = money_flow_index(high, low, close, volume)
+    pct_b = bollinger_percent_b(close)
     macd_line, macd_signal, macd_hist = macd(close)
     atr14 = atr(high, low, close)
     hv20 = historical_volatility(close)
@@ -140,6 +205,12 @@ def compute(
     cross_hits = np.flatnonzero(fifty_newly_above.to_numpy())
     cross_days_ago = int(len(ema50) - 1 - cross_hits[-1]) if len(cross_hits) else None
 
+    # %K crossing up through %D, read the same way as the MACD cross above.
+    # The level says how far it fell; only the cross says it stopped.
+    k_above = stoch_k > stoch_d
+    k_newly_above = k_above & ~k_above.shift(1, fill_value=False)
+    stoch_crossed_up = bool(k_newly_above.iloc[-macd_cross_lookback:].any())
+
     is_up_day = px > float(close.iloc[-2])
     latest_vol = float(volume.iloc[last])
 
@@ -150,6 +221,17 @@ def compute(
         "rsi_min_recent": _f(rsi14.iloc[-oversold_lookback:].min()),
         "williams_r14": _f(wr14.iloc[last]),
         "williams_r_min_recent": _f(wr14.iloc[-oversold_lookback:].min()),
+        # Reported for the name she knows it by. It is `100 + williams_r14` and
+        # nothing else -- a test asserts that on real data, and the page says so
+        # rather than letting one measurement look like two agreeing ones.
+        "stoch_k": _f(stoch_k.iloc[last]),
+        "stoch_d": _f(stoch_d.iloc[last]),
+        "stoch_d_min_recent": _f(stoch_d.iloc[-oversold_lookback:].min()),
+        "stoch_cross_up": stoch_crossed_up,
+        "mfi14": _f(mfi14.iloc[last]),
+        "mfi_min_recent": _f(mfi14.iloc[-oversold_lookback:].min()),
+        "bb_percent_b": _f(pct_b.iloc[last]),
+        "bb_percent_b_min_recent": _f(pct_b.iloc[-oversold_lookback:].min()),
         "oversold_lookback": oversold_lookback,
         "macd": _f(macd_line.iloc[last]),
         "macd_signal": _f(macd_signal.iloc[last]),

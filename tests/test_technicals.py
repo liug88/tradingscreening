@@ -4,11 +4,15 @@ The RSI vector is Wilder's own worked example (the one StockCharts publishes).
 If these pass, the numbers on the page match the numbers on a chart.
 """
 
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 import pytest
 
 from screener import technicals as t
+
+PRICES = Path(__file__).resolve().parents[1] / "cache" / "backtest_prices.pkl"
 
 WILDER_CLOSES = [
     44.3389, 44.0902, 44.1497, 43.6124, 44.3278, 44.8264, 45.0955, 45.4245,
@@ -94,17 +98,91 @@ def _synthetic_frame(n=300, seed=0):
     )
 
 
-def test_compute_returns_every_field_the_scorer_needs():
+def test_compute_returns_every_field_the_payload_publishes():
+    """Asked against `run.PUBLISHED_TECHNICALS` rather than a list kept here.
+
+    A second hand-maintained list would drift from the first, and the drift
+    would show up as a field published as null on every name forever -- which
+    reads on the page as a reading that came back empty, not one this module
+    never took.
+    """
+    from screener.run import PUBLISHED_TECHNICALS
+
     result = t.compute(_synthetic_frame())
-    required = {
-        "close", "rsi14", "williams_r14", "macd", "macd_cross_up", "macd_below_zero",
-        "ema9", "ema20", "ema200", "above_ema9", "above_ema20", "atr14", "hv20",
-        "avg_volume_30d", "up_day_volume_expansion", "high_52w", "low_52w",
-        "support_60d", "change_5d",
-    }
-    assert required <= result.keys()
+    missing = set(PUBLISHED_TECHNICALS) - result.keys()
+    assert not missing, f"published but never computed: {sorted(missing)}"
     assert 0 <= result["rsi14"] <= 100
     assert result["low_52w"] <= result["close"] <= result["high_52w"]
+
+
+def test_raw_stochastic_k_is_williams_r_flipped():
+    """%K and Williams %R are one measurement, and the page says so.
+
+    Before smoothing they are the same arithmetic on the same window:
+    `raw %K = 100 + %R`. This is here so that if it ever stops holding, one of
+    the two is computed wrong -- and so nobody later reads them as two
+    independent oversold signals agreeing with each other.
+    """
+    df = _synthetic_frame()
+    high, low, close = df["high"], df["low"], df["close"]
+    hh, ll = high.rolling(14).max(), low.rolling(14).min()
+    raw_k = 100.0 * (close - ll) / (hh - ll)
+    wr = t.williams_r(high, low, close)
+    pd.testing.assert_series_equal(raw_k, 100.0 + wr, check_names=False)
+
+
+@pytest.mark.skipif(not PRICES.exists(), reason="no cached price history")
+def test_the_flip_holds_across_the_real_universe():
+    """The same identity on three years of real bars for every symbol."""
+    import pickle
+
+    with PRICES.open("rb") as fh:
+        prices = pickle.load(fh)
+    assert len(prices) > 100, "cache too small to be a real check"
+
+    worst = 0.0
+    for df in prices.values():
+        high, low, close = df["high"], df["low"], df["close"]
+        hh, ll = high.rolling(14).max(), low.rolling(14).min()
+        raw_k = (100.0 * (close - ll) / (hh - ll)).iloc[-1]
+        wr = t.williams_r(high, low, close).iloc[-1]
+        if np.isfinite(raw_k) and np.isfinite(wr):
+            worst = max(worst, abs(raw_k - (100.0 + wr)))
+    assert worst < 1e-9, f"drifted by {worst}"
+
+
+def test_stochastic_bottoms_and_tops_out():
+    """%D is bounded 0..100 -- the score ramps assume it."""
+    n = 60
+    close = pd.Series(np.linspace(100, 50, n))
+    frame = pd.DataFrame({"high": close * 1.001, "low": close * 0.999, "close": close})
+    k, d = t.stochastic(frame["high"], frame["low"], frame["close"])
+    assert d.iloc[-1] < 5      # closing at the bottom of its range every day
+    assert 0 <= k.iloc[-1] <= 100
+
+
+def test_money_flow_index_is_100_when_nothing_sells():
+    """An unbroken advance has no down-volume, and the ratio has no denominator."""
+    n = 60
+    close = pd.Series(np.linspace(50, 100, n))
+    mfi = t.money_flow_index(close * 1.01, close * 0.99, close,
+                             pd.Series(np.full(n, 1e6)))
+    assert mfi.iloc[-1] == 100.0
+
+
+def test_percent_b_marks_the_bands():
+    """0 at the lower band, 1 at the upper -- the two points the score ramps to."""
+    rng = np.random.default_rng(1)
+    close = pd.Series(100 + rng.normal(0, 2, 200))
+    pct_b = t.bollinger_percent_b(close)
+    mid = close.rolling(20).mean()
+    width = close.rolling(20).std(ddof=0) * 2.0
+    assert pct_b.iloc[-1] == pytest.approx(
+        (close.iloc[-1] - (mid.iloc[-1] - width.iloc[-1])) / (2 * width.iloc[-1]))
+    # A series that never moves has no bands to sit inside. NaN rather than a
+    # divide-by-zero, and _f() turns it into None on the way out.
+    flat = pd.Series([100.0] * 40)
+    assert np.isnan(t.bollinger_percent_b(flat).iloc[-1])
 
 
 def test_compute_bails_out_on_short_history():

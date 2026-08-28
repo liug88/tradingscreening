@@ -113,13 +113,37 @@ const POINTS_PER_MARK = 2.5;
    note() gets the live config, so every threshold it quotes is the number the
    screen actually ran under this morning rather than one written down once and
    left to drift. */
+/* A label is a plain string unless what the component measured depends on the
+   file being read, in which case it is a function of the same scoring config
+   the notes get. `view.baseline` is unset for a payload with no config block,
+   which is exactly the old-file case, so the empty object is the right read. */
+const componentName = (label) =>
+  (typeof label === "function" ? label((view.baseline || {}).scoring || {}) : label);
+
 const COMPONENTS = [
-  ["oversold", "RSI + Williams %R", (c) =>
-    `The lowest RSI of the last 10 sessions, not today's. Full credit inside ` +
-    `${c.rsi_ideal_low}–${c.rsi_ideal_high}, none at ${c.rsi_zero_above} or above, ` +
-    `and less again below ${c.rsi_ideal_low} — past a point it stops looking stretched ` +
-    `and starts looking broken. Williams %R under ` +
-    `${String(c.williams_r_oversold).replace("-", "−")} is the other 30%.`],
+  /* Two labels and two notes, because a file published before the composite
+     shipped scored two readings rather than four, and its panel should say
+     what that morning actually did. */
+  ["oversold",
+    (c) => (c.stoch_oversold == null ? "RSI + Williams %R"
+                                     : "RSI / stochastic / MFI / %B"),
+    (c) => (c.stoch_oversold == null
+      ? `The lowest RSI of the last 10 sessions, not today's. Full credit inside ` +
+        `${c.rsi_ideal_low}–${c.rsi_ideal_high}, none at ${c.rsi_zero_above} or above, ` +
+        `and less again below ${c.rsi_ideal_low} — past a point it stops looking stretched ` +
+        `and starts looking broken. Williams %R under ` +
+        `${String(c.williams_r_oversold).replace("-", "−")} is the other 30%.`
+      : `Four readings of how far it fell, each taken at its lowest of the last 10 ` +
+        `sessions rather than today's. RSI is half of it: full credit inside ` +
+        `${c.rsi_ideal_low}–${c.rsi_ideal_high}, none at ${c.rsi_zero_above} or above, and ` +
+        `less again below ${c.rsi_ideal_low} — past a point it stops looking stretched and ` +
+        `starts looking broken. Stochastic %D under ${c.stoch_oversold} is 20%, a fifth of ` +
+        `which is the %K/%D cross rather than the level. Money flow under ${c.mfi_oversold} ` +
+        `is another 20% — RSI weighted by volume, the only one of the four that is not ` +
+        `pure price. Bollinger %B at the lower band is the last 10%. Williams %R is not ` +
+        `scored: it is the stochastic flipped, and counting it again would make one ` +
+        `reading look like two agreeing. The whole component then scales by the bounce ` +
+        `below — cheap only counts once something has turned.`)],
 
   ["premium_richness", "IV richness", (c) =>
     `Half IV ÷ realised volatility, full credit at ${c.iv_hv_rich.toFixed(2)}×. Half where ` +
@@ -162,11 +186,12 @@ function renderBreakdown(components) {
   COMPONENTS.forEach(([key, label]) => {
     const part = components[key];
     if (!part || !part.max) return;
+    const name = componentName(label);
     const line = el("div", "breakdown__line");
-    line.appendChild(el("span", "breakdown__label", label));
+    line.appendChild(el("span", "breakdown__label", name));
     line.appendChild(tally(
       unitMarks(part.points / part.max, "filled", Math.round(part.max / POINTS_PER_MARK)),
-      `${label}: ${part.points.toFixed(1)} of ${part.max} points`));
+      `${name}: ${part.points.toFixed(1)} of ${part.max} points`));
     line.appendChild(el("span", "breakdown__value",
       `${part.points.toFixed(1)} / ${part.max}`));
     wrap.appendChild(line);
@@ -506,6 +531,20 @@ function renderNumbers(pick, trade) {
   const pairs = [
     ["RSI (14)", t.rsi14 == null ? "—" : t.rsi14.toFixed(1)],
     ["Williams %R", t.williams_r14 == null ? "—" : t.williams_r14.toFixed(1)],
+    /* Spread in rather than printed with a dash: these joined the screen after
+       the first files went out, and an em dash in a cell reads as a reading
+       that came back empty rather than one that was never taken.
+
+       %K sits in its own cell directly under Williams %R on purpose. Side by
+       side -- 58.8 against −41.2 -- the note at the foot of this panel stops
+       being a claim she has to take on trust and becomes a sum she can do. */
+    ...(t.stoch_k == null ? [] : [["Stochastic %K", t.stoch_k.toFixed(1)]]),
+    ...(t.stoch_d == null ? [] : [
+      ["Stochastic %D", t.stoch_d.toFixed(1)],
+      ["%K / %D cross", t.stoch_cross_up ? "crossed up" : "no cross"],
+    ]),
+    ...(t.mfi14 == null ? [] : [["Money flow (14)", t.mfi14.toFixed(1)]]),
+    ...(t.bb_percent_b == null ? [] : [["Bollinger %B", t.bb_percent_b.toFixed(2)]]),
     ["Implied volatility", pct(pick.iv, 0)],
     ["IV ÷ realised vol", pick.iv_hv == null ? "—" : pick.iv_hv.toFixed(2)],
     /* Already a percentage -- run.py:iv_percentile multiplies by 100 before it
@@ -545,6 +584,18 @@ function renderNumbers(pick, trade) {
      tallies and a third would compete with the two she acts on. */
   const breakdown = renderBreakdown(pick.components);
   if (breakdown) det.appendChild(breakdown);
+
+  /* Two numbers, one measurement. Both are published on purpose -- %R is the
+     name she already works from, %K is the one her reading told her to look
+     for -- and the row has to say so, because "oversold on both" is the exact
+     shape a false confirmation takes. */
+  if (t.stoch_k != null && t.williams_r14 != null) {
+    det.appendChild(el("p", "misses",
+      "Stochastic %K and Williams %R are the same reading. Before smoothing, " +
+      "%K is 100 plus %R — the same distance over the same range, flipped. " +
+      "If both look oversold that is one signal agreeing with itself, and the " +
+      "score counts it once."));
+  }
 
   /* Kept out of the grid: a caveat this long wraps a cell onto two ragged
      lines and breaks the rhythm of every row beside it. */
@@ -908,7 +959,7 @@ function renderWeights() {
     if (view.baseline.weights[key] === undefined) return;
 
     const line = el("div", "weight");
-    const name = el("label", "weight__label", label);
+    const name = el("label", "weight__label", componentName(label));
     name.htmlFor = "w-" + key;
     line.appendChild(name);
 
