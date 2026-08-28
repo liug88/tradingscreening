@@ -15,3 +15,7 @@ Trading Screening.docx
 worker/node_modules/
 worker/package-lock.json
 worker/.wrangler/
+
+# Three years of daily bars for the backtest. Refetched from yfinance in a few
+# minutes, and 20MB has no business in a repo that deploys a static page.
+cache/backtest_prices.pkl
