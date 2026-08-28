@@ -57,7 +57,17 @@ def _oversold(row: dict, cfg: dict) -> float:
 
     wr = _recent(tech, "williams_r_min_recent", "williams_r14")
     wr_part = _ramp(wr, -50.0, cfg["williams_r_oversold"])
-    return 0.7 * rsi_part + 0.3 * wr_part
+    stretched = 0.7 * rsi_part + 0.3 * wr_part
+
+    # Being cheap only counts once something has turned. Without this the two
+    # components are parallel and a stock in free fall earns near-full credit
+    # precisely because it is falling: RBLX scored 19.55/20 here on 2026-08-26
+    # while 74% below its high, its EMAs fully inverted, with `_bounce` at 0.0.
+    # Scaling rather than gating keeps a partial turn worth partial credit.
+    # A file published before this rule shipped carries no floor, and must
+    # re-score to exactly what it says. 1.0 is the old behaviour.
+    floor = cfg.get("oversold_unconfirmed_floor", 1.0)
+    return stretched * (floor + (1.0 - floor) * _bounce(row, cfg))
 
 
 def _bounce(row: dict, cfg: dict) -> float:
@@ -77,6 +87,24 @@ def _bounce(row: dict, cfg: dict) -> float:
     if tech.get("up_day_volume_expansion"):
         total += 0.25
     return total
+
+
+def in_downtrend(row: dict, cfg: dict) -> bool:
+    """Price under a 200-day that the 50-day is also under, and nothing turning.
+
+    The three conditions are deliberately ANDed. Below the 200-day alone is
+    common and often temporary; the 50 under the 200 as well says the decline
+    has lasted long enough to reshape both averages; no bounce says it has not
+    stopped. Together they describe the chart her mother recognised on sight.
+    """
+    if "downtrend_bounce_max" not in cfg:
+        return False  # published before the rule shipped
+    tech = row["tech"]
+    if tech.get("above_ema200") is not False:
+        return False
+    if tech.get("golden_cross") is not False:
+        return False
+    return _bounce(row, cfg) <= cfg["downtrend_bounce_max"]
 
 
 def _premium_richness(row: dict, cfg: dict) -> float:
@@ -196,10 +224,50 @@ def penalties(row: dict, cfg: dict) -> list[dict]:
             }
         )
 
-    if tech.get("at_52w_low") and not tech.get("above_ema200"):
+    # These two describe the same illness at different severities, so only the
+    # worse one is charged. Stacking them cost a name 30 points for one fact.
+    #
+    # `at_52w_low` is a 3% band, so the old form of the milder test fired on the
+    # day of the low and went quiet while the stock ground along the bottom --
+    # the whole danger zone, unpenalised. Measured against the low it is sitting
+    # on instead, it covers the grind.
+    above_low = tech.get("pct_above_52w_low")
+    # Falls back to the 3% flag when the measured distance is missing, so a
+    # short history keeps the old behaviour rather than losing the penalty.
+    sitting_low = (
+        above_low <= cfg.get("near_52w_low_pct", 0.0)
+        if above_low is not None
+        else bool(tech.get("at_52w_low"))
+    )
+    near_low = sitting_low and not tech.get("above_ema200")
+
+    if "near_52w_low_pct" not in cfg:
+        # A history file from before these rules. Reproduce it as it was scored
+        # -- the sliders re-rank the file she is looking at, not this one.
+        if tech.get("at_52w_low") and not tech.get("above_ema200"):
+            found.append(
+                {
+                    "reason": "At a 52-week low and below its 200-day average",
+                    "points": cfg["new_low_under_ema200"],
+                }
+            )
+    elif in_downtrend(row, cfg):
+        off_high = tech.get("pct_below_52w_high")
+        detail = f", {off_high:.0%} below its 52-week high" if off_high else ""
         found.append(
             {
-                "reason": "At a 52-week low and below its 200-day average",
+                "reason": f"Still in a confirmed downtrend{detail} — 50-day under the 200-day, nothing turning yet",
+                "points": cfg["downtrend_confirmed"],
+            }
+        )
+    elif near_low:
+        found.append(
+            {
+                "reason": (
+                    "Sitting on its 52-week low and below its 200-day average"
+                    if above_low is None or above_low < 0.005
+                    else f"Within {above_low:.0%} of its 52-week low and below its 200-day average"
+                ),
                 "points": cfg["new_low_under_ema200"],
             }
         )

@@ -111,9 +111,23 @@ class TestGates:
         assert score.check_gates(make_row(market_cap=None), config) == []
 
 
+CONFIRMING = {
+    "above_ema9": True, "above_ema20": True,
+    "macd_cross_up": True, "macd_below_zero": True,
+    "up_day_volume_expansion": True,
+}
+
+# make_row merges tech overrides into a baseline that already bounces, so a
+# test about an unconfirmed name has to switch the evidence off by hand.
+NO_TURN = {
+    "above_ema9": False, "above_ema20": False,
+    "macd_cross_up": False, "up_day_volume_expansion": False,
+}
+
+
 class TestOversold:
     def test_peaks_inside_the_rsi_band(self, config):
-        row = make_row(tech={"rsi14": 33.0, "williams_r14": -90.0})
+        row = make_row(tech={"rsi14": 33.0, "williams_r14": -90.0, **CONFIRMING})
         assert score._oversold(row, config["scoring"]) == pytest.approx(1.0)
 
     def test_overbought_scores_zero(self, config):
@@ -170,8 +184,37 @@ class TestOversoldAndBounceTogether:
 
     def test_falls_back_to_todays_reading_when_history_is_short(self, config):
         row = make_row(tech={"rsi14": 33.0, "rsi_min_recent": None,
-                             "williams_r14": -90.0, "williams_r_min_recent": None})
+                             "williams_r14": -90.0, "williams_r_min_recent": None,
+                             **CONFIRMING})
         assert score._oversold(row, config["scoring"]) == pytest.approx(1.0)
+
+
+class TestOversoldNeedsConfirming:
+    """RBLX, 2026-08-26: 74% below its high, EMAs fully inverted, no turn at
+    all -- and it scored 19.55 of 20 here, because being cheap was measured
+    without asking whether anything had stopped falling."""
+
+    def _stretched(self, **extra):
+        return make_row(tech={"rsi14": 33.0, "williams_r14": -90.0,
+                              **NO_TURN, **extra})
+
+    def test_a_washout_with_no_turn_keeps_only_the_floor(self, config):
+        cfg = config["scoring"]
+        assert score._oversold(self._stretched(), cfg) == pytest.approx(
+            cfg["oversold_unconfirmed_floor"]
+        )
+
+    def test_the_turn_scales_it_the_rest_of_the_way(self, config):
+        cfg = config["scoring"]
+        none = score._oversold(self._stretched(), cfg)
+        some = score._oversold(self._stretched(above_ema9=True), cfg)
+        full = score._oversold(self._stretched(**CONFIRMING), cfg)
+        assert none < some < full == pytest.approx(1.0)
+
+    def test_confirmation_cannot_invent_credit_that_is_not_there(self, config):
+        """An overbought name stays at zero however strong the bounce."""
+        row = make_row(tech={"rsi14": 65.0, "williams_r14": -10.0, **CONFIRMING})
+        assert score._oversold(row, config["scoring"]) == 0.0
 
 
 class TestPartialScore:

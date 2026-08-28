@@ -83,7 +83,16 @@ function oversold(row, cfg) {
   }
 
   const wr = recent(tech, "williams_r_min_recent", "williams_r14");
-  return 0.7 * rsiPart + 0.3 * ramp(wr, -50, cfg.williams_r_oversold);
+  const stretched = 0.7 * rsiPart + 0.3 * ramp(wr, -50, cfg.williams_r_oversold);
+
+  /* Being cheap only counts once something has turned. Without this the two
+     components are parallel and a stock in free fall earns near-full credit
+     precisely because it is falling. Scaling rather than gating keeps a
+     partial turn worth partial credit. */
+  /* A file published before this rule shipped carries no floor, and must
+     re-score to exactly what it says. 1 is the old behaviour. */
+  const floor = nil(cfg.oversold_unconfirmed_floor) ? 1 : cfg.oversold_unconfirmed_floor;
+  return stretched * (floor + (1 - floor) * bounce(row));
 }
 
 /* Evidence the fall has actually stopped. */
@@ -100,6 +109,18 @@ function bounce(row) {
   }
   if (tech.up_day_volume_expansion) total += 0.25;
   return total;
+}
+
+/* Price under a 200-day the 50-day is also under, and nothing turning yet.
+   The three conditions are ANDed deliberately: below the 200-day alone is
+   common and often temporary, the 50 under the 200 says the decline reshaped
+   both averages, and no bounce says it has not stopped. */
+function inDowntrend(row, cfg) {
+  if (nil(cfg.downtrend_bounce_max)) return false;  /* published before the rule */
+  const tech = row.technicals || {};
+  if (tech.above_ema200 !== false) return false;
+  if (tech.golden_cross !== false) return false;
+  return bounce(row) <= cfg.downtrend_bounce_max;
 }
 
 /* Is the premium rich relative to how much the stock actually moves? */
@@ -198,9 +219,37 @@ function penalties(row, cfg) {
     });
   }
 
-  if (tech.at_52w_low && !tech.above_ema200) {
+  /* These two describe the same illness at different severities, so only the
+     worse one is charged. Measured against the low it is sitting on rather
+     than a 3% flag, the milder one covers the grind along the bottom and not
+     just the day of the low -- falling back to the flag when the distance was
+     never measured. */
+  const aboveLow = tech.pct_above_52w_low;
+  const sittingLow = !nil(aboveLow)
+    ? aboveLow <= cfg.near_52w_low_pct
+    : Boolean(tech.at_52w_low);
+
+  if (nil(cfg.near_52w_low_pct)) {
+    /* A history file from before these rules. Reproduce it as it was scored --
+       the sliders re-rank the file she is looking at, not this one. */
+    if (tech.at_52w_low && !tech.above_ema200) {
+      found.push({
+        reason: "At a 52-week low and below its 200-day average",
+        points: cfg.new_low_under_ema200,
+      });
+    }
+  } else if (inDowntrend(row, cfg)) {
+    const offHigh = tech.pct_below_52w_high;
+    const detail = offHigh ? `, ${asPct(offHigh)} below its 52-week high` : "";
     found.push({
-      reason: "At a 52-week low and below its 200-day average",
+      reason: `Still in a confirmed downtrend${detail} — 50-day under the 200-day, nothing turning yet`,
+      points: cfg.downtrend_confirmed,
+    });
+  } else if (sittingLow && !tech.above_ema200) {
+    found.push({
+      reason: nil(aboveLow) || aboveLow < 0.005
+        ? "Sitting on its 52-week low and below its 200-day average"
+        : `Within ${asPct(aboveLow)} of its 52-week low and below its 200-day average`,
       points: cfg.new_low_under_ema200,
     });
   }

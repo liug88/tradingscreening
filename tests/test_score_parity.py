@@ -143,6 +143,32 @@ PENALTY_CASES = {
         "tech": {"close": 50.0, "change_5d": 0.0, "at_52w_low": True, "above_ema200": False},
         "trade": {"expiry": "2026-10-16", "strike": 45.0},
     },
+    # The RBLX shape: 74% below its high, the 50 under the 200, nothing turning.
+    "confirmed downtrend": {
+        "tech": {"close": 50.0, "change_5d": 0.0, "above_ema200": False,
+                 "golden_cross": False, "pct_above_52w_low": 0.11,
+                 "pct_below_52w_high": 0.73},
+        "trade": {"expiry": "2026-10-16", "strike": 45.0},
+    },
+    # Same wreck, but bouncing -- the milder penalty, not the downtrend one.
+    "down but turning": {
+        "tech": {"close": 50.0, "change_5d": 0.0, "above_ema200": False,
+                 "golden_cross": False, "pct_above_52w_low": 0.11,
+                 "pct_below_52w_high": 0.73, "above_ema9": True,
+                 "up_day_volume_expansion": True},
+        "trade": {"expiry": "2026-10-16", "strike": 45.0},
+    },
+    # Near the low but the 50 is still over the 200: the trend is intact.
+    "near the low, trend intact": {
+        "tech": {"close": 50.0, "change_5d": 0.0, "above_ema200": False,
+                 "golden_cross": True, "pct_above_52w_low": 0.04},
+        "trade": {"expiry": "2026-10-16", "strike": 45.0},
+    },
+    "sitting exactly on the low": {
+        "tech": {"close": 50.0, "change_5d": 0.0, "above_ema200": False,
+                 "golden_cross": True, "pct_above_52w_low": 0.001},
+        "trade": {"expiry": "2026-10-16", "strike": 45.0},
+    },
     "structural selloff": {
         "tech": {"close": 50.0, "change_5d": 0.0},
         "trade": {"expiry": "2026-10-16", "strike": 45.0},
@@ -167,14 +193,30 @@ def as_published(row: dict) -> dict:
 
 
 @pytest.fixture(scope="module")
-def both(published) -> dict:
+def live_config(published) -> dict:
+    """The fixture's config with the shipping penalty rules merged over it.
+
+    The published file is deliberately frozen -- the test above needs it to
+    re-score to exactly what it says. But comparing the two implementations is
+    a different question, and it should be asked about the rules that ship.
+    """
+    import yaml
+
+    live = yaml.safe_load((ROOT / "config.yaml").read_text(encoding="utf-8"))
+    merged = dict(published["config"])
+    merged["penalties"] = live["penalties"]
+    return merged
+
+
+@pytest.fixture(scope="module")
+def both(live_config) -> dict:
     """Every case scored by both implementations, paired up by name."""
     rows = list(PENALTY_CASES.values())
     answer = run_bridge({
-        "config": published["config"],
+        "config": live_config,
         "penalty_rows": [as_published(row) for row in rows],
     })
-    mine = [score.penalties(row, published["config"]["penalties"]) for row in rows]
+    mine = [score.penalties(row, live_config["penalties"]) for row in rows]
     return dict(zip(PENALTY_CASES, zip(mine, answer["penalties"])))
 
 

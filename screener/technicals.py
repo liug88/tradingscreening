@@ -133,6 +133,13 @@ def compute(
     newly_above = above & ~above.shift(1, fill_value=False)
     crossed_up = bool(newly_above.iloc[-macd_cross_lookback:].any())
 
+    # Same crossover shape as MACD above, on the 50/200 pair. None means the
+    # cross is older than the frame, not that it never happened.
+    fifty_above = ema50 > ema200
+    fifty_newly_above = fifty_above & ~fifty_above.shift(1, fill_value=False)
+    cross_hits = np.flatnonzero(fifty_newly_above.to_numpy())
+    cross_days_ago = int(len(ema50) - 1 - cross_hits[-1]) if len(cross_hits) else None
+
     is_up_day = px > float(close.iloc[-2])
     latest_vol = float(volume.iloc[last])
 
@@ -155,7 +162,16 @@ def compute(
         "ema200": _f(ema200.iloc[last]),
         "above_ema9": bool(px > ema9.iloc[last]),
         "above_ema20": bool(px > ema20.iloc[last]),
+        "above_ema50": bool(px > ema50.iloc[last]),
         "above_ema200": bool(px > ema200.iloc[last]),
+        # The cross she asks for by name. False is not merely "not yet": the
+        # 50 under the 200 is the death cross, and it is the single clearest
+        # statement that the trend is still down.
+        "golden_cross": bool(ema50.iloc[last] > ema200.iloc[last]),
+        "golden_cross_days_ago": cross_days_ago,
+        "full_stack": bool(
+            px > ema20.iloc[last] > ema50.iloc[last] > ema200.iloc[last]
+        ),
         "atr14": _f(atr14.iloc[last]),
         "atr_pct": _f(atr14.iloc[last] / px) if px else None,
         "hv20": _f(hv20.iloc[last]),
@@ -165,6 +181,9 @@ def compute(
         "high_52w": high_52w,
         "low_52w": low_52w,
         "pct_above_52w_low": _f((px - low_52w) / low_52w) if low_52w else None,
+        # The mirror of the line above, and the one that stops a collapse from
+        # reading as upside: 74% below the high is not "room to run".
+        "pct_below_52w_high": _f((high_52w - px) / high_52w) if high_52w else None,
         "at_52w_low": bool(px <= low_52w * 1.03),
         "support_60d": float(low.iloc[-60:].min()),
         "change_5d": _f(px / float(close.iloc[-6]) - 1.0) if len(close) > 6 else None,

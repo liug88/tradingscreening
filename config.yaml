@@ -61,6 +61,11 @@ scoring:
   rsi_ideal_high: 38
   rsi_zero_above: 50       # no credit at or above this
   williams_r_oversold: -80
+  # Oversold is scaled by how much of `bounce` has confirmed, not added
+  # alongside it. This is the credit a name keeps with no turn at all: enough
+  # that a washout still registers, little enough that it cannot carry a
+  # falling knife into the ten on cheapness alone.
+  oversold_unconfirmed_floor: 0.35
   rev_yoy_target: 0.10     # full credit at +10% YoY
   iv_hv_rich: 1.30         # full credit at or above -- premium is rich vs realized
   ann_yield_target: 0.20   # full credit at 20% annualized on cash secured
@@ -73,6 +78,13 @@ penalties:
   gap_down_5d: 15          # dropped more than gap_down_5d_pct in 5 sessions
   gap_down_5d_pct: 0.15
   new_low_under_ema200: 10
+  # Measured against the low it is sitting on rather than a 3% band, so the
+  # penalty covers the grind along the bottom and not just the day of the low.
+  near_52w_low_pct: 0.15
+  # Below the 200-day, the 50-day below it too, and no turn yet. The chart that
+  # made her mother close the page.
+  downtrend_confirmed: 20
+  downtrend_bounce_max: 0.15   # "no turn": at most one weak bounce signal
   catalyst_structural: 30  # the AI layer judged the selloff structural
 
 catalyst:
