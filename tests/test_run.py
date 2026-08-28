@@ -43,13 +43,26 @@ def config():
         return yaml.safe_load(handle)
 
 
-def row(symbol, strike=50.0, expiry="2026-09-30"):
+def row(symbol, strike=50.0, expiry="2026-09-30", put=True):
+    """One candidate out of the options stage. `put=False` is a name that
+    cleared every gate about the company and had no fillable contract."""
     return {
         "symbol": symbol,
         "name": symbol + " Inc.",
         "tech": {"close": 100.0},
-        "trade": {"strike": strike, "expiry": expiry},
+        "trade": {"strike": strike, "expiry": expiry} if put else None,
     }
+
+
+def stub_scores(monkeypatch):
+    """Score descending by the digits in the symbol, on every ranking, so the
+    expected order is known and the same on all three."""
+    monkeypatch.setattr(run.score, "score", lambda r, c, profile="put": {
+        "score": 100.0 - int(r["symbol"][1:]),
+        "score_before_penalties": 100.0,
+        "badges": [], "penalties": [], "components": {},
+    })
+    monkeypatch.setattr(run.score, "badges", lambda r, c: [])
 
 
 def published(as_of, picks):
@@ -212,11 +225,7 @@ class TestBench:
         monkeypatch.setattr(run, "_fundamentals_stage", lambda rows_, *a, **k: rows_)
         monkeypatch.setattr(run, "_options_stage", lambda rows_, *a, **k: rows_)
         monkeypatch.setattr(run, "_add_buzz", lambda rows_: [])
-        # Score descending by position, so the expected order is known.
-        monkeypatch.setattr(run.score, "score", lambda r, c: {
-            "score": 100.0 - int(r["symbol"][1:]),
-            "badges": [], "penalties": [], "components": {},
-        })
+        stub_scores(monkeypatch)
         return run.build(config, use_ai=False, as_of=date(2026, 8, 26))
 
     def test_publishes_ten_names(self, payload, config):
@@ -240,3 +249,96 @@ class TestBench:
     def test_no_brief_without_the_ai_layer(self, payload):
         assert payload["brief"] is None
         assert payload["catalyst_ran"] is False
+
+
+class TestThreeRankings:
+    """The same pool, ordered three ways, in one file.
+
+    The pipeline is stubbed as in TestBench; what is under test is the shape
+    run.py publishes, not the model. Two names carry no put and the highest
+    scores in the set, which is the case that used to be thrown away at the
+    options stage and now has to survive it without contaminating the list she
+    reads.
+    """
+
+    @pytest.fixture
+    def payload(self, config, monkeypatch, tmp_path):
+        rows = [row("S%02d" % i) for i in range(10, 30)]
+        rows += [row("S00", put=False), row("S05", put=False)]
+        monkeypatch.setattr(run, "HISTORY_DIR", tmp_path)
+        monkeypatch.setattr(run.universe, "load", lambda *a, **k: [r["symbol"] for r in rows])
+        monkeypatch.setattr(run, "YahooSession", lambda *a, **k: None)
+        monkeypatch.setattr(run, "_technicals_stage", lambda *a, **k: rows)
+        monkeypatch.setattr(run, "_fundamentals_stage", lambda rows_, *a, **k: rows_)
+        monkeypatch.setattr(run, "_options_stage", lambda rows_, *a, **k: rows_)
+        monkeypatch.setattr(run, "_add_buzz", lambda rows_: [])
+        stub_scores(monkeypatch)
+        return run.build(config, use_ai=False, as_of=date(2026, 8, 26))
+
+    @staticmethod
+    def every(payload):
+        return payload["picks"] + payload["bench"]
+
+    def test_a_name_with_no_put_is_still_published(self, payload):
+        """The whole point of the change. She can buy a stock there is no put
+        worth selling against, and these were being dropped unseen."""
+        assert {"S00", "S05"} <= {p["symbol"] for p in self.every(payload)}
+
+    def test_it_never_reaches_the_list_she_sells_from(self, payload):
+        """It outscores every other name in the set and still cannot be a pick,
+        because there is no contract to sell."""
+        assert all(p["trade"] for p in payload["picks"])
+        assert payload["picks"][0]["symbol"] == "S10"
+
+    def test_its_sell_puts_score_is_absent_rather_than_low(self, payload):
+        """Zero would read as a bad trade. There is no trade."""
+        card = next(p for p in self.every(payload) if p["symbol"] == "S00")
+        assert card["score"] is None
+        assert card["trade"] is None
+        assert card["components"] == {}
+        assert card["penalties"] == []
+
+    def test_but_it_is_ranked_on_the_lists_that_apply(self, payload):
+        card = next(p for p in self.every(payload) if p["symbol"] == "S00")
+        assert card["buy"]["score"] == 100.0
+        assert card["long"]["score"] == 100.0
+
+    def test_every_card_carries_every_ranking(self, payload):
+        for card in self.every(payload):
+            for profile in run.OTHER_RANKINGS:
+                assert set(card[profile]) == {
+                    "score", "score_before_penalties", "components", "penalties"}
+
+    def test_the_put_ranking_stays_where_the_page_reads_it(self, payload):
+        """Top level, unnested. An older page reading a newer file must find
+        the sell-puts list exactly where it has always been."""
+        card = payload["picks"][0]
+        assert card["score"] == 90.0
+        assert "score" not in card.get("put", {})
+
+    def test_the_put_less_names_sort_to_the_end_of_the_file(self, payload):
+        symbols = [p["symbol"] for p in payload["bench"]]
+        assert symbols[-2:] == ["S00", "S05"]
+
+    def test_rank_runs_unbroken_through_them(self, payload):
+        ranks = [p["rank"] for p in self.every(payload)]
+        assert ranks == list(range(1, 23))
+
+    def test_the_browser_gets_the_weights_for_every_ranking(self, payload, config):
+        """Same invariant as the technicals allowlist: the page re-scores from
+        the published file alone, so a weight block left out means a slider
+        that silently falls back to an older model."""
+        published_cfg = payload["config"]
+        for profile in run.OTHER_RANKINGS:
+            assert published_cfg["weights_" + profile] == config["weights_" + profile]
+
+    def test_and_the_penalties_a_ranking_charges_extra(self, payload, config):
+        assert payload["config"]["penalties_long"] == config["penalties_long"]
+
+    def test_a_new_profile_cannot_be_added_and_left_unpublished(self):
+        """score.PROFILES is where a ranking is declared. If one appears there
+        without joining this tuple, it scores in Python and does not exist in
+        the browser -- the failure the publish contract exists to prevent."""
+        from screener import score
+
+        assert set(score.PROFILES) == {"put", *run.OTHER_RANKINGS}

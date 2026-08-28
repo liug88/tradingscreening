@@ -46,6 +46,12 @@ MAX_IV_HISTORY = 500
 # reads absent as "an older file" and falls back -- so the list she is shown
 # and the list a slider produces would come from two different models, with
 # nothing on screen to say so. `tests/test_run.py` pins it.
+# The rankings that answer "what should I own" rather than "what should I sell
+# against". They are named here rather than read from score.PROFILES because
+# the put is not one of them: its result goes at the top level of the card,
+# where every published file so far has carried it.
+OTHER_RANKINGS = ("buy", "long")
+
 PUBLISHED_TECHNICALS = (
     "close", "change_5d", "rsi14", "rsi_min_recent", "williams_r14",
     "williams_r_min_recent",
@@ -178,15 +184,22 @@ def _options_stage(rows: list[dict], config: dict, as_of: date, workers: int = 2
             iv_cache.set(f"iv:{row['symbol']}", stamped[-MAX_IV_HISTORY:])
     iv_cache.save()
 
-    tradeable = [row for row in rows if not score.check_gates(row, config)]
+    # Everything clearing the gates that describe the company: price, volume,
+    # market cap and the two RSI bounds. The put gate is not applied here any
+    # more. A name with no fillable put is still a name she can buy or hold,
+    # and dropping it at this stage would mean the buy and long rankings never
+    # saw it -- which is how ~13 candidates a morning went missing.
+    admitted = [row for row in rows if not score.check_gates(row, config, "buy")]
+    sellable = [row for row in admitted if row.get("trade")]
     missing = [row["symbol"] for row in rows if row.get("no_chain")]
-    log.info("options: %d of %d have a sellable put", len(tradeable), len(rows))
+    log.info("options: %d of %d clear the gates, %d have a sellable put",
+             len(admitted), len(rows), len(sellable))
     if missing:
         # Not the same as "not tradeable" -- these are names we never got to
         # judge. Said out loud so a throttled morning doesn't look like a
         # thin one.
         log.warning("options: no chain for %d names (%s)", len(missing), ", ".join(missing[:10]))
-    return tradeable
+    return admitted
 
 
 def _add_buzz(rows: list[dict]) -> list[dict]:
@@ -300,21 +313,39 @@ def _mark_repeats(rows: list[dict], past: list[dict]) -> None:
         }
 
 
-def _present(row: dict, result: dict, rank: int) -> dict:
-    """One card's worth of data. Everything the page shows, nothing it doesn't."""
+def _present(row: dict, results: dict, rank: int) -> dict:
+    """One card's worth of data. Everything the page shows, nothing it doesn't.
+
+    `results` holds one scoring result per ranking. The put's stays where the
+    page has always read it -- `score`, `components`, `penalties` at the top
+    level -- and the other two sit in blocks of their own beside it. One names
+    array serves every list, so the toggle reorders what is already in the file
+    rather than asking for another run.
+
+    A name with no fillable put carries `score: null` rather than a number.
+    Scoring it as a put seller would mean running strike_safety and
+    trade_quality against a contract that does not exist; both return zero, and
+    a 30-point hole is not a low score, it is a score for a trade nobody can
+    place. Null says the true thing: this list does not apply to this name.
+
+    `badges` stays shared. They report facts about the company -- what passed,
+    what did not, what is unknown -- and those do not change with the question
+    being asked of it.
+    """
     tech = row["tech"]
-    return {
+    put = results.get("put")
+    card = {
         "rank": rank,
         "symbol": row["symbol"],
         "name": row.get("name", row["symbol"]),
-        "score": result["score"],
+        "score": put["score"] if put else None,
         "price": round(tech["close"], 2),
         "change_5d": tech.get("change_5d"),
         "market_cap": row.get("market_cap"),
         "trade": row.get("trade"),
-        "badges": result["badges"],
-        "penalties": result["penalties"],
-        "components": result["components"],
+        "badges": results["badges"],
+        "penalties": put["penalties"] if put else [],
+        "components": put["components"] if put else {},
         "catalyst": row.get("catalyst"),
         "buzz": row.get("buzz"),
         "seen": row.get("seen"),
@@ -326,6 +357,11 @@ def _present(row: dict, result: dict, rank: int) -> dict:
         "iv_hv": row.get("iv_hv"),
         "iv_percentile": row.get("iv_percentile"),
     }
+    for profile in OTHER_RANKINGS:
+        result = results[profile]
+        card[profile] = {key: result[key] for key in
+                         ("score", "score_before_penalties", "components", "penalties")}
+    return card
 
 
 def build(config: dict, limit: int | None = None, use_ai: bool = True, as_of: date | None = None) -> dict:
@@ -345,36 +381,45 @@ def build(config: dict, limit: int | None = None, use_ai: bool = True, as_of: da
     rows = _fundamentals_stage(rows, session, config)
     rows = _options_stage(rows, config, as_of)
 
-    # Everything that survived the options stage already has a chain, a chosen
-    # put and a score. Ranking keeps all of it: the ten she reads, and the rest
-    # as a bench she can pull from when the top of the list looks familiar.
-    # Publishing the bench costs one slice and no extra fetches.
-    ranked = sorted(
-        ((row, score.score(row, config)) for row in rows),
-        key=lambda pair: pair[1]["score"],
-        reverse=True,
-    )
-    final = config["funnel"]["final"]
-    scored, bench = ranked[:final], ranked[final:]
+    def rank_all(row: dict) -> dict:
+        """Every ranking's answer for one name, plus the badges they share."""
+        return {
+            "put": score.score(row, config) if row.get("trade") else None,
+            "badges": score.badges(row, config),
+            **{profile: score.score(row, config, profile) for profile in OTHER_RANKINGS},
+        }
 
-    picks = [row for row, _ in scored]
+    results = {row["symbol"]: rank_all(row) for row in rows}
+
+    # The file is written in sell-puts order, because that is the list the page
+    # opens on and the only one whose top ten gets researched. Names with no put
+    # cannot be on it at all, so they go to the end of the bench in buy order --
+    # the page sorts the other two lists itself, but a file that arrives in a
+    # meaningless order is harder to read by hand.
+    sellable = sorted((row for row in rows if results[row["symbol"]]["put"]),
+                      key=lambda row: results[row["symbol"]]["put"]["score"], reverse=True)
+    unsellable = sorted((row for row in rows if not results[row["symbol"]]["put"]),
+                        key=lambda row: results[row["symbol"]]["buy"]["score"], reverse=True)
+
+    final = config["funnel"]["final"]
+    picks, bench = sellable[:final], sellable[final:] + unsellable
     reddit = _add_buzz(picks) if picks else []
 
     brief, catalyst_ran = None, False
     if use_ai and picks:
         answer = _add_catalyst(picks, config)
         catalyst_ran, brief = answer["ran"], answer["brief"]
-        # The catalyst verdict is a penalty, so the final order can only be
-        # settled after it lands. Only these ten were researched, so the bench
-        # stays put rather than being promoted past a name that now carries a
-        # verdict she can read.
-        scored = sorted(
-            ((row, score.score(row, config)) for row in picks),
-            key=lambda pair: pair[1]["score"],
-            reverse=True,
-        )
+        # The catalyst verdict is a penalty on all three rankings, so none of a
+        # researched name's scores can be settled until it lands. Only these ten
+        # were researched, so the bench stays put rather than being promoted
+        # past a name that now carries a verdict she can read -- and that limit
+        # is now visible on two more lists: the name the buy ranking puts first
+        # may carry no verdict at all, because nobody looked into it.
+        for row in picks:
+            results[row["symbol"]] = rank_all(row)
+        picks.sort(key=lambda row: results[row["symbol"]]["put"]["score"], reverse=True)
 
-    _mark_repeats([row for row, _ in ranked], _past_runs(as_of))
+    _mark_repeats(picks + bench, _past_runs(as_of))
 
     return {
         "reddit": reddit,
@@ -388,8 +433,19 @@ def build(config: dict, limit: int | None = None, use_ai: bool = True, as_of: da
         # and the browser's sliders start from the new number the next morning.
         "config": {
             "weights": config["weights"],
+            # One weight block per ranking, published for the same reason the
+            # put's is: a slider that starts from a number typed into
+            # JavaScript is a slider that drifts from the model.
+            **{"weights_" + profile: config["weights_" + profile]
+               for profile in OTHER_RANKINGS},
             "scoring": config["scoring"],
             "penalties": config["penalties"],
+            # The overrides, published beside the shared block rather than
+            # merged into it, so the page can show what a ranking charges extra
+            # for. A 52-week low under a falling 200-day costs more over six
+            # months than over five weeks.
+            **{"penalties_" + profile: config["penalties_" + profile]
+               for profile in OTHER_RANKINGS if "penalties_" + profile in config},
             "gates": config["gates"],
             "option": {
                 key: config["option"][key]
@@ -403,11 +459,10 @@ def build(config: dict, limit: int | None = None, use_ai: bool = True, as_of: da
             "Prices and option quotes are delayed and reflect the prior close. "
             "Verify the strike and premium live before placing any trade."
         ),
-        "picks": [_present(row, result, i + 1) for i, (row, result) in enumerate(scored)],
-        "bench": [
-            _present(row, result, len(scored) + i + 1)
-            for i, (row, result) in enumerate(bench)
-        ],
+        "picks": [_present(row, results[row["symbol"]], i + 1)
+                  for i, row in enumerate(picks)],
+        "bench": [_present(row, results[row["symbol"]], len(picks) + i + 1)
+                  for i, row in enumerate(bench)],
     }
 
 
@@ -445,6 +500,20 @@ def _print_table(payload: dict) -> None:
             print(f"       > [{pick['catalyst']['verdict']}] {pick['catalyst'].get('headline', '')}")
 
     bench = payload.get("bench") or []
+    for profile, title in (("buy", "BUY -- hold for weeks"),
+                           ("long", "LONG -- hold for months")):
+        everyone = [p for p in picks + bench if p.get(profile)]
+        if not everyone:
+            continue
+        everyone.sort(key=lambda p: p[profile]["score"], reverse=True)
+        print(f"\n{title}")
+        for i, pick in enumerate(everyone[:10], 1):
+            # Where the same name sits on the list she already reads. The two
+            # columns disagreeing is the point of having two columns.
+            put = "-" if pick["score"] is None else f"#{pick['rank']}"
+            print(f"{i:>2} {pick['symbol']:<6} {pick[profile]['score']:>6.1f}  "
+                  f"{pick['name'][:36]:<36} sell puts {put:>4}")
+
     print(f"\n{len(picks)} names ({len(bench)} more on the bench) "
           f"from {payload['universe_size']} symbols in {payload['elapsed_seconds']}s")
     if payload.get("brief"):

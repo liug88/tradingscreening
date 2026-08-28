@@ -806,7 +806,13 @@ const view = {
   strikePref: null,
 };
 
-const everyName = () => (view.data.picks || []).concat(view.data.bench || []);
+/* Every name the sell-puts list can hold. The file now also carries names with
+   no fillable put -- `score: null`, ranked on buy and long instead -- and they
+   are held back until the toggle that shows those lists exists. Filtering here
+   rather than in each caller keeps the null out of rescoreAll, which would
+   otherwise score a contract nobody can place. */
+const everyName = () =>
+  (view.data.picks || []).concat(view.data.bench || []).filter((p) => p.score != null);
 const pageSize = () => (view.data.picks || []).length || 10;
 
 /* Nothing she has moved. Worth asking rather than always re-scoring, because
