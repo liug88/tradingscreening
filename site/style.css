@@ -520,6 +520,18 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .catalyst__verdict[data-v="transient"]  { color: var(--green); }
 .catalyst__verdict[data-v="uncertain"]  { color: var(--ink-2); }
 
+/* The mechanical read: what the marks beside it add up to, said in words. Set
+   under the catalyst because the news is the surprise and this is not -- every
+   clause here restates a check she can already see further down the row. */
+.why {
+  grid-column: 2 / -1;
+  margin: var(--sp-md) 0 0;
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+  line-height: 1.55;
+  max-width: 84ch;
+}
+
 .numbers {
   grid-column: 2 / -1;
   margin-top: var(--sp-md);
@@ -1012,7 +1024,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
     gap: var(--sp-lg) var(--sp-lg);
   }
   .trade { grid-column: 2 / -1; }
-  .flags, .catalyst, .numbers { grid-column: 2 / -1; }
+  .flags, .catalyst, .why, .numbers { grid-column: 2 / -1; }
 }
 
 @media (max-width: 760px) {
@@ -1031,7 +1043,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
     flex-wrap: wrap;
   }
   .guide__score { margin-top: 0; width: 100%; }
-  .trade, .flags, .catalyst, .numbers { grid-column: 1; }
+  .trade, .flags, .catalyst, .why, .numbers { grid-column: 1; }
   .wrap { padding: 0 var(--sp-md); }
 
   /* Label and figure keep the same line; the tally drops below rather than

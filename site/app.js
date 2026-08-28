@@ -256,8 +256,107 @@ function renderRow(pick) {
     row.appendChild(cat);
   }
 
+  const why = whyPicked(pick, trade);
+  if (why) row.appendChild(el("p", "why", why));
+
   row.appendChild(renderNumbers(pick, trade));
   return row;
+}
+
+/* Why this name, in a sentence or four.
+
+   Built here rather than published. Ranking is the browser's job now, so the
+   thirty bench names need this too -- writing it on the page means forty
+   blurbs for no bytes and no new key in the payload to guard.
+
+   Read against the thresholds the model scores on, not the badges. Those are
+   two different questions and they routinely disagree: the RSI badge asks
+   whether a name is oversold *today*, while _oversold() scores rsi_min_recent,
+   how far it got pushed *recently*. UNH bottomed at 33 and has since recovered
+   to 48 -- badge false, thesis intact, and the badge's answer written as prose
+   would have called that shallow. */
+const OVERSOLD_DEFAULTS = {
+  rsi_ideal_low: 28,
+  rsi_ideal_high: 38,
+  rsi_zero_above: 50,
+  williams_r_oversold: -80,
+};
+
+function whyPicked(pick, trade) {
+  const passed = new Set((pick.badges || []).filter((b) => b.passed).map((b) => b.label));
+  const tech = pick.technicals || {};
+  const cfg = Object.assign({}, OVERSOLD_DEFAULTS,
+    (view.data && view.data.config && view.data.config.scoring) || {});
+  const parts = [];
+
+  /* The fall, and the part of it that has already been given back. */
+  const low = tech.rsi_min_recent != null ? tech.rsi_min_recent : tech.rsi14;
+  if (low != null) {
+    const wr = tech.williams_r_min_recent != null ? tech.williams_r_min_recent : tech.williams_r14;
+    const confirmed = wr != null && wr < cfg.williams_r_oversold;
+    /* The recovery is the half of the thesis the low alone cannot show, and
+       it belongs on the clause carrying the low -- not tacked onto whatever
+       sentence happens to end the branch. */
+    const back = tech.rsi14 != null && tech.rsi14 - low >= 5 ? Math.round(tech.rsi14) : null;
+    if (low < cfg.rsi_ideal_low) {
+      parts.push(`It fell hard — RSI bottomed near ${Math.round(low)}` +
+                 (back ? `, back to ${back} now` : "") + ". " +
+                 `That deep is as often a stock in real trouble as one that is merely stretched.`);
+    } else if (low <= cfg.rsi_ideal_high) {
+      parts.push(`It sold off far enough to look stretched rather than broken — RSI bottomed near ${Math.round(low)}` +
+                 (confirmed ? ", with Williams %R agreeing" : "") +
+                 (back ? `, and has recovered to ${back} since` : "") + ".");
+    } else if (low < cfg.rsi_zero_above) {
+      parts.push(`The dip was mild — RSI only reached ${Math.round(low)}` +
+                 (back ? ` and is back to ${back}` : "") +
+                 `, so this one earns its place on the turn more than on the washout.`);
+    } else {
+      parts.push(`It never really got oversold — RSI held above ${Math.round(low)} throughout.`);
+    }
+  }
+
+  /* The turn. These four are exactly what _bounce() scores. */
+  const turns = [];
+  if (passed.has("Above 9-day EMA")) turns.push("back above its 9-day average");
+  if (passed.has("Above 20-day EMA")) turns.push("above its 20-day");
+  if (passed.has("MACD crossing up")) turns.push("MACD crossing up");
+  if (passed.has("Volume expanding on green")) turns.push("volume expanding on an up day");
+  parts.push(turns.length
+    ? `The turn is showing — ${list(turns)}.`
+    : "The turn has not shown up yet — none of the four bounce signals have fired, so this is the washout without the confirmation.");
+
+  /* Why the premium is worth collecting. Percentile first: rich for this stock
+     beats rich in the abstract, which is the order _premium_richness prefers. */
+  if (pick.iv_percentile != null) {
+    parts.push(`Options are priced richly for this name — implied volatility sits in its ` +
+               `${ordinal(Math.round(pick.iv_percentile))} percentile for the year, which is what you are paid for.`);
+  } else if (pick.iv_hv != null && pick.iv_hv > 1) {
+    parts.push(`Options are pricing about ${pick.iv_hv.toFixed(1)}× the movement the stock has actually ` +
+               `been making, which is what you are paid for.`);
+  }
+
+  /* Where the strike sits -- the one line that answers "will I be assigned".
+     Computed against support_60d rather than read off the "Near support"
+     badge, which is about where the *stock* sits, not the strike. */
+  if (trade && trade.strike != null && trade.pct_below_spot != null) {
+    const support = tech.support_60d;
+    let where = "";
+    if (support && trade.strike <= support) {
+      where = ", under the low it has held for 60 days";
+    } else if (passed.has("Near support")) {
+      where = ", though the stock is already sitting on that 60-day low";
+    }
+    parts.push(`The suggested strike is ${pct(trade.pct_below_spot)} below today’s price${where} — ` +
+               `that is how far it can fall before you are assigned.`);
+  }
+
+  return parts.join(" ");
+}
+
+/* "a, b and c" -- the page never uses a serial comma. */
+function list(items) {
+  if (items.length <= 1) return items[0] || "";
+  return items.slice(0, -1).join(", ") + " and " + items[items.length - 1];
 }
 
 /* The jargon layer. Plain English is the page; this is what she opens when she
