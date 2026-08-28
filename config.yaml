@@ -152,3 +152,11 @@ catalyst:
   # than Pro: the free tier's daily allowance is far larger on Flash, and this
   # is a summarising job over search results, not a reasoning one.
   model: gemini-3.7-flash
+
+# How long each ranking's position is held, for the backtest. The put's window
+# is the option's own life and is read from `option.target_dte` above rather
+# than repeated here. Weeks for buy; six months for long, which is what makes
+# it a different list rather than the same one at a different weight.
+horizon_days:
+  buy: 35
+  long: 180
