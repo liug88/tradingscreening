@@ -545,7 +545,7 @@ class TestEntryTiming:
 
 
 class TestProfiles:
-    """One screen, three rankings. A profile is a weight block and nothing more."""
+    """One screen, four rankings. A profile is a weight block and nothing more."""
 
     def test_every_profile_names_only_components_that_exist(self, config):
         for profile, key in score.PROFILES.items():
@@ -614,3 +614,119 @@ class TestProfiles:
         for profile in score.PROFILES:
             assert (score.score(rblx, config, profile)["score"]
                     < score.score(healthy, config, profile)["score"]), profile
+
+
+def make_call(**overrides):
+    """A liquid, long-dated, in-the-money call, as the chain stage would hand it
+    over. Tests move one thing at a time off this baseline."""
+    call = {"strike": 90.0, "expiry": "2026-11-20", "dte": 90, "delta": 0.65,
+            "spread_pct": 0.04, "open_interest": 500}
+    return {**call, **overrides}
+
+
+class TestTheCallRanking:
+    """The fourth list, and the two components only it uses.
+
+    Everything above this loops `score.PROFILES`, so the call ranking already
+    answers for its weights summing to 100 and for ranking a falling knife last.
+    What is left is what makes it different: it scores a contract, it reads
+    implied volatility from the buyer's side, and it is the one list that can be
+    null on a name the other three all rank.
+    """
+
+    def test_cheapness_is_richness_from_the_other_side(self, config):
+        """The exact inverse, on the same two readings, and deliberately so: the
+        premium that is richest to sell is the most expensive to buy."""
+        cfg = config["scoring"]
+        row = make_row(iv_hv=1.4, iv_percentile=0.8)
+        assert score._iv_cheapness(row, cfg) == pytest.approx(
+            1.0 - score._premium_richness(row, cfg))
+
+    def test_a_rich_option_is_not_a_cheap_one(self, config):
+        cfg = config["scoring"]
+        rich = make_row(iv_hv=1.5, iv_percentile=0.9)
+        cheap = make_row(iv_hv=0.8, iv_percentile=0.1)
+        assert score._iv_cheapness(cheap, cfg) > score._iv_cheapness(rich, cfg)
+
+    def test_an_unmeasured_option_is_not_a_cheap_one_either(self, config):
+        """Where the two part. Inverting an unknown would hand a name nobody
+        could measure full credit for being cheap, which is the opposite of what
+        the missing reading means."""
+        cfg = config["scoring"]
+        blank = make_row(iv_hv=None, iv_percentile=None)
+        assert score._premium_richness(blank, cfg) == 0.0
+        assert score._iv_cheapness(blank, cfg) == 0.4
+
+    def test_contract_quality_weights_what_a_buyer_actually_pays(self, config):
+        """Each term alone, so the blend is pinned rather than the total. The
+        spread carries the most because she crosses it twice."""
+        cfg = config["scoring"]
+        only_spread = make_row(call=make_call(spread_pct=cfg["call_spread_tight"],
+                                              open_interest=0, dte=0))
+        only_interest = make_row(call=make_call(spread_pct=cfg["call_spread_wide"],
+                                                open_interest=cfg["call_oi_deep"], dte=0))
+        only_time = make_row(call=make_call(spread_pct=cfg["call_spread_wide"],
+                                            open_interest=0, dte=cfg["call_dte_ample"]))
+        assert score._contract_quality(only_spread, cfg) == pytest.approx(0.45)
+        assert score._contract_quality(only_interest, cfg) == pytest.approx(0.30)
+        assert score._contract_quality(only_time, cfg) == pytest.approx(0.25)
+
+    def test_no_contract_scores_nothing(self, config):
+        assert score._contract_quality(make_row(call=None), config["scoring"]) == 0.0
+
+    def test_a_name_with_no_call_is_not_on_the_call_list(self, config):
+        """The same gate the put has, asked of a much thinner board. She can
+        still own the stock, so the two ownership lists keep the name."""
+        no_call = make_row(call=None)
+        assert score.check_gates(no_call, config, profile="call") == [
+            "no call in the target delta and liquidity range"]
+        assert score.check_gates(no_call, config, profile="buy") == []
+        assert score.check_gates(no_call, config, profile="long") == []
+
+    def test_a_name_with_no_put_can_still_be_called(self, config):
+        """The two contract lists are gated separately. A name can fail one
+        board and clear the other, which is why neither gate stands in for
+        the other."""
+        no_put = make_row(trade=None, call=make_call())
+        assert score.check_gates(no_put, config, profile="call") == []
+        assert score.check_gates(no_put, config) != []
+
+    def test_earnings_is_read_against_the_calls_own_expiry(self, config):
+        """A date that lands after the put expires but before the call does. The
+        put is gone before the print; the call is not."""
+        row = make_row(fund={"next_earnings": "2026-10-15"},
+                       trade={"expiry": "2026-09-30"},
+                       call=make_call(expiry="2026-11-20"))
+        put = score.penalties(row, score.penalty_config(config, "put"))
+        called = score.penalties(row, score.penalty_config(config, "call"), profile="call")
+        assert [p for p in put if "earnings" in p["reason"]] == []
+        charged = [p for p in called if "earnings" in p["reason"]]
+        assert len(charged) == 1
+        assert "2026-11-20" in charged[0]["reason"]
+
+    def test_the_call_pays_more_for_the_date_than_the_put_does(self, config):
+        """Same event, different exposure: a seller who is assigned owns a stock
+        she was willing to own, a call just runs out of time."""
+        row = make_row(fund={"next_earnings": "2026-09-01"}, call=make_call())
+        charge = lambda profile: next(
+            p["points"] for p in
+            score.penalties(row, score.penalty_config(config, profile), profile=profile)
+            if "earnings" in p["reason"])
+        assert charge("call") > charge("put")
+
+    def test_the_call_still_pays_every_other_charge(self, config):
+        """`penalties_call` names one override. The rest fall through from the
+        base block -- naming one must not quietly zero the others, so a falling
+        knife costs the call list the same 20 it costs the two beside it."""
+        base, cfg = config["penalties"], score.penalty_config(config, "call")
+        assert cfg["downtrend_confirmed"] == base["downtrend_confirmed"]
+        assert cfg["catalyst_structural"] == base["catalyst_structural"]
+        assert cfg["earnings_before_expiry"] == config["penalties_call"]["earnings_before_expiry"]
+
+    def test_only_the_call_ranking_asks_about_the_option(self, config):
+        result = score.score(make_row(call=make_call()), config, profile="call")
+        assert set(result["components"]) == set(config["weights_call"])
+        assert "premium_richness" not in result["components"]
+        for other in ("put", "buy", "long"):
+            named = score.score(make_row(), config, profile=other)["components"]
+            assert "iv_cheapness" not in named and "contract_quality" not in named

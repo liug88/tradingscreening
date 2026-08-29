@@ -204,6 +204,44 @@ def _trade_quality(row: dict, cfg: dict) -> float:
 # what the put ranking adds.
 
 
+def _iv_cheapness(row: dict, cfg: dict) -> float:
+    """premium_richness, read from the other side of the trade.
+
+    Its exact inverse, on the same two numbers, and that is the point rather
+    than a shortcut: the name whose premium is richest to sell is the most
+    expensive to buy. Measuring cheapness some other way would let the two
+    quietly agree, and hiding that disagreement would cost her the one thing
+    the toggle is for.
+
+    Unknown is where they part. With no implied-vol reading at all the ramp
+    returns zero, and inverting zero would hand a name nobody could measure
+    full credit for being cheap. So an unmeasured name scores the same 0.4 the
+    fundamentals use: not rewarded, not treated as a failure.
+    """
+    if row.get("iv_hv") is None and row.get("iv_percentile") is None:
+        return 0.4
+    return 1.0 - _premium_richness(row, cfg)
+
+
+def _contract_quality(row: dict, cfg: dict) -> float:
+    """Can she get out of this call at a fair price, and does it have time?
+
+    Not trade_quality with a different name. That one is mostly annualised
+    yield, which is a seller's whole reason for being there. A buyer has no
+    yield -- what she needs is a spread she can afford to cross twice, someone
+    on the other side of it, and enough time for the thesis to come true.
+    """
+    call = row.get("call")
+    if not call:
+        return 0.0
+    # Weighted toward the spread because it is the one she pays directly, in
+    # cash, twice -- going in and coming out.
+    spread = _ramp(call.get("spread_pct"), cfg["call_spread_wide"], cfg["call_spread_tight"])
+    interest = _ramp(call.get("open_interest"), 0, cfg["call_oi_deep"])
+    time_left = _ramp(call.get("dte"), 0, cfg["call_dte_ample"])
+    return 0.45 * spread + 0.30 * interest + 0.25 * time_left
+
+
 def _trend_structure(row: dict, cfg: dict) -> float:
     """The chart she asked for by name, as a number.
 
@@ -351,6 +389,8 @@ _COMPONENTS = {
     "revenue_expanding": _revenue_expanding,
     "room_to_run": _room_to_run,
     "entry_timing": _entry_timing,
+    "iv_cheapness": _iv_cheapness,
+    "contract_quality": _contract_quality,
 }
 
 # Which config block holds each ranking's weights. A profile is nothing more
@@ -360,7 +400,14 @@ _COMPONENTS = {
 # `score()` computes only the components its profile names, so the put ranking
 # never pays for a trend reading it does not use, and the buy ranking never
 # asks a name with no contract about its bid-ask spread.
-PROFILES = {"put": "weights", "buy": "weights_buy", "long": "weights_long"}
+PROFILES = {"put": "weights", "buy": "weights_buy", "long": "weights_long",
+            "call": "weights_call"}
+
+# The rankings that rank a contract rather than a company, and the key each
+# one's contract arrives under. Both drop a name that has no contract to rank,
+# and both charge for an earnings date the other two only flag -- an expiry is
+# what turns a print into a deadline.
+CONTRACT = {"put": "trade", "call": "call"}
 
 # The funnel narrows in stages, and each stage can only rank on what it has
 # already paid to fetch. Ranking on a subset keeps the expensive calls -- option
@@ -395,16 +442,18 @@ def penalties(row: dict, cfg: dict, profile: str = "put") -> list[dict]:
     # An expiry is what makes an earnings date expensive: the option is priced
     # and gone before the stock has finished reacting. Owning the stock, the
     # date is a thing to know -- the row still says so -- rather than a thing to
-    # charge for, because she can simply hold through it. CALLS will rejoin this
-    # when it ships, and should cost more than the put does: a call is a wasting
-    # asset and a gap against it is unrecoverable.
-    if profile == "put" and trade and fund and fund.get("next_earnings"):
+    # charge for, because she can simply hold through it. The call pays more for
+    # it than the put does, in `penalties_call`: a seller who is assigned owns a
+    # stock she was willing to own, while a call is a wasting asset and the gap
+    # goes against it with the clock already running.
+    contract = row.get(CONTRACT[profile]) if profile in CONTRACT else None
+    if contract and fund and fund.get("next_earnings"):
         try:
             reports = date.fromisoformat(fund["next_earnings"])
-            if reports <= date.fromisoformat(trade["expiry"]):
+            if reports <= date.fromisoformat(contract["expiry"]):
                 found.append(
                     {
-                        "reason": f"Reports earnings {fund['next_earnings']}, before the {trade['expiry']} expiry",
+                        "reason": f"Reports earnings {fund['next_earnings']}, before the {contract['expiry']} expiry",
                         "points": cfg["earnings_before_expiry"],
                     }
                 )
@@ -563,11 +612,13 @@ def check_gates(row: dict, config: dict, profile: str = "put") -> list[str]:
     if market_cap is not None and market_cap < gates["min_market_cap"]:
         failures.append(f"market cap ${market_cap / 1e9:.2f}B below ${gates['min_market_cap'] / 1e9:.0f}B")
     # The one gate that asks about a contract rather than about a company. She
-    # can buy a stock there is no put worth selling against, so the other
-    # rankings drop this and keep every other gate: price, volume, market cap
-    # and the two RSI bounds describe the name, not the trade.
-    if profile == "put" and row.get("trade") is None:
-        failures.append("no put in the target delta and liquidity range")
+    # can buy a stock there is no put worth selling against, so the rankings
+    # about owning shares drop this and keep every other gate: price, volume,
+    # market cap and the two RSI bounds describe the name, not the trade. The
+    # call ranking asks the same question of its own contract, which is a
+    # different and much thinner one.
+    if profile in CONTRACT and row.get(CONTRACT[profile]) is None:
+        failures.append(f"no {profile} in the target delta and liquidity range")
 
     return failures
 
@@ -575,8 +626,9 @@ def check_gates(row: dict, config: dict, profile: str = "put") -> list[str]:
 def score(row: dict, config: dict, profile: str = "put") -> dict:
     """Composite 0-100 for one candidate, with the breakdown that produced it.
 
-    `profile` picks the question being asked -- income, weeks, months -- and
-    with it a weight block naming the components that answer it. The same 62
+    `profile` picks the question being asked -- income, weeks, months, or the
+    upside on a call -- and with it a weight block naming the components that
+    answer it. The same 62
     names go through all of them, and a name can rank first on one and last on
     another for a reason: high implied volatility pays a seller and costs a
     buyer. That disagreement is the useful part.

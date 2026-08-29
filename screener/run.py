@@ -46,11 +46,11 @@ MAX_IV_HISTORY = 500
 # reads absent as "an older file" and falls back -- so the list she is shown
 # and the list a slider produces would come from two different models, with
 # nothing on screen to say so. `tests/test_run.py` pins it.
-# The rankings that answer "what should I own" rather than "what should I sell
-# against". They are named here rather than read from score.PROFILES because
-# the put is not one of them: its result goes at the top level of the card,
-# where every published file so far has carried it.
-OTHER_RANKINGS = ("buy", "long")
+# Every ranking except the put, in the order the page offers them. Named here
+# rather than read from score.PROFILES because the put is not one of them: its
+# result goes at the top level of the card, where every published file so far
+# has carried it.
+OTHER_RANKINGS = ("buy", "long", "call")
 
 PUBLISHED_TECHNICALS = (
     "close", "change_5d", "rsi14", "rsi_min_recent", "williams_r14",

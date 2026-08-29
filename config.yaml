@@ -115,6 +115,19 @@ weights_long:
   margin_trend: 15
   entry_timing: 0
 
+# Leveraged upside, with an expiry. The chart leads, as it does on the hold
+# list, but the second-largest term is one no other ranking has: whether the
+# option is cheap. It is `premium_richness` read from the other side of the
+# trade, and it is why a name can top the sell-puts list and sit near the
+# bottom of this one -- high implied volatility pays a seller and costs a
+# buyer. Watching a name move when she flips the toggle is the point.
+weights_call:
+  trend_structure: 30
+  iv_cheapness: 25
+  revenue_expanding: 20
+  entry_timing: 15
+  contract_quality: 10
+
 scoring:
   rsi_ideal_low: 28        # full credit inside this band
   rsi_ideal_high: 38
@@ -152,6 +165,15 @@ scoring:
   rev_yoy_strong: 0.40
   iv_hv_rich: 1.30         # full credit at or above -- premium is rich vs realized
   ann_yield_target: 0.20   # full credit at 20% annualized on cash secured
+  # Contract quality for the call, as three ramps. These are quality scales,
+  # not gates: deliberately wider on both sides than the `call` block above, so
+  # moving a gate cannot silently rescale a component. Open interest and days
+  # both run from zero, which needs no third number and says the obvious true
+  # thing -- more of either is better, all the way down.
+  call_spread_tight: 0.02  # full credit at or under
+  call_spread_wide: 0.15   # nothing at or over
+  call_oi_deep: 1000
+  call_dte_ample: 120
 
 # Subtracted from the composite score.
 penalties:
@@ -180,6 +202,13 @@ penalties:
 penalties_long:
   downtrend_confirmed: 35
   new_low_under_ema200: 20
+
+# The one charge a call owes more than a put does. A put seller caught by an
+# earnings gap is assigned a stock she was willing to own; a call is a wasting
+# asset and the gap goes against it with an expiry already running. Same event,
+# and there is no holding through it.
+penalties_call:
+  earnings_before_expiry: 35
 
 catalyst:
   # Gemini, on the free tier, grounded with Google Search. Flash rather
