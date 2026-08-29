@@ -43,14 +43,16 @@ def config():
         return yaml.safe_load(handle)
 
 
-def row(symbol, strike=50.0, expiry="2026-09-30", put=True):
+def row(symbol, strike=50.0, expiry="2026-09-30", put=True, call=True):
     """One candidate out of the options stage. `put=False` is a name that
-    cleared every gate about the company and had no fillable contract."""
+    cleared every gate about the company and had no fillable put; `call=False`
+    the same for the call, which happens far more often."""
     return {
         "symbol": symbol,
         "name": symbol + " Inc.",
         "tech": {"close": 100.0},
         "trade": {"strike": strike, "expiry": expiry} if put else None,
+        "call": {"strike": strike, "expiry": "2026-11-20"} if call else None,
     }
 
 
@@ -251,7 +253,7 @@ class TestBench:
         assert payload["catalyst_ran"] is False
 
 
-class TestThreeRankings:
+class TestFourRankings:
     """The same pool, ordered three ways, in one file.
 
     The pipeline is stubbed as in TestBench; what is under test is the shape
@@ -264,7 +266,9 @@ class TestThreeRankings:
     @pytest.fixture
     def payload(self, config, monkeypatch, tmp_path):
         rows = [row("S%02d" % i) for i in range(10, 30)]
-        rows += [row("S00", put=False), row("S05", put=False)]
+        # S00 has a call and no put -- she can buy the upside on a name there
+        # is nothing to sell against. S05 has neither, and is still a stock.
+        rows += [row("S00", put=False), row("S05", put=False, call=False)]
         monkeypatch.setattr(run, "HISTORY_DIR", tmp_path)
         monkeypatch.setattr(run.universe, "load", lambda *a, **k: [r["symbol"] for r in rows])
         monkeypatch.setattr(run, "YahooSession", lambda *a, **k: None)
@@ -302,12 +306,29 @@ class TestThreeRankings:
         card = next(p for p in self.every(payload) if p["symbol"] == "S00")
         assert card["buy"]["score"] == 100.0
         assert card["long"]["score"] == 100.0
+        assert card["call"]["score"] == 100.0
+
+    def test_a_ranking_that_scores_a_contract_is_null_without_one(self, payload):
+        """Same rule as the sell-puts score, applied to the call: no contract
+        means no answer, and a zero would read as a bad one."""
+        card = next(p for p in self.every(payload) if p["symbol"] == "S05")
+        assert card["call"] is None
+        assert card["buy"]["score"] == 95.0
 
     def test_every_card_carries_every_ranking(self, payload):
+        """Or an explicit null where one has no answer. A missing key reads to
+        the page as an older file and falls back without saying so."""
         for card in self.every(payload):
             for profile in run.OTHER_RANKINGS:
-                assert set(card[profile]) == {
-                    "score", "score_before_penalties", "components", "penalties"}
+                assert profile in card, profile
+                if card[profile] is None:
+                    continue
+                expected = {"score", "score_before_penalties",
+                            "components", "penalties"}
+                # The call publishes the contract it scored, beside the score.
+                # The put's sits at the top level, where it always has.
+                assert set(card[profile]) == (
+                    expected | {"contract"} if profile == "call" else expected)
 
     def test_the_put_ranking_stays_where_the_page_reads_it(self, payload):
         """Top level, unnested. An older page reading a newer file must find
@@ -334,6 +355,7 @@ class TestThreeRankings:
 
     def test_and_the_penalties_a_ranking_charges_extra(self, payload, config):
         assert payload["config"]["penalties_long"] == config["penalties_long"]
+        assert payload["config"]["penalties_call"] == config["penalties_call"]
 
     def test_a_new_profile_cannot_be_added_and_left_unpublished(self):
         """score.PROFILES is where a ranking is declared. If one appears there

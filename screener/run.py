@@ -50,6 +50,11 @@ MAX_IV_HISTORY = 500
 # rather than read from score.PROFILES because the put is not one of them: its
 # result goes at the top level of the card, where every published file so far
 # has carried it.
+#
+# Two of these rank a company and always have an answer. The call ranks a
+# contract, so like the put it is null on a name with nothing buyable -- and it
+# carries that contract under its own key, because a ranking that scored a
+# spread and an expiry should publish the spread and the expiry.
 OTHER_RANKINGS = ("buy", "long", "call")
 
 PUBLISHED_TECHNICALS = (
@@ -164,6 +169,7 @@ def _options_stage(rows: list[dict], config: dict, as_of: date, workers: int = 2
         row["spot"] = chain.spot
         row["iv"] = options.atm_iv(chain, as_of)
         row["trade"] = options.select_put(chain, config, as_of)
+        row["call"] = options.select_call(chain, config, as_of)
         return row
 
     with ThreadPoolExecutor(max_workers=workers) as pool:
@@ -191,9 +197,11 @@ def _options_stage(rows: list[dict], config: dict, as_of: date, workers: int = 2
     # saw it -- which is how ~13 candidates a morning went missing.
     admitted = [row for row in rows if not score.check_gates(row, config, "buy")]
     sellable = [row for row in admitted if row.get("trade")]
+    buyable = [row for row in admitted if row.get("call")]
     missing = [row["symbol"] for row in rows if row.get("no_chain")]
-    log.info("options: %d of %d clear the gates, %d have a sellable put",
-             len(admitted), len(rows), len(sellable))
+    log.info("options: %d of %d clear the gates, %d have a sellable put, "
+             "%d have a buyable call", len(admitted), len(rows), len(sellable),
+             len(buyable))
     if missing:
         # Not the same as "not tradeable" -- these are names we never got to
         # judge. Said out loud so a throttled morning doesn't look like a
@@ -318,7 +326,7 @@ def _present(row: dict, results: dict, rank: int) -> dict:
 
     `results` holds one scoring result per ranking. The put's stays where the
     page has always read it -- `score`, `components`, `penalties` at the top
-    level -- and the other two sit in blocks of their own beside it. One names
+    level -- and the other three sit in blocks of their own beside it. One names
     array serves every list, so the toggle reorders what is already in the file
     rather than asking for another run.
 
@@ -326,7 +334,9 @@ def _present(row: dict, results: dict, rank: int) -> dict:
     Scoring it as a put seller would mean running strike_safety and
     trade_quality against a contract that does not exist; both return zero, and
     a 30-point hole is not a low score, it is a score for a trade nobody can
-    place. Null says the true thing: this list does not apply to this name.
+    place. Null says the true thing: this list does not apply to this name. The
+    call block is null for the same reason and far more often -- a long-dated
+    in-the-money board is much thinner than a 35-day one.
 
     `badges` stays shared. They report facts about the company -- what passed,
     what did not, what is unknown -- and those do not change with the question
@@ -359,8 +369,14 @@ def _present(row: dict, results: dict, rank: int) -> dict:
     }
     for profile in OTHER_RANKINGS:
         result = results[profile]
-        card[profile] = {key: result[key] for key in
-                         ("score", "score_before_penalties", "components", "penalties")}
+        card[profile] = None if result is None else {
+            key: result[key] for key in
+            ("score", "score_before_penalties", "components", "penalties")}
+    # The contract the call ranking scored, beside the score it produced. The
+    # put's sits at the top level under `trade` because it always has; this one
+    # rides with its ranking, which is where a reader would look for it.
+    if card.get("call") is not None:
+        card["call"]["contract"] = row.get("call")
     return card
 
 
@@ -386,7 +402,13 @@ def build(config: dict, limit: int | None = None, use_ai: bool = True, as_of: da
         return {
             "put": score.score(row, config) if row.get("trade") else None,
             "badges": score.badges(row, config),
-            **{profile: score.score(row, config, profile) for profile in OTHER_RANKINGS},
+            # A ranking that scores a contract has no answer for a name with no
+            # contract, and a zero would read as a bad one rather than as no
+            # trade at all.
+            **{profile: score.score(row, config, profile)
+               if profile not in score.CONTRACT or row.get(score.CONTRACT[profile])
+               else None
+               for profile in OTHER_RANKINGS},
         }
 
     results = {row["symbol"]: rank_all(row) for row in rows}
@@ -394,7 +416,7 @@ def build(config: dict, limit: int | None = None, use_ai: bool = True, as_of: da
     # The file is written in sell-puts order, because that is the list the page
     # opens on and the only one whose top ten gets researched. Names with no put
     # cannot be on it at all, so they go to the end of the bench in buy order --
-    # the page sorts the other two lists itself, but a file that arrives in a
+    # the page sorts the other three lists itself, but a file that arrives in a
     # meaningless order is harder to read by hand.
     sellable = sorted((row for row in rows if results[row["symbol"]]["put"]),
                       key=lambda row: results[row["symbol"]]["put"]["score"], reverse=True)
@@ -409,12 +431,12 @@ def build(config: dict, limit: int | None = None, use_ai: bool = True, as_of: da
     if use_ai and picks:
         answer = _add_catalyst(picks, config)
         catalyst_ran, brief = answer["ran"], answer["brief"]
-        # The catalyst verdict is a penalty on all three rankings, so none of a
+        # The catalyst verdict is a penalty on all four rankings, so none of a
         # researched name's scores can be settled until it lands. Only these ten
         # were researched, so the bench stays put rather than being promoted
         # past a name that now carries a verdict she can read -- and that limit
-        # is now visible on two more lists: the name the buy ranking puts first
-        # may carry no verdict at all, because nobody looked into it.
+        # is now visible on three more lists: the name the buy ranking puts
+        # first may carry no verdict at all, because nobody looked into it.
         for row in picks:
             results[row["symbol"]] = rank_all(row)
         picks.sort(key=lambda row: results[row["symbol"]]["put"]["score"], reverse=True)
@@ -501,7 +523,8 @@ def _print_table(payload: dict) -> None:
 
     bench = payload.get("bench") or []
     for profile, title in (("buy", "BUY -- hold for weeks"),
-                           ("long", "LONG -- hold for months")):
+                           ("long", "LONG -- hold for months"),
+                           ("call", "CALLS -- leveraged upside, with an expiry")):
         everyone = [p for p in picks + bench if p.get(profile)]
         if not everyone:
             continue
