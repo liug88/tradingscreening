@@ -926,7 +926,7 @@ main a:not(.btn):hover { text-decoration-thickness: var(--sp-hair); }
    horizon -- because "buy" and "hold" are the same word to anyone who has not
    been told the second one means six months. */
 /* Not `display: flex` -- the base rule is inline-flex so the border shrink-wraps
-   the three fields. Stretched to the column width it rules 800px of nothing. */
+   the four fields. Stretched to the column width it rules 800px of nothing. */
 .segmented--ranking { margin-bottom: var(--sp-lg); }
 .segmented--ranking .segmented__option {
   display: flex;

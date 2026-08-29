@@ -113,18 +113,22 @@ const POINTS_PER_MARK = 2.5;
    note() gets the live config, so every threshold it quotes is the number the
    screen actually ran under this morning rather than one written down once and
    left to drift. */
-/* ---- the three questions --------------------------------------------- */
+/* ---- the four questions ---------------------------------------------- */
 
-/* One screen, three orders. The gates that find a beaten-up name with the
-   business intact find the setup for all three; what differs is the ranking.
-   So this is one screen ranked three ways rather than three screeners -- and a
+/* One screen, four orders. The gates that find a beaten-up name with the
+   business intact find the setup for all four; what differs is the ranking.
+   So this is one screen ranked four ways rather than four screeners -- and a
    name can sit first on one list and fortieth on another for the same reason,
    because high implied volatility pays a seller and costs a buyer. Watching a
    name move when she flips the toggle is the most useful thing on the page.
 
+   Two of the four need a contract to exist -- the put she sells and the call
+   she buys -- and each of those lists carries only the names that have one.
+   The other two rank the company, and always have an answer.
+
    `put` keeps the unsuffixed weight key every published file has used, so a
-   file written before the other two still ranks and still reads. */
-const PROFILE_ORDER = ["put", "buy", "long"];
+   file written before the others still ranks and still reads. */
+const PROFILE_ORDER = ["put", "buy", "long", "call"];
 
 const PROFILES = {
   put: {
@@ -157,6 +161,19 @@ const PROFILES = {
       "Ranked on the chart and the revenue alone. Today's RSI is left out on " +
       "purpose — over six months it is noise, and if both horizons scored the " +
       "dip they would be one list." +
+      (more ? ` ${more} more are ranked below.` : ""),
+  },
+  call: {
+    label: "Buy calls",
+    horizon: "with an expiry",
+    heading: "Ten to buy calls on",
+    verb: "buy a call on",
+    note: (more) =>
+      "The same names read from the other side of the option: cheap implied " +
+      "volatility scores here and rich volatility scores on the sell-puts " +
+      "list, for the same reason. Only names carrying a long-dated in-the-" +
+      "money call worth buying are ranked, which is far fewer than the other " +
+      "lists." +
       (more ? ` ${more} more are ranked below.` : ""),
   },
 };
@@ -256,14 +273,38 @@ const COMPONENTS = [
     `far it fell on the readings above, 40% whether the fall has stopped. The ` +
     `same two the sell-puts list scores separately, in the same proportion, so a ` +
     `name does not change character between lists for a reason you cannot see.`],
+
+  /* The two only the call list weighs. Same table, same rule: renderWeights
+     draws whichever of these the ranking in view actually pays for. */
+
+  ["iv_cheapness", "IV cheapness", (c) =>
+    `IV richness above, read from the other side of the trade: one minus the ` +
+    `same two numbers, because the premium that is rich to sell is expensive to ` +
+    `buy. Full credit at or under 0.90× realised volatility and at the bottom of ` +
+    `this name's own 12-month range, none at ${c.iv_hv_rich.toFixed(2)}× and the top ` +
+    `of it. Scores 0.4 when neither reading came back — unknown, not cheap. It is ` +
+    `the one component that ranks the two option lists against each other.`],
+
+  ["contract_quality", "The call itself", (c) =>
+    `Whether the contract can be traded, which is a different question from ` +
+    `whether the stock is worth owning. 45% the bid-ask spread — full credit at ` +
+    `${pct(c.call_spread_tight, 0)}, none at ${pct(c.call_spread_wide, 0)} — because a ` +
+    `buyer crosses it twice, going in and coming out. 30% open interest, full ` +
+    `credit at ${c.call_oi_deep.toLocaleString("en-US")} contracts. 25% how much time ` +
+    `she is buying, full credit at ${c.call_dte_ample} days.`],
 ];
 
 /* One ranking's answer for one name. The sell-puts result sits at the top
-   level of a card, where every published file has carried it; the other two are
-   nested under their own key. Reading through here rather than at each call
+   level of a card, where every published file has carried it; the other three
+   are nested under their own key. Reading through here rather than at each call
    site means a row, a blurb and a breakdown all ask the same question. */
 const scoreOf = (row, profile) =>
   (profile || view.profile) === "put" ? row : (row[(profile || view.profile)] || {});
+
+/* The call the ranking scored. It rides inside its own block, beside the score
+   it produced, and stays there when she moves a slider because Score.rescore
+   hands it back -- so one read serves the published row and the tuned one. */
+const callOf = (row) => ((row || {}).call || {}).contract;
 
 /* "Ranked third" should never be a black box -- PRODUCT.md principle 4. The
    figures were always computed; this is where they become readable. */
@@ -370,10 +411,14 @@ function renderRow(pick) {
   /* The last two columns are the two quantities the list she is on turns on.
      Selling, that is the odds and the contract. Owning, there is no contract at
      all -- so they become the two things she named when she asked for these
-     lists: the chart, and whether the revenue is expanding. */
+     lists: the chart, and whether the revenue is expanding. Buying a call, the
+     chart is what the thesis rests on and the contract is what it costs. */
   if (profile === "put") {
     row.appendChild(oddsSlot(trade));
     row.appendChild(tradeSlot(trade));
+  } else if (profile === "call") {
+    row.appendChild(trendSlot(pick));
+    row.appendChild(callSlot(pick));
   } else {
     row.appendChild(trendSlot(pick));
     row.appendChild(revenueSlot(pick));
@@ -536,6 +581,44 @@ const bigMoney = (v) =>
     : Math.abs(v) >= 1e9 ? "$" + (v / 1e9).toFixed(1) + "bn"
     : "$" + (v / 1e6).toFixed(0) + "m";
 
+/* The call, as a buyer reads it: what it costs, and how far the stock has to
+   move before that was worth paying.
+
+   No gold ink anywhere in here. Gold is the premium she keeps, and on this
+   list the premium is the thing she pays -- one colour meaning both would be
+   the same fault as spending red twice. The outlay is set in the weight a
+   credit gets and in no colour at all. */
+function callSlot(pick) {
+  const call = callOf(pick);
+  const box = el("div", "trade");
+  box.appendChild(el("span", "metric__label", "The call"));
+
+  if (!call) {
+    box.appendChild(el("div", "trade__line", "No call worth buying today."));
+    return box;
+  }
+
+  box.appendChild(el("span", "trade__strike", `Buy the ${money(call.strike)} call`));
+  const line = el("div", "trade__line");
+  line.innerHTML =
+    `expires ${shortDate(call.expiry)} &middot; ${call.dte} days<br>` +
+    `pay <strong>${money(call.outlay, 0)}</strong> &middot; ` +
+    `${money(call.shares_equivalent, 0)} buys the shares instead`;
+  box.appendChild(line);
+
+  /* What has to happen, in the two numbers a chart-shaped thesis leaves out.
+     Both ride on every call row -- see options._describe_call -- and the
+     second is the argument for this strike rather than a cheaper one. */
+  const needs = el("div", "trade__line");
+  needs.innerHTML =
+    `above ${money(call.breakeven)} to break even &middot; ` +
+    `<strong>${pct(call.pct_to_breakeven, 1)}</strong> up` +
+    (call.time_value_share == null ? ""
+      : `<br>${pct(call.time_value_share)} of the price is time, and decays`);
+  box.appendChild(needs);
+  return box;
+}
+
 /* Why this name, in a sentence or four.
 
    Built here rather than published. Ranking is the browser's job now, so the
@@ -626,14 +709,16 @@ function whyPicked(pick, trade) {
   return parts.join(" ");
 }
 
-/* The same job for the two lists that rank what she would own. Different
+/* The same job for the three lists that do not sell a put. Different
    sentences, because they answer a different question: the put blurb ends on
-   where the strike sits, and here there is no strike.
+   where the strike sits, and here there is either no strike at all or one she
+   is buying rather than selling.
 
    Written off the components the ranking actually scored rather than off the
    technicals directly, so the prose cannot claim credit the score withheld.
-   The hold list does not score today's dip, and its blurb must not talk about
-   one. */
+   The hold list does not score today's dip and its blurb must not talk about
+   one; the call list does not score the distance to the 52-week high and its
+   blurb must not either. */
 function whyOwned(pick, profile) {
   const t = pick.technicals || {};
   const f = pick.fundamentals || {};
@@ -684,7 +769,7 @@ function whyOwned(pick, profile) {
      which is exactly the row that frightened her. */
   const off = t.pct_below_52w_high;
   const room = (scored.room_to_run || {}).raw;
-  if (off != null) {
+  if (off != null && scored.room_to_run) {
     parts.push(room != null && room < 0.15
       ? `It is ${pct(off)} below its 52-week high. Past a point that stops being ` +
         `room to recover and starts being a verdict, and the ranking scores it ` +
@@ -711,6 +796,39 @@ function whyOwned(pick, profile) {
   } else if (timing) {
     parts.push("Today's dip is not scored on this list at all. Over six months " +
                "it is noise, and scoring it would make this the buy list again.");
+  }
+
+  /* Volatility, but only where it is scored -- and it is scored the opposite
+     way here. A quarter of this ranking turns on it, and it is the reason a
+     name can sit first on one list and nowhere on the other. */
+  const cheap = scored.iv_cheapness;
+  if (cheap && cheap.max) {
+    const readings = [];
+    if (pick.iv_hv != null) {
+      readings.push(`implied volatility is ${pick.iv_hv.toFixed(2)}× what the stock ` +
+                    `has actually been doing`);
+    }
+    if (pick.iv_percentile != null) {
+      readings.push(`it sits at the ${pick.iv_percentile.toFixed(0)}th percentile of ` +
+                    `its own last twelve months`);
+    }
+    parts.push(!readings.length
+      ? "Neither volatility reading came back, so the option was scored as " +
+        "unmeasured rather than as cheap — a quarter of this ranking withheld."
+      : `The option is ${cheap.raw >= 0.5 ? "cheap" : "not cheap"} on the readings ` +
+        `that came back — ${list(readings)}. That is the one the sell-puts list ` +
+        `scores the other way round.`);
+  }
+
+  /* What she would actually buy, and what has to happen for it to have been
+     worth buying. Last, because it is the only sentence with a deadline in it. */
+  const call = callOf(pick);
+  if (call) {
+    parts.push(`The contract that fits is the ${money(call.strike)} call expiring ` +
+      `${shortDate(call.expiry)}: ${money(call.outlay, 0)} for the upside on 100 shares ` +
+      `that would cost ${money(call.shares_equivalent, 0)} outright. It has to be above ` +
+      `${money(call.breakeven)} — ${pct(call.pct_to_breakeven, 1)} up — by then to have ` +
+      `made anything, and under ${money(call.strike)} it expires worthless.`);
   }
 
   return parts.join(" ");
@@ -859,6 +977,23 @@ function renderNumbers(pick, trade, result) {
       ["Open interest", trade.open_interest == null
         ? "—" : trade.open_interest.toLocaleString("en-US")],
     ]),
+    /* The call's own figures, on the list that scored it and nowhere else --
+       every other list has no call in front of her, and six more cells of em
+       dashes would read as six readings that failed. */
+    ...(view.profile !== "call" || !callOf(pick) ? [] : (() => {
+      const c = callOf(pick);
+      return [
+        ["Call delta", c.delta == null ? "—" : c.delta.toFixed(3)],
+        ["Contract IV", pct(c.iv, 0)],
+        ["Call bid / ask", c.bid == null ? "—" : `${money(c.bid)} / ${money(c.ask)}`],
+        ["Call spread", pct(c.spread_pct, 1)],
+        ["Call open interest", c.open_interest == null
+          ? "—" : c.open_interest.toLocaleString("en-US")],
+        ["Time value", `${money(c.time_value)} of ${money(c.cost)}`],
+        ["Breakeven", money(c.breakeven)],
+        ["Move to breakeven", pct(c.pct_to_breakeven, 1)],
+      ];
+    })()),
     ["Sales, year on year", growth(f.revenue_yoy)],
     ["Sales, quarter on quarter", growth(f.revenue_qoq)],
     ["Operating margin", f.operating_margin == null
@@ -1098,7 +1233,7 @@ function notice(text) {
    having is this one. */
 const view = {
   data: null,
-  profile: "put",   // which of the three lists is in front of her
+  profile: "put",   // which of the four lists is in front of her
   offset: 0,
   newOnly: false,
   settings: null,   // her weights; starts as this morning's and can be put back
@@ -1106,13 +1241,17 @@ const view = {
   strikePref: null,
 };
 
-/* Every name one ranking can hold. The file also carries names with no fillable
-   put -- `score: null`, ranked on buy and hold instead. The sell-puts list drops
-   them, because a null there would be scored as a contract nobody can place;
-   the other two keep them, which is the whole reason they are published. */
+/* Every name one ranking can hold. The file carries names with no fillable put
+   -- `score: null` -- and many more with no call worth buying. Each option list
+   drops its own: a null there would be scored as a contract nobody can place,
+   and on the call list a missing contract would score zero for quality, which
+   reads as a bad call rather than as no call at all. Buy and hold keep every
+   name, which is the whole reason they are published. */
 const everyName = (profile = view.profile) => {
   const all = (view.data.picks || []).concat(view.data.bench || []);
-  return profile === "put" ? all.filter((p) => p.score != null) : all;
+  if (profile === "put") return all.filter((p) => p.score != null);
+  if (profile === "call") return all.filter((p) => p.call);
+  return all;
 };
 
 /* Whether this file can answer a question at all, rather than whether the code
@@ -1188,7 +1327,7 @@ const tunedNames = () => {
   const scored = names.map(preferredStrike).map((row) => {
     const out = Score.rescore(row, view.settings, profile);
     /* rescore() returns the ranking it was asked for at the top level, which is
-       where the put lives and where the other two do not. Putting it back under
+       where the put lives and where the other three do not. Putting it back under
        its own key here means every reader below sees one shape whether or not
        she has moved a slider, rather than each having to know. */
     return profile === "put" ? { ...row, ...out } : { ...row, [profile]: out };
@@ -1209,7 +1348,7 @@ const scrollToNames = () => $("#names").scrollIntoView({
 
 /* ---- the toggle ------------------------------------------------------ */
 
-/* Three buttons over one list of names. Flipping one re-sorts what is already
+/* Four buttons over one list of names. Flipping one re-sorts what is already
    in the file: no fetch, no re-run, nothing to wait for. The offset goes back
    to the top because rank eleven on one ranking is not rank eleven on another,
    and paging down would land her somewhere arbitrary. */
@@ -1256,8 +1395,9 @@ function showProfile(key) {
 
 /* ---- what each ranking has actually done ----------------------------- */
 
-/* Measured 2026-08-28 by tools/backtest.py: five years of daily bars, the
-   screen re-run on the first of each month, each list held for its own horizon.
+/* Measured 2026-08-28 by tools/backtest.py -- the call ranking on 2026-08-29,
+   off the same bars: five years of daily bars, the screen re-run on the first
+   of each month, each list held for its own horizon.
    Written here rather than published in the payload because it is a fact about
    the model and not about this morning -- and because a number that changes
    with the file is a number nobody can check.
@@ -1267,8 +1407,14 @@ function showProfile(key) {
    tomorrow's names reads as a forecast. Against the index it is a claim about
    the ranking, which is the only thing a backtest can support.
 
-   Two of these are unflattering. They are here as measured: a backtest tuned
-   until it looks good is the one kind that is worth nothing. */
+   The call run is the one to read carefully. It holds the shares for 90 days,
+   not the contract: there is no leverage in it, no decay, and no expiry that
+   can take the whole position to zero. It says whether the ranking picked
+   better names than the pool, which is the only question a price history can
+   answer, and the answer was no.
+
+   Three of these four are unflattering. They are here as measured: a backtest
+   tuned until it looks good is the one kind that is worth nothing. */
 const BACKTEST = {
   put: {
     span: "September 2022", tests: 47, positions: 470, hold: "35 days",
@@ -1302,6 +1448,20 @@ const BACKTEST = {
     tail: "The middle name returned 3.5%, which is less than the pool's 4.8%: the " +
           "typical name here did slightly worse and the best did much better. " +
           "46% of these positions fell 20% at some point inside the six months.",
+  },
+  call: {
+    span: "September 2022", tests: 45, positions: 450, hold: "90 days",
+    lede: "This ranking lost — to the index, and to the pool it picked from. " +
+          "And it was measured holding the shares, not the call: the contract " +
+          "would have multiplied every number below, in both directions.",
+    rows: [["These ten", "+2.2%"],
+           ["SPY over the same windows", "+4.8%"],
+           ["Everything that cleared the gates", "+5.6%"]],
+    tail: "The middle name returned +0.4% against the pool's +2.6%, and it beat " +
+          "SPY in 17 of the 45 windows. Half ended lower than they started, and " +
+          "55% fell 10% at some point inside the 90 days — on shares that is a " +
+          "drawdown to sit through, on a call with an expiry running it is often " +
+          "the whole position.",
   },
 };
 
@@ -1530,7 +1690,7 @@ function tunedNote() {
     return;
   }
 
-  /* This morning's ten *on this list*, which for the other two rankings is not
+  /* This morning's ten *on this list*, which for the other three rankings is not
      `picks` at all -- the file is written in sell-puts order. */
   const morning = (view.profile === "put"
     ? (view.data.picks || [])
@@ -1705,6 +1865,7 @@ function chatStarters() {
     put: "Which of these is least likely to leave me holding the shares?",
     buy: "Which of these has both the strongest chart and the strongest revenue?",
     long: "Which of these would I still want to own in six months?",
+    call: "Which of these has to move the least to be worth buying?",
   }[view.profile];
 
   const asks = [
