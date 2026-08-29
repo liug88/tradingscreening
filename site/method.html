@@ -5,10 +5,17 @@
   from `python -m tools.backtest` on the date stamped at the top, and the tool
   writes its full JSON alongside so any of it can be checked rather than taken.
 
-  It leads with what the test could not do. That order is deliberate. Two of
-  these three results are unflattering, and even the flattering one has severe
+  It leads with what the test could not do. That order is deliberate. Three of
+  these four results are unflattering, and even the flattering one has severe
   limits, so a reader who meets the numbers first has already formed a view by
   the time she reaches the caveats.
+
+  The call section needs its caveat hardest, because the test cannot buy the
+  option: it holds the shares for ninety days instead. Every figure under that
+  heading is a share return, and a call written on the same move is a much
+  larger number in both directions. That is said in the list of limits, again
+  in the section note, and again in the reading under the table -- three times,
+  because one of them is the sentence a reader skips.
 
   Within each ranking, the headline is the question that ranking is *for*. For
   sell puts that is assignment, not return: a seller who does not want the
@@ -21,7 +28,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>How these lists have done</title>
-<meta name="description" content="What the three daily rankings would have picked over the last five years, and what happened to those names.">
+<meta name="description" content="What the four daily rankings would have picked over the last five years, and what happened to those names.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
@@ -37,8 +44,8 @@
     <div class="masthead__title">
       <h1>How these lists have done</h1>
       <p class="masthead__sub">
-        Tested 28 August 2026 &mdash; three rankings, 47 monthly entries, back to
-        September 2022
+        Tested 28&ndash;29 August 2026 &mdash; four rankings, 42 to 47 monthly
+        entries each, back to September 2022
       </p>
     </div>
     <div class="masthead__actions">
@@ -51,14 +58,16 @@
 
   <section class="lede">
     <p class="lede__text">
-      Three lists come off one screen, so each one gets its own test, its own
+      Four lists come off one screen, so each one gets its own test, its own
       holding period and its own question.
     </p>
     <p>
       <strong>Sell puts</strong> asks whether the put survived five weeks.
       <strong>Buy</strong> asks what the stock did over the same five weeks.
-      <strong>Long</strong> asks what it did over six months. One of the three
-      results is good, one is mixed, and one is bad. All three are below as
+      <strong>Long</strong> asks what it did over six months. <strong>Buy
+      calls</strong> asks what it did over ninety days &mdash; and asks it of
+      the shares, because an option cannot be priced backwards. One of the four
+      results is good, one is mixed, and two are bad. All four are below as
       measured &mdash; a backtest tuned until it looks good is the one kind
       worth nothing.
     </p>
@@ -69,17 +78,18 @@
   </section>
 
   <section class="panel panel--red" id="limits">
-    <h2 class="section-head">Four reasons this proves less than it looks like</h2>
+    <h2 class="section-head">Five reasons this proves less than it looks like</h2>
 
     <ol class="limits">
       <li>
         <h3>Only part of each model could be rebuilt.</h3>
         <p>
           Each ranking scores 100 points. Rebuilding a past morning recovers
-          <strong>49</strong> of them for sell puts, <strong>70</strong> for buy
-          and <strong>50</strong> for long. Two things are missing and neither
-          is free: historical option quotes, and company filings as they stood
-          on the day. <strong>The long list is hurt worst.</strong> Its whole
+          <strong>49</strong> of them for sell puts, <strong>70</strong> for
+          buy, <strong>50</strong> for long and <strong>58</strong> for buy
+          calls. Two things are missing and neither is free: historical option
+          quotes, and company filings as they stood on the day. <strong>The long
+          list is hurt worst.</strong> Its whole
           thesis is a strong chart <em>plus</em> expanding revenue, and revenue
           is the half the test cannot see &mdash; so what follows tests the
           chart half and calls it the long list.
@@ -94,8 +104,24 @@
           <em>closer</em> to the money than a real strike would have &mdash;
           which means the test assigns more often than the real thing would.
           The bias runs toward pessimism, which is the safer direction, but it
-          is still a guess. This one applies to the sell-puts numbers only; the
-          other two lists buy the stock, and there is no contract to estimate.
+          is still a guess. This one applies to the sell-puts numbers only.
+          Buy and long own the stock outright, so there is no contract to
+          estimate &mdash; and buy calls has a contract the test cannot price
+          at all, which is the next limit.
+        </p>
+      </li>
+      <li>
+        <h3>The call test holds the shares, not the call.</h3>
+        <p>
+          Same missing data, worse consequence. With no historical chain there
+          is no contract to buy in 2022 and none to sell ninety days later, so
+          the call run buys the stock and holds it for the ninety days instead.
+          <strong>Every figure in the call section is a share return.</strong>
+          A call on a name that rose 5% does not return 5%; it returns some
+          multiple of it, and a call on a name that ends below its strike is
+          worth nothing at all. What the test can still answer is whether the ranking
+          picked better names than the pool it picked from &mdash; the only
+          question a price history can answer here. The answer was no.
         </p>
       </li>
       <li>
@@ -126,9 +152,9 @@
       On the first of each month, take the price history exactly as it stood
       that morning &mdash; no later bars &mdash; run the reduced screen over
       every name that cleared the safety filters, and take each ranking&rsquo;s
-      top ten. Then hold. Sell puts and buy are held 35 days; long is
-      held 180. Five years of bars give 47 entries at the short horizon and 42
-      at the long one.
+      top ten. Then hold. Sell puts and buy are held 35 days; long is held 180;
+      buy calls, 90. Five years of bars give 47 entries at the five-week
+      horizon, 45 at ninety days and 42 at six months.
     </p>
   </section>
 
@@ -566,6 +592,111 @@
   </section>
 
   <section>
+    <h2 class="section-head">Buy calls: behind the pool, on the shares</h2>
+    <p class="section-note">
+      The newest list, and the one to read most carefully. It ranks names for
+      buying a long-dated call &mdash; but the test cannot buy one, because
+      there is no historical chain to buy it from. So it buys the stock instead
+      and holds it ninety days. <strong>Every number in this section is a share
+      return.</strong> What it can still answer is whether the ranking picked
+      better names than the pool it picked from.
+    </p>
+
+    <div class="figure">
+      <table class="tbl">
+        <caption>450 positions, 90 days each, 45 monthly entries from September 2022</caption>
+        <thead>
+          <tr>
+            <th scope="col">&nbsp;</th>
+            <th scope="col">The call ten</th>
+            <th scope="col">Every name that qualified</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Average move</th><td>+2.2%</td><td class="good">+5.6%</td></tr>
+          <tr><th scope="row">Median move</th><td>+0.4%</td><td class="good">+2.6%</td></tr>
+          <tr><th scope="row">Ended the 90 days lower</th><td>50%</td><td class="good">44%</td></tr>
+          <tr><th scope="row">Fell 10% at some point inside</th><td>55%</td><td>55%</td></tr>
+          <tr><th scope="row">Fell 20% at some point inside</th><td class="good">24%</td><td>27%</td></tr>
+          <tr><th scope="row">Best single name</th><td>+187%</td><td>+1,321%</td></tr>
+          <tr><th scope="row">Worst single name</th><td class="good">&minus;58%</td><td>&minus;85%</td></tr>
+        </tbody>
+      </table>
+      <p class="figure__note">
+        The S&amp;P returned +4.8% over the same windows and the call ten beat
+        it in <strong>17 of the 45</strong>. The worst dip any one name reached
+        was &minus;64%, against &minus;89% for the pool.
+      </p>
+    </div>
+
+    <div class="reading">
+      <h3>The answer is no, and the option makes it sharper, not softer</h3>
+      <p>
+        +2.2% against the pool&rsquo;s +5.6% and the index&rsquo;s +4.8%. The
+        middle name returned +0.4% against +2.6%, and half of these positions
+        ended the ninety days lower than they started. Over this run the ranking
+        picked <em>worse</em> names than taking ten at random from the same
+        qualifying list would have.
+      </p>
+      <p>
+        <strong>Now put the option back on top of that.</strong> A call has to
+        cover the time value inside its own price before it makes anything
+        &mdash; the list prints that distance on every name, as the move to
+        breakeven &mdash; and there is a date by which the move has to happen.
+        On the chains this list was tuned against, time value ran from 44% to
+        76% of the price, and a stock that ends exactly flat costs the buyer
+        precisely that. 55% of these fell 10% at some point inside the ninety
+        days: on shares that is a drawdown to sit through, on a call with an
+        expiry running it is often the whole position.
+      </p>
+      <p>
+        The test also sees less of this ranking than of any other. It rebuilds
+        58 of its 100 points: the ten for the contract itself have no contract to
+        score, the twenty for revenue cannot be read as of a past morning, and
+        half the cheapness reading went with the option history. What is left is
+        mostly the chart.
+      </p>
+    </div>
+
+    <div class="figure">
+      <table class="tbl">
+        <caption>Three entry dates, ninety days each</caption>
+        <thead>
+          <tr>
+            <th scope="col">Picked on</th>
+            <th scope="col">The ten</th>
+            <th scope="col">A random qualifying name</th>
+            <th scope="col">S&amp;P</th>
+            <th scope="col">Worst of the ten</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">29 Aug 2025</th>
+            <td>&minus;8.8%</td><td class="good">+0.3%</td><td>+5.4%</td><td>NCLH &minus;26.2%</td>
+          </tr>
+          <tr>
+            <th scope="row">28 Feb 2026</th>
+            <td>+3.3%</td><td class="good">+15.1%</td><td>+10.3%</td><td>CELH &minus;38.0%</td>
+          </tr>
+          <tr>
+            <th scope="row">29 May 2026</th>
+            <td>&minus;5.6%</td><td class="good">+3.9%</td><td>+1.9%</td><td>USAR &minus;31.3%</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="figure__note">
+        Three windows, three losses to the pool, and the ten fell further inside
+        each window than the pool did &mdash; an average worst dip of 22% to 27%
+        against 15% to 18%. In every one of the three, the worst name in the ten
+        lost a quarter or more. A name down 26% on the day the contract expires
+        has not cost a call buyer 26%: a call struck just under today&rsquo;s
+        price is worth nothing at all by then.
+      </p>
+    </div>
+  </section>
+
+  <section>
     <h2 class="section-head">The falling knives</h2>
     <p class="section-note">
       A stock below its 200-day average, with the 50-day under the 200-day and
@@ -605,10 +736,11 @@
       <p>
         <strong>Throwing them out would change nothing.</strong> Run each
         ranking again with every knife removed before the top ten is taken, and
-        it drops <strong>0 of the 470 positions</strong>. The best-ranked knife
-        sat at #4,372 of 13,422 on sell puts, #9,908 on buy and #6,229 of 11,780
-        on long. The penalty and the room-to-run rule &mdash; which refuses to
-        read a 74% fall as upside &mdash; already push them far below anything
+        it drops <strong>0 of the 470 positions</strong> &mdash; and 0 of the
+        call list&rsquo;s 450. The best-ranked knife sat at #4,372 of 13,422 on
+        sell puts, #9,908 on buy, #6,229 of 11,780 on long and #7,403 of 12,776
+        on buy calls. The penalty and the room-to-run rule &mdash; which refuses
+        to read a 74% fall as upside &mdash; already push them far below anything
         that reaches a list. A hard gate on top would be a second lock on a
         locked door.
       </p>
@@ -625,13 +757,17 @@
   <section class="panel panel--blue">
     <h2 class="section-head">What would make this worth more</h2>
     <p>
-      Historical option quotes, for the put list. With a real chain the test
-      could use the strike the screen would genuinely have chosen, score the
-      yield and fill-quality components that are currently missing, and count
-      the premium collected rather than only whether the stock stayed above a
-      line. That is the difference between &ldquo;the ranking is not
-      random&rdquo; and &ldquo;here is what the account would have done.&rdquo;
-      The data exists; it is not free.
+      Historical option quotes, for the two lists with a contract in them. For
+      the put list, a real chain would mean the strike the screen would
+      genuinely have chosen, the yield and fill-quality components that are
+      currently missing, and the premium collected counted rather than only
+      whether the stock stayed above a line. For the call list it is the
+      difference between a test and no test at all: with a chain the ninety days
+      could be measured on the contract that was actually bought and sold, which
+      is the only figure anyone buying a call cares about. That is the
+      difference between &ldquo;the ranking is not random&rdquo; and &ldquo;here
+      is what the account would have done.&rdquo; The data exists; it is not
+      free.
     </p>
     <p>
       Company filings as they stood on the day, for the buy and long lists. The
@@ -651,16 +787,18 @@
       unexpected happens.
     </p>
     <p>
-      <strong>All three lists start from stocks that have just fallen.</strong>
+      <strong>All four lists start from stocks that have just fallen.</strong>
       High implied volatility is the market pricing a real chance of a large
       move. The premium is not free, the discount is not free, and the numbers
       above are exactly the record of them not being free.
     </p>
     <p class="footer__meta">
-      Generated by <code>tools/backtest.py</code> on 28 August 2026, over 569
-      symbols of daily bars going back to August 2021. Run
+      Generated by <code>tools/backtest.py</code> on 28 August 2026 &mdash; the
+      call run on the 29th, off the same bars &mdash; over 569 symbols of daily
+      bars going back to August 2021. Run
       <code>python -m tools.backtest --profile put --monthly</code>, and the
-      same for <code>buy</code> and <code>long</code>, to reproduce it.
+      same for <code>buy</code>, <code>long</code> and <code>call</code>, to
+      reproduce it.
     </p>
   </footer>
 </main>
