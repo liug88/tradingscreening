@@ -324,7 +324,6 @@ main a:not(.btn):hover { text-decoration-thickness: var(--sp-hair); }
 
 /* Sits directly under the note app.js rewrites, so it reads as one block with
    it rather than a stray line. */
-.section-note--link { margin-top: calc(var(--sp-lg) * -1 + var(--sp-sm)); }
 
 /* ---- the mark: the atom of the whole page ---- */
 
@@ -612,6 +611,31 @@ main a:not(.btn):hover { text-decoration-thickness: var(--sp-hair); }
 /* The one figure in the row that is hers rather than the model's. */
 .chart__level[data-price] { color: var(--ink); font-weight: 500; }
 
+/* The fourth fact about the chart, under the count that shows the first three. */
+.metric__sub {
+  font-size: var(--text-xs);
+  color: var(--ink-2);
+  margin-top: var(--sp-xs);
+}
+
+/* Five filed quarters, drawn against the largest rather than against zero: the
+   shape is the reading and the figures are underneath it. A quarter that rose
+   takes the ink, one that did not stays grey -- so "up in 4 of 4" is something
+   she can check by looking rather than by trusting the count. */
+.revbars {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--sp-xs);
+  height: 34px;
+  margin: var(--sp-sm) 0;
+}
+.revbars__bar {
+  flex: 1 1 0;
+  min-width: 6px;
+  background: var(--rule);
+}
+.revbars__bar[data-up] { background: var(--blue); }
+
 .numbers {
   grid-column: 2 / -1;
   margin-top: var(--sp-md);
@@ -898,6 +922,28 @@ main a:not(.btn):hover { text-decoration-thickness: var(--sp-hair); }
 .segmented__option[aria-checked="true"] { background: var(--ink); color: var(--sheet); }
 .segmented__option:hover[aria-checked="false"] { background: var(--stock); }
 
+/* The ranking toggle. Two lines per button -- what she would do, and over what
+   horizon -- because "buy" and "hold" are the same word to anyone who has not
+   been told the second one means six months. */
+/* Not `display: flex` -- the base rule is inline-flex so the border shrink-wraps
+   the three fields. Stretched to the column width it rules 800px of nothing. */
+.segmented--ranking { margin-bottom: var(--sp-lg); }
+.segmented--ranking .segmented__option {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-hair);
+  padding: 10px 22px;
+  text-align: left;
+}
+.segmented__name { font-size: var(--text-xs); }
+.segmented__sub {
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: none;
+  font-weight: 400;
+  opacity: 0.72;
+}
+
 .tuning__actions { margin-top: var(--sp-lg); }
 
 /* What changed, in names. Ruled on the left so it reads as a note about the
@@ -910,6 +956,58 @@ main a:not(.btn):hover { text-decoration-thickness: var(--sp-hair); }
   color: var(--ink-2);
   max-width: 68ch;
 }
+
+/* ---- what the ranking has done ---- */
+
+/* Ruled top and bottom, no field: it is evidence about the list, not a banner
+   over it. The one number that matters sits on the blue rule. */
+.strip {
+  margin: 0 0 var(--sp-xl);
+  padding: var(--sp-md) 0;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--rule);
+  max-width: 74ch;
+}
+.strip__head {
+  font-size: var(--text-xs);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin: 0 0 var(--sp-sm);
+}
+.strip__lede {
+  font-size: var(--text-base);
+  line-height: 1.45;
+  margin: 0 0 var(--sp-md);
+  max-width: 62ch;
+}
+.strip__rows { margin-bottom: var(--sp-sm); }
+.strip__row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sp-md);
+  align-items: baseline;
+  padding: var(--sp-xs) 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+}
+.strip__row[data-lead] {
+  border-bottom-color: var(--blue);
+  color: var(--ink);
+}
+.strip__value { font-variant-numeric: tabular-nums; }
+.strip__row[data-lead] .strip__value {
+  font-size: var(--text-lg);
+  font-weight: 500;
+}
+.strip__tail {
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+  line-height: 1.5;
+  margin: 0 0 var(--sp-sm);
+}
+.strip__link { margin: 0; font-size: var(--text-sm); }
 
 /* ---- the day's brief ---- */
 

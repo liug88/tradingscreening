@@ -76,7 +76,7 @@
         <li><span class="mark mark--filled" aria-hidden="true"></span> <span>Passes one of the eleven criteria</span></li>
         <li><span class="mark mark--hollow" aria-hidden="true"></span> <span>Misses it. Normal &mdash; these are the best ten available, not ten perfect matches</span></li>
         <li><span class="mark mark--unknown" aria-hidden="true"></span> <span>Couldn&rsquo;t tell. Never counted as a miss</span></li>
-        <li><span class="mark mark--kept" aria-hidden="true"></span> <span>One tenth of the chance you keep the premium</span></li>
+        <li id="key-kept"><span class="mark mark--kept" aria-hidden="true"></span> <span>One tenth of the chance you keep the premium</span></li>
       </ul>
       <p class="key__flagline">
         <span class="flag flag--sample" aria-hidden="true">risk</span>
@@ -92,18 +92,22 @@
     <p id="brief-text"></p>
   </section>
 
+  <!-- One screen, three orders. app.js hides this when the file in front of it
+       carries only the sell-puts ranking, which is what a site-only push
+       republishes -- the page is then exactly what it was before. -->
+  <div class="segmented segmented--ranking" role="radiogroup"
+       aria-label="What to do with these names" id="ranking-choice" hidden></div>
+
   <h2 class="section-head" id="names">The ten names</h2>
   <p class="section-note" id="section-note">
     Ranked by score. Every name here already clears the safety filters &mdash;
     tradeable price, real volume, and a put that would actually fill.
   </p>
 
-  <!-- Its own paragraph rather than a clause in #section-note, which app.js
-       rewrites wholesale on every load. -->
-  <p class="section-note section-note--link">
-    <a href="method.html">How this ranking has done since 2024</a> &mdash; 230
-    trades, and the four reasons that test proves less than it looks like.
-  </p>
+  <!-- What this ranking has actually done, against SPY, above the names rather
+       than linked from the footer. Written by app.js, which also carries the
+       figures: they are a fact about the model, not about this morning. -->
+  <div class="strip" id="strip" hidden></div>
 
   <div class="controls" id="controls" hidden>
     <p class="controls__count" id="list-count"></p>

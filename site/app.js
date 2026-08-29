@@ -113,6 +113,54 @@ const POINTS_PER_MARK = 2.5;
    note() gets the live config, so every threshold it quotes is the number the
    screen actually ran under this morning rather than one written down once and
    left to drift. */
+/* ---- the three questions --------------------------------------------- */
+
+/* One screen, three orders. The gates that find a beaten-up name with the
+   business intact find the setup for all three; what differs is the ranking.
+   So this is one screen ranked three ways rather than three screeners -- and a
+   name can sit first on one list and fortieth on another for the same reason,
+   because high implied volatility pays a seller and costs a buyer. Watching a
+   name move when she flips the toggle is the most useful thing on the page.
+
+   `put` keeps the unsuffixed weight key every published file has used, so a
+   file written before the other two still ranks and still reads. */
+const PROFILE_ORDER = ["put", "buy", "long"];
+
+const PROFILES = {
+  put: {
+    label: "Sell puts",
+    horizon: "income",
+    heading: "The ten names",
+    verb: "sell a put against",
+    note: (more) =>
+      "Ranked by score. Every name here already clears the safety filters — " +
+      "tradeable price, real volume, and a put that would actually fill." +
+      (more ? ` ${more} more cleared them too and are ranked below.` : ""),
+  },
+  buy: {
+    label: "Buy",
+    horizon: "weeks",
+    heading: "Ten to buy",
+    verb: "buy",
+    note: (more) =>
+      "Ranked on the dip, the chart and the revenue. No option is involved, so " +
+      "names with no put worth selling are ranked here too — she can own a " +
+      "stock there is nothing to sell against." +
+      (more ? ` ${more} more are ranked below.` : ""),
+  },
+  long: {
+    label: "Hold",
+    horizon: "months",
+    heading: "Ten to hold",
+    verb: "hold",
+    note: (more) =>
+      "Ranked on the chart and the revenue alone. Today's RSI is left out on " +
+      "purpose — over six months it is noise, and if both horizons scored the " +
+      "dip they would be one list." +
+      (more ? ` ${more} more are ranked below.` : ""),
+  },
+};
+
 /* A label is a plain string unless what the component measured depends on the
    file being read, in which case it is a function of the same scoring config
    the notes get. `view.baseline` is unset for a payload with no config block,
@@ -172,7 +220,50 @@ const COMPONENTS = [
     `Annualised return on the cash secured, full credit at ${pct(c.ann_yield_target, 0)}. Cut by ` +
     `up to 30% as the bid-ask spread widens: a yield you cannot fill at the mid ` +
     `is not a yield.`],
+
+  /* The four the buy and hold rankings score. They sit in the same table
+     because a slider is a slider: renderWeights draws whichever of these the
+     ranking in view actually weighs and skips the rest, so one table serves
+     three panels. */
+
+  ["trend_structure", "EMA stack / golden cross", (c) =>
+    `The chart she asked for by name, as four facts rather than a verdict: ` +
+    `price above the 200-day (30%), the 50-day above the 200-day — the golden ` +
+    `cross (25%), the averages in order with price at the front (25%), and how ` +
+    `young the cross is, full credit the day it happens and none by day ` +
+    `${c.trend_cross_fresh_days} (20%). Four rather than one, because price can ` +
+    `sit above the 200-day while the 50 is still under it, and that is a bounce ` +
+    `inside a downtrend.`],
+
+  ["revenue_expanding", "Revenue trend", (c) =>
+    `Revenue that keeps rising, not revenue that rose once. Half is how many of ` +
+    `the published quarters rose, a fifth an unbroken run ending at the latest, ` +
+    `and three tenths how far it actually travelled — full credit at ` +
+    `${pct(c.rev_yoy_strong, 0)} year on year. Without that last part a business ` +
+    `growing 5% a year ties with one growing 150%. Scores 0.4 when fewer than ` +
+    `two quarters are on file: unknown, not punished.`],
+
+  ["room_to_run", "Room to the 52-week high", (c) =>
+    `How far below its 52-week high it sits, counted as upside only where it is ` +
+    `upside. Full credit at ${pct(c.room_ideal_below_high, 0)} down; past that it ` +
+    `falls away again and reaches nothing at ${pct(c.room_broken_below_high, 0)}, ` +
+    `because a stock 74% off its high is not a discount, it is a verdict. If the ` +
+    `50-day is under the 200-day, whatever is left is cut to ` +
+    `${pct(c.room_broken_trend_factor, 0)} of it.`],
+
+  ["entry_timing", "Oversold + the turn", () =>
+    `The fall and the bounce folded into the one question a buyer asks: 60% how ` +
+    `far it fell on the readings above, 40% whether the fall has stopped. The ` +
+    `same two the sell-puts list scores separately, in the same proportion, so a ` +
+    `name does not change character between lists for a reason you cannot see.`],
 ];
+
+/* One ranking's answer for one name. The sell-puts result sits at the top
+   level of a card, where every published file has carried it; the other two are
+   nested under their own key. Reading through here rather than at each call
+   site means a row, a blurb and a breakdown all ask the same question. */
+const scoreOf = (row, profile) =>
+  (profile || view.profile) === "put" ? row : (row[(profile || view.profile)] || {});
 
 /* "Ranked third" should never be a black box -- PRODUCT.md principle 4. The
    figures were always computed; this is where they become readable. */
@@ -227,6 +318,8 @@ function seenChip(seen) {
 /* ---- rows ----------------------------------------------------------- */
 
 function renderRow(pick) {
+  const profile = view.profile;
+  const result = scoreOf(pick, profile);
   const row = el("article", "row");
   const trade = pick.trade || {};
   const passes = pick.badges.filter((b) => b.passed === true).length;
@@ -241,7 +334,8 @@ function renderRow(pick) {
   guide.appendChild(el("span", "guide__ticker", pick.symbol));
   const score = el("div", "guide__score");
   score.appendChild(document.createTextNode("score "));
-  score.appendChild(el("strong", null, pick.score.toFixed(0)));
+  score.appendChild(el("strong", null,
+    result.score == null ? "—" : result.score.toFixed(0)));
   guide.appendChild(score);
   row.appendChild(guide);
 
@@ -273,41 +367,22 @@ function renderRow(pick) {
   checks.appendChild(checkVal);
   row.appendChild(checks);
 
-  /* odds of keeping the premium -- the signature quantity on the page */
-  const odds = el("div", "metric");
-  odds.appendChild(el("span", "metric__label", "Keep the premium"));
-  if (trade.keep_premium_odds != null) {
-    odds.appendChild(tally(unitMarks(trade.keep_premium_odds),
-      `About a ${pct(trade.keep_premium_odds)} chance you keep the premium and are not assigned the shares`));
-    const oddsVal = el("div", "metric__value");
-    oddsVal.innerHTML = `<strong>${pct(trade.keep_premium_odds)}</strong> chance`;
-    odds.appendChild(oddsVal);
+  /* The last two columns are the two quantities the list she is on turns on.
+     Selling, that is the odds and the contract. Owning, there is no contract at
+     all -- so they become the two things she named when she asked for these
+     lists: the chart, and whether the revenue is expanding. */
+  if (profile === "put") {
+    row.appendChild(oddsSlot(trade));
+    row.appendChild(tradeSlot(trade));
   } else {
-    odds.appendChild(el("div", "metric__value", "—"));
+    row.appendChild(trendSlot(pick));
+    row.appendChild(revenueSlot(pick));
   }
-  row.appendChild(odds);
-
-  /* the trade */
-  const tradeBox = el("div", "trade");
-  tradeBox.appendChild(el("span", "metric__label", "The trade"));
-  if (trade.strike != null) {
-    tradeBox.appendChild(el("span", "trade__strike",
-      `Sell the ${money(trade.strike)} put`));
-    const line = el("div", "trade__line");
-    line.innerHTML =
-      `expires ${shortDate(trade.expiry)} &middot; ${trade.dte} days<br>` +
-      `collect <span class="trade__credit">${money(trade.credit * 100, 0)}</span>` +
-      ` &middot; set aside ${money(trade.cash_secured, 0)}`;
-    tradeBox.appendChild(line);
-  } else {
-    tradeBox.appendChild(el("div", "trade__line", "No sellable put today."));
-  }
-  row.appendChild(tradeBox);
 
   /* risk flags -- red is spent here and nowhere else */
-  if (pick.penalties && pick.penalties.length) {
+  if (result.penalties && result.penalties.length) {
     const flags = el("div", "flags");
-    pick.penalties.forEach((p) => flags.appendChild(el("span", "flag", p.reason)));
+    result.penalties.forEach((p) => flags.appendChild(el("span", "flag", p.reason)));
     row.appendChild(flags);
   }
 
@@ -323,15 +398,143 @@ function renderRow(pick) {
     row.appendChild(cat);
   }
 
-  const why = whyPicked(pick, trade);
+  const why = profile === "put" ? whyPicked(pick, trade) : whyOwned(pick, profile);
   if (why) row.appendChild(el("p", "why", why));
 
   const chart = renderChart(pick);
   if (chart) row.appendChild(chart);
 
-  row.appendChild(renderNumbers(pick, trade));
+  row.appendChild(renderNumbers(pick, trade, result));
   return row;
 }
+
+/* ---- the last two columns, per list ---------------------------------- */
+
+/* Odds of keeping the premium -- the signature quantity on the sell-puts page. */
+function oddsSlot(trade) {
+  const odds = el("div", "metric");
+  odds.appendChild(el("span", "metric__label", "Keep the premium"));
+  if (trade.keep_premium_odds != null) {
+    odds.appendChild(tally(unitMarks(trade.keep_premium_odds),
+      `About a ${pct(trade.keep_premium_odds)} chance you keep the premium and are not assigned the shares`));
+    const oddsVal = el("div", "metric__value");
+    oddsVal.innerHTML = `<strong>${pct(trade.keep_premium_odds)}</strong> chance`;
+    odds.appendChild(oddsVal);
+  } else {
+    odds.appendChild(el("div", "metric__value", "—"));
+  }
+  return odds;
+}
+
+function tradeSlot(trade) {
+  const box = el("div", "trade");
+  box.appendChild(el("span", "metric__label", "The trade"));
+  if (trade.strike != null) {
+    box.appendChild(el("span", "trade__strike",
+      `Sell the ${money(trade.strike)} put`));
+    const line = el("div", "trade__line");
+    line.innerHTML =
+      `expires ${shortDate(trade.expiry)} &middot; ${trade.dte} days<br>` +
+      `collect <span class="trade__credit">${money(trade.credit * 100, 0)}</span>` +
+      ` &middot; set aside ${money(trade.cash_secured, 0)}`;
+    box.appendChild(line);
+  } else {
+    box.appendChild(el("div", "trade__line", "No sellable put today."));
+  }
+  return box;
+}
+
+/* The chart, as the three facts that either hold or do not -- one mark each, in
+   the same ink and meaning the same thing as the checks one column to the left,
+   so the tally and the count underneath it agree.
+
+   Deliberately not the component's score: that would put a ten-mark tally over a
+   three-mark count and the two would read as a contradiction. The score is in
+   the breakdown, where it is labelled, and the fourth thing it counts -- how
+   fresh the cross is -- is the line under this one. */
+function trendSlot(pick) {
+  const t = pick.technicals || {};
+  const box = el("div", "metric");
+  box.appendChild(el("span", "metric__label", "The chart"));
+
+  const facts = [
+    ["price above the 200-day", t.above_ema200],
+    ["the 50-day above the 200-day", t.golden_cross],
+    ["the averages fully in order", t.full_stack],
+  ];
+  const inPlace = facts.filter(([, v]) => v === true).length;
+  const known = facts.filter(([, v]) => v != null).length;
+
+  box.appendChild(tally(
+    facts.map(([, v]) => (v === true ? "filled" : v === false ? "hollow" : "unknown")),
+    facts.map(([name, v]) =>
+      `${name}: ${v === true ? "yes" : v === false ? "no" : "not known"}`).join("; ")));
+
+  const val = el("div", "metric__value");
+  val.innerHTML = known
+    ? `<strong>${inPlace} of ${known}</strong> in place`
+    : "<strong>—</strong>";
+  box.appendChild(val);
+
+  const age = t.golden_cross_days_ago;
+  box.appendChild(el("div", "metric__sub",
+    t.golden_cross === false ? "50-day still under the 200-day"
+      : t.golden_cross && age != null ? `50 crossed the 200 ${age} days ago`
+      : t.golden_cross ? "50 above the 200, crossed long ago"
+      : "cross unknown"));
+  return box;
+}
+
+/* "Expanding revenue" as something she can see rather than read. Five quarters
+   is what the filings ship, so four comparisons -- enough to tell a business
+   growing every quarter from one that grew once.
+
+   The bars are drawn against the largest of the five and not against zero, so
+   what they show is the shape and not the size. That would be a bad axis on a
+   chart; here the figures are underneath and the shape is the whole question. */
+function revenueSlot(pick) {
+  const f = pick.fundamentals || {};
+  const history = (f.revenue_history || []).filter((q) => q.revenue != null);
+  const box = el("div", "trade");
+  box.appendChild(el("span", "metric__label", "Revenue"));
+
+  if (history.length < 2) {
+    box.appendChild(el("div", "trade__line",
+      "No filing history published — scored as unknown, not as bad."));
+    return box;
+  }
+
+  const top = Math.max(...history.map((q) => q.revenue));
+  const bars = el("div", "revbars");
+  history.forEach((q, i) => {
+    const bar = el("span", "revbars__bar");
+    bar.style.height = Math.max(4, (q.revenue / top) * 100).toFixed(0) + "%";
+    if (i && q.revenue > history[i - 1].revenue) bar.dataset.up = "1";
+    bar.title = `${q.quarter}: ${bigMoney(q.revenue)}`;
+    bars.appendChild(bar);
+  });
+  box.appendChild(bars);
+
+  const rose = history.slice(1).filter((q, i) => q.revenue > history[i].revenue).length;
+  const line = el("div", "trade__line");
+  line.innerHTML = `<strong>up in ${rose} of ${history.length - 1}</strong> quarters` +
+    (f.revenue_yoy == null ? "" : `<br>${growth(f.revenue_yoy)} year on year`);
+  box.appendChild(line);
+
+  /* An earnings date is a deduction on the sell-puts list, because an expiry is
+     what makes it expensive. Owning shares through a print is just a thing that
+     happens, so here it is a date rather than a charge. */
+  if (f.next_earnings) {
+    box.appendChild(el("div", "trade__line", `reports ${shortDate(f.next_earnings)}`));
+  }
+  return box;
+}
+
+/* Revenue arrives in dollars and runs to twelve figures. */
+const bigMoney = (v) =>
+  v == null ? "—"
+    : Math.abs(v) >= 1e9 ? "$" + (v / 1e9).toFixed(1) + "bn"
+    : "$" + (v / 1e6).toFixed(0) + "m";
 
 /* Why this name, in a sentence or four.
 
@@ -418,6 +621,96 @@ function whyPicked(pick, trade) {
     }
     parts.push(`The suggested strike is ${pct(trade.pct_below_spot)} below today’s price${where} — ` +
                `that is how far it can fall before you are assigned.`);
+  }
+
+  return parts.join(" ");
+}
+
+/* The same job for the two lists that rank what she would own. Different
+   sentences, because they answer a different question: the put blurb ends on
+   where the strike sits, and here there is no strike.
+
+   Written off the components the ranking actually scored rather than off the
+   technicals directly, so the prose cannot claim credit the score withheld.
+   The hold list does not score today's dip, and its blurb must not talk about
+   one. */
+function whyOwned(pick, profile) {
+  const t = pick.technicals || {};
+  const f = pick.fundamentals || {};
+  const scored = scoreOf(pick, profile).components || {};
+  const parts = [];
+
+  /* The chart, in the order the averages actually stand. Four shapes, because
+     "above the 200-day" and "the 50 above the 200" are different claims and the
+     gap between them is the bounce-inside-a-downtrend case. */
+  const age = t.golden_cross_days_ago;
+  const crossAge = t.golden_cross && age != null
+    ? `, a cross ${age} days old` : "";
+  if (t.full_stack) {
+    parts.push(`The chart is in the order she asked for — price above the ` +
+               `20-day, above the 50, and the 50 above the 200${crossAge}.`);
+  } else if (t.golden_cross && t.above_ema200) {
+    parts.push(`The 50-day is above the 200-day and price is above both` +
+               `${crossAge}, though the averages are not yet fully in order.`);
+  } else if (t.above_ema200) {
+    parts.push("Price is back above its 200-day average while the 50-day is " +
+               "still below it — a bounce inside a downtrend rather than a " +
+               "trend that has turned.");
+  } else if (t.above_ema200 === false) {
+    parts.push("It is still under its 200-day average, which is the one thing " +
+               "the chart she described has to have.");
+  }
+
+  /* Revenue: how many quarters rose, then how far it travelled. Both, because
+     four small rises and one large one are the same count and not the same
+     business. */
+  const history = (f.revenue_history || []).filter((q) => q.revenue != null);
+  const yoy = f.revenue_yoy == null ? "" : `, ${growth(f.revenue_yoy)} against a year ago`;
+  if (history.length >= 2) {
+    const of = history.length - 1;
+    const rose = history.slice(1).filter((q, i) => q.revenue > history[i].revenue).length;
+    parts.push(rose === of
+      ? `Revenue rose in every one of the last ${count(of)} quarters filed${yoy}.`
+      : rose === 0
+        ? `Revenue did not rise in any of the last ${count(of)} quarters filed${yoy}.`
+        : `Revenue rose in ${count(rose)} of the last ${count(of)} quarters filed${yoy}.`);
+  } else {
+    parts.push("No revenue history is filed for this one, so the growth half of " +
+               "the ranking scored it as unknown rather than marking it down.");
+  }
+
+  /* Distance below the high, and what the ranking made of it. The second half
+     matters: without it a name 74% down reads as the most upside on the page,
+     which is exactly the row that frightened her. */
+  const off = t.pct_below_52w_high;
+  const room = (scored.room_to_run || {}).raw;
+  if (off != null) {
+    parts.push(room != null && room < 0.15
+      ? `It is ${pct(off)} below its 52-week high. Past a point that stops being ` +
+        `room to recover and starts being a verdict, and the ranking scores it ` +
+        `that way — almost none of the points for distance.`
+      : `It sits ${pct(off)} below its 52-week high, which is the distance the ` +
+        `ranking counts as room to recover.`);
+  }
+
+  /* The turn -- only where the ranking pays for it. A weight of zero is a
+     deliberate choice in config.yaml and the page should say so rather than
+     quietly leaving a sentence out. */
+  const timing = scored.entry_timing;
+  if (timing && timing.max) {
+    const passed = new Set((pick.badges || []).filter((b) => b.passed).map((b) => b.label));
+    const turns = [];
+    if (passed.has("Above 9-day EMA")) turns.push("back above its 9-day average");
+    if (passed.has("Above 20-day EMA")) turns.push("above its 20-day");
+    if (passed.has("MACD crossing up")) turns.push("MACD crossing up");
+    if (passed.has("Volume expanding on green")) turns.push("volume expanding on an up day");
+    parts.push(turns.length
+      ? `The turn is showing — ${list(turns)}.`
+      : "The turn has not shown up yet — none of the four bounce signals have " +
+        "fired, so this is the washout without the confirmation.");
+  } else if (timing) {
+    parts.push("Today's dip is not scored on this list at all. Over six months " +
+               "it is noise, and scoring it would make this the buy list again.");
   }
 
   return parts.join(" ");
@@ -522,7 +815,7 @@ function renderChart(pick) {
 
 /* The jargon layer. Plain English is the page; this is what she opens when she
    wants to check the actual figure. */
-function renderNumbers(pick, trade) {
+function renderNumbers(pick, trade, result) {
   const det = el("details", "numbers");
   det.appendChild(el("summary", null, "The numbers"));
 
@@ -545,6 +838,7 @@ function renderNumbers(pick, trade) {
     ]),
     ...(t.mfi14 == null ? [] : [["Money flow (14)", t.mfi14.toFixed(1)]]),
     ...(t.bb_percent_b == null ? [] : [["Bollinger %B", t.bb_percent_b.toFixed(2)]]),
+    /* Underlying readings, so they stay on a row with no contract. */
     ["Implied volatility", pct(pick.iv, 0)],
     ["IV ÷ realised vol", pick.iv_hv == null ? "—" : pick.iv_hv.toFixed(2)],
     /* Already a percentage -- run.py:iv_percentile multiplies by 100 before it
@@ -552,14 +846,19 @@ function renderNumbers(pick, trade) {
        yet only because the cache needs 20 daily readings and has 2. */
     ["IV percentile", pick.iv_percentile == null
       ? "building" : pick.iv_percentile.toFixed(0) + "%"],
-    ["Delta", trade.delta == null ? "—" : trade.delta.toFixed(3)],
-    ["Annualised on cash", pct(trade.annualized_pct, 1)],
-    ["Breakeven", money(trade.breakeven)],
-    ["Strike below price", pct(trade.pct_below_spot, 1)],
-    ["Bid / ask", trade.bid == null ? "—"
-      : `${money(trade.bid)} / ${money(trade.ask)}`],
-    ["Open interest", trade.open_interest == null
-      ? "—" : trade.open_interest.toLocaleString("en-US")],
+    /* Spread in rather than shown empty. The file now carries names with no
+       fillable put, and six cells of em dashes on a row that never had a
+       contract reads as six readings that failed. */
+    ...(trade.strike == null ? [] : [
+      ["Delta", trade.delta == null ? "—" : trade.delta.toFixed(3)],
+      ["Annualised on cash", pct(trade.annualized_pct, 1)],
+      ["Breakeven", money(trade.breakeven)],
+      ["Strike below price", pct(trade.pct_below_spot, 1)],
+      ["Bid / ask", trade.bid == null ? "—"
+        : `${money(trade.bid)} / ${money(trade.ask)}`],
+      ["Open interest", trade.open_interest == null
+        ? "—" : trade.open_interest.toLocaleString("en-US")],
+    ]),
     ["Sales, year on year", growth(f.revenue_yoy)],
     ["Sales, quarter on quarter", growth(f.revenue_qoq)],
     ["Operating margin", f.operating_margin == null
@@ -582,7 +881,7 @@ function renderNumbers(pick, trade) {
 
   /* The score breakdown lives here rather than in the row: the row carries two
      tallies and a third would compete with the two she acts on. */
-  const breakdown = renderBreakdown(pick.components);
+  const breakdown = renderBreakdown((result || pick).components);
   if (breakdown) det.appendChild(breakdown);
 
   /* Two numbers, one measurement. Both are published on purpose -- %R is the
@@ -799,6 +1098,7 @@ function notice(text) {
    having is this one. */
 const view = {
   data: null,
+  profile: "put",   // which of the three lists is in front of her
   offset: 0,
   newOnly: false,
   settings: null,   // her weights; starts as this morning's and can be put back
@@ -806,25 +1106,49 @@ const view = {
   strikePref: null,
 };
 
-/* Every name the sell-puts list can hold. The file now also carries names with
-   no fillable put -- `score: null`, ranked on buy and long instead -- and they
-   are held back until the toggle that shows those lists exists. Filtering here
-   rather than in each caller keeps the null out of rescoreAll, which would
-   otherwise score a contract nobody can place. */
-const everyName = () =>
-  (view.data.picks || []).concat(view.data.bench || []).filter((p) => p.score != null);
+/* Every name one ranking can hold. The file also carries names with no fillable
+   put -- `score: null`, ranked on buy and hold instead. The sell-puts list drops
+   them, because a null there would be scored as a contract nobody can place;
+   the other two keep them, which is the whole reason they are published. */
+const everyName = (profile = view.profile) => {
+  const all = (view.data.picks || []).concat(view.data.bench || []);
+  return profile === "put" ? all.filter((p) => p.score != null) : all;
+};
+
+/* Whether this file can answer a question at all, rather than whether the code
+   knows how to draw it. A payload published before the other rankings has no
+   weight block for them and no result on its names, and a site-only push
+   republishes exactly such a file -- so the toggle offers what is in front of
+   it and hides itself when only one ranking is there. */
+const hasProfile = (profile) =>
+  profile === "put" ||
+  ((view.data.config || {})["weights_" + profile] != null &&
+   everyName(profile).some((row) => row[profile]));
+
+const offered = () => PROFILE_ORDER.filter(hasProfile);
+
 const pageSize = () => (view.data.picks || []).length || 10;
 
-/* Nothing she has moved. Worth asking rather than always re-scoring, because
-   the published order is not quite score order: the catalyst penalty lands
-   after the ten are chosen, so a researched name carrying a structural flag
-   stays in the ten rather than being overtaken by a bench name nobody looked
-   into. Re-sorting on arrival would quietly undo that. Once she has changed
-   something, re-sorting is the entire point. */
-const untouched = () =>
-  !view.strikePref &&
-  (!view.settings ||
-    JSON.stringify(view.settings) === JSON.stringify(view.baseline));
+/* The weight block one ranking reads. `put` keeps the unsuffixed name every
+   published file has used. */
+const weightKey = (profile) => (profile === "put" ? "weights" : "weights_" + profile);
+
+/* Nothing she has moved *on the list in front of her*. Weights are per ranking,
+   so a slider pushed on the sell-puts panel does not make the buy list hers,
+   and the strike dial is a put control that only counts there.
+
+   Worth asking rather than always re-scoring, because the published order is
+   not quite score order: the catalyst penalty lands after the ten are chosen,
+   so a researched name carrying a structural flag stays in the ten rather than
+   being overtaken by a bench name nobody looked into. Re-sorting on arrival
+   would quietly undo that. Once she has changed something, re-sorting is the
+   entire point. */
+const untouched = () => {
+  if (view.profile === "put" && view.strikePref) return false;
+  if (!view.settings) return true;
+  const key = weightKey(view.profile);
+  return JSON.stringify(view.settings[key]) === JSON.stringify(view.baseline[key]);
+};
 
 /* The delta each preference aims at. Delta is roughly the market's own odds of
    assignment, so this really is a safety dial and not a cosmetic one. */
@@ -841,12 +1165,36 @@ function preferredStrike(row) {
   return Score.withStrike(row, nearest.id);
 }
 
+/* Sorted by one ranking's score and renumbered to match: a rank is a position
+   in the list she is looking at, and keeping the published one would be a lie
+   the moment she flips the toggle. */
+const rerank = (names, profile) => names
+  .slice()
+  .sort((a, b) => (scoreOf(b, profile).score || 0) - (scoreOf(a, profile).score || 0))
+  .map((row, i) => ({ ...row, rank: i + 1 }));
+
 /* The list as she has tuned it. Names are never added or removed here -- these
-   are the forty-odd the gates already admitted this morning. */
-const tunedNames = () =>
-  untouched()
-    ? everyName()
-    : Score.rescoreAll(everyName().map(preferredStrike), view.settings);
+   are the forty-odd the gates already admitted this morning.
+
+   The file arrives in sell-puts order, so that one list is left exactly as
+   published while she has changed nothing. The other two were never curated
+   that way -- nothing was researched into them and nothing was held in place --
+   so they are sorted here every time. */
+const tunedNames = () => {
+  const profile = view.profile;
+  const names = everyName();
+  if (untouched()) return profile === "put" ? names : rerank(names, profile);
+
+  const scored = names.map(preferredStrike).map((row) => {
+    const out = Score.rescore(row, view.settings, profile);
+    /* rescore() returns the ranking it was asked for at the top level, which is
+       where the put lives and where the other two do not. Putting it back under
+       its own key here means every reader below sees one shape whether or not
+       she has moved a slider, rather than each having to know. */
+    return profile === "put" ? { ...row, ...out } : { ...row, [profile]: out };
+  });
+  return rerank(scored, profile);
+};
 
 const pool = () => {
   const names = tunedNames();
@@ -858,6 +1206,138 @@ const scrollToNames = () => $("#names").scrollIntoView({
   behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
   block: "start",
 });
+
+/* ---- the toggle ------------------------------------------------------ */
+
+/* Three buttons over one list of names. Flipping one re-sorts what is already
+   in the file: no fetch, no re-run, nothing to wait for. The offset goes back
+   to the top because rank eleven on one ranking is not rank eleven on another,
+   and paging down would land her somewhere arbitrary. */
+function renderRankingChoice() {
+  const box = $("#ranking-choice");
+  const keys = offered();
+  /* One question is not a choice. An older file has only the sell-puts ranking
+     in it, and the page is then exactly what it was before this shipped. */
+  box.hidden = keys.length < 2;
+  box.textContent = "";
+
+  /* Gold appears only where a premium does. Declaring an ink the list in front
+     of her does not use is the same fault as using one ink for two things. */
+  $("#key-kept").hidden = view.profile !== "put";
+
+  keys.forEach((key) => {
+    const spec = PROFILES[key];
+    const button = el("button", "segmented__option");
+    button.type = "button";
+    button.setAttribute("role", "radio");
+    button.setAttribute("aria-checked", view.profile === key ? "true" : "false");
+    button.appendChild(el("span", "segmented__name", spec.label));
+    button.appendChild(el("span", "segmented__sub", spec.horizon));
+    button.addEventListener("click", () => {
+      if (view.profile !== key) showProfile(key);
+    });
+    box.appendChild(button);
+  });
+}
+
+/* Everything that changes when she flips it. */
+function showProfile(key) {
+  view.profile = key;
+  view.offset = 0;
+  renderRankingChoice();
+  renderStrip();
+  if (view.baseline) {
+    renderWeights();
+    renderStrikeChoice();
+  }
+  renderList();
+  chatStarters();
+}
+
+/* ---- what each ranking has actually done ----------------------------- */
+
+/* Measured 2026-08-28 by tools/backtest.py: five years of daily bars, the
+   screen re-run on the first of each month, each list held for its own horizon.
+   Written here rather than published in the payload because it is a fact about
+   the model and not about this morning -- and because a number that changes
+   with the file is a number nobody can check.
+
+   Always against SPY, never a bare figure. The tape rose across the whole test
+   window, so an absolute return is close to meaningless, and a bare "+15%" over
+   tomorrow's names reads as a forecast. Against the index it is a claim about
+   the ranking, which is the only thing a backtest can support.
+
+   Two of these are unflattering. They are here as measured: a backtest tuned
+   until it looks good is the one kind that is worth nothing. */
+const BACKTEST = {
+  put: {
+    span: "September 2022", tests: 47, positions: 470, hold: "35 days",
+    lede: "Assigned on 17% of the 470 trades, against 22% for the pool it " +
+          "picked from. That is the number this list is for — a seller who does " +
+          "not want the shares is not trying to pick the biggest riser.",
+    rows: [["These ten", "+1.8%"],
+           ["SPY over the same windows", "+1.3%"],
+           ["Everything that cleared the gates", "+1.5%"]],
+    tail: "Average return over the 35 days. The middle trade returned −0.5%, so " +
+          "the average is carried by the winners; it beat SPY in 26 of the 47 " +
+          "windows, and was assigned less often than its own pool in 33 of them.",
+  },
+  buy: {
+    span: "September 2022", tests: 47, positions: 470, hold: "5 weeks",
+    lede: "This ranking lost — to the index, and to the pool it picked from.",
+    rows: [["These ten", "+0.2%"],
+           ["SPY over the same windows", "+1.3%"],
+           ["Everything that cleared the gates", "+1.5%"]],
+    tail: "It beat SPY in 16 of the 47 windows, and fell 10% at some point inside " +
+          "the five weeks more often than the pool did — 48% against 38%. Five " +
+          "weeks is a short horizon to ask a screen to be right about.",
+  },
+  long: {
+    span: "September 2022", tests: 42, positions: 420, hold: "6 months",
+    lede: "Ahead of the index and of its own pool on average — but the average " +
+          "is carried by a few large winners.",
+    rows: [["These ten", "+15.0%"],
+           ["SPY over the same windows", "+9.2%"],
+           ["Everything that cleared the gates", "+10.1%"]],
+    tail: "The middle name returned 3.5%, which is less than the pool's 4.8%: the " +
+          "typical name here did slightly worse and the best did much better. " +
+          "46% of these positions fell 20% at some point inside the six months.",
+  },
+};
+
+function renderStrip() {
+  const box = $("#strip");
+  const bt = BACKTEST[view.profile];
+  box.textContent = "";
+  if (!bt) {
+    box.hidden = true;
+    return;
+  }
+  box.hidden = false;
+
+  box.appendChild(el("p", "strip__head",
+    `Since ${bt.span} · ${bt.tests} monthly tests · ${bt.positions} positions · ` +
+    `each held ${bt.hold}`));
+  box.appendChild(el("p", "strip__lede", bt.lede));
+
+  const rows = el("div", "strip__rows");
+  bt.rows.forEach(([label, value], i) => {
+    const line = el("div", "strip__row");
+    if (!i) line.dataset.lead = "1";
+    line.appendChild(el("span", "strip__label", label));
+    line.appendChild(el("span", "strip__value", value));
+    rows.appendChild(line);
+  });
+  box.appendChild(rows);
+  box.appendChild(el("p", "strip__tail", bt.tail));
+
+  /* The limits sit one click from the number, not in the footer. */
+  const link = el("p", "strip__link");
+  const a = el("a", null, "How this was measured, and what it cannot show");
+  a.href = "method.html";
+  link.appendChild(a);
+  box.appendChild(link);
+}
 
 function renderList() {
   const names = pool();
@@ -887,14 +1367,20 @@ function updateControls(count) {
   const last = Math.min(view.offset + size, count);
 
   /* The heading has to describe what is actually underneath it. Leaving "the
-     ten names" over ranks 11 to 20 is a small lie the page can avoid. */
+     ten names" over ranks 11 to 20 is a small lie the page can avoid, and so is
+     leaving it over a list ranked on something else entirely. */
+  const spec = PROFILES[view.profile];
   $("#names").textContent = view.offset > 0
     ? "Ranked below the ten"
     : view.newOnly
       ? "New on the list today"
       : untouched()
-        ? "The ten names"
-        : "The ten names, your weights";
+        ? spec.heading
+        : spec.heading + ", your weights";
+
+  /* Set here rather than once on load: what these names have in common is a
+     different sentence on each list. */
+  $("#section-note").textContent = spec.note(Math.max(0, count - size));
 
   $("#list-count").textContent = count
     ? `Showing ${view.offset + 1}–${last} of ${count} ranked names.`
@@ -961,8 +1447,11 @@ function renderWeights() {
   const grid = $("#tuning-weights");
   grid.textContent = "";
 
+  const weights = view.settings[weightKey(view.profile)] || {};
+  const baseline = view.baseline[weightKey(view.profile)] || {};
+
   COMPONENTS.forEach(([key, label, note]) => {
-    if (view.baseline.weights[key] === undefined) return;
+    if (baseline[key] === undefined) return;
 
     const line = el("div", "weight");
     const name = el("label", "weight__label", componentName(label));
@@ -976,16 +1465,16 @@ function renderWeights() {
     slider.min = "0";
     slider.max = "40";
     slider.step = "1";
-    slider.value = String(view.settings.weights[key]);
+    slider.value = String(weights[key]);
     slider.addEventListener("input", () => {
-      view.settings.weights[key] = Number(slider.value);
+      weights[key] = Number(slider.value);
       readout.textContent = slider.value;
       view.offset = 0;
       renderList();
     });
     line.appendChild(slider);
 
-    const readout = el("span", "weight__value", String(view.settings.weights[key]));
+    const readout = el("span", "weight__value", String(weights[key]));
     line.appendChild(readout);
 
     /* What the slider is actually weighing, with the thresholds it ran under.
@@ -1001,8 +1490,11 @@ function renderWeights() {
 function renderStrikeChoice() {
   const wrap = $("#tuning-strike");
   /* Thin chains are normal -- the open-interest and spread filters are strict.
-     If nothing on the list has a second quoted put, there is no dial to offer. */
-  const swappable = everyName().filter(
+     If nothing on the list has a second quoted put, there is no dial to offer.
+     Neither is there on a list about owning the stock: swapping the strike
+     moves no score there, and offering a dial that does nothing is worse than
+     offering none. */
+  const swappable = view.profile !== "put" ? 0 : everyName("put").filter(
     (p) => ((p.trade || {}).alternatives || []).length).length;
   wrap.hidden = !swappable;
   if (!swappable) return;
@@ -1038,7 +1530,11 @@ function tunedNote() {
     return;
   }
 
-  const morning = (view.data.picks || []).map((p) => p.symbol);
+  /* This morning's ten *on this list*, which for the other two rankings is not
+     `picks` at all -- the file is written in sell-puts order. */
+  const morning = (view.profile === "put"
+    ? (view.data.picks || [])
+    : rerank(everyName(), view.profile).slice(0, pageSize())).map((p) => p.symbol);
   const now = tunedNames().slice(0, pageSize());
   const arrived = now.filter((p) => !morning.includes(p.symbol));
   const swapped = now.filter((p) => (p.trade || {}).swapped).length;
@@ -1052,7 +1548,7 @@ function tunedNote() {
   } else {
     text = `Your settings. ${cap(count(now.length - arrived.length))} of this ` +
       `morning's ten are still in the top ten; ` +
-      `${arrived.map((p) => p.symbol).join(", ")} moved up from the bench.`;
+      `${arrived.map((p) => p.symbol).join(", ")} moved up from below them.`;
   }
   if (swapped) {
     text += ` ${cap(count(swapped))} ${swapped === 1 ? "name shows" : "names show"} ` +
@@ -1196,18 +1692,26 @@ async function ask(question) {
 /* Openers built from today's own list. "What should I ask it" is the real
    barrier, and a name she can see on the page is a better prompt than an
    empty box. */
-function chatStarters(data) {
+function chatStarters() {
   const box = $("#chat-starters");
   box.textContent = "";
-  const top = (data.picks || [])[0];
-  const first = (data.bench || [])[0];
-  const repeat = (data.picks || []).find((p) => p.seen && p.seen.same_contract);
+  const ranked = pool();
+  const top = ranked[0];
+  const first = ranked[pageSize()];
+  const repeat = view.profile === "put" &&
+    (view.data.picks || []).find((p) => p.seen && p.seen.same_contract);
+
+  const closing = {
+    put: "Which of these is least likely to leave me holding the shares?",
+    buy: "Which of these has both the strongest chart and the strongest revenue?",
+    long: "Which of these would I still want to own in six months?",
+  }[view.profile];
 
   const asks = [
     top && `Why did ${top.symbol} rank first?`,
     first && `Why isn't ${first.symbol} in the ten?`,
     repeat && `${repeat.symbol} is back with the same put — has anything changed?`,
-    "Which of these is least likely to leave me holding the shares?",
+    closing,
   ].filter(Boolean).slice(0, 3);
 
   asks.forEach((q) => {
@@ -1224,7 +1728,7 @@ function wireChat(data) {
   if (!chat.key) return;
 
   $("#chat-section").hidden = false;
-  chatStarters(data);
+  chatStarters();
 
   const input = $("#chat-input");
   $("#chat-form").addEventListener("submit", (e) => {
@@ -1262,7 +1766,6 @@ function renderBrief(data) {
 function render(data) {
   view.data = data;
   const picks = data.picks || [];
-  const deeper = (data.bench || []).length;
 
   $("#masthead-sub").textContent =
     `${picks.length} names from ${data.universe_size} stocks with weekly options. ` +
@@ -1283,17 +1786,12 @@ function render(data) {
     "see where every point came from, what it missed, and what could not be " +
     "measured.";
 
-  $("#section-note").textContent = deeper
-    ? `Ranked by score. Every name here already clears the safety filters — ` +
-      `tradeable price, real volume, and a put that would actually fill. ` +
-      `${deeper} more cleared them too and are ranked below.`
-    : "Ranked by score. Every name here already clears the safety filters — " +
-      "tradeable price, real volume, and a put that would actually fill.";
-
   renderBrief(data);
   wireNumbersToggle();
   wireControls();
   wireTuning();
+  renderRankingChoice();
+  renderStrip();
   renderList();
   wireChat(data);
   renderReddit(data.reddit);
