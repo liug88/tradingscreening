@@ -118,16 +118,19 @@ hedging, and — given the subject — no implied promises about outcomes.
 - `history/` — every past daily list, accumulating from first run.
 - `cache/iv_history.json` — per-symbol implied volatility, accumulating daily. It
   becomes a true IV percentile after roughly three months.
-- `tools/backtest.py` and `site/method.html` — what the screen would have picked
-  each month since September 2024, and what happened over the 35 days after.
-  Half the model, an estimated strike, a surviving universe, and a rising tape.
+- `tools/backtest.py` and `site/method.html` — what each of the three rankings
+  would have picked each month since September 2022, and what happened over the
+  35 days after (180 for long). Part of the model — 49 points of 100 for the put,
+  70 for buy, 50 for long — an estimated strike, a surviving universe, and a
+  rising tape.
 
 **Absences future work must not fabricate:** there are no users besides her, no
 testimonials, no performance record, no win rate, and no evidence whatsoever
-that the screen picks winners. The backtest is the single narrow exception: 230
-reconstructed trades scoring half the model against an estimated strike,
-published with its four limits stated above its numbers. Nothing may round that
-up into a track record.
+that the screen picks winners. The backtest is the single narrow exception:
+1,360 reconstructed positions across three rankings, each scoring part of its
+model, published with its four limits stated above its numbers. Two of the three
+results are unflattering and the page says so. Nothing may round any of it up
+into a track record.
 
 ## Product Principles
 

@@ -531,13 +531,40 @@ def three_columns(rich: dict, tech_: dict, all_: dict, measures) -> None:
                              pct(all_[key], dp)))
 
 
+OWNED_MEASURES = (
+    ("average return", "avg_return", 1),
+    ("median return", "median_return", 1),
+    ("average drawdown", "avg_drawdown", 1),
+    ("return to today", "avg_return_since", 1),
+)
+
+
+def two_columns(ten: dict, all_: dict, measures) -> None:
+    """One ranking against the pool it drew from."""
+    print(f"\n{'':<22}{'the ten':>13}{'all gated in':>15}")
+    print("-" * 50)
+    for label, key, dp in measures:
+        print(f"{label:<22}{pct(ten[key], dp):>13}{pct(all_[key], dp):>15}")
+
+
 def report_window(result: dict, config: dict, spy: float | None) -> None:
-    """One as-of date in full: the enriched ten, then all three columns."""
+    """One as-of date in full: the ten this ranking picked, then the columns.
+
+    The put prints two rankings side by side, because `technical` is what the
+    tie-breaking is measured against. Buy and long have one ranking each and no
+    contract at all -- every row carries a strike because the pool is built once
+    for all three, but on a list about owning the stock that strike is the put's
+    estimate and being assigned on it means nothing. Those columns come out
+    rather than being printed and explained away.
+    """
+    profile = result.get("profile", "put")
+    variants = PROFILE_VARIANTS[profile]
+    lead = variants[-1]
+    selling = profile == "put"
     pool, picks = result["pool"], result["picks"]
-    days = horizon(config, result.get("profile", "put"))
-    rich = summarise(picks["enriched"])
-    tech_ = summarise(picks["technical"])
+    days = horizon(config, profile)
     all_ = summarise(pool)
+    tens = [(name, summarise(picks[name])) for name in variants]
 
     print()
     print("=" * 82)
@@ -545,26 +572,42 @@ def report_window(result: dict, config: dict, spy: float | None) -> None:
           f"{days}-day forward window)")
     print("=" * 82)
 
-    print(f"\n{'#':>2}  {'sym':<6} {'score':>5} {'hv%':>4}  {'spot':>8} {'strike':>8} "
-          f"{'below':>6}  {'return':>7} {'worst':>7} {'since':>8}  outcome")
+    head = f"\n{'#':>2}  {'sym':<6} {'score':>5} {'hv%':>4}  {'spot':>8} "
+    head += (f"{'strike':>8} {'below':>6}  " if selling else " ")
+    print(head + f"{'return':>7} {'worst':>7} {'since':>8}"
+          + ("  outcome" if selling else ""))
     print("-" * 82)
-    for r in picks["enriched"]:
+    for r in picks[lead]:
         hvp = "-" if r["hv_percentile"] is None else f"{r['hv_percentile']:.0f}"
-        print(f"{r['rank']:>2}  {r['symbol']:<6} {r['scores']['enriched']:>5.1f} {hvp:>4}  "
-              f"{r['spot']:>8.2f} {r['strike']:>8.2f} {pct(r['pct_below'], 1):>6}  "
-              f"{pct(r['stock_return']):>7} {pct(r['max_drawdown']):>7} "
-              f"{pct(r['return_since']):>8}  "
-              f"{'ASSIGNED' if r['assigned'] else 'kept premium'}")
+        line = (f"{r['rank']:>2}  {r['symbol']:<6} {r['scores'][lead]:>5.1f} {hvp:>4}  "
+                f"{r['spot']:>8.2f} ")
+        if selling:
+            line += f"{r['strike']:>8.2f} {pct(r['pct_below'], 1):>6}  "
+        else:
+            line += " "
+        line += (f"{pct(r['stock_return']):>7} {pct(r['max_drawdown']):>7} "
+                 f"{pct(r['return_since']):>8}")
+        if selling:
+            line += f"  {'ASSIGNED' if r['assigned'] else 'kept premium'}"
+        print(line)
 
-    three_columns(rich, tech_, all_,
-                  MEASURES + (("return to today", "avg_return_since", 1),))
-    if spy is not None:
-        print(COLUMNS.format(f"{BENCHMARK} over the window", pct(spy), "", ""))
+    if selling:
+        three_columns(dict(tens)["enriched"], dict(tens)["technical"], all_,
+                      MEASURES + (("return to today", "avg_return_since", 1),))
+        if spy is not None:
+            print(COLUMNS.format(f"{BENCHMARK} over the window", pct(spy), "", ""))
+    else:
+        two_columns(dict(tens)[lead], all_, OWNED_MEASURES)
+        if spy is not None:
+            print(f"{BENCHMARK + ' over the window':<22}{pct(spy):>13}")
 
-    overlap = len({r["symbol"] for r in picks["enriched"]}
-                  & {r["symbol"] for r in picks["technical"]})
-    print(f"\nthe two tens share {overlap} of 10 names")
-    for name, summary in (("enriched", rich), ("technical", tech_)):
+    if selling:
+        overlap = len({r["symbol"] for r in picks["enriched"]}
+                      & {r["symbol"] for r in picks["technical"]})
+        print(f"\nthe two tens share {overlap} of 10 names")
+    else:
+        print()
+    for name, summary in tens:
         worst = summary["worst"]
         print(f"worst of the {name:<10} {worst['symbol']:<6} {pct(worst['stock_return'])} "
               f"(low {pct(worst['max_drawdown'])})")
