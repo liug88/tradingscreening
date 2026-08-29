@@ -32,6 +32,8 @@ if (job.rows) {
       score: out.score,
       components: out.components,
       penalties: out.penalties,
+      /* Undefined on every ranking but the call, and JSON drops it there. */
+      contract: out.contract,
     };
   });
   answer.order = Score.rescoreAll(job.rows, job.config, profile).map((r) => r.symbol);

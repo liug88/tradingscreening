@@ -224,6 +224,11 @@ def as_internal(row: dict) -> dict:
     inner = dict(row)
     inner["tech"] = row.get("technicals") or {}
     inner["fund"] = row.get("fundamentals")
+    # And the call's contract, which the file keeps inside the ranking that
+    # scored it while score.py takes it at the top level, under the key the
+    # options stage set. The put's needs no rename: it is `trade` in both.
+    if isinstance(row.get("call"), dict):
+        inner["call"] = row["call"].get("contract")
     return inner
 
 
@@ -452,3 +457,132 @@ class TestTheOtherRankings:
         what a six-month horizon charges extra for."""
         assert (score.penalty_config(live_config, "long")["downtrend_confirmed"]
                 > live_config["penalties"]["downtrend_confirmed"])
+
+
+# Rows that span the two components only the call ranking scores. Neither
+# exists in the fixture: one reads a contract no published file carried until
+# now, and the other is the seller's premium reading turned around, which is
+# the whole reason the two lists can disagree about the same name.
+def contract(spread, oi, dte, expiry="2026-11-20"):
+    return {"id": f"{expiry}@45", "expiry": expiry, "dte": dte, "strike": 45.0,
+            "spread_pct": spread, "open_interest": oi, "cost": 8.0,
+            "breakeven": 53.0}
+
+
+CALL_CASES = [
+    # Rich premium on a deep, tight, long-dated contract: the best contract on
+    # the board and the worst vol to pay for it.
+    {"iv_hv": 1.60, "iv_percentile": 92, "call": contract(0.01, 5000, 130, "2026-12-18")},
+    # The mirror. Cheap vol, and a contract that is barely there.
+    {"iv_hv": 0.88, "iv_percentile": 4, "call": contract(0.11, 60, 62, "2026-10-30")},
+    {"iv_hv": 1.15, "iv_percentile": 48, "call": contract(0.05, 900, 90)},
+    # No implied-vol reading at all. Inverting a zero would hand a name nobody
+    # could measure full credit for being cheap, and this is the branch that
+    # has to refuse to.
+    {"iv_hv": None, "iv_percentile": None, "call": contract(0.03, 1200, 100)},
+    # Measured against realized vol but with no percentile yet -- the shape
+    # every file carried before three months of history existed.
+    {"iv_hv": 1.42, "iv_percentile": None, "call": contract(0.08, 300, 75)},
+    # Past the far end of all three contract ramps at once, and under the near
+    # end of the vol one.
+    {"iv_hv": 0.40, "iv_percentile": 0, "call": contract(0.20, 20000, 200)},
+]
+
+
+@pytest.fixture(scope="module")
+def called(published, live_config):
+    """Each call case scored by both implementations, on a real row's fields."""
+    rows = []
+    for i, case in enumerate(CALL_CASES):
+        row = json.loads(json.dumps(published["names"][i % len(published["names"])]))
+        row["symbol"] = f"{row['symbol']}-call-{i}"
+        row["iv_hv"] = case["iv_hv"]
+        row["iv_percentile"] = case["iv_percentile"]
+        # The published shape: the contract rides inside the ranking block.
+        row["call"] = {"contract": case["call"]}
+        rows.append(row)
+    answer = run_bridge({"config": live_config, "rows": rows, "profile": "call"})
+    mine = [score.score(as_internal(r), live_config, "call") for r in rows]
+    return list(zip(rows, mine, answer["scored"]))
+
+
+class TestTheCallRanking:
+    """The fourth list, and the first whose components read the contract out of
+    the ranking block rather than off the top of the row."""
+
+    def test_the_cases_actually_span_the_components(self, called):
+        for key in ("iv_cheapness", "contract_quality"):
+            raws = {p[1]["components"][key]["raw"] for p in called}
+            assert len(raws) >= 4, f"{key} barely moves across these cases"
+            assert min(raws) < 0.3, key
+            assert max(raws) > 0.8, key
+
+    def test_both_agree_on_every_component_and_the_total(self, called):
+        for row, mine, theirs in called:
+            assert theirs["score"] == mine["score"], row["symbol"]
+            for key, part in mine["components"].items():
+                assert theirs["components"][key] == part, (row["symbol"], key)
+
+    def test_the_weight_block_decides_which_components_are_scored(self, called, live_config):
+        expected = set(live_config["weights_call"])
+        for _, mine, theirs in called:
+            assert set(mine["components"]) == expected
+            assert set(theirs["components"]) == expected
+
+    def test_an_unmeasured_name_is_not_called_cheap(self, called):
+        """Not rewarded, not treated as a failure -- the 0.4 the fundamentals
+        use for the same reason. Both copies have to withhold it alike."""
+        _, mine, theirs = called[3]
+        assert mine["components"]["iv_cheapness"]["raw"] == 0.4
+        assert theirs["components"]["iv_cheapness"]["raw"] == 0.4
+
+    def test_cheap_is_exactly_the_sellers_reading_turned_around(self, called, live_config):
+        """The same two numbers read from the other side of the trade. If the
+        two ever measured vol differently, the toggle would hide the
+        disagreement it exists to show."""
+        row = called[0][0]
+        job = {"config": live_config, "rows": [row]}
+        rich = run_bridge({**job, "profile": "put"})["scored"][0]
+        cheap = run_bridge({**job, "profile": "call"})["scored"][0]
+        assert cheap["components"]["iv_cheapness"]["raw"] == pytest.approx(
+            1 - rich["components"]["premium_richness"]["raw"], abs=1e-4)
+
+    def test_a_second_turn_of_the_slider_scores_the_same_call(self, called, live_config):
+        """score.js on its own, not parity. The page swaps in the whole block
+        rescore returns, so a block that dropped the contract on the way out
+        would score the next nudge of a slider as a name with no call at all.
+        """
+        row = called[0][0]
+        once = run_bridge({"config": live_config, "rows": [row],
+                           "profile": "call"})["scored"][0]
+        twice = run_bridge({"config": live_config, "rows": [{**row, "call": once}],
+                            "profile": "call"})["scored"][0]
+        assert twice["components"]["contract_quality"] == once["components"]["contract_quality"]
+        assert twice["score"] == once["score"]
+
+    def test_each_ranking_reads_its_own_expiry(self, live_config):
+        """A print after the put expires but before the call does. The seller
+        is clear and the buyer is not, from one row, in both copies."""
+        row = as_published({
+            "symbol": "EARN",
+            "tech": {"close": 50.0, "change_5d": 0.01},
+            "fund": {"next_earnings": "2026-11-10"},
+            "trade": {"expiry": "2026-10-16", "strike": 45.0},
+            "call": {"contract": {"expiry": "2026-11-20", "strike": 45.0}},
+        })
+        job = {"config": live_config, "penalty_rows": [row]}
+        for profile, charged in (("put", False), ("call", True)):
+            merged = score.penalty_config(live_config, profile)
+            mine = score.penalties(as_internal(row), merged, profile)
+            theirs = run_bridge({**job, "penalty_profile": profile})["penalties"][0]
+            assert [p["reason"] for p in mine] == [p["reason"] for p in theirs]
+            assert bool(mine) is charged, profile
+            if charged:
+                assert "2026-11-20 expiry" in mine[0]["reason"]
+
+    def test_the_call_pays_more_for_the_print_than_the_put(self, live_config):
+        """A seller who is assigned owns a stock she was willing to own. A call
+        is a wasting asset, and the gap goes against it with the clock already
+        running."""
+        assert (score.penalty_config(live_config, "call")["earnings_before_expiry"]
+                > live_config["penalties"]["earnings_before_expiry"])

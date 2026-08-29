@@ -206,6 +206,48 @@ function tradeQuality(row, cfg) {
 
 /* ---- what the other rankings ask ------------------------------------- */
 
+/* The contract a ranking scored, under the name the published file gives it.
+   The put's sits at the top level, where every file has carried it; the call's
+   rides inside its own ranking block, beside the score that read it. The other
+   two rankings score a company and have none. */
+function contractOf(row, profile) {
+  if (profile === "put") return row.trade;
+  if (profile === "call") return (row.call || {}).contract;
+  return null;
+}
+
+/* premium_richness, read from the other side of the trade.
+
+   Its exact inverse, on the same two numbers, and that is the point rather
+   than a shortcut: the name whose premium is richest to sell is the most
+   expensive to buy. Measuring cheapness some other way would let the two
+   quietly agree, and hiding that disagreement would cost her the one thing the
+   toggle is for.
+
+   Unknown is where they part. With no implied-vol reading at all the ramp
+   returns zero, and inverting zero would hand a name nobody could measure full
+   credit for being cheap. So an unmeasured name scores the same 0.4 the
+   fundamentals use: not rewarded, not treated as a failure. */
+function ivCheapness(row, cfg) {
+  if (nil(row.iv_hv) && nil(row.iv_percentile)) return 0.4;
+  return 1 - premiumRichness(row, cfg);
+}
+
+/* Can she get out of this call at a fair price, and does it have time?
+
+   Not tradeQuality under another name. That one is mostly annualised yield,
+   which is a seller's whole reason for being there. A buyer has no yield --
+   what she needs is a spread she can afford to cross twice, someone on the
+   other side of it, and enough time for the thesis to come true. Weighted
+   toward the spread because it is the one she pays directly, in cash, twice. */
+function contractQuality(row, cfg) {
+  const call = contractOf(row, "call");
+  if (!call) return 0;
+  return 0.45 * ramp(call.spread_pct, cfg.call_spread_wide, cfg.call_spread_tight)
+       + 0.30 * ramp(call.open_interest, 0, cfg.call_oi_deep)
+       + 0.25 * ramp(call.dte, 0, cfg.call_dte_ample);
+}
+
 /* The chart she asked for by name, as a number: above the 200-day (30%), the
    50 over the 200 (25%), the averages in order (25%), and how young the cross
    is (20%). Four facts, not one fact four times -- price can be over the
@@ -284,6 +326,8 @@ const COMPONENT_FNS = {
   revenue_expanding: revenueExpanding,
   room_to_run: roomToRun,
   entry_timing: entryTiming,
+  iv_cheapness: ivCheapness,
+  contract_quality: contractQuality,
 };
 
 /* ---- penalties ------------------------------------------------------- */
@@ -295,18 +339,20 @@ function penalties(row, cfg, profile = "put") {
   const found = [];
   const tech = row.technicals || {};
   const fund = row.fundamentals;
-  const trade = row.trade;
+  const contract = contractOf(row, profile);
 
   /* An expiry is what makes an earnings date expensive. An owner with no
-     contract to lose simply holds through the print, so this charge is the
-     seller's alone -- it is a flag on the other rows, not a deduction.
+     contract to lose simply holds through the print, so this charge belongs to
+     the two rankings that have one -- it is a flag on the other rows, not a
+     deduction. Each reads its own expiry, and the call's is months later than
+     the put's, so one row can be clear on one list and charged on the other.
 
      Both are YYYY-MM-DD, which sorts correctly as text -- no parsing, and no
      timezone to get wrong. */
-  if (profile === "put" && trade && fund && fund.next_earnings && trade.expiry
-      && fund.next_earnings <= trade.expiry) {
+  if (contract && fund && fund.next_earnings && contract.expiry
+      && fund.next_earnings <= contract.expiry) {
     found.push({
-      reason: `Reports earnings ${fund.next_earnings}, before the ${trade.expiry} expiry`,
+      reason: `Reports earnings ${fund.next_earnings}, before the ${contract.expiry} expiry`,
       points: cfg.earnings_before_expiry,
     });
   }
@@ -437,13 +483,22 @@ function rescore(row, settings, profile = "put") {
   const gross = fsum(Object.values(components).map((c) => c.points));
   const total = Math.max(0, gross - fsum(applied.map((p) => p.points)));
 
-  return {
+  const out = {
     score: round(total, 1),
     score_before_penalties: round(gross, 1),
     components,
     penalties: applied,
     badges: row.badges,  // the checklist is a fact about the stock, not a setting
   };
+  /* Shaped like the block it read, because the page swaps this one in whole.
+     The call's contract lives inside its ranking block, so leaving it out here
+     would drop it on the first slider move -- and the second move would then
+     score a name with no call at all. The put's sits at the top level and
+     survives on its own. */
+  if (profile === "call" && row.call && row.call.contract) {
+    out.contract = row.call.contract;
+  }
+  return out;
 }
 
 /* The whole list under one set of settings, re-ranked.
