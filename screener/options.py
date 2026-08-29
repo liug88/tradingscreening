@@ -92,6 +92,10 @@ class Chain:
     symbol: str
     spot: float
     puts: list[Contract]
+    # The same download, kept rather than discarded. Selling a put and buying a
+    # call are the same directional bet with different payoffs, and the bytes
+    # for both arrived in one response.
+    calls: list[Contract]
 
 
 def parse_occ(symbol: str) -> tuple[date, str, float] | None:
@@ -106,7 +110,7 @@ def parse_occ(symbol: str) -> tuple[date, str, float] | None:
 
 
 def fetch_chain(symbol: str, timeout: int = 30, max_retries: int = 4) -> Chain | None:
-    """Download one symbol's put chain from CBOE.
+    """Download one symbol's option chain from CBOE.
 
     Retries on throttling rather than giving up, because the caller can't tell
     the difference: a swallowed 429 looks exactly like "this stock has no
@@ -142,19 +146,19 @@ def fetch_chain(symbol: str, timeout: int = 30, max_retries: int = 4) -> Chain |
     if spot <= 0:
         return None
 
-    puts: list[Contract] = []
+    sides: dict[str, list[Contract]] = {"P": [], "C": []}
     for raw in data.get("options", []):
         parsed = parse_occ(raw.get("option", ""))
         if parsed is None:
             continue
         expiry, right, strike = parsed
-        if right != "P":
+        if right not in sides:
             continue
         iv = float(raw.get("iv") or 0.0)
         delta = float(raw.get("delta") or 0.0)
         if iv <= 0 or delta == 0:
             continue  # CBOE zeroes these out on contracts with no real market
-        puts.append(
+        sides[right].append(
             Contract(
                 expiry=expiry,
                 strike=strike,
@@ -167,7 +171,13 @@ def fetch_chain(symbol: str, timeout: int = 30, max_retries: int = 4) -> Chain |
             )
         )
 
-    return Chain(symbol=symbol, spot=spot, puts=puts) if puts else None
+    puts, calls = sides["P"], sides["C"]
+    # A name with calls and no sellable put is still a name -- the buy and hold
+    # rankings want it, and so does the call ranking. Dropping the whole chain
+    # here because one side came back empty would take all three with it.
+    if not puts and not calls:
+        return None
+    return Chain(symbol=symbol, spot=spot, puts=puts, calls=calls)
 
 
 def atm_iv(chain: Chain, as_of: date, min_dte: int = 20, max_dte: int = 60) -> float | None:
@@ -186,26 +196,81 @@ def atm_iv(chain: Chain, as_of: date, min_dte: int = 20, max_dte: int = 60) -> f
     return nearest.iv
 
 
-def _fillable(puts: list[Contract], spot: float, opt: dict) -> list[Contract]:
-    """The contracts in one expiry that would actually fill at a sane price."""
+def _fillable(
+    contracts: list[Contract], spot: float, opt: dict, side: str = "put"
+) -> list[Contract]:
+    """The contracts in one expiry that would actually fill at a sane price.
+
+    Both sides end up under spot, for opposite reasons, so the moneyness rule
+    is written per side rather than shared as a coincidence: the put she sells
+    has to be out of the money, and the call she buys at 0.65 delta is in it by
+    construction. The call also takes the strike sitting exactly at spot, which
+    is the most liquid contract on the board and no worse for being borderline.
+    """
     return [
-        put
-        for put in puts
-        if opt["min_delta"] <= abs(put.delta) <= opt["max_delta"]
-        and put.bid >= opt["min_bid"]
-        and put.open_interest >= opt["min_open_interest"]
-        and put.spread_pct is not None
-        and put.spread_pct <= opt["max_spread_pct"]
-        and put.strike < spot  # out of the money only
+        c
+        for c in contracts
+        if opt["min_delta"] <= abs(c.delta) <= opt["max_delta"]
+        and c.bid >= opt["min_bid"]
+        and c.open_interest >= opt["min_open_interest"]
+        and c.spread_pct is not None
+        and c.spread_pct <= opt["max_spread_pct"]
+        and (c.strike < spot if side == "put" else c.strike <= spot)
     ]
 
 
-def _best_in_expiry(puts: list[Contract], spot: float, opt: dict) -> Contract | None:
+def _best_in_expiry(
+    contracts: list[Contract], spot: float, opt: dict, side: str = "put"
+) -> Contract | None:
     """The strike closest to the target delta, among contracts that would fill."""
-    tradeable = _fillable(puts, spot, opt)
+    tradeable = _fillable(contracts, spot, opt, side)
     if not tradeable:
         return None
-    return min(tradeable, key=lambda p: abs(abs(p.delta) - opt["target_delta"]))
+    return min(tradeable, key=lambda c: abs(abs(c.delta) - opt["target_delta"]))
+
+
+def _describe_call(call: Contract, spot: float, as_of: date) -> dict:
+    """One call as a buyer reads it: what it costs, and what has to happen.
+
+    Not _describe with the signs flipped. A seller asks "what do I keep, and
+    where does it start to hurt"; a buyer asks "what do I pay, and how far does
+    the stock have to move". Different questions, so different fields.
+
+    `time_value_share` is the whole argument for a 0.65 delta over a cheap
+    out-of-the-money call: it is the fraction of the price that decays to
+    nothing if the stock stands still, and it is what she is really choosing
+    when she picks a strike.
+    """
+    dte = (call.expiry - as_of).days
+    cost = call.mid
+    intrinsic = max(0.0, spot - call.strike)
+    breakeven = call.strike + cost
+    return {
+        "id": f"{call.expiry.isoformat()}@{call.strike:g}",
+        "expiry": call.expiry.isoformat(),
+        "dte": dte,
+        "strike": call.strike,
+        "bid": call.bid,
+        "ask": call.ask,
+        "cost": round(cost, 3),
+        "spread_pct": round(call.spread_pct, 4),
+        "delta": round(abs(call.delta), 4),
+        "iv": round(call.iv, 4),
+        "open_interest": call.open_interest,
+        "volume": call.volume,
+        # One contract is 100 shares, so this is the whole cheque -- and the
+        # number that says what leverage actually costs in cash.
+        "outlay": round(cost * 100.0, 2),
+        "intrinsic": round(intrinsic, 3),
+        "time_value": round(cost - intrinsic, 3),
+        "time_value_share": round((cost - intrinsic) / cost, 4) if cost > 0 else None,
+        "breakeven": round(breakeven, 2),
+        "pct_to_breakeven": round((breakeven - spot) / spot, 4),
+        # What 100 shares would have cost instead. Not a suggestion to buy
+        # either one -- it is the denominator that makes the outlay mean
+        # something.
+        "shares_equivalent": round(spot * 100.0, 2),
+    }
 
 
 def _describe(put: Contract, spot: float, as_of: date) -> dict:
@@ -312,3 +377,38 @@ def select_put(chain: Chain, config: dict, as_of: date | None = None) -> dict | 
     every = [put for puts in by_expiry.values() for put in puts]
     trade["alternatives"] = _ladder(every, chain.spot, opt, as_of, best)
     return trade
+
+
+def select_call(chain: Chain, config: dict, as_of: date | None = None) -> dict | None:
+    """Pick the call to suggest, or None if nothing in this chain is buyable.
+
+    The same shape as select_put over a different set of numbers, out of
+    `config["call"]`: further out in time, because a thesis about a chart needs
+    longer than five weeks to come true, and deep enough in the money that most
+    of what she pays is intrinsic value rather than time. The cheap
+    out-of-the-money call is the one that expires worthless, and it is the one
+    this deliberately does not pick.
+
+    No ladder. The put has alternatives because the strike is the dial that
+    decides assignment, which is the thing she is trying to avoid. A call buyer
+    has no equivalent question: there the strike sets leverage, and offering
+    her more leverage is not a safety control.
+    """
+    as_of = as_of or date.today()
+    opt = config["call"]
+
+    by_expiry: dict[date, list[Contract]] = {}
+    for call in chain.calls:
+        dte = (call.expiry - as_of).days
+        if opt["min_dte"] <= dte <= opt["max_dte"]:
+            by_expiry.setdefault(call.expiry, []).append(call)
+
+    best = None
+    for expiry in sorted(by_expiry, key=lambda e: abs((e - as_of).days - opt["target_dte"])):
+        best = _best_in_expiry(by_expiry[expiry], chain.spot, opt, "call")
+        if best is not None:
+            break
+    if best is None:
+        return None
+
+    return _describe_call(best, chain.spot, as_of)

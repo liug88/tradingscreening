@@ -40,6 +40,40 @@ option:
   min_open_interest: 100
   max_spread_pct: 0.15     # (ask - bid) / mid -- wider than this won't fill well
 
+# Which call contract to suggest, when she wants the upside instead of the
+# income. Every number here was measured against eight live chains on
+# 2026-08-28 rather than guessed, because a long-dated in-the-money board looks
+# nothing like the 35-day put board the block above was tuned on.
+#
+#   spreads      2-8% on the liquid names, 15-58% on the thin ones
+#   open int.    12 to 13,089 on the same six strikes -- the range is the point
+#   time value   44% to 76% of the price at 0.65 delta, which is NOT small
+#
+# That last row matters and the page says so. The plan asked for 0.65 delta on
+# the grounds that decay would be a small share of the position; on this
+# universe it is not, because the screen deliberately selects high implied
+# volatility and high IV is exactly what a buyer overpays for. The delta stays
+# where it was -- deeper would cost the leverage the list is for -- and
+# `time_value_share` is published on every row instead, so what she is paying
+# for time is a figure on the screen rather than an assumption in a config file.
+call:
+  target_dte: 90           # a chart thesis needs longer than five weeks
+  min_dte: 60
+  max_dte: 135
+  target_delta: 0.65       # in the money; the cheap OTM call is the one that expires worthless
+  min_delta: 0.50
+  max_delta: 0.80
+  min_bid: 0.50
+  # Looser than the put's 100 because the long-dated board is genuinely
+  # thinner -- ASML's best contract carried 52 -- and the spread filter below
+  # is doing the real liquidity work.
+  min_open_interest: 50
+  # Tighter than the put's 0.15, on purpose. A seller crosses the spread once
+  # and lets the contract expire; a buyer crosses it going in and again coming
+  # out. Measured, this keeps every liquid name and drops APLD (15-58%) and
+  # AAL's two thinnest strikes.
+  max_spread_pct: 0.12
+
 # How many names survive each narrowing stage.
 funnel:
   after_technicals: 150
