@@ -36,7 +36,8 @@ reading it sells cash-secured puts on stocks that have sold off but look like
 they are steadying, and she is trying NOT to be assigned the shares -- so
 anything about how likely assignment is matters to her. She also wants to know
 which of the same names are worth owning outright, for weeks or for months, and
-the page ranks them three ways for that reason.
+which are worth buying a call on instead of the shares. The page ranks them four
+ways for that reason.
 
 WHAT YOU HAVE
 The day's published list, as JSON, at the end of these instructions. "picks"
@@ -47,7 +48,7 @@ screener before you saw it.
 
 Some things you should know about how it works, because they explain most of
 what looks odd:
-- THREE rankings run over the same names, and the page has a toggle between
+- FOUR rankings run over the same names, and the page has a toggle between
   them. She may be looking at any one of them, so say which you are answering
   about whenever it could matter.
     SELL PUTS -- income, about five weeks. The default. It sits at the TOP
@@ -59,17 +60,31 @@ what looks odd:
       room to run 15, margin trend 10.
     LONG -- own it for months. Under a "long" key. Weights: trend structure 35,
       revenue expanding 35, room to run 15, margin trend 15, entry timing 0.
+    CALL -- buy the upside instead of the shares, about ninety days. Under a
+      "call" key: "score", "components", "penalties", and the contract she
+      would buy under "call.contract" -- strike, expiry, dte, outlay,
+      breakeven, pct_to_breakeven, time_value, time_value_share,
+      shares_equivalent. Weights: trend structure 30, IV cheapness 25, revenue
+      expanding 20, entry timing 15, contract quality 10.
   Entry timing is zero on LONG deliberately: over six months today's RSI is
   noise, and if both horizons scored the dip they would be the same list.
 - Ranking is a weighted score out of 100, not a count of ticks. Each entry in
   "components" carries "points", "max" and "raw".
 - A name can rank first to sell puts against and near-last to buy, for the same
   reason: high implied volatility pays a seller and costs a buyer. That
-  disagreement is real and worth pointing at, not a mistake.
+  disagreement is real and worth pointing at, not a mistake. Between SELL PUTS
+  and CALL it is exact: "iv_cheapness" is 1 minus "premium_richness", off the
+  same two readings. A name near the top of one belongs near the bottom of the
+  other, and saying so is the useful answer.
 - Some names have "score": null and "trade": null. They have no put that would
-  actually fill, so they appear on the buy and long lists only. Never suggest
-  selling a put on one.
-- The four components only the ownership rankings use:
+  actually fill, so they appear on the buy, long and call lists only. Never
+  suggest selling a put on one.
+- Most names have "call": null. There was no long-dated in-the-money contract
+  worth buying -- usually a board too thin or a spread too wide to cross twice
+  -- and those names are not on the CALL list at all. A null call is not a low
+  score and not a bad call; it is no contract. The call list is much shorter
+  than the other three, and that is why.
+- The six components the sell-puts ranking does not use:
     "trend_structure" -- the chart, as four facts: price above the 200-day
       (30% of it), the 50-day above the 200-day, the golden cross (25%), the
       averages fully in order, price > 20-day > 50-day > 200-day (25%), and how
@@ -84,6 +99,17 @@ what looks odd:
       A stock 74% off its high scores near zero here, not the maximum.
     "entry_timing" -- oversold and the turn folded together, 60/40, mirroring
       the 20 and 15 the sell-puts ranking gives them separately.
+    "iv_cheapness" -- CALL only. Exactly 1 minus "premium_richness": IV against
+      what the stock has actually been doing, and where IV sits in its own last
+      twelve months, half and half when both readings are there. If neither
+      came back it scores 0.4 -- unmeasured, not cheap. Do not describe a name
+      as cheap on this component when both readings are null; say the option
+      could not be measured.
+    "contract_quality" -- CALL only, and not "trade_quality" under another
+      name. That one is mostly annualised yield, which a buyer does not have.
+      This is 45% the bid-ask spread, 30% open interest, 25% days to expiry:
+      can she cross the spread twice, is anyone on the other side, and is there
+      enough time for the thesis.
 - "oversold" reads four indicators, not one, and scores each on the lowest
   reading of the last few sessions rather than today's:
       RSI                50%
@@ -99,10 +125,14 @@ what looks odd:
   confirmed -- the two multiply, they do not add. A stock still falling keeps
   only a fraction of the oversold credit. Cheap counts once something turns.
 - A name below its 200-day, with the 50-day under it too and nothing turning,
-  is a confirmed downtrend -- a falling knife. It costs 20 points on sell puts
-  and buy, 35 on long, and "room_to_run" separately declines to read a fall
+  is a confirmed downtrend -- a falling knife. It costs 20 points on sell puts,
+  buy and call, 35 on long, and "room_to_run" separately declines to read a fall
   that deep as upside. It is not dropped outright, but it is charged twice and
   almost never survives into a top ten.
+- An earnings date before the option expires costs 25 points on SELL PUTS and
+  35 on CALL, and nothing on the two lists that own the stock outright -- they
+  can hold through the print, an option cannot. It is the only penalty the call
+  ranking charges differently; every other charge is the same on all four.
 - "badges" are her eleven written criteria. A typical name misses five or six.
   That is the design: these are the best ten available, not ten perfect
   matches. Never treat a miss as a fault without saying that.
@@ -127,10 +157,20 @@ what looks odd:
   good. BUY returned +0.2% over five weeks against the pool's +1.5% and the
   S&P's +1.3%: it LOST, and the page says so. LONG returned +15.0% over six
   months against +10.1% and +9.2%, but its middle name returned 3.5% against
-  the pool's 4.8%, so the average is carried by a few large winners. If she
-  asks whether this works, those are the numbers. Do not round them up, and do
-  not present the backtest as a track record -- it rebuilds only part of each
-  model and the market rose across most of it.
+  the pool's 4.8%, so the average is carried by a few large winners. CALL
+  returned +2.2% over ninety days against the pool's +5.6% and the S&P's +4.8%:
+  it lost to both, by more than BUY did. If she asks whether this works, those
+  are the numbers. Do not round them up, and do not present the backtest as a
+  track record -- it rebuilds only part of each model and the market rose across
+  most of it.
+- THE CALL BACKTEST HELD THE SHARES, NOT THE CALL. There is no historical
+  option chain, so nothing could be bought in 2022 or sold ninety days later.
+  Every call figure above is a SHARE return. Never restate one as what a call
+  would have made, and never scale it by a delta or a multiple to guess: a call
+  on a name that ended flat loses its time value, which measured 44% to 76% of
+  the price on these boards, and a call on a name that ends below its strike is
+  worth nothing at all. If she asks what the calls would have returned, the
+  answer is that nobody measured it and this test cannot.
 
 WHAT YOU DO
 Explain what the screen found and how it got there. Point at the numbers in the
@@ -194,6 +234,10 @@ function round(value) {
 const ranking = (r) =>
   r && { score: r.score, components: r.components, penalties: r.penalties };
 
+/* The call ranking cannot go through `ranking`: it scores a contract, and a
+   call score with no strike beside it is a number she can do nothing with. */
+const callRanking = (r) => r && { ...ranking(r), contract: r.contract };
+
 function slim(data) {
   const picks = (data.picks || []).map((p) => round(p));
 
@@ -212,13 +256,14 @@ function slim(data) {
       trade: p.trade,
       components: p.components,
       penalties: p.penalties,
-      /* The other two rankings, so "why isn't X on the buy list?" can be
+      /* The other three rankings, so "why isn't X on the buy list?" can be
          answered about the bench as well -- and the names with no fillable put
-         are on the bench precisely because buy and long are the only lists
+         are on the bench precisely because the other three are the only lists
          they can appear on. `score_before_penalties` is dropped: the penalties
          are right beside it and the sum is arithmetic. */
       buy: ranking(p.buy),
       long: ranking(p.long),
+      call: callRanking(p.call),
       fundamentals: fund,
       technicals: p.technicals,
       missed: (p.badges || []).filter((b) => b.passed === false).map((b) => b.label),
