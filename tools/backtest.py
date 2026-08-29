@@ -30,20 +30,31 @@ run sales_growth and margin_trend (25 points), the buy run revenue_expanding
 and margin_trend (30), and the long run those same two at the weights that make
 them half its model (50).
 
-THREE RUNS, NOT ONE
--------------------
+FOUR RUNS, NOT ONE
+------------------
 `--profile put` is the original and the default: nothing about it moved. The
-other two rank the same pool by what she would want to own.
+other three rank the same pool by what she would want to own or to buy.
 
                     reconstructs        held      what is missing
   put               49 of 100         35 days     option quotes, fundamentals
   buy               70 of 100         35 days     revenue, margins
   long              50 of 100        180 days     revenue, margins
+  call              57.5 of 100        90 days     the contract, revenue, half the vol
 
 The long number is the one to keep in view. Half of that ranking is revenue and
 margins, and this run cannot see either, so it measures the chart half alone --
 which is the half her mother asked about, and still only half. Read it as "did
 the chart pick better names than the pool", never as "the long list returns X%".
+
+THE CALL RUN HOLDS THE SHARES
+-----------------------------
+It has to: the contract cannot be priced at a past date, going in or coming
+out. So the call run measures the ranking and not the trade -- whether these
+names rose more than the pool over 90 days, with none of the leverage, none of
+the decay, and none of the total loss that an option adds on top. A call on a
+name that rose 5% does not return 5%, in either direction. The one number to
+read here is the gap to the pool; anything read as the return of a call is
+wrong by construction, and site/method.html says so where she can see it.
 
 TWO VARIANTS, BECAUSE THE FIRST ONE TIED
 ----------------------------------------
@@ -149,6 +160,19 @@ def _premium_proxy(row: dict, cfg: dict) -> float:
     return 0.0 if percentile is None else percentile / 100.0
 
 
+def _cheapness_proxy(row: dict, cfg: dict) -> float:
+    """The same reading, from the buyer's side, at the same half weight.
+
+    score._iv_cheapness inverts premium richness, so this inverts the proxy for
+    it -- and keeps the guard that goes with it. An unknown percentile scores
+    zero as a richness, and inverting that would hand every name with too
+    little history full credit for being cheap. 0.4 is what the shipped
+    component returns when nothing about vol can be measured.
+    """
+    percentile = row.get("hv_percentile")
+    return 0.4 if percentile is None else 1.0 - _premium_proxy(row, cfg)
+
+
 def _strike_proxy(row: dict, cfg: dict) -> float:
     """The support half of strike_safety, which needs no option premium."""
     support = row["tech"].get("support_60d")
@@ -189,11 +213,21 @@ VARIANTS = {
         ("trend_structure", score._COMPONENTS["trend_structure"], 1.0),
         ("room_to_run", score._COMPONENTS["room_to_run"], 1.0),
     )),
+    # The call ranking, less the two things a past date cannot show: the
+    # contract it is named for, and the revenue. What is left is the chart, the
+    # timing, and half the vol reading -- and that half is the buyer's side of
+    # the same percentile the put run scores.
+    "call": ("call", (
+        ("trend_structure", score._COMPONENTS["trend_structure"], 1.0),
+        ("entry_timing", score._COMPONENTS["entry_timing"], 1.0),
+        ("iv_cheapness", _cheapness_proxy, 0.5),
+    )),
 }
 
 # Which variants a run reports side by side. The put run keeps both of its own,
 # because the whole point of that pair is the comparison.
-PROFILE_VARIANTS = {"put": ("technical", "enriched"), "buy": ("buy",), "long": ("long",)}
+PROFILE_VARIANTS = {"put": ("technical", "enriched"), "buy": ("buy",),
+                    "long": ("long",), "call": ("call",)}
 
 
 def variant_score(row: dict, config: dict, variant: str) -> float:
@@ -763,7 +797,7 @@ def report_knives(results: list[dict], pool: list[dict], ten: dict,
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     parser.add_argument("--profile", choices=sorted(PROFILE_VARIANTS), default="put",
-                        help="which ranking to test: put (default), buy or long")
+                        help="which ranking to test: put (default), buy, long or call")
     parser.add_argument("--months", type=int, nargs="+", default=[3, 6, 12],
                         help="how many months back to place each entry")
     parser.add_argument("--monthly", action="store_true",

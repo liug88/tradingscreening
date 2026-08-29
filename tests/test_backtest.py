@@ -89,6 +89,39 @@ class TestVariants:
         assert b.recoverable_points(config, "enriched") == pytest.approx(49)
 
 
+class TestTheCallVariant:
+    """The fourth run, and the one with the most missing from it: half its vol
+    reading, all of its revenue, and the contract it is named for."""
+
+    def test_it_reconstructs_the_chart_the_timing_and_half_the_vol(self, config):
+        assert b.recoverable_points(config, "call") == pytest.approx(57.5)
+
+    def test_it_sees_neither_the_contract_nor_the_revenue(self, config):
+        """Option quotes are unrecoverable and today's revenue would be
+        look-ahead, so both are dropped rather than faked -- which is 30 of the
+        100 points this ranking actually ships with."""
+        _, parts = b.VARIANTS["call"]
+        named = {name for name, _, _ in parts}
+        assert "contract_quality" not in named
+        assert "revenue_expanding" not in named
+
+    def test_cheapness_is_the_premium_proxy_turned_around(self, config):
+        """The same reading from the other side of the trade, here as much as
+        in the shipped model -- otherwise the backtest would be measuring a
+        ranking the app does not have."""
+        row = {"hv_percentile": 80.0, "tech": {}}
+        assert (b._cheapness_proxy(row, config["scoring"])
+                == pytest.approx(1 - b._premium_proxy(row, config["scoring"])))
+
+    def test_an_unmeasured_name_is_not_called_cheap(self, config):
+        """The premium proxy reads an unknown percentile as zero, and inverting
+        that would hand every name with too little history full credit for
+        being cheap. Withheld the same way the shipped component withholds it.
+        """
+        assert b._cheapness_proxy({"hv_percentile": None, "tech": {}},
+                                  config["scoring"]) == 0.4
+
+
 class TestTopN:
     def test_ranks_on_the_named_variant(self):
         pool = [position("LOW", buy=10.0), position("HIGH", buy=90.0)]

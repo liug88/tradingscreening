@@ -121,6 +121,16 @@ weights_long:
 # trade, and it is why a name can top the sell-puts list and sit near the
 # bottom of this one -- high implied volatility pays a seller and costs a
 # buyer. Watching a name move when she flips the toggle is the point.
+#
+# It stays at 25 although the backtest says it dragged: dropping the term
+# lifted the 90-day average from +2.2% to +4.2%. Two reasons that is not an
+# answer. The test cannot see this component -- there is no free history of
+# implied volatility, so it rebuilds half of it out of realised volatility and
+# leaves the rest out, which means what it ablated was the proxy. And no
+# variant beat simply owning all 62 names (+5.6%), so what this window indicts
+# is the ranking, not one term inside it. Cutting the one term that makes this
+# list disagree with the sell-puts list, on a measurement that could not weigh
+# it, would buy a better number and lose the reason the list exists.
 weights_call:
   trend_structure: 30
   iv_cheapness: 25
@@ -223,3 +233,8 @@ catalyst:
 horizon_days:
   buy: 35
   long: 180
+  # The call's own life, the way the put's window is. Written here rather than
+  # read from `call.target_dte` because the backtest holds the shares, not the
+  # contract -- see method.html. If the two ever part, this is the one the
+  # measurement used.
+  call: 90
