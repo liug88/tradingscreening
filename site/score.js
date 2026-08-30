@@ -153,6 +153,19 @@ function inDowntrend(row, cfg) {
   return bounce(row) <= cfg.downtrend_bounce_max;
 }
 
+/* Fallen far enough that a bounce does not redeem it. inDowntrend asks whether
+   the fall has stopped, which is the wrong question at this depth: a name three
+   quarters below its high has repaired nothing by closing above its 9-day. This
+   reads the hole rather than the turn. The cross is still required -- a deep
+   fall with the 50-day back over the 200-day is the recovery, not the illness. */
+function collapsed(row, cfg) {
+  if (nil(cfg.collapsed_below_high)) return false;  /* published before the rule */
+  const tech = row.technicals || {};
+  if (tech.golden_cross !== false) return false;
+  const offHigh = tech.pct_below_52w_high;
+  return !nil(offHigh) && offHigh > cfg.collapsed_below_high;
+}
+
 /* Is the premium rich relative to how much the stock actually moves? */
 function premiumRichness(row, cfg) {
   const ratioPart = ramp(row.iv_hv, 0.90, cfg.iv_hv_rich);
@@ -396,6 +409,12 @@ function penalties(row, cfg, profile = "put") {
     found.push({
       reason: `Still in a confirmed downtrend${detail} — 50-day under the 200-day, nothing turning yet`,
       points: cfg.downtrend_confirmed,
+    });
+  } else if (collapsed(row, cfg)) {
+    found.push({
+      reason: `${asPct(tech.pct_below_52w_high)} below its 52-week high with the `
+        + `50-day under the 200-day — the fall reshaped the chart`,
+      points: cfg.collapsed_from_high,
     });
   } else if (sittingLow && !tech.above_ema200) {
     found.push({

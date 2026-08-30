@@ -730,3 +730,84 @@ class TestTheCallRanking:
         for other in ("put", "buy", "long"):
             named = score.score(make_row(), config, profile=other)["components"]
             assert "iv_cheapness" not in named and "contract_quality" not in named
+
+
+def collapsed(**overrides):
+    """A chart that fell a long way and has not repaired: the 50-day under the
+    200-day, and a hole too deep for one green week to fill."""
+    base = {"above_ema200": False, "golden_cross": False, "full_stack": False,
+            "golden_cross_days_ago": None, "pct_below_52w_high": 0.72,
+            "pct_above_52w_low": 0.30}
+    return trending(**{**base, **overrides})
+
+
+class TestACollapsedChart:
+    """RBLX led the sell-puts list 72% below its high with the 50-day under the
+    200-day and nothing charged against it. `in_downtrend` reads the turn, and
+    its bounce was 0.30 -- one green week on a chart that had lost three
+    quarters of its value. This rule reads the hole instead of the turn.
+    """
+
+    def test_a_deep_fall_with_a_broken_cross_is_charged(self, config):
+        reasons = score.penalties(collapsed(), config["penalties"])
+        assert [r for r in reasons if "reshaped" in r["reason"]]
+
+    def test_the_reason_names_the_depth(self, config):
+        reasons = score.penalties(collapsed(), config["penalties"])
+        assert any(r["reason"].startswith("72% below its 52-week high") for r in reasons)
+
+    def test_an_intact_cross_is_not_a_collapse(self, config):
+        """Far down and repairing is the setup this list is built to find. The
+        cross is the whole difference between that and a broken chart."""
+        assert score.penalties(collapsed(above_ema200=True, golden_cross=True),
+                               config["penalties"]) == []
+
+    def test_a_shallow_fall_is_not_a_collapse(self, config):
+        cfg = config["penalties"]
+        shallow = collapsed(pct_below_52w_high=cfg["collapsed_below_high"] - 0.05)
+        assert not [r for r in score.penalties(shallow, cfg) if "reshaped" in r["reason"]]
+
+    def test_an_unmeasured_fall_is_not_a_collapse(self, config):
+        """A file published before the reading existed. Absent is not deep."""
+        unmeasured = collapsed(pct_below_52w_high=None)
+        assert not [r for r in score.penalties(unmeasured, config["penalties"])
+                    if "reshaped" in r["reason"]]
+
+    def test_a_config_from_before_the_rule_does_not_charge_it(self, config):
+        """The sliders re-rank the file in front of her, which may be older than
+        the rule. Same guard `in_downtrend` already carries."""
+        old = {k: v for k, v in config["penalties"].items() if k != "collapsed_below_high"}
+        assert not [r for r in score.penalties(collapsed(), old) if "reshaped" in r["reason"]]
+
+    def test_the_confirmed_downtrend_outranks_it(self, config):
+        """Both describe one illness, so only the worse is charged -- and a fall
+        that has not stopped at all is the worse of the two."""
+        cfg = config["penalties"]
+        still_falling = collapsed(above_ema9=False, macd_cross_up=False,
+                                  up_day_volume_expansion=False)
+        charged = [r for r in score.penalties(still_falling, cfg)
+                   if "52-week high" in r["reason"]]
+        assert len(charged) == 1
+        assert charged[0]["points"] == cfg["downtrend_confirmed"]
+
+    def test_it_outranks_sitting_on_the_low(self, config):
+        cfg = config["penalties"]
+        charged = [r for r in score.penalties(collapsed(pct_above_52w_low=0.02), cfg)
+                   if "52-week" in r["reason"]]
+        assert len(charged) == 1
+        assert charged[0]["points"] == cfg["collapsed_from_high"]
+
+    def test_the_charge_sits_between_the_two_it_sits_between(self, config):
+        cfg = config["penalties"]
+        assert cfg["downtrend_confirmed"] > cfg["collapsed_from_high"] > cfg["new_low_under_ema200"]
+
+    def test_holding_for_months_costs_more(self, config):
+        """Same reasoning `penalties_long` already applies to its two neighbours."""
+        assert (score.penalty_config(config, "long")["collapsed_from_high"]
+                > config["penalties"]["collapsed_from_high"])
+
+    def test_the_charge_is_enough_to_move_the_name(self, config):
+        """The point of the rule. No trend term sits in the put weights, so the
+        only thing separating these two rows is the penalty."""
+        clean = score.score(collapsed(above_ema200=True, golden_cross=True), config)
+        assert score.score(collapsed(), config)["score"] < clean["score"]

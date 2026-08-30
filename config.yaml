@@ -200,6 +200,14 @@ penalties:
   # made her mother close the page.
   downtrend_confirmed: 20
   downtrend_bounce_max: 0.15   # "no turn": at most one weak bounce signal
+  # A bounce forgives a downtrend, and it should -- but not at any depth. One
+  # green week off a 20% pullback is a turn; the same week off a 70% fall is a
+  # green week. The charge above reads the turn and can be talked out of itself,
+  # so this one reads the hole and cannot. RBLX led the list at 72% down with
+  # the 50-day under the 200-day and paid nothing; the next worst in that ten
+  # was 46% down with its cross intact, which is the gap the threshold sits in.
+  collapsed_from_high: 15
+  collapsed_below_high: 0.55
   catalyst_structural: 30  # the AI layer judged the selloff structural
 
 # What one ranking charges differently. Only the numbers that change: everything
@@ -212,6 +220,7 @@ penalties:
 penalties_long:
   downtrend_confirmed: 35
   new_low_under_ema200: 20
+  collapsed_from_high: 25
 
 # The one charge a call owes more than a put does. A put seller caught by an
 # earnings gap is assigned a stock she was willing to own; a call is a wasting

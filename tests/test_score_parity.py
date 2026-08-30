@@ -150,11 +150,30 @@ PENALTY_CASES = {
                  "pct_below_52w_high": 0.73},
         "trade": {"expiry": "2026-10-16", "strike": 45.0},
     },
-    # Same wreck, but bouncing -- the milder penalty, not the downtrend one.
+    # Same wreck, but bouncing. The downtrend charge reads the turn and lets it
+    # go; the collapse charge reads the hole and does not.
     "down but turning": {
         "tech": {"close": 50.0, "change_5d": 0.0, "above_ema200": False,
                  "golden_cross": False, "pct_above_52w_low": 0.11,
                  "pct_below_52w_high": 0.73, "above_ema9": True,
+                 "up_day_volume_expansion": True},
+        "trade": {"expiry": "2026-10-16", "strike": 45.0},
+    },
+    # Collapsed and nowhere near its low, so the milder charge cannot fire and
+    # the collapse is the only thing that can be reading the fall.
+    "collapsed but well off the floor": {
+        "tech": {"close": 50.0, "change_5d": 0.0, "above_ema200": False,
+                 "golden_cross": False, "pct_above_52w_low": 0.45,
+                 "pct_below_52w_high": 0.62, "above_ema9": True,
+                 "up_day_volume_expansion": True},
+        "trade": {"expiry": "2026-10-16", "strike": 45.0},
+    },
+    # The other side of the threshold: the same broken cross, a shallower hole,
+    # and far enough off the low that nothing at all should be charged.
+    "far down but not collapsed": {
+        "tech": {"close": 50.0, "change_5d": 0.0, "above_ema200": False,
+                 "golden_cross": False, "pct_above_52w_low": 0.45,
+                 "pct_below_52w_high": 0.48, "above_ema9": True,
                  "up_day_volume_expansion": True},
         "trade": {"expiry": "2026-10-16", "strike": 45.0},
     },

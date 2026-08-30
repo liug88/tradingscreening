@@ -137,6 +137,25 @@ def in_downtrend(row: dict, cfg: dict) -> bool:
     return _bounce(row, cfg) <= cfg["downtrend_bounce_max"]
 
 
+def collapsed(row: dict, cfg: dict) -> bool:
+    """Fallen far enough that a bounce does not redeem it.
+
+    `in_downtrend` asks whether the fall has stopped, which is the right
+    question at most depths and the wrong one at this depth: a name three
+    quarters below its high has repaired nothing by closing above its 9-day.
+    So this reads the hole rather than the turn, and no amount of bounce
+    argues it away. The cross is still required -- a deep fall with the 50-day
+    back over the 200-day is the recovery the screen is looking for.
+    """
+    if "collapsed_below_high" not in cfg:
+        return False  # published before the rule shipped
+    tech = row["tech"]
+    if tech.get("golden_cross") is not False:
+        return False
+    off_high = tech.get("pct_below_52w_high")
+    return off_high is not None and off_high > cfg["collapsed_below_high"]
+
+
 def _premium_richness(row: dict, cfg: dict) -> float:
     """Is the option premium rich relative to how much the stock actually moves?"""
     ratio_part = _ramp(row.get("iv_hv"), 0.90, cfg["iv_hv_rich"])
@@ -512,6 +531,14 @@ def penalties(row: dict, cfg: dict, profile: str = "put") -> list[dict]:
             {
                 "reason": f"Still in a confirmed downtrend{detail} — 50-day under the 200-day, nothing turning yet",
                 "points": cfg["downtrend_confirmed"],
+            }
+        )
+    elif collapsed(row, cfg):
+        found.append(
+            {
+                "reason": f"{tech['pct_below_52w_high']:.0%} below its 52-week high with the "
+                "50-day under the 200-day — the fall reshaped the chart",
+                "points": cfg["collapsed_from_high"],
             }
         )
     elif near_low:
