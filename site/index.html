@@ -223,7 +223,11 @@
   <div class="wrap"><p class="loading">This page needs JavaScript to read the day&rsquo;s data file.</p></div>
 </noscript>
 
-<script src="score.js"></script>
-<script src="app.js"></script>
+<!-- Bump the date whenever anything in site/ changes. Without it a browser
+     holding yesterday's app.js reads today's data file with last week's code,
+     which looks exactly like a run that went wrong. The data file itself is
+     fetched no-store and needs no such help. -->
+<script src="score.js?v=2026-08-29"></script>
+<script src="app.js?v=2026-08-29"></script>
 </body>
 </html>
