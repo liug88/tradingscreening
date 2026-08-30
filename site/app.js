@@ -56,6 +56,16 @@ const el = (tag, cls, text) => {
   return node;
 };
 
+/* Off-site, so it opens in its own tab -- she is checking this page against
+   that one, and losing this page to do it defeats the point. */
+const link = (text, href) => {
+  const a = el("a", null, text);
+  a.href = href;
+  a.target = "_blank";
+  a.rel = "noopener noreferrer";
+  return a;
+};
+
 /* ---- tallies -------------------------------------------------------- */
 
 /* A tally is an image of a quantity, so it carries the plain sentence as its
@@ -1061,6 +1071,18 @@ function renderChart(pick) {
   if (macd) {
     box.appendChild(el("div", "chart__line", macd));
     filled = true;
+  }
+
+  /* Every line above is drawn from Yahoo's own bars, so Yahoo is where a
+     disagreement would show up -- a second vendor would differ for reasons
+     that are not mistakes. Deliberately does not set `filled`: it checks the
+     figures, so it should not be the only thing here.
+     Needs the symbol and nothing else, so it works on an old file too. */
+  if (pick.symbol && filled) {
+    const check = el("div", "chart__source");
+    check.appendChild(link("Check this chart on Yahoo",
+      "https://finance.yahoo.com/chart/" + encodeURIComponent(pick.symbol)));
+    box.appendChild(check);
   }
 
   return filled ? box : null;
@@ -2098,10 +2120,20 @@ function render(data) {
     : "The “why it fell” notes did not run for this list, so each name shows " +
       "its numbers only. Every number above is computed, never written by a model.";
 
-  $("#footer-meta").textContent =
+  /* The sources were named here in prose and could not be followed. Named and
+     linked is the same sentence doing twice the work. */
+  const meta = $("#footer-meta");
+  meta.textContent =
     `Generated ${data.generated_at.replace("T", " ").replace("+00:00", "")} UTC ` +
-    `in ${data.elapsed_seconds}s. Sources: Yahoo Finance, Cboe delayed quotes, ` +
-    `ApeWisdom. No account, brokerage, or personal data is used anywhere.`;
+    `in ${data.elapsed_seconds}s. Sources: `;
+  [["Yahoo Finance", "https://finance.yahoo.com"],
+   ["Cboe delayed quotes", "https://www.cboe.com/delayed_quotes/"],
+   ["ApeWisdom", "https://apewisdom.io"]].forEach(([name, href], i) => {
+    if (i) meta.appendChild(document.createTextNode(", "));
+    meta.appendChild(link(name, href));
+  });
+  meta.appendChild(document.createTextNode(
+    ". No account, brokerage, or personal data is used anywhere."));
 
   wireCopy();
 }

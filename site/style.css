@@ -656,6 +656,13 @@ main a:not(.btn):hover { text-decoration-thickness: var(--sp-hair); }
 /* The one figure in the row that is hers rather than the model's. */
 .chart__level[data-price] { color: var(--ink); font-weight: 500; }
 
+/* Quiet on purpose. It is a way out to check the drawing, not a thing to
+   click before reading the row. */
+.chart__source {
+  margin-top: var(--sp-xs);
+  font-size: var(--text-xs);
+}
+
 /* The fourth fact about the chart, under the count that shows the first three. */
 .metric__sub {
   font-size: var(--text-xs);

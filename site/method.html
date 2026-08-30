@@ -32,8 +32,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="method.css">
+<link rel="stylesheet" href="style.css?v=2026-08-29b">
+<link rel="stylesheet" href="method.css?v=2026-08-29b">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 <body>
@@ -62,6 +62,12 @@
       holding period and its own question.
     </p>
     <p>
+      <strong>The headline:</strong> the put list was assigned on
+      <strong>17%</strong> of trades against <strong>22%</strong> for picking at
+      random from the same eligible names, and it was assigned less often than
+      that pool in 33 of the 47 months.
+    </p>
+    <p>
       <strong>Sell puts</strong> asks whether the put survived five weeks.
       <strong>Buy</strong> asks what the stock did over the same five weeks.
       <strong>Long</strong> asks what it did over six months. <strong>Buy
@@ -72,13 +78,26 @@
       worth nothing.
     </p>
     <p>
-      The limits come first, because a number read before its caveat has already
-      done its work.
+      A number read before its caveat has already done its work, so every limit
+      below sits in the section it applies to, next to the figure it qualifies.
+      Three apply to all four lists and are stated before any result.
+    </p>
+  </section>
+
+  <section id="numbers">
+    <h2 class="section-head">What the test did</h2>
+    <p class="section-note">
+      On the first of each month, take the price history exactly as it stood
+      that morning &mdash; no later bars &mdash; run the reduced screen over
+      every name that cleared the safety filters, and take each ranking&rsquo;s
+      top ten. Then hold. Sell puts and buy are held 35 days; long is held 180;
+      buy calls, 90. Five years of bars give 47 entries at the five-week
+      horizon, 45 at ninety days and 42 at six months.
     </p>
   </section>
 
   <section class="panel panel--red" id="limits">
-    <h2 class="section-head">Five reasons this proves less than it looks like</h2>
+    <h2 class="section-head">What the test could not see</h2>
 
     <ol class="limits">
       <li>
@@ -93,35 +112,6 @@
           thesis is a strong chart <em>plus</em> expanding revenue, and revenue
           is the half the test cannot see &mdash; so what follows tests the
           chart half and calls it the long list.
-        </p>
-      </li>
-      <li>
-        <h3>The strike is a guess, not a quote.</h3>
-        <p>
-          With no historical chain, the test estimates where the strike would
-          have been from how much the stock was actually moving, using
-          Black-Scholes at a zero interest rate. That estimate lands
-          <em>closer</em> to the money than a real strike would have &mdash;
-          which means the test assigns more often than the real thing would.
-          The bias runs toward pessimism, which is the safer direction, but it
-          is still a guess. This one applies to the sell-puts numbers only.
-          Buy and long own the stock outright, so there is no contract to
-          estimate &mdash; and buy calls has a contract the test cannot price
-          at all, which is the next limit.
-        </p>
-      </li>
-      <li>
-        <h3>The call test holds the shares, not the call.</h3>
-        <p>
-          Same missing data, worse consequence. With no historical chain there
-          is no contract to buy in 2022 and none to sell ninety days later, so
-          the call run buys the stock and holds it for the ninety days instead.
-          <strong>Every figure in the call section is a share return.</strong>
-          A call on a name that rose 5% does not return 5%; it returns some
-          multiple of it, and a call on a name that ends below its strike is
-          worth nothing at all. What the test can still answer is whether the ranking
-          picked better names than the pool it picked from &mdash; the only
-          question a price history can answer here. The answer was no.
         </p>
       </li>
       <li>
@@ -144,18 +134,6 @@
         </p>
       </li>
     </ol>
-  </section>
-
-  <section id="numbers">
-    <h2 class="section-head">What the test did</h2>
-    <p class="section-note">
-      On the first of each month, take the price history exactly as it stood
-      that morning &mdash; no later bars &mdash; run the reduced screen over
-      every name that cleared the safety filters, and take each ranking&rsquo;s
-      top ten. Then hold. Sell puts and buy are held 35 days; long is held 180;
-      buy calls, 90. Five years of bars give 47 entries at the five-week
-      horizon, 45 at ninety days and 42 at six months.
-    </p>
   </section>
 
   <section>
@@ -215,6 +193,25 @@
         version by a wide margin &mdash; 17% against 25% &mdash; which says the
         premium and cushion components earn their weight rather than decorating
         it.
+      </p>
+    </div>
+
+    <div class="reading reading--limit">
+      <h3>The one limit on this number, and which way it runs</h3>
+      <p>
+        The strike is a guess, not a quote. With no historical chain, the test
+        estimates where the strike would have been from how much the stock was
+        actually moving, using Black-Scholes at a zero interest rate. That
+        estimate lands <em>closer</em> to the money than a real strike would
+        have &mdash; so the test assigns more often than the real thing would.
+        <strong>The bias runs against the model, not for it:</strong> 17% is the
+        pessimistic reading, and a real chain would likely have assigned less
+        often still. It is a guess either way, and it is worth replacing with
+        real quotes.
+      </p>
+      <p>
+        It applies to these numbers only. Buy and long own the stock outright,
+        so there is no contract to estimate.
       </p>
     </div>
 
@@ -598,8 +595,11 @@
       buying a long-dated call &mdash; but the test cannot buy one, because
       there is no historical chain to buy it from. So it buys the stock instead
       and holds it ninety days. <strong>Every number in this section is a share
-      return.</strong> What it can still answer is whether the ranking picked
-      better names than the pool it picked from.
+      return.</strong> A call on a name that rose 5% does not return 5%; it
+      returns some multiple of it, and a call on a name that ends below its
+      strike is worth nothing at all. What the test can still answer is whether
+      the ranking picked better names than the pool it picked from &mdash; the
+      only question a price history can answer here.
     </p>
 
     <div class="figure">
@@ -700,10 +700,9 @@
     <h2 class="section-head">The falling knives</h2>
     <p class="section-note">
       A stock below its 200-day average, with the 50-day under the 200-day and
-      nothing turning. Since RBLX turned up second on the list at 74% off its
-      high, the screen charges that condition 20 points &mdash; 35 on the long
-      list. The test asks two things: whether the knives deserve it, and whether
-      throwing them out altogether would change the list at all.
+      nothing turning. The screen charges that condition 20 points &mdash; 35 on
+      the long list. The test asks two things: whether the knives deserve it, and
+      whether throwing them out altogether would change the list at all.
     </p>
 
     <div class="figure">
@@ -750,6 +749,17 @@
         &mdash; a wider spread in both directions, which is what a beaten-down
         stock is. Over six months they lost the advantage and kept the risk.
         Held briefly, a knife is a bet; held long, it is just a bad chart.
+      </p>
+      <p>
+        <strong>The rule that catches a name like RBLX is a different one.</strong>
+        A knife needs nothing turning, and RBLX had turned &mdash; one green
+        stretch inside a 73% fall &mdash; so it never met the definition above and
+        the 20 points never applied. Depth on its own now costs <strong>15
+        points</strong> on the put list and 25 on long, charged to any name more
+        than 55% below its high with the 50-day still under the 200-day. On 29
+        August it cost RBLX 15 points and moved it from first to seventh. The
+        charge is a fixed number, so it cuts deeper when the field is spread out
+        and less when the scores are bunched, which is not tested above.
       </p>
     </div>
   </section>

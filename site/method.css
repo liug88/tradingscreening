@@ -152,6 +152,8 @@
   margin-bottom: var(--sp-md);
   line-height: 1.6;
 }
+/* Same block, risk ink: a limit read beside the number it limits. */
+.reading--limit { border-left-color: var(--red); }
 
 .masthead__actions .btn { display: inline-block; text-decoration: none; }
 
