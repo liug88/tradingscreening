@@ -278,11 +278,20 @@ const COMPONENTS = [
     `50-day is under the 200-day, whatever is left is cut to ` +
     `${pct(c.room_broken_trend_factor, 0)} of it.`],
 
-  ["entry_timing", "Oversold + the turn", () =>
-    `The fall and the bounce folded into the one question a buyer asks: 60% how ` +
-    `far it fell on the readings above, 40% whether the fall has stopped. The ` +
-    `same two the sell-puts list scores separately, in the same proportion, so a ` +
-    `name does not change character between lists for a reason you cannot see.`],
+  /* Named like the two sell-puts sliders it folds, rather than in the register
+     those two were written out of -- "Oversold + the turn" told a reader who
+     reads a chain every morning less than she walked up with, which is the
+     reason the put's labels stopped saying it. No conditional label like
+     `oversold` above: the four-way reading shipped before any file carried
+     `weights_buy`, so a file that draws this panel scored four. */
+  ["entry_timing", "RSI / stochastic + EMA / MACD", () =>
+    `The fall and the bounce folded into the one question a buyer asks. 60% is ` +
+    `how far it fell — RSI, stochastic, money flow and %B, each at its lowest of ` +
+    `the last 10 sessions rather than today's. 40% is whether the fall has ` +
+    `stopped — the 9- and 20-day EMAs, the MACD cross, and volume expanding on ` +
+    `an up day. The same two the sell-puts list scores separately, in the same ` +
+    `proportion, so a name does not change character between lists for a reason ` +
+    `you cannot see.`],
 
   /* The two only the call list weighs. Same table, same rule: renderWeights
      draws whichever of these the ranking in view actually pays for. */
@@ -295,7 +304,7 @@ const COMPONENTS = [
     `of it. Scores 0.4 when neither reading came back — unknown, not cheap. It is ` +
     `the one component that ranks the two option lists against each other.`],
 
-  ["contract_quality", "The call itself", (c) =>
+  ["contract_quality", "Spread / open interest / days left", (c) =>
     `Whether the contract can be traded, which is a different question from ` +
     `whether the stock is worth owning. 45% the bid-ask spread — full credit at ` +
     `${pct(c.call_spread_tight, 0)}, none at ${pct(c.call_spread_wide, 0)} — because a ` +
