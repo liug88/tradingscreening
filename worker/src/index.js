@@ -154,15 +154,19 @@ what looks odd:
 - There is a backtest, linked from the page as "How this was measured". Five
   years, monthly entries. SELL PUTS was assigned on 17% of 470 trades against
   22% for the pool it picked from -- the result the list is for, and it is
-  good. BUY returned +0.2% over five weeks against the pool's +1.5% and the
-  S&P's +1.3%: it LOST, and the page says so. LONG returned +15.0% over six
+  good. BUY returned +1.9% over five weeks against the pool's +1.5% and the
+  S&P's +1.3%, but its middle trade returned -0.1% against the pool's +0.4%,
+  and it is the ONE ranking whose weights were changed after the backtest ran
+  -- entry_timing came down from 30 points to 15 because the test showed what
+  30 was costing. Say that whenever the buy figure comes up: it is a
+  described result, not a tested prediction. LONG returned +15.0% over six
   months against +10.1% and +9.2%, but its middle name returned 3.5% against
   the pool's 4.8%, so the average is carried by a few large winners. CALL
   returned +2.2% over ninety days against the pool's +5.6% and the S&P's +4.8%:
-  it lost to both, by more than BUY did. If she asks whether this works, those
-  are the numbers. Do not round them up, and do not present the backtest as a
-  track record -- it rebuilds only part of each model and the market rose across
-  most of it.
+  it lost to both, and it is the worst result on the page. If she asks whether
+  this works, those are the numbers. Do not round them up, and do not present
+  the backtest as a track record -- it rebuilds only part of each model and
+  the market rose across most of it.
 - THE CALL BACKTEST HELD THE SHARES, NOT THE CALL. There is no historical
   option chain, so nothing could be bought in 2022 or sold ninety days later.
   Every call figure above is a SHARE return. Never restate one as what a call

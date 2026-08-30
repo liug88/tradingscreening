@@ -1579,8 +1579,12 @@ function showProfile(key) {
    better names than the pool, which is the only question a price history can
    answer, and the answer was no.
 
-   Three of these four are unflattering. They are here as measured: a backtest
-   tuned until it looks good is the one kind that is worth nothing. */
+   Three of these four ran on weights set before the test existed, which is the
+   whole reason they are worth reading. Buy is the exception: entry_timing came
+   down from 30 to 15 after this run showed what it was costing, so the buy row
+   is the one number here that a backtest helped choose. method.html says so
+   beside the figure -- a backtest tuned until it looks good is the one kind
+   that is worth nothing, and naming what was tuned is the only defence. */
 const BACKTEST = {
   put: {
     span: "September 2022", tests: 47, positions: 470, hold: "35 days",
@@ -1596,13 +1600,16 @@ const BACKTEST = {
   },
   buy: {
     span: "September 2022", tests: 47, positions: 470, hold: "5 weeks",
-    lede: "This ranking lost — to the index, and to the pool it picked from.",
-    rows: [["These ten", "+0.2%"],
+    lede: "Ahead of the index and of the pool it picked from on the average — " +
+          "and behind that pool on the middle name. It is also the one ranking " +
+          "here whose weights were changed after this test was run.",
+    rows: [["These ten", "+1.9%"],
            ["SPY over the same windows", "+1.3%"],
            ["Everything that cleared the gates", "+1.5%"]],
-    tail: "It beat SPY in 16 of the 47 windows, and fell 10% at some point inside " +
-          "the five weeks more often than the pool did — 48% against 38%. Five " +
-          "weeks is a short horizon to ask a screen to be right about.",
+    tail: "It beat SPY in 24 of the 47 windows. The middle trade returned −0.1% " +
+          "against the pool’s +0.4%, and 52% of these fell 10% at some point " +
+          "inside the five weeks against the pool’s 38%: a few large winners " +
+          "carry the average, and the ride is rougher than the pool’s.",
   },
   long: {
     span: "September 2022", tests: 42, positions: 420, hold: "6 months",

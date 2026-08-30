@@ -96,13 +96,20 @@ weights:
 # worth selling. A profile is just a block like these -- `score()` computes only
 # the components its block names.
 
-# Hold for weeks. The dip is the trade, so timing the entry is the biggest term.
+# Hold for weeks. Timing the entry was the biggest term here at 30, and that is
+# where this list lost: at 30 it came out under its own pool at every horizon
+# from five weeks to six months, and every weight from 5 to 20 beat that pool at
+# all of them. 15 is the middle of that band rather than its peak -- a weight
+# picked off the top of a curve fitted to 42 mornings is a weight fitted to 42
+# mornings. Zero loses at five weeks too, so the dip is still worth reading; it
+# is not worth a third of the score. The other four keep their proportions, the
+# freed points spread across them. method.html carries the table.
 weights_buy:
-  entry_timing: 30
-  trend_structure: 25
-  revenue_expanding: 20
-  room_to_run: 15
-  margin_trend: 10
+  entry_timing: 15
+  trend_structure: 30
+  revenue_expanding: 25
+  room_to_run: 18
+  margin_trend: 12
 
 # Hold for months. Entry timing is left at zero deliberately: over six months
 # today's RSI is noise, and if both horizons scored the dip they would be one

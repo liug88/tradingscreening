@@ -112,6 +112,12 @@
 .tbl--dense th,
 .tbl--dense td { padding: var(--sp-xs) var(--sp-md); }
 
+/* The baseline a grid of variants is measured against, not another variant.
+   Ruled off so a pool row at the foot of seven weight rows does not read as
+   an eighth weight. */
+.tbl tfoot th,
+.tbl tfoot td { border-top: var(--sp-hair) solid var(--ink); }
+
 /* Green marks the best cell in a row, and only where "best" is unambiguous.
    Not applied to the return rows where the screen loses -- the point of those
    rows is that it loses, and colouring the winner green would read as praise

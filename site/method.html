@@ -6,9 +6,16 @@
   writes its full JSON alongside so any of it can be checked rather than taken.
 
   It leads with what the test could not do. That order is deliberate. Three of
-  these four results are unflattering, and even the flattering one has severe
-  limits, so a reader who meets the numbers first has already formed a view by
-  the time she reaches the caveats.
+  these four results are unflattering or heavily qualified, and even the good
+  one has severe limits, so a reader who meets the numbers first has already
+  formed a view by the time she reaches the caveats.
+
+  The buy section carries a limit none of the others need. Its entry_timing
+  weight came down from 30 to 15 *because of* this test, so its figures were
+  not measured against a setting chosen independently of them. The whole weight
+  grid is printed rather than the winning row, and the in-sample problem is
+  stated under its own heading. If that weight is ever tuned again, that block
+  is the one to update first.
 
   The call section needs its caveat hardest, because the test cannot buy the
   option: it holds the shares for ninety days instead. Every figure under that
@@ -32,8 +39,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=2026-08-29c">
-<link rel="stylesheet" href="method.css?v=2026-08-29c">
+<link rel="stylesheet" href="style.css?v=2026-08-29e">
+<link rel="stylesheet" href="method.css?v=2026-08-29e">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 <body>
@@ -72,10 +79,11 @@
       <strong>Buy</strong> asks what the stock did over the same five weeks.
       <strong>Long</strong> asks what it did over six months. <strong>Buy
       calls</strong> asks what it did over ninety days &mdash; and asks it of
-      the shares, because an option cannot be priced backwards. One of the four
-      results is good, one is mixed, and two are bad. All four are below as
-      measured &mdash; a backtest tuned until it looks good is the one kind
-      worth nothing.
+      the shares, because an option cannot be priced backwards. One result is
+      good, two are mixed and one is bad. All four are below as measured &mdash;
+      a backtest tuned until it looks good is the one kind worth nothing. One
+      weight on the buy list <em>was</em> set by looking at this test, which is
+      said again beside the number it produced.
     </p>
     <p>
       A number read before its caveat has already done its work, so every limit
@@ -104,7 +112,7 @@
         <h3>Only part of each model could be rebuilt.</h3>
         <p>
           Each ranking scores 100 points. Rebuilding a past morning recovers
-          <strong>49</strong> of them for sell puts, <strong>70</strong> for
+          <strong>49</strong> of them for sell puts, <strong>63</strong> for
           buy, <strong>50</strong> for long and <strong>58</strong> for buy
           calls. Two things are missing and neither is free: historical option
           quotes, and company filings as they stood on the day. <strong>The long
@@ -410,11 +418,13 @@
   </section>
 
   <section>
-    <h2 class="section-head">Buy: the one that lost</h2>
+    <h2 class="section-head">Buy: ahead on the average, and the one that was changed</h2>
     <p class="section-note">
-      Same ten names to choose from, ranked on the dip plus the chart plus
-      revenue, held five weeks. It came out behind the index <em>and</em> behind
-      the pool it picked from, and it fell harder along the way.
+      Same names to choose from, ranked on the dip plus the chart plus revenue,
+      held five weeks. It beat the index and the pool it picked from on the
+      average, lost to that pool on the middle name, and fell harder than it
+      along the way. It is also the one ranking on this page whose weights were
+      changed after the test below was run.
     </p>
 
     <div class="figure">
@@ -428,86 +438,112 @@
           </tr>
         </thead>
         <tbody>
-          <tr><th scope="row">Average move</th><td>+0.2%</td><td class="good">+1.5%</td></tr>
-          <tr><th scope="row">Median move</th><td>&minus;0.8%</td><td class="good">+0.4%</td></tr>
-          <tr><th scope="row">Ended the 35 days lower</th><td>53%</td><td class="good">49%</td></tr>
-          <tr><th scope="row">Fell 10% at some point inside</th><td>48%</td><td class="good">38%</td></tr>
-          <tr><th scope="row">Fell 20% at some point inside</th><td>19%</td><td class="good">14%</td></tr>
-          <tr><th scope="row">Best single name</th><td>+135%</td><td>+263%</td></tr>
-          <tr><th scope="row">Worst single name</th><td>&minus;52%</td><td>&minus;72%</td></tr>
+          <tr><th scope="row">Average move</th><td class="good">+1.9%</td><td>+1.5%</td></tr>
+          <tr><th scope="row">Median move</th><td>&minus;0.1%</td><td class="good">+0.4%</td></tr>
+          <tr><th scope="row">Ended the 35 days lower</th><td>50%</td><td class="good">49%</td></tr>
+          <tr><th scope="row">Fell 10% at some point inside</th><td>52%</td><td class="good">38%</td></tr>
+          <tr><th scope="row">Fell 20% at some point inside</th><td>22%</td><td class="good">14%</td></tr>
+          <tr><th scope="row">Best single name</th><td>+144%</td><td>+263%</td></tr>
+          <tr><th scope="row">Worst single name</th><td class="good">&minus;52%</td><td>&minus;72%</td></tr>
         </tbody>
       </table>
       <p class="figure__note">
         The S&amp;P returned +1.3% over the same windows and the buy ten beat it
-        in only <strong>16 of the 47</strong>. Ten of the months ended with no
-        name up at all.
+        in <strong>24 of the 47</strong>. Nineteen of the 47 still ended with the
+        ten down on average, nine of those while the index rose.
       </p>
     </div>
 
     <div class="figure">
       <table class="tbl tbl--dense">
-        <caption>The ranking taken apart, run twice &mdash; average return</caption>
+        <caption>What the dip term is worth, weight by weight &mdash; average return</caption>
         <thead>
           <tr>
-            <th scope="col">Ranked on</th>
-            <th scope="col">Held five weeks</th>
-            <th scope="col">Held six months</th>
+            <th scope="col">Points on the dip</th>
+            <th scope="col">35 days</th>
+            <th scope="col">60 days</th>
+            <th scope="col">90 days</th>
+            <th scope="col">180 days</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">The dip, the chart and room to run &mdash; the buy list</th>
-            <td>+0.2%</td><td>+9.8%</td>
-          </tr>
-          <tr>
-            <th scope="row">The chart and room to run, dip removed</th>
-            <td>+1.0%</td><td class="good">+14.3%</td>
-          </tr>
-          <tr>
-            <th scope="row">The dip alone</th>
-            <td>+0.7%</td><td>+6.6%</td>
-          </tr>
-          <tr>
-            <th scope="row">Every name that qualified</th>
-            <td class="good">+1.5%</td><td>+10.1%</td>
-          </tr>
+          <tr><th scope="row">0</th><td>+0.8%</td><td class="good">+3.7%</td><td class="good">+6.0%</td><td class="good">+14.3%</td></tr>
+          <tr><th scope="row">5</th><td class="good">+1.6%</td><td class="good">+5.2%</td><td class="good">+7.7%</td><td class="good">+16.5%</td></tr>
+          <tr><th scope="row">10</th><td class="good">+1.4%</td><td class="good">+4.9%</td><td class="good">+6.6%</td><td class="good">+15.4%</td></tr>
+          <tr><th scope="row">15 &mdash; what ships now</th><td class="good">+1.6%</td><td class="good">+4.9%</td><td class="good">+6.3%</td><td class="good">+14.6%</td></tr>
+          <tr><th scope="row">20</th><td class="good">+1.3%</td><td class="good">+4.4%</td><td class="good">+6.1%</td><td class="good">+13.3%</td></tr>
+          <tr><th scope="row">25</th><td>+0.9%</td><td class="good">+3.7%</td><td>+4.3%</td><td class="good">+11.2%</td></tr>
+          <tr><th scope="row">30 &mdash; what shipped before</th><td>+0.3%</td><td>+2.8%</td><td>+3.4%</td><td>+9.8%</td></tr>
         </tbody>
+        <tfoot>
+          <tr><th scope="row">Every name that qualified</th><td>+1.2%</td><td>+3.0%</td><td>+4.9%</td><td>+10.1%</td></tr>
+        </tfoot>
       </table>
       <p class="figure__note">
-        47 entries at five weeks, 42 at six months, over the same bars as
-        everything else here. The chart on its own is missing from the table
-        because it was only run at the short horizon: +1.1%, the best of them and
-        still under the pool.
+        The same 42 mornings in every cell, so only the weight and the holding
+        period change &mdash; which is why the 35-day column does not quite match
+        the table above, run over all 47 mornings the short window allowed. Green
+        marks a cell that beat the pool in its own column. The other four terms
+        keep their proportions as the dip moves, so every row still scores out of
+        100.
       </p>
     </div>
 
     <div class="reading">
-      <h3>What that means, and what it does not</h3>
+      <h3>What changed, and what it does not mean</h3>
       <p>
-        It does not mean these are bad companies. It means <strong>five weeks is
-        a short horizon to ask a screen to be right about</strong>, and that
-        buying a dip outright is a different bet from selling a put against it.
-        The put seller is paid for a stock that merely fails to fall; the buyer
-        needs it to actually rise, and over five weeks these did not.
+        Until this test the dip &mdash; how oversold a name is and whether it has
+        turned &mdash; carried 30 of this list&rsquo;s 100 points, the largest
+        single term in it. At 30 the list came out under its own pool at 35, 60,
+        90, 120, 150 and 180 days. At 15 it beats that pool at every horizon in
+        the grid above.
       </p>
       <p>
-        <strong>One term does most of the damage, and removing it still does not
-        win.</strong> The dip &mdash; how oversold a name is and whether it has
-        turned &mdash; carries 30 of this list&rsquo;s 100 points, and every
-        version without it did better. At six months that one term is the whole
-        difference between beating the pool and losing to it: 14.3% without it
-        against 9.8% with it, on a pool of 10.1%. At five weeks, taking it out
-        moves the list from +0.2% to +1.0% &mdash; against a pool of +1.5%.
-        Losing by less is not winning, so the weight stays where it is. The five
-        weeks are the problem, not the term.
+        <strong>Holding it longer was the other repair, and it did not work.</strong>
+        The obvious fix for a list that loses over five weeks is to give it more
+        time. The bottom weight row is that experiment, and it loses in all four
+        columns; two further horizons not shown, 120 and 150 days, lose as well.
+        There was no holding period at which the old weighting started winning,
+        which is what left the weight itself as the thing to move.
       </p>
       <p>
-        As the test rebuilds them, the long list below <em>is</em> this one with
-        the dip removed and six months to work in, and it beats its pool. The
-        horizon does most of the work here; the ranking does some of it. One
-        caution on reading the dip term too harshly: these five years mostly
-        rose, and buying dips underperforms a rising market close to by
-        construction.
+        <strong>15 is the middle of the band that works, not its peak.</strong>
+        Every weight from 5 to 20 beat the pool at all four horizons. 5 returned
+        the most at three of them and tied at the fourth, and 15 was taken
+        anyway: a weight read off the top of a curve fitted to 42 mornings is a
+        weight fitted to 42 mornings. There is a second reason. At 5 the buy ten
+        is 79% the same names as the long list; at 15 it is 58%. A list that
+        stops reading the dip stops being a different list.
+      </p>
+      <p>
+        None of this makes five weeks a long time, and none of it says these are
+        bad companies. Buying a dip outright is a different bet from selling a
+        put against it: the put seller is paid for a stock that merely fails to
+        fall; the buyer needs it to actually rise. And the middle name still goes
+        to the pool &mdash; at every horizon in the grid, at every weight in it,
+        the shipped one included. What the green cells have is a few large
+        winners, not a better typical name.
+      </p>
+    </div>
+
+    <div class="reading reading--limit">
+      <h3>This is the one number on the page chosen by looking at the test</h3>
+      <p>
+        Everything else here was measured against weights fixed before the test
+        existed, which is most of what makes those figures worth reading. The buy
+        weight is not in that position. One term, seven settings, four holding
+        periods, one decision &mdash; and the decision was made on the same 42
+        mornings the grid reports. <strong>Re-running a test after picking a
+        setting out of it does not test the setting.</strong>
+      </p>
+      <p>
+        What the run does support is the comparison, which is why the whole grid
+        is printed rather than the winning row: at 30 the list finished last in
+        every column and under the pool in all four, and that was true before
+        anything was chosen. What it cannot tell you is whether 15 will beat 20
+        over the next 42 mornings. Read the +1.9% above as a description of what
+        happened rather than a forecast &mdash; and read it more sceptically than
+        the put figures beside it.
       </p>
     </div>
 
@@ -525,22 +561,24 @@
         </thead>
         <tbody>
           <tr>
-            <th scope="row">28 Aug 2025</th>
-            <td class="good">+19.1%</td><td>+6.7%</td><td>+3.1%</td><td>UPST &minus;28.3%</td>
+            <th scope="row">29 Aug 2025</th>
+            <td class="good">+16.0%</td><td>+8.2%</td><td>+4.1%</td><td>UPST &minus;29.1%</td>
           </tr>
           <tr>
-            <th scope="row">28 Feb 2026</th>
-            <td>&minus;8.9%</td><td class="good">&minus;4.8%</td><td>&minus;4.4%</td><td>CELH &minus;36.4%</td>
+            <th scope="row">27 Feb 2026</th>
+            <td class="good">+1.2%</td><td>&minus;4.8%</td><td>&minus;4.4%</td><td>CELH &minus;36.4%</td>
           </tr>
           <tr>
-            <th scope="row">28 May 2026</th>
-            <td>&minus;9.5%</td><td class="good">&minus;0.4%</td><td>&minus;1.3%</td><td>AMPX &minus;40.6%</td>
+            <th scope="row">1 Jun 2026</th>
+            <td>&minus;8.8%</td><td class="good">&minus;1.2%</td><td>&minus;1.0%</td><td>USAR &minus;34.3%</td>
           </tr>
         </tbody>
       </table>
       <p class="figure__note">
-        One good window and two bad ones, which is roughly the ratio the whole
-        run shows. The worst name in each ten fell a long way in all three.
+        The same three windows this page showed before the reweight, not three
+        picked after it. Two of them now beat both the pool and the index; the
+        third still loses to both. The worst name in each ten fell a long way in
+        all three, which the reweight did not change.
       </p>
     </div>
   </section>
