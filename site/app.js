@@ -870,12 +870,147 @@ function macdLine(t) {
   return parts.join(" · ");
 }
 
+/* ---- the chart, drawn ----------------------------------------------- */
+
+/* The figures below say what the chart says, and she still had to open a real
+   one to see the shape: a name 20% off its high and a name 70% off read the
+   same on a row of numbers. So the payload carries the line now as well as the
+   reading, and this draws it.
+
+   Two panels, one x-axis, one width, so a turn in the price sits directly over
+   the crossing that called it. No library -- the page has no dependencies and
+   the whole job is a few `<path>` elements' worth of arithmetic. */
+const CHART = { w: 640, price: 116, macd: 54, pad: 3 };
+
+const svgEl = (tag, cls, attrs) => {
+  const node = document.createElementNS("http://www.w3.org/2000/svg", tag);
+  if (cls) node.setAttribute("class", cls);
+  Object.entries(attrs || {}).forEach(([key, value]) => node.setAttribute(key, value));
+  return node;
+};
+
+const drawn = (values) => (values || []).some((v) => v != null);
+
+/* A hole stays a hole. The 200-day average has no reading until 200 days sit
+   behind it, and joining across the gap draws a run the stock never made. */
+function linePath(values, x, y) {
+  let d = "";
+  let pen = false;
+  values.forEach((value, i) => {
+    if (value == null) { pen = false; return; }
+    d += (pen ? "L" : "M") + x(i).toFixed(1) + " " + y(value).toFixed(1) + " ";
+    pen = true;
+  });
+  return d.trim();
+}
+
+/* One panel. Its lines arrive together because they share a scale -- drawing
+   the 50-day against its own range would put the crossing wherever it liked.
+   `rule` is a value the scale must reach even if no line does, which is how
+   MACD keeps its zero on screen when the whole reading sits below it. */
+function panel(lines, cls, height, rule) {
+  const live = lines.filter((line) => drawn(line.values));
+  const n = Math.max(0, ...live.map((line) => line.values.length));
+  if (n < 2) return null;
+
+  const seen = live.flatMap((line) => line.values.filter((v) => v != null));
+  if (rule != null) seen.push(rule);
+  let lo = Math.min(...seen);
+  let hi = Math.max(...seen);
+  if (hi === lo) { hi += 1; lo -= 1; }  /* a flat line still needs a middle */
+  /* Headroom, so the extremes are lines rather than edges. Without it a MACD
+     reading that never crosses zero pins the zero rule flat along the top of
+     the panel, where it looks like a border and not like a level. */
+  const room = (hi - lo) * 0.07;
+  lo -= room;
+  hi += room;
+
+  const x = (i) => (i / (n - 1)) * CHART.w;
+  const y = (v) => CHART.pad + (1 - (v - lo) / (hi - lo)) * (height - CHART.pad * 2);
+
+  /* Stretched to the row's width and held at a fixed height, so ten of these
+     down the page are the same size and can be compared. The strokes are told
+     not to stretch with it: a hairline is a hairline at any width. */
+  const box = svgEl("svg", "chart__panel " + cls, {
+    viewBox: `0 0 ${CHART.w} ${height}`,
+    preserveAspectRatio: "none",
+    /* The lines underneath say all of this in words already, so a screen
+       reader is better served by them than by a shape it cannot read. */
+    "aria-hidden": "true",
+    focusable: "false",
+  });
+  if (rule != null) {
+    box.appendChild(svgEl("line", "chart__zero", {
+      x1: 0, x2: CHART.w, y1: y(rule), y2: y(rule),
+      "vector-effect": "non-scaling-stroke",
+    }));
+  }
+  live.forEach((line) => box.appendChild(svgEl("path", line.cls, {
+    d: linePath(line.values, x, y),
+    "vector-effect": "non-scaling-stroke",
+  })));
+  return box;
+}
+
+const chartKey = (name, label) => {
+  const key = el("span", "chart__key", label);
+  key.dataset.line = name;
+  return key;
+};
+
+/* Price over MACD. Slowest line first, so the closing price lands on top of the
+   averages it is being judged against rather than under them. */
+function renderPanels(series, lastDate) {
+  if (!series) return null;
+  const price = panel([
+    { values: series.ema200, cls: "chart__ln chart__ln--slow" },
+    { values: series.ema50, cls: "chart__ln chart__ln--fast" },
+    { values: series.close, cls: "chart__ln chart__ln--close" },
+  ], "chart__panel--price", CHART.price);
+  const macd = panel([
+    { values: series.macd_signal, cls: "chart__ln chart__ln--signal" },
+    { values: series.macd, cls: "chart__ln chart__ln--macd" },
+  ], "chart__panel--macd", CHART.macd, 0);
+  if (!price && !macd) return null;
+
+  const wrap = el("div", "chart__panels");
+  if (price) {
+    wrap.appendChild(price);
+    const keys = el("div", "chart__keys");
+    /* No axis is drawn, so the window says its own length, and the last close
+       anchors the right-hand edge to a day she can name. */
+    keys.appendChild(el("span", "chart__caption",
+      lastDate ? `Six months to ${shortDate(lastDate)}` : "Six months"));
+    keys.appendChild(chartKey("close", "price"));
+    if (drawn(series.ema50)) keys.appendChild(chartKey("fast", "50-day"));
+    if (drawn(series.ema200)) keys.appendChild(chartKey("slow", "200-day"));
+    wrap.appendChild(keys);
+  }
+  if (macd) {
+    wrap.appendChild(macd);
+    const keys = el("div", "chart__keys");
+    keys.appendChild(el("span", "chart__caption", "MACD"));
+    keys.appendChild(chartKey("macd", "line"));
+    keys.appendChild(chartKey("signal", "signal"));
+    wrap.appendChild(keys);
+  }
+  return wrap;
+}
+
 function renderChart(pick) {
   const t = pick.technicals || {};
   const price = t.close == null ? pick.price : t.close;
   const box = el("div", "chart");
-  box.appendChild(el("span", "metric__label", "The chart, in figures"));
+  /* An old file carries no series, and the label should not promise a chart
+     the page cannot draw from it. */
+  const panels = renderPanels(pick.series, t.last_date);
+  box.appendChild(el("span", "metric__label",
+    panels ? "The chart" : "The chart, in figures"));
   let filled = false;
+  if (panels) {
+    box.appendChild(panels);
+    filled = true;
+  }
 
   /* The 52-week range with today marked inside it. Distance from the high is a
      number she asked for; a bar is the one way to show it without her doing

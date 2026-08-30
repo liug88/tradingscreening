@@ -364,3 +364,64 @@ class TestFourRankings:
         from screener import score
 
         assert set(score.PROFILES) == {"put", *run.OTHER_RANKINGS}
+
+
+class TestTheChartSeries:
+    """A reading is not a shape.
+
+    `technicals.compute` collapses the history to today's number, which is all
+    the scoring wants and nothing a chart can draw. These check the line
+    survives the one stage that holds the price frame, and lands on the card
+    beside the scored fields rather than among them.
+    """
+
+    @staticmethod
+    def falling_frame(n=300):
+        """Deterministic and heading down, so the RSI gates open on their own
+        and the test is about the series rather than about the gates."""
+        import pandas as pd
+
+        dates = pd.date_range("2024-01-01", periods=n, freq="B")
+        close = pd.Series([100.0 - i * 0.1 for i in range(n)], index=dates)
+        return pd.DataFrame(
+            {
+                "open": close,
+                "high": close * 1.01,
+                "low": close * 0.99,
+                "close": close,
+                "volume": pd.Series([2_000_000.0] * n, index=dates),
+            }
+        )
+
+    @staticmethod
+    def results():
+        return {"badges": [], "put": None, **{p: None for p in run.OTHER_RANKINGS}}
+
+    def test_the_stage_holding_the_price_frame_carries_a_line_out(self, config, monkeypatch):
+        """The only place the frame exists. Dropped here, there is nothing left
+        downstream to draw from."""
+        from screener import technicals
+
+        frame = self.falling_frame()
+        monkeypatch.setattr(run.prices, "fetch_histories", lambda *a, **k: {"AAA": frame})
+        rows = run._technicals_stage(["AAA"], None, config)
+        assert rows[0]["series"] == technicals.series(frame)
+
+    def test_the_line_reaches_the_card(self):
+        row = {"symbol": "AAA", "tech": {"close": 10.0}, "series": {"close": [1.0, 2.0]}}
+        card = run._present(row, self.results(), 1)
+        assert card["series"] == {"close": [1.0, 2.0]}
+
+    def test_it_rides_beside_the_scored_fields_and_not_among_them(self):
+        """`technicals` is the tuple score.js re-scores from, and a series is
+        not something it scores. Putting it there would add it to the parity
+        contract for nothing."""
+        row = {"symbol": "AAA", "tech": {"close": 10.0}, "series": {"close": [1.0]}}
+        card = run._present(row, self.results(), 1)
+        assert "series" not in card["technicals"]
+
+    def test_a_name_with_no_line_publishes_the_absence(self):
+        """Too little history to draw. The card still has to render, and the
+        page reads a missing chart the same way it read every chart until now."""
+        card = run._present({"symbol": "AAA", "tech": {"close": 10.0}}, self.results(), 1)
+        assert card["series"] is None

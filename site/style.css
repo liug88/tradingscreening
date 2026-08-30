@@ -585,6 +585,51 @@ main a:not(.btn):hover { text-decoration-thickness: var(--sp-hair); }
   background: var(--ink);
 }
 
+/* The chart itself: price with its two averages, MACD beneath, sharing an
+   x-axis. Stroke only -- no fills, no grid, no frame -- for the same reason
+   nothing else on the page has any. The heights are stated rather than left to
+   the viewBox, so every row's panel is the same size and the ten are
+   comparable at a glance. */
+.chart__panels { margin: var(--sp-sm) 0 var(--sp-md); }
+.chart__panel { display: block; width: 100%; }
+.chart__panel--price { height: 116px; }
+.chart__panel--macd { height: 54px; margin-top: var(--sp-sm); }
+
+.chart__ln { fill: none; stroke-linejoin: round; stroke-linecap: round; }
+.chart__ln--close  { stroke: var(--ink);   stroke-width: 1.75; }
+.chart__ln--fast   { stroke: var(--blue);  stroke-width: 1.25; }
+.chart__ln--slow   { stroke: var(--ochre); stroke-width: 1.25; }
+.chart__ln--macd   { stroke: var(--blue);  stroke-width: 1.5; }
+.chart__ln--signal { stroke: var(--red);   stroke-width: 1.25; }
+/* Dashed, because zero is a reference and not a reading. */
+.chart__zero { stroke: var(--rule); stroke-width: 1; stroke-dasharray: 3 3; }
+
+.chart__keys {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--sp-sm);
+  margin-top: var(--sp-xs);
+  font-size: var(--text-xs);
+  color: var(--ink-2);
+}
+.chart__keys .chart__caption { margin-right: 0; }
+/* A length of the line itself, at the weight it is drawn. Naming the colour in
+   words would only work for someone who can see it. */
+.chart__key::before {
+  content: "";
+  display: inline-block;
+  width: 15px;
+  vertical-align: middle;
+  margin-right: var(--sp-xs);
+  border-top: 2px solid currentColor;
+}
+.chart__key[data-line="close"]  { color: var(--ink); }
+.chart__key[data-line="fast"],
+.chart__key[data-line="macd"]   { color: var(--blue); }
+.chart__key[data-line="slow"]   { color: var(--ochre); }
+.chart__key[data-line="signal"] { color: var(--red); }
+
 .chart__line {
   font-size: var(--text-sm);
   color: var(--ink-2);
@@ -1238,6 +1283,8 @@ main a:not(.btn):hover { text-decoration-thickness: var(--sp-hair); }
   }
   .guide__score { margin-top: 0; width: 100%; }
   .trade, .flags, .catalyst, .why, .chart, .numbers { grid-column: 1; }
+  .chart__panel--price { height: 88px; }
+  .chart__panel--macd { height: 44px; }
   .wrap { padding: 0 var(--sp-md); }
 
   /* Label and figure keep the same line; the tally drops below rather than

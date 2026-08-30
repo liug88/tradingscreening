@@ -195,3 +195,44 @@ def test_compute_output_is_json_safe():
 
     result = t.compute(_synthetic_frame())
     assert "NaN" not in json.dumps(result)
+
+
+def test_series_last_value_matches_the_scalar_compute_publishes():
+    """The drawn line and the figure printed under it have to be one
+    computation. If the series drifted, the line would end somewhere the text
+    beneath it says it does not."""
+    frame = _synthetic_frame()
+    drawn, scalars = t.series(frame), t.compute(frame)
+    for key, places in (("close", 2), ("ema50", 2), ("ema200", 2),
+                        ("macd", 3), ("macd_signal", 3)):
+        assert drawn[key][-1] == round(scalars[key], places), key
+
+
+def test_series_arrays_are_all_the_same_length():
+    """They are drawn on one x-axis, so a short array would silently shear the
+    panel rather than fail."""
+    assert {len(v) for v in t.series(_synthetic_frame(), bars=90).values()} == {90}
+
+
+def test_series_gives_back_what_history_there_is():
+    assert {len(v) for v in t.series(_synthetic_frame(n=80), bars=130).values()} == {80}
+
+
+def test_the_long_average_carries_its_warm_up_in():
+    """A 200-day EMA computed inside a 130-bar window is not a 200-day EMA. The
+    series has to be taken over the whole frame and sliced afterwards, and this
+    is the difference that proves it was."""
+    frame = _synthetic_frame(n=400)
+    whole = t.series(frame, bars=130)["ema200"][0]
+    truncated = t.series(frame.iloc[-130:], bars=130)["ema200"][0]
+    assert whole != pytest.approx(truncated, abs=0.01)
+
+
+def test_series_bails_out_on_short_history():
+    assert t.series(_synthetic_frame(n=30)) == {}
+
+
+def test_series_output_is_json_safe():
+    import json
+
+    assert "NaN" not in json.dumps(t.series(_synthetic_frame()))

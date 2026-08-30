@@ -274,6 +274,38 @@ def compute(
     }
 
 
+def series(df: pd.DataFrame, bars: int = 130) -> dict:
+    """The same arithmetic `compute` does, kept as a line instead of a point.
+
+    `compute` collapses the history to today's reading, which is everything the
+    scoring needs and nothing a chart needs. The page had the figures and no
+    shape to put them in, so a fall of three quarters and a normal pullback
+    read the same on the row.
+
+    Taken over the whole frame and sliced afterwards, deliberately: a 200-day
+    EMA computed inside a 130-bar window is not a 200-day EMA, and the warm-up
+    has to come from history the panel never draws.
+    """
+    if len(df) < 60:
+        return {}
+    close = df["close"]
+    macd_line, macd_signal, _hist = macd(close)
+    lines = {
+        "close": (close, 2),
+        "ema50": (ema(close, 50), 2),
+        "ema200": (ema(close, 200), 2),
+        "macd": (macd_line, 3),
+        "macd_signal": (macd_signal, 3),
+    }
+    # A gap stays a gap rather than being dropped: the arrays share one x-axis,
+    # and a shorter one would shear the panel instead of showing a hole in it.
+    return {
+        name: [None if not np.isfinite(value) else round(float(value), places)
+               for value in line.iloc[-bars:]]
+        for name, (line, places) in lines.items()
+    }
+
+
 def _f(value) -> float | None:
     """NaN -> None, so the value survives a JSON round-trip."""
     if value is None:

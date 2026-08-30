@@ -120,7 +120,9 @@ def _technicals_stage(symbols: list[str], session: YahooSession, config: dict) -
             or (tech.get("rsi_min_recent") or tech["rsi14"]) >= gates["max_rsi_recent"]
         ):
             continue
-        rows.append({"symbol": symbol, "tech": tech})
+        # The frame dies with this loop, and it is the only thing a chart can be
+        # drawn from -- `tech` is one reading per name by the time it leaves here.
+        rows.append({"symbol": symbol, "tech": tech, "series": technicals.series(frame)})
 
     rows.sort(key=lambda r: score.partial_score(r, config, score.STAGE_TECHNICAL), reverse=True)
     log.info("technicals: %d symbols -> %d tradeable", len(histories), len(rows))
@@ -362,6 +364,9 @@ def _present(row: dict, results: dict, rank: int) -> dict:
         # `close`, the two recent minimums and `at_52w_low` earn their bytes by
         # being re-scored rather than by being rendered. See the tuple.
         "technicals": {key: tech.get(key) for key in PUBLISHED_TECHNICALS},
+        # Top level, not inside `technicals`: that tuple is the contract
+        # score.js re-scores from, and a line is not something it scores.
+        "series": row.get("series"),
         "fundamentals": row.get("fund"),
         "iv": row.get("iv"),
         "iv_hv": row.get("iv_hv"),
