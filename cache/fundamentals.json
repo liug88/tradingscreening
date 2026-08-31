@@ -3512,7 +3512,7 @@
   }
  },
  "fundamentals:CRWD": {
-  "fetched_at": "2026-08-30T06:00:41.787700+00:00",
+  "fetched_at": "2026-08-31T12:43:07.140708+00:00",
   "value": {
    "gross_margin": 0.7529807762395273,
    "gross_margin_change": -0.008238796680131832,
@@ -3980,7 +3980,7 @@
   }
  },
  "fundamentals:DLTR": {
-  "fetched_at": "2026-08-30T06:00:41.854601+00:00",
+  "fetched_at": "2026-08-31T12:43:07.295921+00:00",
   "value": {
    "gross_margin": 0.3687447244664175,
    "gross_margin_change": -0.02298477816627187,
@@ -5276,7 +5276,7 @@
   }
  },
  "fundamentals:HRL": {
-  "fetched_at": "2026-08-30T06:00:41.787730+00:00",
+  "fetched_at": "2026-08-31T12:43:07.266695+00:00",
   "value": {
    "gross_margin": 0.17442878288367086,
    "gross_margin_change": 0.019316186482302933,
@@ -7040,7 +7040,7 @@
   }
  },
  "fundamentals:OKTA": {
-  "fetched_at": "2026-08-30T06:00:41.775683+00:00",
+  "fetched_at": "2026-08-31T12:43:07.140684+00:00",
   "value": {
    "gross_margin": 0.7777777777777778,
    "gross_margin_change": -0.0014600671630894402,
@@ -8048,7 +8048,7 @@
   }
  },
  "fundamentals:S": {
-  "fetched_at": "2026-08-30T06:00:41.787738+00:00",
+  "fetched_at": "2026-08-31T12:43:07.277239+00:00",
   "value": {
    "gross_margin": 0.7181889487704992,
    "gross_margin_change": -0.007722252654526529,
@@ -8264,7 +8264,7 @@
   }
  },
  "fundamentals:SNPS": {
-  "fetched_at": "2026-08-30T06:00:41.787720+00:00",
+  "fetched_at": "2026-08-31T12:43:07.140719+00:00",
   "value": {
    "gross_margin": 0.7232626752812519,
    "gross_margin_change": -0.012131492266213684,
@@ -8804,7 +8804,7 @@
   }
  },
  "fundamentals:UL": {
-  "fetched_at": "2026-08-30T06:00:41.396620+00:00",
+  "fetched_at": "2026-08-31T12:43:07.106676+00:00",
   "value": {
    "gross_margin": null,
    "gross_margin_change": null,
@@ -8819,7 +8819,7 @@
   }
  },
  "fundamentals:ULTA": {
-  "fetched_at": "2026-08-30T06:00:41.916085+00:00",
+  "fetched_at": "2026-08-31T12:43:07.299713+00:00",
   "value": {
    "gross_margin": 0.4006565404188622,
    "gross_margin_change": 0.02007506015061611,
