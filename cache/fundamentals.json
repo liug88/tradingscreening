@@ -828,7 +828,7 @@
   }
  },
  "fundamentals:AI": {
-  "fetched_at": "2026-08-28T22:59:26.050960+00:00",
+  "fetched_at": "2026-09-03T12:43:54.104146+00:00",
   "value": {
    "gross_margin": 0.21943798449612403,
    "gross_margin_change": 0.046043316828080466,
@@ -1764,12 +1764,12 @@
   }
  },
  "fundamentals:AVAV": {
-  "fetched_at": "2026-08-26T20:45:36.432718+00:00",
+  "fetched_at": "2026-09-03T12:43:54.261771+00:00",
   "value": {
    "gross_margin": 0.315804157003566,
    "gross_margin_change": 0.07368870405107303,
    "latest_quarter": "2026-04-30",
-   "next_earnings": "2026-09-02",
+   "next_earnings": "2026-09-09",
    "operating_margin": 0.08874622827360913,
    "operating_margin_change": 0.1567093205796048,
    "profitable": true,
@@ -1800,7 +1800,7 @@
   }
  },
  "fundamentals:AVGO": {
-  "fetched_at": "2026-08-26T20:45:36.487150+00:00",
+  "fetched_at": "2026-09-03T12:43:54.981772+00:00",
   "value": {
    "gross_margin": 0.6947762203091901,
    "gross_margin_change": 0.013454693718128019,
@@ -3331,6 +3331,42 @@
    "revenue_yoy": 0.09923679783349071
   }
  },
+ "fundamentals:COF": {
+  "fetched_at": "2026-09-03T12:43:54.104125+00:00",
+  "value": {
+   "gross_margin": null,
+   "gross_margin_change": null,
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-10-20",
+   "operating_margin": null,
+   "operating_margin_change": null,
+   "profitable": null,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 12492000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 15464000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 15393000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 15231000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 15850000000.0
+    }
+   ],
+   "revenue_qoq": 0.04064079837174184,
+   "revenue_yoy": 0.26881203970541145
+  }
+ },
  "fundamentals:COHR": {
   "fetched_at": "2026-08-26T20:45:37.864409+00:00",
   "value": {
@@ -3512,12 +3548,12 @@
   }
  },
  "fundamentals:CRDO": {
-  "fetched_at": "2026-08-26T20:45:37.776247+00:00",
+  "fetched_at": "2026-09-03T12:43:54.811546+00:00",
   "value": {
    "gross_margin": 0.682070832465681,
    "gross_margin_change": -0.0030883274608076716,
    "latest_quarter": "2026-04-30",
-   "next_earnings": "2026-09-01",
+   "next_earnings": "2026-11-30",
    "operating_margin": 0.35662226575103606,
    "operating_margin_change": -0.010988517223421701,
    "profitable": true,
@@ -4015,8 +4051,44 @@
    "revenue_yoy": 0.05701486100081077
   }
  },
+ "fundamentals:DELL": {
+  "fetched_at": "2026-09-03T12:43:54.067317+00:00",
+  "value": {
+   "gross_margin": 0.1775010264130286,
+   "gross_margin_change": -0.024122749014635514,
+   "latest_quarter": "2026-04-30",
+   "next_earnings": "2026-11-27",
+   "operating_margin": 0.08580812919118654,
+   "operating_margin_change": -0.008412788152053222,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-04-30",
+     "revenue": 23378000000.0
+    },
+    {
+     "quarter": "2025-07-31",
+     "revenue": 29776000000.0
+    },
+    {
+     "quarter": "2025-10-31",
+     "revenue": 27005000000.0
+    },
+    {
+     "quarter": "2026-01-31",
+     "revenue": 33379000000.0
+    },
+    {
+     "quarter": "2026-04-30",
+     "revenue": 43842000000.0
+    }
+   ],
+   "revenue_qoq": 0.3134605590341233,
+   "revenue_yoy": 0.8753528958850201
+  }
+ },
  "fundamentals:DG": {
-  "fetched_at": "2026-09-02T12:43:19.661697+00:00",
+  "fetched_at": "2026-09-03T12:43:54.146019+00:00",
   "value": {
    "gross_margin": 0.31616603928908643,
    "gross_margin_change": 0.011671383658538648,
@@ -4124,7 +4196,7 @@
   }
  },
  "fundamentals:DLTR": {
-  "fetched_at": "2026-09-02T12:43:19.772178+00:00",
+  "fetched_at": "2026-09-03T12:43:54.535174+00:00",
   "value": {
    "gross_margin": 0.3687447244664175,
    "gross_margin_change": -0.02298477816627187,
@@ -4375,6 +4447,42 @@
    "revenue_yoy": 0.35516016045728627
   }
  },
+ "fundamentals:EMR": {
+  "fetched_at": "2026-09-03T12:43:54.419570+00:00",
+  "value": {
+   "gross_margin": 0.5448389082700595,
+   "gross_margin_change": 0.013931411558091078,
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-04",
+   "operating_margin": 0.2273753334701416,
+   "operating_margin_change": 0.029874237459619896,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 4553000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 4855000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 4346000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 4562000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 4873000000.0
+    }
+   ],
+   "revenue_qoq": 0.06817185444980267,
+   "revenue_yoy": 0.0702833296727432
+  }
+ },
  "fundamentals:ENPH": {
   "fetched_at": "2026-08-26T20:45:37.139342+00:00",
   "value": {
@@ -4409,6 +4517,42 @@
    ],
    "revenue_qoq": 0.031650759985860644,
    "revenue_yoy": -0.19633322594058156
+  }
+ },
+ "fundamentals:EOG": {
+  "fetched_at": "2026-09-03T12:43:54.239544+00:00",
+  "value": {
+   "gross_margin": 0.7172121497527667,
+   "gross_margin_change": 0.058881282632316845,
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-05",
+   "operating_margin": 0.4060513303508359,
+   "operating_margin_change": 0.037155207237488774,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 5355000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 5732000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 5653000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 6758000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 8494000000.0
+    }
+   ],
+   "revenue_qoq": 0.25688073394495414,
+   "revenue_yoy": 0.5861811391223155
   }
  },
  "fundamentals:EPD": {
@@ -4517,6 +4661,42 @@
    ],
    "revenue_qoq": 0.05866838170882205,
    "revenue_yoy": 0.062279557039789823
+  }
+ },
+ "fundamentals:EXPE": {
+  "fetched_at": "2026-09-03T12:43:54.722160+00:00",
+  "value": {
+   "gross_margin": 0.9066048667439166,
+   "gross_margin_change": 0.016645730725235897,
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-05",
+   "operating_margin": 0.18980301274623407,
+   "operating_margin_change": 0.11887481659912373,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 3786000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 4412000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 3547000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 3426000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 4315000000.0
+    }
+   ],
+   "revenue_qoq": 0.2594862813776999,
+   "revenue_yoy": 0.13972530375066028
   }
  },
  "fundamentals:F": {
@@ -5455,6 +5635,42 @@
    "revenue_yoy": 0.3225480283114257
   }
  },
+ "fundamentals:HPE": {
+  "fetched_at": "2026-09-03T12:43:54.578091+00:00",
+  "value": {
+   "gross_margin": 0.3652369357557595,
+   "gross_margin_change": 0.006135763838761299,
+   "latest_quarter": "2026-04-30",
+   "next_earnings": "2026-09-02",
+   "operating_margin": 0.07726165948679528,
+   "operating_margin_change": 0.014150166098987518,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-04-30",
+     "revenue": 7627000000.0
+    },
+    {
+     "quarter": "2025-07-31",
+     "revenue": 9136000000.0
+    },
+    {
+     "quarter": "2025-10-31",
+     "revenue": 9679000000.0
+    },
+    {
+     "quarter": "2026-01-31",
+     "revenue": 9301000000.0
+    },
+    {
+     "quarter": "2026-04-30",
+     "revenue": 10678000000.0
+    }
+   ],
+   "revenue_qoq": 0.14804859692506178,
+   "revenue_yoy": 0.4000262226301299
+  }
+ },
  "fundamentals:HRL": {
   "fetched_at": "2026-09-02T12:43:19.743348+00:00",
   "value": {
@@ -5815,6 +6031,42 @@
    "revenue_yoy": 7.5471847739888975
   }
  },
+ "fundamentals:IOT": {
+  "fetched_at": "2026-09-03T12:43:54.696346+00:00",
+  "value": {
+   "gross_margin": 0.7541976092422584,
+   "gross_margin_change": -0.007414019041588338,
+   "latest_quarter": "2026-04-30",
+   "next_earnings": "2026-09-03",
+   "operating_margin": 0.015025770397039537,
+   "operating_margin_change": -0.005273759645994837,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-04-30",
+     "revenue": 366884000.0
+    },
+    {
+     "quarter": "2025-07-31",
+     "revenue": 391480000.0
+    },
+    {
+     "quarter": "2025-10-31",
+     "revenue": 415975000.0
+    },
+    {
+     "quarter": "2026-01-31",
+     "revenue": 444296000.0
+    },
+    {
+     "quarter": "2026-04-30",
+     "revenue": 478844000.0
+    }
+   ],
+   "revenue_qoq": 0.07775897149647992,
+   "revenue_yoy": 0.3051645751790757
+  }
+ },
  "fundamentals:IP": {
   "fetched_at": "2026-09-02T12:43:19.998988+00:00",
   "value": {
@@ -5849,6 +6101,42 @@
    ],
    "revenue_qoq": 0.0055267124434768,
    "revenue_yoy": -0.022468251383914062
+  }
+ },
+ "fundamentals:IREN": {
+  "fetched_at": "2026-09-03T12:43:54.419590+00:00",
+  "value": {
+   "gross_margin": 0.6462239718222315,
+   "gross_margin_change": 0.048601984946784804,
+   "latest_quarter": "2026-03-31",
+   "next_earnings": "2026-11-05",
+   "operating_margin": -0.6446769570772471,
+   "operating_margin_change": -0.18631925885534256,
+   "profitable": false,
+   "revenue_history": [
+    {
+     "quarter": "2025-03-31",
+     "revenue": 144823000.0
+    },
+    {
+     "quarter": "2025-06-30",
+     "revenue": 187292000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 240295000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 184692000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 144795000.0
+    }
+   ],
+   "revenue_qoq": -0.21601910207263986,
+   "revenue_yoy": -0.00019333945574939726
   }
  },
  "fundamentals:ISRG": {
@@ -6392,12 +6680,12 @@
   }
  },
  "fundamentals:LI": {
-  "fetched_at": "2026-08-26T20:48:33.282617+00:00",
+  "fetched_at": "2026-09-03T12:43:54.305327+00:00",
   "value": {
    "gross_margin": 0.07866910331767808,
    "gross_margin_change": -0.09962989782294811,
    "latest_quarter": "2026-03-31",
-   "next_earnings": "2026-08-26",
+   "next_earnings": "2026-11-25",
    "operating_margin": -0.13047911989912853,
    "operating_margin_change": -0.1150983550227698,
    "profitable": false,
@@ -6677,6 +6965,78 @@
    ],
    "revenue_qoq": -0.12022315202231515,
    "revenue_yoy": -0.006614173228346454
+  }
+ },
+ "fundamentals:LYFT": {
+  "fetched_at": "2026-09-03T12:43:54.736591+00:00",
+  "value": {
+   "gross_margin": 0.4974782267198396,
+   "gross_margin_change": 0.021046696427907963,
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-04",
+   "operating_margin": 0.02580139123340696,
+   "operating_margin_change": 0.02903316072717517,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 1588183000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 1685195000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 1592711000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 1650489000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 1843544000.0
+    }
+   ],
+   "revenue_qoq": 0.11696836513300002,
+   "revenue_yoy": 0.16078814595043522
+  }
+ },
+ "fundamentals:LYV": {
+  "fetched_at": "2026-09-03T12:43:54.642461+00:00",
+  "value": {
+   "gross_margin": 0.2533817634290344,
+   "gross_margin_change": null,
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-03",
+   "operating_margin": 0.06696367664563502,
+   "operating_margin_change": 0.1662347341566638,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 7006641000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 8499143000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 6313505000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 3793029000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 7666858000.0
+    }
+   ],
+   "revenue_qoq": 1.0213022362866195,
+   "revenue_yoy": 0.09422731948161744
   }
  },
  "fundamentals:M": {
@@ -7255,6 +7615,42 @@
    "revenue_yoy": -0.011264305668198582
   }
  },
+ "fundamentals:NLY": {
+  "fetched_at": "2026-09-03T12:43:54.535191+00:00",
+  "value": {
+   "gross_margin": null,
+   "gross_margin_change": null,
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-10-21",
+   "operating_margin": null,
+   "operating_margin_change": null,
+   "profitable": null,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 110829000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 885580000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 1061404000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 332237000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 892861000.0
+    }
+   ],
+   "revenue_qoq": 1.6874219307301717,
+   "revenue_yoy": 7.05620370119734
+  }
+ },
  "fundamentals:NN": {
   "fetched_at": "2026-09-01T12:42:09.391262+00:00",
   "value": {
@@ -7508,7 +7904,7 @@
   }
  },
  "fundamentals:OKTA": {
-  "fetched_at": "2026-09-02T12:43:19.585322+00:00",
+  "fetched_at": "2026-09-03T12:43:53.981048+00:00",
   "value": {
    "gross_margin": 0.7777777777777778,
    "gross_margin_change": -0.0014600671630894402,
@@ -8515,6 +8911,42 @@
    "revenue_yoy": 0.6345731791888651
   }
  },
+ "fundamentals:RKT": {
+  "fetched_at": "2026-09-03T12:43:54.563877+00:00",
+  "value": {
+   "gross_margin": null,
+   "gross_margin_change": null,
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-05",
+   "operating_margin": null,
+   "operating_margin_change": null,
+   "profitable": null,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 1296000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 1468089000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 2487401000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 2592000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 2410000000.0
+    }
+   ],
+   "revenue_qoq": -0.07021604938271608,
+   "revenue_yoy": 0.8595679012345678
+  }
+ },
  "fundamentals:ROST": {
   "fetched_at": "2026-08-26T20:48:34.201257+00:00",
   "value": {
@@ -9431,7 +9863,7 @@
   }
  },
  "fundamentals:ULTA": {
-  "fetched_at": "2026-09-01T12:42:08.885582+00:00",
+  "fetched_at": "2026-09-03T12:43:54.239524+00:00",
   "value": {
    "gross_margin": 0.4006565404188622,
    "gross_margin_change": 0.02007506015061611,
