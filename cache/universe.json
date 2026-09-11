@@ -1,6 +1,6 @@
 {
  "cboe_weekly_equities": {
-  "fetched_at": "2026-09-03T12:43:35.631319+00:00",
+  "fetched_at": "2026-09-11T12:41:52.999993+00:00",
   "value": [
    "AA",
    "AAL",
@@ -82,7 +82,6 @@
    "BHC",
    "BIDU",
    "BIIB",
-   "BILI",
    "BILL",
    "BKKT",
    "BKNG",
@@ -337,7 +336,6 @@
    "MDT",
    "MELI",
    "META",
-   "MGM",
    "MMM",
    "MNKD",
    "MO",
