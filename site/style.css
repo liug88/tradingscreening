@@ -497,6 +497,23 @@ main a:not(.btn):hover { text-decoration-thickness: var(--sp-hair); }
 }
 .trade__credit { color: var(--ink); font-weight: 500; }
 
+/* What the company does, first of the stacked blocks and so directly under the
+   name -- because "what is APLD" is the question that comes before every other
+   question on the row. The industry leads: it is the shortest true answer, and
+   it is what the note above the list counts when ten rows look alike. */
+.about {
+  grid-column: 2 / -1;
+  margin: var(--sp-md) 0 0;
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+  line-height: 1.55;
+  max-width: 84ch;
+}
+.about__tag {
+  color: var(--ink);
+  font-weight: 500;
+}
+
 .flags {
   grid-column: 2 / -1;
   display: flex;
@@ -544,6 +561,13 @@ main a:not(.btn):hover { text-decoration-thickness: var(--sp-hair); }
   color: var(--ink-2);
   line-height: 1.55;
   max-width: 84ch;
+}
+
+/* Earnings, set under the read rather than in it. The read is about today's
+   price; this is the one scheduled date that can move it, and on the two lists
+   holding a contract it is said against the expiry. */
+.why--earnings {
+  margin-top: var(--sp-sm);
 }
 
 /* The chart, in figures. Set between the prose read and the collapsed jargon:
@@ -1086,8 +1110,8 @@ main a:not(.btn):hover { text-decoration-thickness: var(--sp-hair); }
    the rows. Below the breakpoint the chat drops back under the list, which is
    where it sat before it had a column.
 
-   :has() carries the whole rule, and deliberately: with no passphrase the chat
-   is hidden, and a plain grid would still hold its 280px open. A browser
+   :has() carries the whole rule, and deliberately: with the chat switched off
+   it is hidden, and a plain grid would still hold its 280px open. A browser
    without :has() drops the block and gets the stacked layout, which is the
    state everything already renders in. */
 .spread > .rows { min-width: 0; }

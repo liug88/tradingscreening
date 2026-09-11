@@ -210,17 +210,33 @@ class TestParsing:
 
     def test_empty_rows_makes_no_call(self, config):
         session = StubSession([])
-        assert catalyst.explain([], config, session=session) == {"verdicts": {}, "brief": None}
+        assert catalyst.explain([], config, session=session) == catalyst.EMPTY
         assert session.requests == []
+
+    def test_a_good_morning_reports_no_error(self, config):
+        session = StubSession([answered(VERDICTS)])
+        assert catalyst.explain(ROWS, config, session=session)["error"] is None
+
+
+def failed(result):
+    """No verdicts, no brief, and a reason -- the shape every failure ends in.
+
+    The reason is the part that matters: this layer failed silently for a
+    fortnight because the page could not tell a failure from the AI being
+    switched off. A failure with no reason attached is the old bug back."""
+    assert result["verdicts"] == {} and result["brief"] is None
+    assert result["error"], "a failure has to say why"
+    return result["error"]
 
 
 class TestFailureModes:
-    """Every one of these has to end with a page, not a traceback."""
+    """Every one of these has to end with a page, not a traceback -- and with a
+    sentence the page can print about what went wrong."""
 
     def test_no_key_skips_the_call(self, config, monkeypatch):
         monkeypatch.delenv("GEMINI_API_KEY", raising=False)
         session = StubSession([])
-        assert catalyst.explain(ROWS, config, session=session) == {"verdicts": {}, "brief": None}
+        assert "GEMINI_API_KEY" in failed(catalyst.explain(ROWS, config, session=session))
         assert session.requests == []
 
     def test_a_refused_schema_is_asked_again_in_prose(self, config):
@@ -247,8 +263,9 @@ class TestFailureModes:
             Response(status_code=400, text="nope"),
             Response(status_code=400, text="still nope"),
         ])
-        assert catalyst.explain(ROWS, config, session=session) == {"verdicts": {}, "brief": None}
+        reason = failed(catalyst.explain(ROWS, config, session=session))
         assert len(session.requests) == 2
+        assert "400" in reason and "still nope" in reason
 
     def test_retries_a_rate_limit(self, config):
         session = StubSession([Response(status_code=429, text="slow down"), answered(VERDICTS)])
@@ -260,21 +277,46 @@ class TestFailureModes:
 
     def test_gives_up_after_repeated_failures(self, config):
         session = StubSession([Response(status_code=503, text="down")] * catalyst.MAX_TRIES)
-        assert catalyst.explain(ROWS, config, session=session) == {"verdicts": {}, "brief": None}
+        reason = failed(catalyst.explain(ROWS, config, session=session))
+        assert str(catalyst.MAX_TRIES) in reason and "503" in reason
 
     def test_an_auth_failure_stops_immediately(self, config):
         """A bad key will be a bad key on the third try too."""
         session = StubSession([Response(status_code=403, text="invalid api key")])
-        assert catalyst.explain(ROWS, config, session=session) == {"verdicts": {}, "brief": None}
+        assert "403" in failed(catalyst.explain(ROWS, config, session=session))
         assert len(session.requests) == 1
+
+    def test_a_rejected_key_is_named_not_retried_in_prose(self, config):
+        """The shape Google actually sends for a bad key -- probed live, not
+        guessed: a 400, not a 403, with API_KEY_INVALID in the body. Before
+        this it read as a refused schema, was asked again without one, and
+        failed again, and the two warnings said "schema refused" and "http
+        400". Neither said "key"."""
+        body = ('{"error": {"code": 400, "message": "API key not valid.", '
+                '"status": "INVALID_ARGUMENT", "details": [{"reason": "API_KEY_INVALID"}]}}')
+        session = StubSession([Response(status_code=400, text=body)])
+        reason = failed(catalyst.explain(ROWS, config, session=session))
+        assert "key" in reason.lower()
+        assert len(session.requests) == 1, "asking again in prose cannot fix a key"
+
+    def test_the_reason_never_carries_the_key(self, config, monkeypatch):
+        """The key goes out in a header and the error body is Google's own
+        words, but this string lands on a public page: pin it."""
+        monkeypatch.setenv("GEMINI_API_KEY", "sk-secret-value")
+        session = StubSession([Response(status_code=400, text="bad request " * 40)] * 2)
+        assert "sk-secret-value" not in failed(catalyst.explain(ROWS, config, session=session))
+
+    def test_the_reason_is_clipped_to_a_line(self, config):
+        session = StubSession([Response(status_code=403, text="x" * 2000)])
+        assert len(failed(catalyst.explain(ROWS, config, session=session))) < 200
 
     def test_a_body_that_is_not_json_returns_nothing(self, config):
         session = StubSession([Response(payload=None, text="<html>502</html>")])
-        assert catalyst.explain(ROWS, config, session=session) == {"verdicts": {}, "brief": None}
+        assert "JSON" in failed(catalyst.explain(ROWS, config, session=session))
 
     def test_unparseable_content_returns_nothing(self, config):
         session = StubSession([Response(payload={"output_text": "not json"})])
-        assert catalyst.explain(ROWS, config, session=session) == {"verdicts": {}, "brief": None}
+        assert "no verdicts" in failed(catalyst.explain(ROWS, config, session=session))
 
     def test_a_partial_answer_is_still_used(self, config):
         """Nine verdicts beat none."""

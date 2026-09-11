@@ -199,14 +199,21 @@ def _extract(data: dict) -> dict:
     return parsed if isinstance(parsed, dict) else {}
 
 
-def _ask(session, key: str, rows: list[dict], settings: dict) -> dict | None:
-    """One answer, or None if the morning has to go without it.
+def _ask(session, key: str, rows: list[dict],
+         settings: dict) -> tuple[dict | None, str | None]:
+    """One answer, or None and the reason there isn't one.
 
     Two things go wrong here and they deserve different answers. A 429 or a 5xx
     is weather: wait and ask again. A 400 is most likely the schema -- Google
     does not document whether a JSON schema may be attached to a grounded call,
     and if it may not, the fix is to ask again in prose and parse that, not to
     publish a page with ten blank verdicts.
+
+    The reason travels back with the answer because it has to reach the page. A
+    warning in a log nobody opens is how this layer stayed dead for a fortnight
+    while the footer said "did not run for this list", which reads like an
+    ordinary morning. The status and a clipped body are what tell a dead key
+    from an exhausted quota from a model name that no longer exists.
     """
     headers = {
         "x-goog-api-key": key,
@@ -214,6 +221,7 @@ def _ask(session, key: str, rows: list[dict], settings: dict) -> dict | None:
         "Api-Revision": API_REVISION,
     }
     schema = True
+    last = "nothing was attempted"
 
     for attempt in range(MAX_TRIES):
         try:
@@ -225,38 +233,61 @@ def _ask(session, key: str, rows: list[dict], settings: dict) -> dict | None:
             )
         except requests.RequestException as exc:
             log.warning("catalyst: request failed (%s)", exc)
+            last = f"the request never reached Google ({type(exc).__name__})"
             time.sleep(BACKOFF * 2**attempt)
             continue
 
         if response.status_code == 200:
             try:
-                return response.json()
+                return response.json(), None
             except ValueError:
                 log.warning("catalyst: response was not JSON")
-                return None
+                return None, "Google answered with something that was not JSON"
 
         detail = (response.text or "")[:300]
+        # A rejected key is also a 400, and it looked exactly like a refused
+        # schema until this was probed: two quick 400s a morning, logged as
+        # "schema refused" and then "http 400", for a fortnight. Asking again
+        # in prose cannot fix a key, so that one is named and returned at once.
+        if response.status_code == 400 and "API_KEY_INVALID" in detail:
+            log.warning("catalyst: Google rejected the API key")
+            return None, "Google rejected the API key (API_KEY_INVALID)"
         if response.status_code == 400 and schema:
             log.warning("catalyst: schema refused, asking in prose instead (%s)", detail)
+            last = f"http 400 with the schema attached ({_clip(detail)})"
             schema = False
             continue
         if response.status_code in (429, 500, 502, 503, 504):
             log.warning("catalyst: http %d, retrying", response.status_code)
+            last = f"http {response.status_code} ({_clip(detail)})"
             time.sleep(BACKOFF * 2**attempt)
             continue
 
         log.warning("catalyst: http %d (%s)", response.status_code, detail)
-        return None
+        return None, f"http {response.status_code} ({_clip(detail)})"
 
     log.warning("catalyst: no answer after %d tries", MAX_TRIES)
-    return None
+    return None, f"{MAX_TRIES} tries, none answered -- last was {last}"
 
 
-EMPTY: dict = {"verdicts": {}, "brief": None}
+EMPTY: dict = {"verdicts": {}, "brief": None, "error": None}
+
+
+def _clip(detail: str, chars: int = 140) -> str:
+    """Google's error bodies are JSON and long. This one goes on a page.
+
+    No key can land here: the key travels in a header, and what comes back is
+    Google's own message and status, never the credential.
+    """
+    text = " ".join((detail or "").split())
+    if len(text) <= chars:
+        return text or "no detail"
+    return text[:chars].rsplit(" ", 1)[0] + "..."
 
 
 def explain(rows: list[dict], config: dict, session=None) -> dict:
-    """The day's answer: `verdicts` keyed by ticker, and a list-level `brief`.
+    """The day's answer: `verdicts` keyed by ticker, a list-level `brief`, and
+    `error` -- the reason there is neither, in words the page can print.
 
     Never raises -- a missing note is a worse page, but an exception at 6:45 in
     the morning is no page at all.
@@ -267,11 +298,11 @@ def explain(rows: list[dict], config: dict, session=None) -> dict:
     key = os.environ.get("GEMINI_API_KEY")
     if not key:
         log.warning("catalyst: no GEMINI_API_KEY set, skipping")
-        return dict(EMPTY)
+        return dict(EMPTY, error="no GEMINI_API_KEY was set for this run")
 
-    data = _ask(session or requests, key, rows, config["catalyst"])
+    data, error = _ask(session or requests, key, rows, config["catalyst"])
     if data is None:
-        return dict(EMPTY)
+        return dict(EMPTY, error=error)
 
     answer = _extract(data)
     verdicts = {
@@ -289,4 +320,8 @@ def explain(rows: list[dict], config: dict, session=None) -> dict:
     missing = {row["symbol"] for row in rows} - set(verdicts)
     if missing:
         log.warning("catalyst: no verdict for %s", ", ".join(sorted(missing)))
-    return {"verdicts": verdicts, "brief": brief}
+
+    # A 200 that parses to nothing is a failed morning too, and it is the one
+    # failure with no status code to name it.
+    empty = None if verdicts else "Google answered, but the answer held no verdicts"
+    return {"verdicts": verdicts, "brief": brief, "error": empty}

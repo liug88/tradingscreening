@@ -15,9 +15,9 @@
  * watch -- when the day's free allowance is gone the answer is "ask tomorrow",
  * which is a far better failure than a charge.
  *
- * Nothing personal ever reaches here. The request carries a passphrase and her
- * question; the day's data is fetched server-side from the public page. There
- * is no account, no position, no holding, and nowhere to put one.
+ * Nothing personal ever reaches here. The request carries her question and
+ * nothing else; the day's data is fetched server-side from the public page.
+ * There is no account, no position, no holding, and nowhere to put one.
  */
 
 const ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/interactions";
@@ -56,8 +56,8 @@ what looks odd:
       100: oversold 20, premium richness 20, bounce 15, sales growth 15,
       margin trend 10, strike safety 10, trade quality 10.
     BUY -- own it for weeks. Under a "buy" key on each name, same shape.
-      Weights: entry timing 30, trend structure 25, revenue expanding 20,
-      room to run 15, margin trend 10.
+      Weights: trend structure 30, revenue expanding 25, room to run 18,
+      entry timing 15, margin trend 12.
     LONG -- own it for months. Under a "long" key. Weights: trend structure 35,
       revenue expanding 35, room to run 15, margin trend 15, entry timing 0.
     CALL -- buy the upside instead of the shares, about ninety days. Under a
@@ -149,6 +149,17 @@ what looks odd:
 - Prices and option quotes are delayed and reflect the prior close.
 - "catalyst" is a short note on why the stock fell, researched for the ten
   only. Bench names have no catalyst note. Say so rather than guessing.
+- Plain facts about the company sit under "fundamentals": "description" is one
+  sentence on what it does, "sector" and "industry" are the labels the data
+  source uses, "last_earnings" is the quarter just reported ("eps_actual"
+  against "eps_estimate", both per share), and "next_earnings" is the date of
+  the next one. Use them. Do not describe a business from memory when the file
+  says what it is, and never state an EPS figure that is not in the file.
+- NOTHING IN THE SCREEN LOOKS AT SECTOR. Names are ranked one at a time, so a
+  whole sector that fell together and turned together can fill a list on its
+  own. That is the screen working, not a fault. If the ten in front of her
+  share an "industry", say so plainly, say there is no sector limit, and say
+  what it means for her: ten names from one industry is one bet, not ten.
 - A null or missing figure means it could not be measured. It is never a zero
   and never a fail.
 - There is a backtest, linked from the page as "How this was measured". Five
@@ -287,25 +298,14 @@ function slim(data) {
   };
 }
 
-/* ---- gates ----------------------------------------------------------- */
+/* ---- the gate --------------------------------------------------------- */
 
-/* Not a login. There is no account here and nothing to steal -- it is a lock on
-   the day's allowance, so that a URL leaking into a search index cannot use up
-   the questions she was going to ask. */
-function passphraseOk(given, expected) {
-  if (typeof given !== "string" || !expected) return false;
-  const a = new TextEncoder().encode(given);
-  const b = new TextEncoder().encode(expected);
-  /* Compare every byte regardless, so the time taken says nothing about how
-     much of the passphrase was right. */
-  let diff = a.length ^ b.length;
-  for (let i = 0; i < Math.max(a.length, b.length); i++) {
-    diff |= (a[i] ?? 0) ^ (b[i] ?? 0);
-  }
-  return diff === 0;
-}
+/* The only limit left. There is no passphrase any more -- the page is a
+   bookmark, and a bookmark cannot carry one -- so this counter and the origin
+   check are the whole of what stands between a public Worker URL and a day's
+   questions.
 
-/* Read-then-write, so two requests landing in the same millisecond can both see
+   Read-then-write, so two requests landing in the same millisecond can both see
    the old count. One person on one page: this is a backstop against a stuck
    tab, and being off by one on a bad day costs nothing at all.
 
@@ -434,10 +434,6 @@ export default {
       body = await request.json();
     } catch {
       return fail(400, "Expected JSON.", headers);
-    }
-
-    if (!passphraseOk(body.key, env.PASSPHRASE)) {
-      return fail(401, "Wrong passphrase.", headers);
     }
 
     const input = cleanHistory(body.messages);

@@ -83,7 +83,15 @@ jobs:
         continue-on-error: true
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python -m screener.run ${{ inputs.no_ai && '--no-ai' || '' }}
+        run: |
+          # The screener logs this too, but a log has to be opened to be read.
+          # An annotation sits on the run's summary page, which is the page a
+          # red or yellow badge leads to. Without it a missing secret costs the
+          # "why it fell" notes every morning and nothing says so above the fold.
+          if [ -z "$GEMINI_API_KEY" ]; then
+            echo "::warning::GEMINI_API_KEY is not set in this repository's Actions secrets. The list will publish without the 'why it fell' notes."
+          fi
+          python -m screener.run ${{ inputs.no_ai && '--no-ai' || '' }}
 
       - name: Make sure there is a list to publish
         id: publish

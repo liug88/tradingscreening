@@ -267,10 +267,10 @@ in `worker/`, deployed on its own and reached over CORS — the Action, Pages an
 the daily deploy know nothing about it, and the page renders its ten names
 whether or not it is up.
 
-A turn goes: the browser posts the passphrase and the conversation so far, the
-Worker checks the passphrase and a daily counter in KV, fetches `latest.json`
-itself, and streams Gemini's answer back as plain text. Same free tier as the
-morning run, same reason.
+A turn goes: the browser posts the conversation so far, the Worker checks the
+request came from the published page and that a daily counter in KV has room,
+fetches `latest.json` itself, and streams Gemini's answer back as plain text.
+Same free tier as the morning run, same reason.
 
 Fetching the data server-side is what lets the chat see the bench without the
 browser downloading it, so "why isn't NVDA on here?" is answerable at no cost to
@@ -286,14 +286,21 @@ what the numbers say and what the risks are, and the decision stays with her.
 The day's data is labelled as data, never as instructions.
 
 Nothing personal passes through it. There is no account, no position and no
-holding anywhere in the request — the passphrase is a lock on the day's
-allowance, not a login, so that a leaked URL cannot use up the questions she
-meant to ask.
+holding anywhere in the request, and nowhere in the shape of it to put one.
+
+The chat is open. It used to sit behind a passphrase carried on a bookmarked
+link, which was never a login and broke the bookmark: the page stripped the
+parameter out of the address bar and kept it in `sessionStorage`, so a bookmark
+saved from the open page had none, and the panel then rendered absent rather
+than explaining itself. `PRODUCT.md` asks for no login and zero install, and
+one person uses this.
 
 There is no bill to bound, so the limits bound requests instead: Google's
 free-tier daily quota, a turn counter in the Worker set below it, and a
 per-question character limit. The counter trips first on purpose — it fails with
-a sentence she can read rather than a 429 she cannot.
+a sentence she can read rather than a 429 she cannot. It is one counter for the
+whole Worker per day, not one per visitor, and with the passphrase gone it and
+the origin check are the only limits there are.
 
 `CHAT_URL` in `site/app.js` is empty until the Worker is deployed. Empty is a
 working state — the panel simply never appears. See `worker/README.md` to
@@ -307,7 +314,7 @@ deploy it.
 | Daily OHLCV, one year | Yahoo `chart/v8` | no |
 | Option chains with delta and IV | CBOE delayed quotes | no |
 | Quarterly revenue and margins | Yahoo `fundamentals-timeseries` | cookie + crumb |
-| Earnings date | Yahoo `quoteSummary` | cookie + crumb |
+| Earnings date, last quarter's EPS against the estimate, sector and industry, what the company does | Yahoo `quoteSummary`, three modules in one request | cookie + crumb |
 | Reddit mentions | ApeWisdom | no |
 | Catalyst verdict | Gemini API, free tier | `GEMINI_API_KEY` |
 
@@ -326,7 +333,7 @@ screener/
   universe.py    CBOE weeklys -> symbols
   prices.py      Yahoo chart v8, concurrent, with backoff
   technicals.py  RSI, Williams %R, MACD, EMAs, ATR, volume, support
-  fundamentals.py  revenue and margin trend
+  fundamentals.py  revenue and margin trend, both earnings, what the company is
   options.py     CBOE chain -> the target put
   buzz.py        ApeWisdom
   score.py       gates, score, penalties, badges
@@ -339,7 +346,7 @@ site/            the page: index.html, style.css, app.js, data/
 tools/
   backtest.py    what the screen would have picked, run over past dates
 worker/          the chat, deployed separately to Cloudflare
-  src/index.js   passphrase, daily cap, the Gemini call, the streamed answer
+  src/index.js   origin check, daily cap, the Gemini call, the streamed answer
   wrangler.toml  the origin it trusts and the file it reads
 cache/           fundamentals.json, iv_history.json, universe.json
 history/         YYYY-MM-DD.json, one per run, kept
@@ -393,6 +400,14 @@ carries its own date, and the page raises a stale banner once that date is more
 than four days old. A stale list she can see the date of beats a blank page.
 
 A failed screen still turns the run red, so it does not pass unnoticed.
+
+A failed catalyst does not. The screen publishes without the notes, as it
+should at 6:45 in the morning, and for a fortnight in September 2026 nobody
+noticed. So the payload now carries `catalyst_error` beside `catalyst_ran`,
+the page prints it in the footer, and the workflow raises a warning
+annotation when `GEMINI_API_KEY` is not set at all. A rejected key comes back
+from Google as a 400 with `API_KEY_INVALID`, not a 403, and is named as such
+rather than retried.
 
 The holiday list is hardcoded in the workflow through 2027. Once it runs out the
 workflow starts writing a warning into the log. Adding a year is one line.

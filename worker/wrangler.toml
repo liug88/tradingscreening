@@ -25,6 +25,10 @@ MODEL = "gemini-3.7-flash"
 # Twelve leaves the worst morning covered and five spare, so her limit is
 # always this readable one rather than Google's 429. Raise it here if the
 # allowance goes up -- check AI Studio's rate-limits page for the real number.
+#
+# One counter for the whole Worker, not one per visitor. With the passphrase
+# gone this and the origin check are the only limits there are, and the URL is
+# in a public repo.
 DAILY_TURNS = "12"
 
 # Created with:  npx wrangler kv namespace create COUNTER
@@ -33,6 +37,5 @@ DAILY_TURNS = "12"
 binding = "COUNTER"
 id = "389f2b9136ea4ad8bccdc11aa738f097"
 
-# Secrets, set once and never committed:
+# Secret, set once and never committed:
 #   npx wrangler secret put GEMINI_API_KEY
-#   npx wrangler secret put PASSPHRASE

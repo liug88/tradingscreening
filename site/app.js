@@ -20,6 +20,15 @@ const money = (v, dp = 2) => {
 const pct = (v, dp = 0) =>
   v == null ? "—" : (v * 100).toFixed(dp) + "%";
 
+/* Earnings per share, which run to cents and are often negative. money() would
+   put the sign inside the figure -- "$-0.12" -- and a loss is the reading this
+   is most often carrying. */
+const eps = (v) => {
+  const n = Number(v);
+  if (v == null || !Number.isFinite(n)) return "—";
+  return (n < 0 ? "-" : "") + money(Math.abs(n));
+};
+
 /* Revenue growth arrives as a ratio, and a real one in this data set was
    41.58 -- that is +4,158%, not 41.6%. Past a few hundred percent a multiple
    is the only reading that stays honest. */
@@ -443,6 +452,9 @@ function renderRow(pick) {
     row.appendChild(revenueSlot(pick));
   }
 
+  const about = aboutBlock(pick);
+  if (about) row.appendChild(about);
+
   /* risk flags -- red is spent here and nowhere else */
   if (result.penalties && result.penalties.length) {
     const flags = el("div", "flags");
@@ -464,6 +476,9 @@ function renderRow(pick) {
 
   const why = profile === "put" ? whyPicked(pick, trade) : whyOwned(pick, profile);
   if (why) row.appendChild(el("p", "why", why));
+
+  const earnings = earningsLine(pick, trade, profile);
+  if (earnings) row.appendChild(el("p", "why why--earnings", earnings));
 
   const chart = renderChart(pick);
   if (chart) row.appendChild(chart);
@@ -1097,6 +1112,71 @@ function renderChart(pick) {
   return filled ? box : null;
 }
 
+/* What the company actually does, in the sentence its own filing opens with,
+   and the label the data source files it under.
+
+   She asked for this: a ticker, a price and eleven ticks do not say whether a
+   name is a chipmaker or a utility, and that is the question that comes before
+   every other question on the row. The industry leads because it is also the
+   answer to why ten rows can look alike -- see the note above the list. */
+function aboutBlock(pick) {
+  const f = pick.fundamentals || {};
+  if (!f.description && !f.industry) return null;
+
+  const about = el("p", "about");
+  if (f.industry) {
+    about.appendChild(el("span", "about__tag", f.industry));
+    if (f.description) about.appendChild(document.createTextNode(" — "));
+  }
+  if (f.description) about.appendChild(document.createTextNode(f.description));
+  return about;
+}
+
+/* Earnings, in the order she asked for them: the one just reported, then the
+   one coming.
+
+   Per-share against the estimate, because that is the number a report is
+   judged on and the revenue column beside it already carries the sales. The
+   next date is only a date on the two lists that own the stock outright -- an
+   owner can sit through a print. On the two lists carrying an expiry it is
+   said against that expiry, because a print inside the life of an option is
+   the one scheduled event that can undo the trade. */
+function earningsLine(pick, trade, profile) {
+  const f = pick.fundamentals || {};
+  const last = f.last_earnings;
+  const parts = [];
+
+  if (last && last.eps_actual != null) {
+    const when = last.quarter ? ` for the quarter to ${shortDate(last.quarter)}` : "";
+    if (last.eps_estimate == null) {
+      parts.push(`It earned ${eps(last.eps_actual)} a share${when}.`);
+    } else {
+      const gap = last.eps_actual - last.eps_estimate;
+      const verdict = Math.abs(gap) < 0.005 ? "in line with"
+        : gap > 0 ? "ahead of" : "short of";
+      parts.push(`It earned ${eps(last.eps_actual)} a share${when}, ` +
+                 `${verdict} the ${eps(last.eps_estimate)} expected.`);
+    }
+  }
+
+  if (f.next_earnings) {
+    const contract = profile === "call" ? callOf(pick)
+      : profile === "put" ? trade : null;
+    const expiry = contract && contract.expiry;
+    if (expiry) {
+      const inside = f.next_earnings < expiry;
+      const noun = profile === "call" ? "call" : "put";
+      parts.push(`It reports again on ${shortDate(f.next_earnings)}, ` +
+                 `${inside ? "before" : "after"} this ${noun} expires on ` +
+                 `${shortDate(expiry)}.`);
+    } else {
+      parts.push(`It reports again on ${shortDate(f.next_earnings)}.`);
+    }
+  }
+
+  return parts.join(" ");
+}
+
 /* The jargon layer. Plain English is the page; this is what she opens when she
    wants to check the actual figure. */
 function renderNumbers(pick, trade, result) {
@@ -1164,7 +1244,17 @@ function renderNumbers(pick, trade, result) {
     ["Sales, quarter on quarter", growth(f.revenue_qoq)],
     ["Operating margin", f.operating_margin == null
       ? "—" : pct(f.operating_margin, 1)],
-    ["Next earnings", f.next_earnings || "not scheduled"],
+    ...(!f.last_earnings ? [] : [
+      ["Last earnings", shortDate(f.last_earnings.quarter)],
+      ["Earnings per share", eps(f.last_earnings.eps_actual)],
+      ["Estimate", eps(f.last_earnings.eps_estimate)],
+    ]),
+    /* Written the way line 592 already writes the same value. It sat here as a
+       bare 2026-10-22 in the last cell of sixteen, which is a date she was
+       never going to find. */
+    ["Next earnings", f.next_earnings ? shortDate(f.next_earnings) : "not scheduled"],
+    ...(f.sector ? [["Sector", f.sector]] : []),
+    ...(f.industry ? [["Industry", f.industry]] : []),
     /* The moving averages and the 52-week range used to sit here. They are in
        the chart block now, in the order they actually stand, which is the
        reading -- and a figure that appears twice on one row is a figure she has
@@ -1695,6 +1785,98 @@ function renderList() {
   tunedNote();
 }
 
+/* Ten names from one industry is one bet, not ten.
+
+   She read a list that was almost all chipmakers and asked whether that was
+   deliberate. It was not deliberate and it was not a fault: nothing in the
+   screen looks at sector at all. It ranks each name on its own numbers, and
+   when a whole sector falls together and turns together, the same numbers come
+   up for forty names at once. The screen was working. The page just never said
+   so, which is what made it read as a glitch.
+
+   Counted here, from the ten actually on screen, and not in the morning job.
+   Only the sell-puts ten is fixed in the file -- buy, hold and calls are sorted
+   at render time and re-sort every time she moves a weight, so a count written
+   at build time would be wrong the moment she touched a slider, on exactly the
+   lists that ran most lopsided.
+
+   Two floors, because the two claims are not the same size. An industry is
+   specific enough that half the list is worth saying out loud. A sector covers
+   a third of the market, so it has to be more lopsided than that before it
+   means anything. */
+const MIX_INDUSTRY = 5;
+const MIX_SECTOR = 7;
+
+const industryOf = (pick, field) =>
+  ((pick.fundamentals || {})[field] || "").trim();
+
+/* The biggest bucket, or null -- which is also what an old payload gives,
+   since nothing published before today carries an industry at all. */
+const topGroup = (names, field) => {
+  const tally = new Map();
+  names.forEach((p) => {
+    const key = industryOf(p, field);
+    if (key) tally.set(key, (tally.get(key) || 0) + 1);
+  });
+  let best = null;
+  tally.forEach((n, key) => { if (!best || n > best.n) best = { key, n }; });
+  return best;
+};
+
+const countIn = (names, field, key) =>
+  names.filter((p) => industryOf(p, field) === key).length;
+
+function mixNote() {
+  const note = $("#mix-note");
+  const shown = shownNames();
+  const cleared = everyName(view.profile);
+
+  const industry = topGroup(shown, "industry");
+  const sector = topGroup(shown, "sector");
+  const sayIndustry = industry != null && industry.n >= MIX_INDUSTRY;
+  const saySector = sector != null && sector.n >= MIX_SECTOR;
+
+  if (!sayIndustry && !saySector) {
+    note.hidden = true;
+    return;
+  }
+
+  const parts = [];
+  const ofPool = (n) =>
+    `${n} of the ${cleared.length} names that cleared this morning's filters`;
+  if (sayIndustry) {
+    parts.push(`${industry.n} of these ${shown.length} are ${industry.key}, ` +
+               `against ${ofPool(countIn(cleared, "industry", industry.key))}.`);
+  }
+  if (saySector && (!sayIndustry || sector.n > industry.n)) {
+    const share = countIn(cleared, "sector", sector.key);
+    parts.push(sayIndustry
+      ? `Wider than that, ${sector.n} of them sit in ${sector.key}, ` +
+        `against ${share} of ${cleared.length}.`
+      : `${sector.n} of these ${shown.length} sit in ${sector.key}, ` +
+        `against ${ofPool(share)}.`);
+  }
+  parts.push("Nothing in the screen looks at sector — it ranks every name on " +
+             "its own numbers, so a sector that falls together and turns " +
+             "together arrives here together. That is the screen working, not " +
+             "failing. It is still worth knowing: ten names from one " +
+             `${sayIndustry ? "industry" : "sector"} is one bet, not ten.`);
+
+  note.textContent = parts.join(" ");
+  note.hidden = false;
+}
+
+/* Per profile, like everything else in this panel: the puts list ranks the
+   names that have a put, the others rank every name in the file. Written on
+   every render so it agrees with the mix note above it. */
+function tuningFloor() {
+  $("#tuning-floor").textContent =
+    `What this cannot do is widen the net. Price, volume, market cap and the ` +
+    `RSI ceiling were applied to all ${view.data.universe_size} symbols this ` +
+    `morning, and only the ${everyName().length} that came through are in this ` +
+    `file. Moving those means a fresh run.`;
+}
+
 function updateControls(count) {
   const size = pageSize();
   const last = Math.min(view.offset + size, count);
@@ -1727,6 +1909,9 @@ function updateControls(count) {
   const researched = (view.data.picks || []).map((p) => p.symbol);
   $("#deep-note").hidden = !view.data.catalyst_ran ||
     shownNames().every((p) => researched.includes(p.symbol));
+
+  mixNote();
+  tuningFloor();
 }
 
 function wireControls() {
@@ -1903,11 +2088,7 @@ function wireTuning() {
   view.settings = clone(config);
 
   $("#tuning").hidden = false;
-  $("#tuning-floor").textContent =
-    `What this cannot do is widen the net. Price, volume, market cap and the ` +
-    `RSI ceiling were applied to all ${view.data.universe_size} symbols this ` +
-    `morning, and only the ${everyName().length} that came through are in this ` +
-    `file. Moving those means a fresh run.`;
+  tuningFloor();
 
   renderWeights();
   renderStrikeChoice();
@@ -1929,21 +2110,20 @@ function wireTuning() {
    chat switched off, unreachable, or out of budget. */
 const CHAT_URL = "https://put-screen-chat.tradingscreening.workers.dev/";
 
-const chat = { key: "", turns: [], busy: false };
+const chat = { turns: [], busy: false };
 
-/* She opens a bookmark that carries the passphrase, so she never types one.
-   It is taken out of the address bar immediately -- it is a lock on the spend,
-   not a login, but there is no reason to leave it sitting in a screenshot. */
-function readChatKey() {
+/* There used to be a passphrase, carried in a `k` parameter on a bookmarked
+   link. It was never a login -- there is no account here -- and it broke the
+   one thing the page promises: she bookmarked the page it opened, that
+   bookmark had no `k` on it, and the chat quietly went missing the next
+   morning. Now anyone who reaches the page can ask. This only tidies away a
+   `k` that an old bookmark still carries, so a retired passphrase does not sit
+   in the address bar. */
+function dropOldKey() {
   const url = new URL(location.href);
-  const given = url.searchParams.get("k");
-  if (given) {
-    try { sessionStorage.setItem("chat-key", given); } catch { /* private mode */ }
-    url.searchParams.delete("k");
-    history.replaceState(null, "", url.pathname + url.search + url.hash);
-    return given;
-  }
-  try { return sessionStorage.getItem("chat-key") || ""; } catch { return ""; }
+  if (!url.searchParams.has("k")) return;
+  url.searchParams.delete("k");
+  history.replaceState(null, "", url.pathname + url.search + url.hash);
 }
 
 /* Her turn takes the solid blue field with reversed lettering, the answer sits
@@ -1988,7 +2168,7 @@ async function ask(question) {
     const res = await fetch(CHAT_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ key: chat.key, messages: chat.turns }),
+      body: JSON.stringify({ messages: chat.turns }),
     });
 
     if (!res.ok) {
@@ -2058,8 +2238,7 @@ function chatStarters() {
 
 function wireChat(data) {
   if (!CHAT_URL) return;
-  chat.key = readChatKey();
-  if (!chat.key) return;
+  dropOldKey();
 
   $("#chat-section").hidden = false;
   chatStarters();
@@ -2130,11 +2309,19 @@ function render(data) {
   wireChat(data);
   renderReddit(data.reddit);
 
+  /* Three states, not two. "Did not run" used to cover both the AI layer
+     being switched off and the AI layer failing, and it read the same either
+     way -- which is how a dead key hid for a fortnight. A failure now says it
+     failed, and says why, in Google's own words clipped to a line. */
   $("#footer-note").textContent = data.catalyst_ran
     ? "The “why it fell” note on each name is written by Gemini from recent " +
       "news. It never picks or ranks the stocks — every number above is computed."
-    : "The “why it fell” notes did not run for this list, so each name shows " +
-      "its numbers only. Every number above is computed, never written by a model.";
+    : data.catalyst_error
+      ? "The “why it fell” notes failed this morning, so each name shows its " +
+        `numbers only. What went wrong: ${data.catalyst_error}. Every number ` +
+        "above is computed, never written by a model."
+      : "The “why it fell” notes did not run for this list, so each name shows " +
+        "its numbers only. Every number above is computed, never written by a model.";
 
   /* The sources were named here in prose and could not be followed. Named and
      linked is the same sentence doing twice the work. */

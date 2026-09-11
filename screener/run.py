@@ -242,12 +242,12 @@ def _add_catalyst(rows: list[dict], config: dict) -> dict:
         answer = catalyst.explain(rows, config)
     except Exception as exc:
         log.warning("catalyst layer failed (%s) -- publishing without it", exc)
-        return {"ran": False, "brief": None}
+        return {"ran": False, "brief": None, "error": f"the step raised {type(exc).__name__}"}
 
     verdicts = answer["verdicts"]
     for row in rows:
         row["catalyst"] = verdicts.get(row["symbol"])
-    return {"ran": bool(verdicts), "brief": answer["brief"]}
+    return {"ran": bool(verdicts), "brief": answer["brief"], "error": answer["error"]}
 
 
 REPEAT_LOOKBACK = 6  # runs to look back over -- about a trading week
@@ -432,10 +432,11 @@ def build(config: dict, limit: int | None = None, use_ai: bool = True, as_of: da
     picks, bench = sellable[:final], sellable[final:] + unsellable
     reddit = _add_buzz(picks) if picks else []
 
-    brief, catalyst_ran = None, False
+    brief, catalyst_ran, catalyst_error = None, False, None
     if use_ai and picks:
         answer = _add_catalyst(picks, config)
         catalyst_ran, brief = answer["ran"], answer["brief"]
+        catalyst_error = answer["error"]
         # The catalyst verdict is a penalty on all four rankings, so none of a
         # researched name's scores can be settled until it lands. Only these ten
         # were researched, so the bench stays put rather than being promoted
@@ -451,6 +452,12 @@ def build(config: dict, limit: int | None = None, use_ai: bool = True, as_of: da
     return {
         "reddit": reddit,
         "catalyst_ran": catalyst_ran,
+        # Why not, when not. This step failed silently every morning from 27
+        # August to 10 September and the only trace was a footer line reading
+        # "did not run for this list", which is indistinguishable from the AI
+        # layer being switched off on purpose. A failure that can hide for a
+        # fortnight is worse than the failure.
+        "catalyst_error": catalyst_error,
         "brief": brief,
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "as_of": as_of.isoformat(),

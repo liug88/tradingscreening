@@ -31,7 +31,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=2026-08-29e">
+<link rel="stylesheet" href="style.css?v=2026-09-11">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 <body>
@@ -124,6 +124,12 @@
       but only the top ten are researched for &ldquo;why it fell&rdquo; &mdash;
       these show their numbers alone.
     </p>
+
+    <!-- Why ten rows can look like one bet. Written by app.js and hidden unless
+         it applies, because it is counted from the ten actually on screen --
+         move a weight and three of these lists re-sort, so a count baked in at
+         build time would be wrong the moment she touched a slider. -->
+    <p class="controls__note controls__note--mix" id="mix-note" hidden></p>
   </div>
 
   <section class="tuning" id="tuning" hidden>
@@ -227,7 +233,7 @@
      holding yesterday's app.js reads today's data file with last week's code,
      which looks exactly like a run that went wrong. The data file itself is
      fetched no-store and needs no such help. -->
-<script src="score.js?v=2026-08-29e"></script>
-<script src="app.js?v=2026-08-29e"></script>
+<script src="score.js?v=2026-09-11"></script>
+<script src="app.js?v=2026-09-11"></script>
 </body>
 </html>

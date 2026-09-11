@@ -13,7 +13,7 @@ from pathlib import Path
 import pytest
 import yaml
 
-from screener import run
+from screener import catalyst, run
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -251,6 +251,59 @@ class TestBench:
     def test_no_brief_without_the_ai_layer(self, payload):
         assert payload["brief"] is None
         assert payload["catalyst_ran"] is False
+        # Switched off is not the same as failed, and the page tells them apart.
+        assert payload["catalyst_error"] is None
+
+
+class TestCatalystOutcome:
+    """What the payload says when the AI layer was asked for and did not come.
+
+    It failed every morning from the first run to 10 September and the file
+    said only `catalyst_ran: false`, which is also what it says when the layer
+    is switched off on purpose. The reason has to travel with the flag.
+    """
+
+    @pytest.fixture
+    def build(self, config, monkeypatch, tmp_path):
+        rows = [row("S%02d" % i) for i in range(25)]
+        monkeypatch.setattr(run, "HISTORY_DIR", tmp_path)
+        monkeypatch.setattr(run.universe, "load", lambda *a, **k: [r["symbol"] for r in rows])
+        monkeypatch.setattr(run, "YahooSession", lambda *a, **k: None)
+        monkeypatch.setattr(run, "_technicals_stage", lambda *a, **k: rows)
+        monkeypatch.setattr(run, "_fundamentals_stage", lambda rows_, *a, **k: rows_)
+        monkeypatch.setattr(run, "_options_stage", lambda rows_, *a, **k: rows_)
+        monkeypatch.setattr(run, "_add_buzz", lambda rows_: [])
+        stub_scores(monkeypatch)
+
+        def go(explain):
+            # run.py imports the layer inside _add_catalyst, so patch the module.
+            monkeypatch.setattr(catalyst, "explain", explain)
+            return run.build(config, use_ai=True, as_of=date(2026, 8, 26))
+        return go
+
+    def test_a_failed_call_publishes_its_reason(self, build):
+        payload = build(lambda rows, config: {
+            "verdicts": {}, "brief": None,
+            "error": "Google rejected the API key (API_KEY_INVALID)",
+        })
+        assert payload["catalyst_ran"] is False
+        assert "API key" in payload["catalyst_error"]
+
+    def test_a_good_call_publishes_no_reason(self, build):
+        payload = build(lambda rows, config: {
+            "verdicts": {"S00": {"verdict": "transient", "headline": "x", "reason": "y"}},
+            "brief": "A brief.", "error": None,
+        })
+        assert payload["catalyst_ran"] is True
+        assert payload["catalyst_error"] is None
+
+    def test_a_raise_inside_the_layer_is_named_not_swallowed(self, build):
+        def explode(rows, config):
+            raise KeyError("model")
+        payload = build(explode)
+        assert payload["catalyst_ran"] is False
+        assert "KeyError" in payload["catalyst_error"]
+        assert payload["picks"], "the list still publishes"
 
 
 class TestFourRankings:

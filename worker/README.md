@@ -4,9 +4,9 @@ A Cloudflare Worker that answers questions about the day's published list. It
 is deployed on its own. The Action, Pages and the daily deploy do not know it
 exists, and the page renders its ten names whether or not this is running.
 
-What it does on each turn: check the passphrase, check a daily counter in KV,
-fetch `latest.json` from the public page, send that file to Gemini as the
-system instruction, stream the answer back.
+What it does on each turn: check the request came from the page, check a daily
+counter in KV, fetch `latest.json` from the public page, send that file to
+Gemini as the system instruction, stream the answer back.
 
 What it will not do is advise. The rules are in `RULES` at the top of
 `src/index.js` — it explains what the screen found and leaves the decision with
@@ -36,9 +36,9 @@ Secrets and variables → Actions**), so the morning run and the chat use one
 key. The morning run makes a single call a day.
 
 **What Google gets.** On the free tier, Google may use what passes through to
-improve its products. So it matters what passes through: a passphrase, her
-question, and the day's list — which is already public, at a URL anyone can
-open. There is no account, no position and no holding anywhere in the request,
+improve its products. So it matters what passes through: her question and the
+day's list — which is already public, at a URL anyone can open. There is no
+account, no position and no holding anywhere in the request,
 and nowhere in the shape of it to put one. That is the same rule the rest of
 this repo follows, and it is why the free tier is usable here at all.
 
@@ -69,18 +69,17 @@ npx wrangler deploy
 It prints a URL like `https://put-screen-chat.<subdomain>.workers.dev`. Keep
 it — step 6 needs it.
 
-### 5. The two secrets
+### 5. The one secret
 
 ```bash
 npx wrangler secret put GEMINI_API_KEY   # the key from step 1
-npx wrangler secret put PASSPHRASE       # invent one, a few plain words
 ```
 
-Secrets live in Cloudflare. Neither is ever committed, and neither reaches the
-browser.
+It lives in Cloudflare. It is never committed and never reaches the browser.
 
-The passphrase is not a login — there is no account here and nothing to steal.
-It stops a stranger who finds the Worker URL from using up her day.
+There used to be a `PASSPHRASE` here as well. It is gone — see **No passphrase**
+below. If you set one on an older deploy, `npx wrangler secret delete
+PASSPHRASE` clears it; nothing reads it either way.
 
 ### 6. Point the page at it
 
@@ -95,12 +94,29 @@ Commit and push. The push redeploys the page on its own.
 ### 7. Give her the link
 
 ```
-https://liug88.github.io/tradingscreening/?k=<the passphrase>
+https://liug88.github.io/tradingscreening/
 ```
 
-Bookmark that. The page stores the passphrase for the session and strips it
-from the address bar, so she never types it and it is not sitting in the URL
-while she reads.
+Bookmark that. Nothing else. The chat is on the page.
+
+### No passphrase
+
+There was one, carried in a `?k=` parameter on a link meant to be bookmarked.
+It broke the only promise this project makes. The page took the parameter out
+of the address bar on load and kept it in `sessionStorage`, so a bookmark saved
+from the open page carried no passphrase, and `sessionStorage` was gone by the
+next morning anyway. The chat then rendered *absent* — not disabled, not
+explained — and she had no way to know why.
+
+It was never a login. `PRODUCT.md` asks for no login and zero install, and one
+person uses this. What is left is the origin check — the request has to come
+from the published page — and `DAILY_TURNS`.
+
+Be clear about what that is: **`DAILY_TURNS` is one counter for the whole
+Worker per day, not one per visitor.** The URL is in a public repo. Anyone who
+finds it and posts from the right origin can spend the day's questions before
+she asks her first, and the same free-tier quota feeds the morning screen.
+Raising the number is a one-line change in `wrangler.toml` if it ever happens.
 
 ## Checking it
 
@@ -145,7 +161,7 @@ and, from another terminal:
 curl -X POST http://localhost:8787/ \
   -H 'Content-Type: application/json' \
   -H 'Origin: https://liug88.github.io' \
-  -d '{"key":"<passphrase>","messages":[{"role":"user","content":"Why did the top name rank first?"}]}'
+  -d '{"messages":[{"role":"user","content":"Why did the top name rank first?"}]}'
 ```
 
 Three answers worth reading before you trust it:
@@ -155,8 +171,8 @@ Three answers worth reading before you trust it:
 - **"should I sell this put?"** — this must come back as what the numbers say
   and what the risks are. If it recommends anything, the prompt has drifted.
 
-Then check a wrong passphrase is refused, and that `DAILY_TURNS` stops the run
-once it is used up.
+Then drop the `Origin` header and check it comes back 403, and let
+`DAILY_TURNS` run out and check it says so.
 
 ## What it costs
 
@@ -177,7 +193,7 @@ itself.
 ## What never passes through it
 
 No account, no positions, no holdings, no personal information. The request
-carries a passphrase and a question. The day's data is fetched server-side from
+carries a question and nothing else. The day's data is fetched server-side from
 the same public file the page reads, and `store: false` on every call asks
 Google not to keep the conversation. There is nowhere in this to put anything
 about her, which is deliberate.
