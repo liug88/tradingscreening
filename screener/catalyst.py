@@ -244,12 +244,13 @@ def _ask(session, key: str, rows: list[dict],
                 log.warning("catalyst: response was not JSON")
                 return None, "Google answered with something that was not JSON"
 
-        detail = (response.text or "")[:300]
+        body = response.text or ""
+        detail = _said(body)
         # A rejected key is also a 400, and it looked exactly like a refused
         # schema until this was probed: two quick 400s a morning, logged as
         # "schema refused" and then "http 400", for a fortnight. Asking again
         # in prose cannot fix a key, so that one is named and returned at once.
-        if response.status_code == 400 and "API_KEY_INVALID" in detail:
+        if response.status_code == 400 and "API_KEY_INVALID" in body:
             log.warning("catalyst: Google rejected the API key")
             return None, "Google rejected the API key (API_KEY_INVALID)"
         if response.status_code == 400 and schema:
@@ -258,7 +259,7 @@ def _ask(session, key: str, rows: list[dict],
             schema = False
             continue
         if response.status_code in (429, 500, 502, 503, 504):
-            log.warning("catalyst: http %d, retrying", response.status_code)
+            log.warning("catalyst: http %d, retrying (%s)", response.status_code, detail)
             last = f"http {response.status_code} ({_clip(detail)})"
             time.sleep(BACKOFF * 2**attempt)
             continue
@@ -271,6 +272,28 @@ def _ask(session, key: str, rows: list[dict],
 
 
 EMPTY: dict = {"verdicts": {}, "brief": None, "error": None}
+
+
+def _said(body: str) -> str:
+    """The line of Google's error body that says what went wrong.
+
+    A quota refusal opens with a sentence about plans and billing, then a link,
+    and only after those names the quota, its limit and the model. That last
+    line is the diagnosis -- a limit of 0 is a feature this tier does not
+    have, a limit of 500 is a day used up -- and at 140 characters neither the
+    page nor the log ever reached it. The first run to publish its reason said
+    "check your plan and billing details..." and nothing more.
+    """
+    try:
+        error = json.loads(body).get("error") or {}
+        message = str(error.get("message") or "")
+    except (ValueError, AttributeError):
+        return body[:300]
+    for line in message.splitlines():
+        line = line.strip().lstrip("* ")
+        if line.startswith("Quota exceeded"):
+            return line.replace("generativelanguage.googleapis.com/", "")
+    return message[:300] if message else body[:300]
 
 
 def _clip(detail: str, chars: int = 140) -> str:

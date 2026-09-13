@@ -271,6 +271,31 @@ class TestFailureModes:
         session = StubSession([Response(status_code=429, text="slow down"), answered(VERDICTS)])
         assert len(catalyst.explain(ROWS, config, session=session)["verdicts"]) == 2
 
+    def test_a_quota_refusal_names_the_quota(self, config):
+        """Google's 429 opens with a sentence about billing and a link, and
+        the line that says which quota, at what limit, for which model comes
+        after both. The first run to publish its reason clipped it to the
+        sentence about billing, which told nobody anything."""
+        message = ("You exceeded your current quota, please check your plan and "
+                   "billing details. For more information on this error, head to: "
+                   "https://ai.google.dev/gemini-api/docs/rate-limits.\n"
+                   "* Quota exceeded for metric: generativelanguage.googleapis.com/"
+                   "grounding_free_tier_requests, limit: 0, model: gemini-3.7-flash\n"
+                   "Please retry in 1.2s.")
+        body = json.dumps({"error": {"code": 429, "message": message,
+                                     "status": "RESOURCE_EXHAUSTED"}})
+        session = StubSession([Response(status_code=429, text=body)] * catalyst.MAX_TRIES)
+        reason = failed(catalyst.explain(ROWS, config, session=session))
+        assert "grounding_free_tier_requests, limit: 0, model: gemini-3.7-flash" in reason
+        assert "billing" not in reason
+        assert len(reason) < 200
+
+    def test_a_refusal_with_no_quota_line_keeps_the_message(self, config):
+        body = json.dumps({"error": {"code": 429, "message": "Resource has been exhausted.",
+                                     "status": "RESOURCE_EXHAUSTED"}})
+        session = StubSession([Response(status_code=429, text=body)] * catalyst.MAX_TRIES)
+        assert "Resource has been exhausted." in failed(catalyst.explain(ROWS, config, session=session))
+
     def test_retries_a_network_failure(self, config):
         session = StubSession([requests.ConnectionError("reset"), answered(VERDICTS)])
         assert len(catalyst.explain(ROWS, config, session=session)["verdicts"]) == 2
