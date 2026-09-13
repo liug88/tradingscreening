@@ -300,27 +300,62 @@ function slim(data) {
 
 /* ---- the gate --------------------------------------------------------- */
 
-/* The only limit left. There is no passphrase any more -- the page is a
-   bookmark, and a bookmark cannot carry one -- so this counter and the origin
-   check are the whole of what stands between a public Worker URL and a day's
-   questions.
+/* The only limits left. There is no passphrase any more -- the page is a
+   bookmark, and a bookmark cannot carry one -- so these counters and the
+   origin check are the whole of what stands between a public Worker URL and
+   a day's questions.
 
-   Read-then-write, so two requests landing in the same millisecond can both see
-   the old count. One person on one page: this is a backstop against a stuck
-   tab, and being off by one on a bad day costs nothing at all.
+   Two counters. One per visitor, so a stuck tab or a stranger who found the
+   URL in the repo spends their own share and not hers. One for the whole
+   Worker, set under what Google allows the key per day, so that whatever runs
+   away stops here with a sentence she can read rather than upstream with a
+   429. Neither is exact: read-then-write, so two requests landing in the same
+   millisecond can both see the old count, and being off by one on a bad day
+   costs nothing at all.
 
-   Set below whatever the free tier allows per day, so that when something runs
-   away it stops here, with a sentence she can read, rather than upstream with
-   a 429. */
-async function underDailyCap(env) {
-  const limit = Number(env.DAILY_TURNS || 80);
-  if (!env.COUNTER) return true; // no KV bound in dev
-  const key = "turns:" + new Date().toISOString().slice(0, 10);
-  const used = Number((await env.COUNTER.get(key)) || 0);
-  if (used >= limit) return false;
-  /* Two days of TTL so the key clears itself whatever timezone it rolls over in. */
-  await env.COUNTER.put(key, String(used + 1), { expirationTtl: 172800 });
-  return true;
+   The day is Google's day, which ends at midnight Pacific -- hers too. Keyed
+   on the UTC date, as this was, her evening questions counted against the
+   next morning. */
+function today() {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Los_Angeles", year: "numeric", month: "2-digit", day: "2-digit",
+  }).formatToParts(new Date());
+  const part = (type) => parts.find((p) => p.type === type).value;
+  return `${part("year")}-${part("month")}-${part("day")}`;
+}
+
+/* The visitor's address, hashed with the day and cut short, so the counter's
+   key is not an address on its face and does not carry across days. It is a
+   key for a two-day counter, not anonymity: nothing here reaches the repo or
+   the page, and the key expires with the count. */
+async function visitor(request, day) {
+  const address = request.headers.get("CF-Connecting-IP") || "unknown";
+  const bytes = new TextEncoder().encode(day + "|" + address);
+  const digest = new Uint8Array(await crypto.subtle.digest("SHA-256", bytes));
+  return [...digest.slice(0, 8)].map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+/* Null when there is room, otherwise the sentence for the page. The two
+   sentences differ on purpose: one says she has asked enough, the other that
+   the Worker as a whole has, which is the one to hear about if it ever
+   happens on a day she asked nothing. */
+async function overCap(env, request) {
+  if (!env.COUNTER) return null; // no KV bound in dev
+  const day = today();
+  const limits = [
+    ["turns:" + day + ":" + (await visitor(request, day)), Number(env.VISITOR_TURNS || 12),
+     "That is enough questions for one day. Try tomorrow."],
+    ["turns:" + day, Number(env.DAILY_TURNS || 16),
+     "The chat has answered all it can today. Try tomorrow."],
+  ];
+  const used = await Promise.all(limits.map(([key]) => env.COUNTER.get(key)));
+  for (const [i, [, limit, sentence]] of limits.entries()) {
+    if (Number(used[i] || 0) >= limit) return sentence;
+  }
+  /* Two days of TTL so the keys clear themselves whatever the clock does. */
+  await Promise.all(limits.map(([key], i) =>
+    env.COUNTER.put(key, String(Number(used[i] || 0) + 1), { expirationTtl: 172800 })));
+  return null;
 }
 
 /* ---- request handling ------------------------------------------------ */
@@ -341,6 +376,26 @@ function fail(status, message, headers) {
     status,
     headers: { ...headers, "Content-Type": "application/json" },
   });
+}
+
+/* The line of Google's error body that says what went wrong -- the quota, its
+   limit and the model -- for the log. The page never sees it; the page gets a
+   sentence. Mirrors _said() in screener/catalyst.py, so the Worker's log and
+   the screen's footer name a refusal the same way. */
+function said(body) {
+  let message = "";
+  try {
+    message = String((JSON.parse(body).error || {}).message || "");
+  } catch {
+    return body.slice(0, 300);
+  }
+  for (let line of message.split("\n")) {
+    line = line.trim().replace(/^[* ]+/, "");
+    if (line.startsWith("Quota exceeded")) {
+      return line.replace("generativelanguage.googleapis.com/", "");
+    }
+  }
+  return (message || body).slice(0, 300);
 }
 
 /* The screener writes this file fresh every morning and the page serves it, so
@@ -441,8 +496,9 @@ export default {
       return fail(400, "Send at least one question.", headers);
     }
 
-    if (!(await underDailyCap(env))) {
-      return fail(429, "That is enough questions for one day. Try tomorrow.", headers);
+    const capped = await overCap(env, request);
+    if (capped) {
+      return fail(429, capped, headers);
     }
 
     let data;
@@ -480,7 +536,9 @@ export default {
 
     if (!upstream.ok || !upstream.body) {
       /* 429 is the free tier saying "not right now", which is a different thing
-         from a broken deploy and should read differently on the page. */
+         from a broken deploy and should read differently on the page. The log
+         gets Google's own reason; `npx wrangler tail` shows it as it happens. */
+      console.warn("gemini " + upstream.status + ": " + said(await upstream.text().catch(() => "")));
       const message =
         upstream.status === 429
           ? "The free allowance is used up for the moment. Try again in a few minutes."

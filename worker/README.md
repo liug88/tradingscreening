@@ -110,13 +110,15 @@ explained — and she had no way to know why.
 
 It was never a login. `PRODUCT.md` asks for no login and zero install, and one
 person uses this. What is left is the origin check — the request has to come
-from the published page — and `DAILY_TURNS`.
+from the published page — and two counters in `wrangler.toml`.
 
-Be clear about what that is: **`DAILY_TURNS` is one counter for the whole
-Worker per day, not one per visitor.** The URL is in a public repo. Anyone who
-finds it and posts from the right origin can spend the day's questions before
-she asks her first, and the same free-tier quota feeds the morning screen.
-Raising the number is a one-line change in `wrangler.toml` if it ever happens.
+**`DAILY_TURNS`** is the whole Worker's day, set under Google's free-tier
+allowance for the key. **`VISITOR_TURNS`** is one visitor's share of it, keyed
+on a hash of the address. The URL is in a public repo, and anyone who finds it
+and posts from the right origin can spend questions — but their own share, not
+the whole day's, and never before the morning screen has made its one call:
+Google's day resets at midnight Pacific and the screen runs at 5:30. Both
+counters are one line each if the allowance ever changes.
 
 ## Checking it
 
@@ -177,9 +179,9 @@ Then drop the `Origin` header and check it comes back 403, and let
 ## What it costs
 
 Nothing. The free tier has no card behind it, so the ceiling is a rate limit
-rather than a bill. Two limits apply: Google's, which you read in step 1, and
-`DAILY_TURNS` in `wrangler.toml`, which trips first and says so in plain words.
-Cloudflare's free plan covers the Worker and the counter.
+rather than a bill. Three limits apply: Google's, which you read in step 1, and
+`DAILY_TURNS` and `VISITOR_TURNS` in `wrangler.toml`, which trip first and say
+so in plain words. Cloudflare's free plan covers the Worker and the counters.
 
 If the morning run ever starts failing on a 429, that is the daily key doing
 double duty — raise the limit, or give the Action its own key.

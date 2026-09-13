@@ -16,20 +16,23 @@ DATA_URL = "https://liug88.github.io/tradingscreening/data/latest.json"
 # screen picks its own model in config.yaml, for the same reason.
 MODEL = "gemini-3.7-flash"
 
-# A stop that comes with a sentence, ahead of the one that comes with a 429.
-# Google enforces the real daily limit; this exists so a stuck tab hits a line
-# she can read instead of quietly eating the questions she meant to ask.
+# Two stops that come with a sentence, ahead of the one that comes with a 429.
+# Google enforces the real daily limit; these exist so a stuck tab, or a
+# stranger who found the URL in this public repo, hits a line she can read
+# instead of quietly eating the questions she meant to ask.
 #
-# The free tier allows 20 requests a day for this model, and the morning
-# catalyst call shares the key: one request normally, three if it has to retry.
-# Twelve leaves the worst morning covered and five spare, so her limit is
-# always this readable one rather than Google's 429. Raise it here if the
-# allowance goes up -- check AI Studio's rate-limits page for the real number.
+# DAILY_TURNS is the whole Worker's day. The free tier allows 20 requests a day
+# for this model, counted from midnight Pacific, and the morning catalyst call
+# shares the key -- but it goes out at 5:30 Pacific, first on a fresh day, and
+# takes one request, or three if it has to retry. Sixteen leaves those three
+# and one for the counter's own imprecision. Raise it here if the allowance
+# goes up -- AI Studio's rate-limits page has the real number.
 #
-# One counter for the whole Worker, not one per visitor. With the passphrase
-# gone this and the origin check are the only limits there are, and the URL is
-# in a public repo.
-DAILY_TURNS = "12"
+# VISITOR_TURNS is one visitor's share of that, keyed on the address. Alone,
+# she has twelve; a stranger can take at most twelve of the sixteen, not all
+# of them.
+DAILY_TURNS = "16"
+VISITOR_TURNS = "12"
 
 # Created with:  npx wrangler kv namespace create COUNTER
 # Paste the printed id here before the first deploy.

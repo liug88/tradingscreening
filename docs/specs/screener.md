@@ -296,11 +296,13 @@ than explaining itself. `PRODUCT.md` asks for no login and zero install, and
 one person uses this.
 
 There is no bill to bound, so the limits bound requests instead: Google's
-free-tier daily quota, a turn counter in the Worker set below it, and a
-per-question character limit. The counter trips first on purpose — it fails with
-a sentence she can read rather than a 429 she cannot. It is one counter for the
-whole Worker per day, not one per visitor, and with the passphrase gone it and
-the origin check are the only limits there are.
+free-tier daily quota, two turn counters in the Worker set below it — one for
+the day, one for each visitor's share of it — and a per-question character
+limit. The counters trip first on purpose — they fail with a sentence she can
+read rather than a 429 she cannot — and they count Google's day, which ends at
+midnight Pacific. With the passphrase gone they and the origin check are the
+only limits there are; a stranger with the URL can spend a visitor's share,
+not the day.
 
 `CHAT_URL` in `site/app.js` is empty until the Worker is deployed. Empty is a
 working state — the panel simply never appears. See `worker/README.md` to
