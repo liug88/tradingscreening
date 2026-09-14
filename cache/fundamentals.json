@@ -3532,7 +3532,7 @@
   }
  },
  "fundamentals:CIEN": {
-  "fetched_at": "2026-09-11T20:21:46.637050+00:00",
+  "fetched_at": "2026-09-14T12:43:45.966310+00:00",
   "value": {
    "description": "Ciena Corporation, a network technology company, provides hardware, software, and services for various network operators in the Americas, Europe, the Middle East, Africa, the Asia Pacific, Japan, and India.",
    "gross_margin": 0.45434254327463647,
@@ -6960,7 +6960,7 @@
   }
  },
  "fundamentals:HPE": {
-  "fetched_at": "2026-09-11T20:21:45.321662+00:00",
+  "fetched_at": "2026-09-14T12:43:45.913224+00:00",
   "value": {
    "description": "Hewlett Packard Enterprise Company, together with its subsidiaries, develops intelligent solutions in the United States, the Americas, Europe, the Middle East, Africa, the Asia Pacific, Japan, and internationally.",
    "gross_margin": 0.4011299435028249,
@@ -7964,19 +7964,19 @@
   }
  },
  "fundamentals:KR": {
-  "fetched_at": "2026-09-11T20:21:45.335206+00:00",
+  "fetched_at": "2026-09-14T12:43:45.966287+00:00",
   "value": {
    "description": "The Kroger Co. operates as a food and drug retailer in the United States.",
    "gross_margin": 0.23043732789835433,
    "gross_margin_change": -0.003486358206757245,
    "industry": "Grocery Stores",
    "last_earnings": {
-    "eps_actual": 1.58,
-    "eps_estimate": 1.59316,
-    "quarter": "2026-04-30"
+    "eps_actual": 1.09,
+    "eps_estimate": 1.05256,
+    "quarter": "2026-07-31"
    },
    "latest_quarter": "2026-04-30",
-   "next_earnings": "2026-09-11",
+   "next_earnings": "2026-12-03",
    "operating_margin": 0.03050671060905011,
    "operating_margin_change": -0.005375218836594239,
    "profitable": true,
@@ -9344,10 +9344,17 @@
   }
  },
  "fundamentals:MS": {
-  "fetched_at": "2026-08-26T20:48:35.440598+00:00",
+  "fetched_at": "2026-09-14T12:43:45.966321+00:00",
   "value": {
+   "description": "Morgan Stanley, a financial holding company, provides various financial products and services to corporations, governments, financial institutions, and individuals in the Americas, Asia, Europe, the Middle East, and\u2026",
    "gross_margin": null,
    "gross_margin_change": null,
+   "industry": "Capital Markets",
+   "last_earnings": {
+    "eps_actual": 3.46,
+    "eps_estimate": 2.93372,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-14",
    "operating_margin": null,
@@ -9376,7 +9383,8 @@
     }
    ],
    "revenue_qoq": 0.028979507348375178,
-   "revenue_yoy": 0.2742886439374519
+   "revenue_yoy": 0.2742886439374519,
+   "sector": "Financial Services"
   }
  },
  "fundamentals:MSTR": {
