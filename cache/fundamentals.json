@@ -1160,10 +1160,17 @@
   }
  },
  "fundamentals:ALGN": {
-  "fetched_at": "2026-08-26T20:43:58.644340+00:00",
+  "fetched_at": "2026-09-17T12:43:42.208255+00:00",
   "value": {
+   "description": "Align Technology, Inc. provides Invisalign clear aligners, Vivera retainers, and iTero intraoral scanners and services in the United States, Switzerland, and internationally.",
    "gross_margin": 0.7171328697812519,
    "gross_margin_change": 0.00893538245567238,
+   "industry": "Medical Instruments & Supplies",
+   "last_earnings": {
+    "eps_actual": 2.64,
+    "eps_estimate": 2.59527,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-28",
    "operating_margin": 0.18247345179664304,
@@ -1192,7 +1199,8 @@
     }
    ],
    "revenue_qoq": 0.01548428160336579,
-   "revenue_yoy": 0.04320513922182756
+   "revenue_yoy": 0.04320513922182756,
+   "sector": "Healthcare"
   }
  },
  "fundamentals:AMAT": {
@@ -2992,20 +3000,23 @@
   }
  },
  "fundamentals:BSX": {
-  "fetched_at": "2026-08-26T20:45:37.855253+00:00",
+  "fetched_at": "2026-09-17T12:43:41.958841+00:00",
   "value": {
-   "gross_margin": 0.6944070728425908,
-   "gross_margin_change": -0.001393154172165123,
-   "latest_quarter": "2026-03-31",
+   "description": "Boston Scientific Corporation develops, manufactures, and markets medical devices for use in various interventional medical specialties worldwide.",
+   "gross_margin": 0.707092980521867,
+   "gross_margin_change": 0.012685907679276132,
+   "industry": "Medical Devices",
+   "last_earnings": {
+    "eps_actual": 0.86,
+    "eps_estimate": 0.82801,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-28",
-   "operating_margin": 0.206034979819335,
-   "operating_margin_change": 0.009099679024783341,
+   "operating_margin": 0.22895994119808893,
+   "operating_margin_change": 0.02292496137875394,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-03-31",
-     "revenue": 4663000000.0
-    },
     {
      "quarter": "2025-06-30",
      "revenue": 5061000000.0
@@ -3021,10 +3032,15 @@
     {
      "quarter": "2026-03-31",
      "revenue": 5203000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 5442000000.0
     }
    ],
-   "revenue_qoq": -0.015701853953840383,
-   "revenue_yoy": 0.11580527557366493
+   "revenue_qoq": 0.045935037478377794,
+   "revenue_yoy": 0.07528156490812088,
+   "sector": "Healthcare"
   }
  },
  "fundamentals:BTDR": {
@@ -3061,6 +3077,50 @@
    ],
    "revenue_qoq": -0.15969488736184312,
    "revenue_yoy": 1.6940736938170202
+  }
+ },
+ "fundamentals:BTU": {
+  "fetched_at": "2026-09-17T12:43:42.385082+00:00",
+  "value": {
+   "description": "Peabody Energy Corporation engages in the production of metallurgical and thermal coal.",
+   "gross_margin": 0.04914274322169059,
+   "gross_margin_change": -0.062436420448298106,
+   "industry": "Thermal Coal",
+   "last_earnings": {
+    "eps_actual": -0.4091,
+    "eps_estimate": -0.32,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-10-29",
+   "operating_margin": -0.09499601275917065,
+   "operating_margin_change": -0.047631376983972865,
+   "profitable": false,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 890100000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 1012100000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 1022300000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 973300000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 1003200000.0
+    }
+   ],
+   "revenue_qoq": 0.03072023014486791,
+   "revenue_yoy": 0.12706437478934962,
+   "sector": "Energy"
   }
  },
  "fundamentals:BUD": {
@@ -3644,12 +3704,19 @@
   }
  },
  "fundamentals:CCL": {
-  "fetched_at": "2026-08-26T20:45:36.647651+00:00",
+  "fetched_at": "2026-09-17T12:43:42.004980+00:00",
   "value": {
+   "description": "Carnival Corporation Ltd., a cruise company, provides leisure travel services.",
    "gross_margin": 0.36590124568512683,
    "gross_margin_change": 0.00483068607442122,
+   "industry": "Travel Services",
+   "last_earnings": {
+    "eps_actual": 0.41,
+    "eps_estimate": 0.33862,
+    "quarter": "2026-05-31"
+   },
    "latest_quarter": "2026-05-31",
-   "next_earnings": "2026-09-28",
+   "next_earnings": "2026-09-29",
    "operating_margin": 0.12787032868077441,
    "operating_margin_change": 0.029573491697806042,
    "profitable": true,
@@ -3676,7 +3743,8 @@
     }
    ],
    "revenue_qoq": 0.08077858880778588,
-   "revenue_yoy": 0.052939317319848245
+   "revenue_yoy": 0.052939317319848245,
+   "sector": "Consumer Cyclical"
   }
  },
  "fundamentals:CDNS": {
@@ -3964,7 +4032,7 @@
   }
  },
  "fundamentals:CIEN": {
-  "fetched_at": "2026-09-16T12:43:49.855899+00:00",
+  "fetched_at": "2026-09-17T12:43:42.011390+00:00",
   "value": {
    "description": "Ciena Corporation, a network technology company, provides hardware, software, and services for various network operators in the Americas, Europe, the Middle East, Africa, the Asia Pacific, Japan, and India.",
    "gross_margin": 0.45434254327463647,
@@ -4096,10 +4164,17 @@
   }
  },
  "fundamentals:CLF": {
-  "fetched_at": "2026-08-26T21:06:50.767757+00:00",
+  "fetched_at": "2026-09-17T12:43:42.222876+00:00",
   "value": {
+   "description": "Cleveland-Cliffs Inc. operates as a steel producer in the United States and Canada.",
    "gross_margin": 0.02525832376578645,
    "gross_margin_change": 0.04191821811767593,
+   "industry": "Steel",
+   "last_earnings": {
+    "eps_actual": -0.2,
+    "eps_estimate": -0.21563,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-19",
    "operating_margin": -0.008802143130501339,
@@ -4128,7 +4203,8 @@
     }
    ],
    "revenue_qoq": 0.06176351076798059,
-   "revenue_yoy": 0.05918119173084713
+   "revenue_yoy": 0.05918119173084713,
+   "sector": "Basic Materials"
   }
  },
  "fundamentals:CLS": {
@@ -4220,12 +4296,19 @@
   }
  },
  "fundamentals:CMCSA": {
-  "fetched_at": "2026-09-11T12:42:06.582419+00:00",
+  "fetched_at": "2026-09-17T12:43:42.543722+00:00",
   "value": {
+   "description": "Comcast Corporation operates as a media and technology company worldwide.",
    "gross_margin": 0.7198062792251169,
    "gross_margin_change": 0.06580240091504275,
+   "industry": "Telecom Services",
+   "last_earnings": {
+    "eps_actual": 1.04,
+    "eps_estimate": 0.96637,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-29",
+   "next_earnings": "2026-10-22",
    "operating_margin": 0.17234468937875752,
    "operating_margin_change": 0.04089540940927536,
    "profitable": true,
@@ -4252,7 +4335,8 @@
     }
    ],
    "revenue_qoq": -0.048224560511173964,
-   "revenue_yoy": -0.012304951670900288
+   "revenue_yoy": -0.012304951670900288,
+   "sector": "Communication Services"
   }
  },
  "fundamentals:CMG": {
@@ -4636,20 +4720,23 @@
   }
  },
  "fundamentals:CRDO": {
-  "fetched_at": "2026-09-03T12:43:54.811546+00:00",
+  "fetched_at": "2026-09-17T12:43:41.905508+00:00",
   "value": {
-   "gross_margin": 0.682070832465681,
-   "gross_margin_change": -0.0030883274608076716,
-   "latest_quarter": "2026-04-30",
+   "description": "Credo Technology Group Holding Ltd provides various high-speed connectivity solutions for optical and electrical Ethernet and PCIe applications in the United States, Taiwan, Mainland China, Hong Kong, and other\u2026",
+   "gross_margin": 0.6452569190589621,
+   "gross_margin_change": -0.03681391340671891,
+   "industry": "Semiconductors",
+   "last_earnings": {
+    "eps_actual": 1.2,
+    "eps_estimate": 1.16862,
+    "quarter": "2026-07-31"
+   },
+   "latest_quarter": "2026-07-31",
    "next_earnings": "2026-11-30",
-   "operating_margin": 0.35662226575103606,
-   "operating_margin_change": -0.010988517223421701,
+   "operating_margin": 0.25198172036500815,
+   "operating_margin_change": -0.1046405453860279,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-04-30",
-     "revenue": 170025000.0
-    },
     {
      "quarter": "2025-07-31",
      "revenue": 223074000.0
@@ -4665,17 +4752,29 @@
     {
      "quarter": "2026-04-30",
      "revenue": 437003000.0
+    },
+    {
+     "quarter": "2026-07-31",
+     "revenue": 479003000.0
     }
    ],
-   "revenue_qoq": 0.07368578813401072,
-   "revenue_yoy": 1.5702279076606382
+   "revenue_qoq": 0.09610918002851232,
+   "revenue_yoy": 1.1472829643974647,
+   "sector": "Technology"
   }
  },
  "fundamentals:CRH": {
-  "fetched_at": "2026-08-26T20:45:37.338455+00:00",
+  "fetched_at": "2026-09-17T12:43:42.543745+00:00",
   "value": {
+   "description": "CRH plc, together with its subsidiaries, provides building materials solutions in Ireland, the United States, the United Kingdom, rest of Europe, and internationally.",
    "gross_margin": 0.3984411246172404,
    "gross_margin_change": 0.120964869529045,
+   "industry": "Building Materials",
+   "last_earnings": {
+    "eps_actual": 1.9322,
+    "eps_estimate": 2.01675,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-29",
    "operating_margin": 0.18808573814605178,
@@ -4704,7 +4803,8 @@
     }
    ],
    "revenue_qoq": 0.462279511533243,
-   "revenue_yoy": 0.05594748187340781
+   "revenue_yoy": 0.05594748187340781,
+   "sector": "Basic Materials"
   }
  },
  "fundamentals:CROX": {
@@ -5157,6 +5257,50 @@
    "revenue_qoq": 0.24618392834615865,
    "revenue_yoy": 0.18674915905814515,
    "sector": "Industrials"
+  }
+ },
+ "fundamentals:DBRG": {
+  "fetched_at": "2026-09-17T12:43:42.335498+00:00",
+  "value": {
+   "description": "DigitalBridge Group, Inc. is a leading global alternative asset manager dedicated to investing in digital infrastructure.",
+   "gross_margin": 0.6303416631286464,
+   "gross_margin_change": -0.7141778854524811,
+   "industry": "Asset Management",
+   "last_earnings": {
+    "eps_actual": 1.15,
+    "eps_estimate": 0.66,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-10-29",
+   "operating_margin": 0.47537438234139207,
+   "operating_margin_change": 0.2356846583739085,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": -9375000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": -1588000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 42373000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 67166000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 501693000.0
+    }
+   ],
+   "revenue_qoq": 6.469448828276211,
+   "revenue_yoy": null,
+   "sector": "Financial Services"
   }
  },
  "fundamentals:DBX": {
@@ -6956,10 +7100,17 @@
   }
  },
  "fundamentals:GE": {
-  "fetched_at": "2026-08-26T20:48:35.414044+00:00",
+  "fetched_at": "2026-09-17T12:43:42.112599+00:00",
   "value": {
+   "description": "General Electric Company, doing business as GE Aerospace, designs and produces commercial and defense aircraft engines, integrated engine components, electric power, and aircraft systems.",
    "gross_margin": 0.3109829187893317,
    "gross_margin_change": 0.0006213952257422828,
+   "industry": "Aerospace & Defense",
+   "last_earnings": {
+    "eps_actual": 2.02,
+    "eps_estimate": 1.85961,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-20",
    "operating_margin": 0.1917890320647288,
@@ -6988,7 +7139,8 @@
     }
    ],
    "revenue_qoq": 0.07714654615881211,
-   "revenue_yoy": 0.21103248049355838
+   "revenue_yoy": 0.21103248049355838,
+   "sector": "Industrials"
   }
  },
  "fundamentals:GEHC": {
@@ -7788,7 +7940,7 @@
   }
  },
  "fundamentals:HPE": {
-  "fetched_at": "2026-09-16T12:43:50.211613+00:00",
+  "fetched_at": "2026-09-17T12:43:42.245986+00:00",
   "value": {
    "description": "Hewlett Packard Enterprise Company, together with its subsidiaries, develops intelligent solutions in the United States, the Americas, Europe, the Middle East, Africa, the Asia Pacific, Japan, and internationally.",
    "gross_margin": 0.4011299435028249,
@@ -8444,10 +8596,17 @@
   }
  },
  "fundamentals:IRM": {
-  "fetched_at": "2026-09-04T12:42:19.667587+00:00",
+  "fetched_at": "2026-09-17T12:43:42.120887+00:00",
   "value": {
+   "description": "Iron Mountain Incorporated is trusted by more than 240,000 customers in 61 countries, including approximately 95% of the Fortune 1000, to help unlock value and intelligence from their assets through services that\u2026",
    "gross_margin": 0.5275605181113243,
    "gross_margin_change": -0.012865864362338608,
+   "industry": "REIT - Specialty",
+   "last_earnings": {
+    "eps_actual": 0.6,
+    "eps_estimate": 0.55807,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-04",
    "operating_margin": 0.19059003618420728,
@@ -8476,7 +8635,8 @@
     }
    ],
    "revenue_qoq": 0.047988558731791864,
-   "revenue_yoy": 0.18523576650692664
+   "revenue_yoy": 0.18523576650692664,
+   "sector": "Real Estate"
   }
  },
  "fundamentals:ISRG": {
@@ -11296,20 +11456,23 @@
   }
  },
  "fundamentals:ORCL": {
-  "fetched_at": "2026-09-11T12:42:06.692982+00:00",
+  "fetched_at": "2026-09-17T12:43:42.370912+00:00",
   "value": {
-   "gross_margin": 0.6522623019182652,
-   "gross_margin_change": 0.00665439034176718,
-   "latest_quarter": "2026-05-31",
+   "description": "Oracle Corporation offers products and services that build, run and support enterprise information technology frameworks worldwide.",
+   "gross_margin": 0.6002584647195658,
+   "gross_margin_change": -0.05200383719869939,
+   "industry": "Software - Infrastructure",
+   "last_earnings": {
+    "eps_actual": 1.92,
+    "eps_estimate": 1.73834,
+    "quarter": "2026-08-31"
+   },
+   "latest_quarter": "2026-08-31",
    "next_earnings": "2026-12-10",
-   "operating_margin": 0.3625417014178482,
-   "operating_margin_change": 0.03461849024856373,
+   "operating_margin": 0.35264926337554925,
+   "operating_margin_change": -0.009892438042298946,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-05-31",
-     "revenue": 15903000000.0
-    },
     {
      "quarter": "2025-08-31",
      "revenue": 14926000000.0
@@ -11325,10 +11488,15 @@
     {
      "quarter": "2026-05-31",
      "revenue": 19184000000.0
+    },
+    {
+     "quarter": "2026-08-31",
+     "revenue": 19345000000.0
     }
    ],
-   "revenue_qoq": 0.11599767306573594,
-   "revenue_yoy": 0.2063132742249889
+   "revenue_qoq": 0.008392410341951706,
+   "revenue_yoy": 0.2960605654562509,
+   "sector": "Technology"
   }
  },
  "fundamentals:OSCR": {
@@ -12264,7 +12432,7 @@
   }
  },
  "fundamentals:RBRK": {
-  "fetched_at": "2026-09-16T12:43:49.761741+00:00",
+  "fetched_at": "2026-09-17T12:43:41.905474+00:00",
   "value": {
    "description": "Rubrik, Inc. provides data security solutions to individuals and businesses worldwide.",
    "gross_margin": 0.7843537892618078,
@@ -12308,10 +12476,17 @@
   }
  },
  "fundamentals:RCL": {
-  "fetched_at": "2026-08-26T20:48:34.135043+00:00",
+  "fetched_at": "2026-09-17T12:43:42.246012+00:00",
   "value": {
+   "description": "Royal Caribbean Cruises Ltd. operates as a cruise company worldwide.",
    "gross_margin": 0.4728890728476821,
    "gross_margin_change": -0.022393946020242417,
+   "industry": "Travel Services",
+   "last_earnings": {
+    "eps_actual": 4.21,
+    "eps_estimate": 3.98157,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-27",
    "operating_margin": 0.2706953642384106,
@@ -12340,7 +12515,8 @@
     }
    ],
    "revenue_qoq": 0.08535489667565144,
-   "revenue_yoy": 0.0647862494490965
+   "revenue_yoy": 0.0647862494490965,
+   "sector": "Consumer Cyclical"
   }
  },
  "fundamentals:RDDT": {
@@ -12812,7 +12988,7 @@
   }
  },
  "fundamentals:S": {
-  "fetched_at": "2026-09-16T12:43:49.471199+00:00",
+  "fetched_at": "2026-09-17T12:43:41.849568+00:00",
   "value": {
    "description": "SentinelOne, Inc. operates as a cybersecurity provider in the United States and internationally.",
    "gross_margin": 0.7206564810723985,
@@ -12900,10 +13076,17 @@
   }
  },
  "fundamentals:SBUX": {
-  "fetched_at": "2026-08-26T21:06:50.599762+00:00",
+  "fetched_at": "2026-09-17T12:43:42.112621+00:00",
   "value": {
+   "description": "Starbucks Corporation, together with its subsidiaries, operates as a roaster, marketer, and retailer of coffee internationally.",
    "gross_margin": 0.24635566949488882,
    "gross_margin_change": 0.045505855719512434,
+   "industry": "Restaurants",
+   "last_earnings": {
+    "eps_actual": 0.85,
+    "eps_estimate": 0.64988,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-28",
    "operating_margin": 0.12919004151157926,
@@ -12932,7 +13115,8 @@
     }
    ],
    "revenue_qoq": -0.02190631065414672,
-   "revenue_yoy": -0.014096869712351912
+   "revenue_yoy": -0.014096869712351912,
+   "sector": "Consumer Cyclical"
   }
  },
  "fundamentals:SCHW": {
@@ -12977,6 +13161,50 @@
    "revenue_qoq": 0.09102128972539347,
    "revenue_yoy": 0.2086822765339258,
    "sector": "Financial Services"
+  }
+ },
+ "fundamentals:SE": {
+  "fetched_at": "2026-09-17T12:43:42.004959+00:00",
+  "value": {
+   "description": "Sea Limited, through its subsidiaries, operates as a technology company in Southeast Asia, Latin America, the rest of Asia, and internationally.",
+   "gross_margin": 0.4558277783691602,
+   "gross_margin_change": 0.01263131832533343,
+   "industry": "Internet Retail",
+   "last_earnings": {
+    "eps_actual": 0.8362,
+    "eps_estimate": 0.86129,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-10",
+   "operating_margin": 0.08350635014167711,
+   "operating_margin_change": -4.2493681821603735e-05,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 5259477000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 5986024000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 6851868000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 7097489000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 7787779000.0
+    }
+   ],
+   "revenue_qoq": 0.09725834023835755,
+   "revenue_yoy": 0.48071357665410464,
+   "sector": "Consumer Cyclical"
   }
  },
  "fundamentals:SEDG": {
@@ -14112,20 +14340,23 @@
   }
  },
  "fundamentals:TPR": {
-  "fetched_at": "2026-08-26T20:48:33.138317+00:00",
+  "fetched_at": "2026-09-17T12:43:41.905497+00:00",
   "value": {
-   "gross_margin": 0.7687701759866709,
-   "gross_margin_change": 0.014134626114548077,
-   "latest_quarter": "2026-03-31",
+   "description": "Tapestry, Inc. provides accessories and lifestyle brand products in North America, Greater China, rest of Asia, and internationally.",
+   "gross_margin": 0.833208994990941,
+   "gross_margin_change": 0.06443881900427018,
+   "industry": "Luxury Goods",
+   "last_earnings": {
+    "eps_actual": 1.32,
+    "eps_estimate": 1.27651,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-05",
-   "operating_margin": 0.2225866916588566,
+   "operating_margin": 0.2356922093147181,
    "operating_margin_change": null,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-03-31",
-     "revenue": 1584600000.0
-    },
     {
      "quarter": "2025-06-30",
      "revenue": 1723200000.0
@@ -14141,10 +14372,15 @@
     {
      "quarter": "2026-03-31",
      "revenue": 1920600000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 1876600000.0
     }
    ],
-   "revenue_qoq": -0.23249680306905374,
-   "revenue_yoy": 0.21204089360090883
+   "revenue_qoq": -0.02290950744558995,
+   "revenue_yoy": 0.08902042711234914,
+   "sector": "Consumer Cyclical"
   }
  },
  "fundamentals:TSEM": {
@@ -15115,10 +15351,17 @@
   }
  },
  "fundamentals:VRT": {
-  "fetched_at": "2026-08-26T20:48:35.559773+00:00",
+  "fetched_at": "2026-09-17T12:43:42.370885+00:00",
   "value": {
+   "description": "Vertiv Holdings Co designs, manufactures, and services critical digital infrastructure technologies and life cycle services for data centers, communication networks, and commercial and industrial environments in the\u2026",
    "gross_margin": 0.37714931435726723,
    "gross_margin_change": -0.00016716044930004115,
+   "industry": "Electrical Equipment & Parts",
+   "last_earnings": {
+    "eps_actual": 1.52,
+    "eps_estimate": 1.42824,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-21",
    "operating_margin": 0.19482026692728216,
@@ -15147,7 +15390,8 @@
     }
    ],
    "revenue_qoq": 0.23581807888280815,
-   "revenue_yoy": 0.2411584094613548
+   "revenue_yoy": 0.2411584094613548,
+   "sector": "Industrials"
   }
  },
  "fundamentals:VST": {
@@ -15239,20 +15483,23 @@
   }
  },
  "fundamentals:WDC": {
-  "fetched_at": "2026-08-26T20:48:33.491645+00:00",
+  "fetched_at": "2026-09-17T12:43:42.112631+00:00",
   "value": {
-   "gross_margin": 0.5022475277195085,
-   "gross_margin_change": 0.04483950650638291,
-   "latest_quarter": "2026-03-31",
+   "description": "Western Digital Corporation engages in the development, manufacture, and sale of data storage devices and solutions based on hard disk drive (HDD) technology in the United States, Asia, Europe, the Middle East, and\u2026",
+   "gross_margin": 0.5412329863891113,
+   "gross_margin_change": 0.03898545866960279,
+   "industry": "Computer Hardware",
+   "last_earnings": {
+    "eps_actual": 3.56,
+    "eps_estimate": 3.30022,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-05",
-   "operating_margin": 0.37009289781240634,
-   "operating_margin_change": 0.050901648226725216,
+   "operating_margin": 0.42860955431011477,
+   "operating_margin_change": 0.05851665649770843,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-03-31",
-     "revenue": 2294000000.0
-    },
     {
      "quarter": "2025-06-30",
      "revenue": 2605000000.0
@@ -15268,10 +15515,15 @@
     {
      "quarter": "2026-03-31",
      "revenue": 3337000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 3747000000.0
     }
    ],
-   "revenue_qoq": 0.10606562810739151,
-   "revenue_yoy": 0.45466434176111603
+   "revenue_qoq": 0.12286484866646696,
+   "revenue_yoy": 0.4383877159309022,
+   "sector": "Technology"
   }
  },
  "fundamentals:WFC": {
