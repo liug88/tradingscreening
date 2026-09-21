@@ -80,10 +80,17 @@
   }
  },
  "fundamentals:AAOI": {
-  "fetched_at": "2026-08-26T20:43:59.232731+00:00",
+  "fetched_at": "2026-09-21T12:41:26.209850+00:00",
   "value": {
+   "description": "Applied Optoelectronics, Inc. engages in the design, manufacture, and sale of fiber-optic networking products in the United States, Taiwan, and China.",
    "gross_margin": 0.2772324173362095,
    "gross_margin_change": -0.013324931946593621,
+   "industry": "Communication Equipment",
+   "last_earnings": {
+    "eps_actual": 0.06,
+    "eps_estimate": 0.015,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-05",
    "operating_margin": -0.12425360302622941,
@@ -112,7 +119,8 @@
     }
    ],
    "revenue_qoq": 0.26979569152596206,
-   "revenue_yoy": 0.8641891366850571
+   "revenue_yoy": 0.8641891366850571,
+   "sector": "Technology"
   }
  },
  "fundamentals:AAP": {
@@ -884,10 +892,17 @@
   }
  },
  "fundamentals:AG": {
-  "fetched_at": "2026-08-26T20:43:59.973935+00:00",
+  "fetched_at": "2026-09-21T12:41:26.150234+00:00",
   "value": {
+   "description": "First Majestic Silver Corp. engages in the acquisition, exploration, development, and production of mineral properties in North America.",
    "gross_margin": 0.5398236283884424,
    "gross_margin_change": -0.014501461332062093,
+   "industry": "Silver",
+   "last_earnings": {
+    "eps_actual": 0.21,
+    "eps_estimate": 0.24667,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-29",
    "operating_margin": 0.479375433022965,
@@ -916,7 +931,8 @@
     }
    ],
    "revenue_qoq": -0.13868523593477744,
-   "revenue_yoy": 0.5647839653075255
+   "revenue_yoy": 0.5647839653075255,
+   "sector": "Basic Materials"
   }
  },
  "fundamentals:AGNC": {
@@ -2380,20 +2396,23 @@
   }
  },
  "fundamentals:BABA": {
-  "fetched_at": "2026-08-26T20:45:37.477816+00:00",
+  "fetched_at": "2026-09-21T12:41:26.133648+00:00",
   "value": {
-   "gross_margin": 0.3450899827430356,
-   "gross_margin_change": -0.05972600360733987,
-   "latest_quarter": "2026-03-31",
+   "description": "Alibaba Group Holding Limited, through its subsidiaries, provides technology infrastructure and marketing reach to help merchants, brands, retailers, and other businesses in the People's Republic of China and\u2026",
+   "gross_margin": 0.3824348492115723,
+   "gross_margin_change": 0.037344866468536686,
+   "industry": "Internet Retail",
+   "last_earnings": {
+    "eps_actual": 8.52,
+    "eps_estimate": 10.82038,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-24",
-   "operating_margin": -0.003484263291971403,
-   "operating_margin_change": -0.07426009418828973,
-   "profitable": false,
+   "operating_margin": 0.07294583068417158,
+   "operating_margin_change": 0.07643009397614299,
+   "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-03-31",
-     "revenue": 236454000000.0
-    },
     {
      "quarter": "2025-06-30",
      "revenue": 247652000000.0
@@ -2409,10 +2428,15 @@
     {
      "quarter": "2026-03-31",
      "revenue": 243380000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 268953000000.0
     }
    ],
-   "revenue_qoq": -0.14556439863363324,
-   "revenue_yoy": 0.029291109475838795
+   "revenue_qoq": 0.10507436929903857,
+   "revenue_yoy": 0.0860118230420106,
+   "sector": "Consumer Cyclical"
   }
  },
  "fundamentals:BAC": {
@@ -3096,20 +3120,23 @@
   }
  },
  "fundamentals:BTDR": {
-  "fetched_at": "2026-08-26T20:45:38.058460+00:00",
+  "fetched_at": "2026-09-21T12:41:26.496831+00:00",
   "value": {
-   "gross_margin": -0.20664267188905944,
-   "gross_margin_change": -0.25365492531935274,
-   "latest_quarter": "2026-03-31",
+   "description": "Bitdeer Technologies Group operates as a technology company for blockchain and high-performance computing (HPC) in Singapore, the United States, Bhutan, Norway, Finland, Ethiopia, Canada, and internationally.",
+   "gross_margin": -0.03726659206937548,
+   "gross_margin_change": 0.16937607981968394,
+   "industry": "Software - Application",
+   "last_earnings": {
+    "eps_actual": -0.3897,
+    "eps_estimate": -0.3375,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-09",
-   "operating_margin": -0.5606944370931033,
-   "operating_margin_change": -0.2100773178723414,
+   "operating_margin": -0.44465959157983076,
+   "operating_margin_change": 0.11603484551327253,
    "profitable": false,
    "revenue_history": [
-    {
-     "quarter": "2025-03-31",
-     "revenue": 70128000.0
-    },
     {
      "quarter": "2025-06-30",
      "revenue": 155582000.0
@@ -3125,10 +3152,15 @@
     {
      "quarter": "2026-03-31",
      "revenue": 188930000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 228784000.0
     }
    ],
-   "revenue_qoq": -0.15969488736184312,
-   "revenue_yoy": 1.6940736938170202
+   "revenue_qoq": 0.21094585296141433,
+   "revenue_yoy": 0.47050429998328847,
+   "sector": "Technology"
   }
  },
  "fundamentals:BTU": {
@@ -3600,10 +3632,17 @@
   }
  },
  "fundamentals:CBOE": {
-  "fetched_at": "2026-08-26T21:06:50.565230+00:00",
+  "fetched_at": "2026-09-21T12:41:26.495574+00:00",
   "value": {
+   "description": "Cboe Global Markets, Inc., through its subsidiaries, operates as a derivatives and securities exchange network that delivers trading, clearing, and investment solutions in the United States and internationally.",
    "gross_margin": 0.3998475187136124,
    "gross_margin_change": -0.07233978486904002,
+   "industry": "Financial Data & Stock Exchanges",
+   "last_earnings": {
+    "eps_actual": 3.56,
+    "eps_estimate": 3.48982,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-30",
    "operating_margin": 0.3299140560022179,
@@ -3632,7 +3671,8 @@
     }
    ],
    "revenue_qoq": 0.133563796354494,
-   "revenue_yoy": 0.22948444823178527
+   "revenue_yoy": 0.22948444823178527,
+   "sector": "Financial Services"
   }
  },
  "fundamentals:CBRS": {
@@ -4084,7 +4124,7 @@
   }
  },
  "fundamentals:CIEN": {
-  "fetched_at": "2026-09-18T12:41:59.140108+00:00",
+  "fetched_at": "2026-09-21T12:41:26.133604+00:00",
   "value": {
    "description": "Ciena Corporation, a network technology company, provides hardware, software, and services for various network operators in the Americas, Europe, the Middle East, Africa, the Asia Pacific, Japan, and India.",
    "gross_margin": 0.45434254327463647,
@@ -4389,6 +4429,50 @@
    "revenue_qoq": -0.048224560511173964,
    "revenue_yoy": -0.012304951670900288,
    "sector": "Communication Services"
+  }
+ },
+ "fundamentals:CME": {
+  "fetched_at": "2026-09-21T12:41:26.425343+00:00",
+  "value": {
+   "description": "CME Group Inc., together with its subsidiaries, operates contract markets for the trading of futures and options on futures contracts worldwide.",
+   "gross_margin": 0.86314617278162,
+   "gross_margin_change": -0.018243115022220202,
+   "industry": "Financial Data & Stock Exchanges",
+   "last_earnings": {
+    "eps_actual": 2.99,
+    "eps_estimate": 2.90993,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-10-21",
+   "operating_margin": 0.6488688313210643,
+   "operating_margin_change": -0.047743051025619376,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 1692000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 1537600000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 1648700000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 1880100000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 1706200000.0
+    }
+   ],
+   "revenue_qoq": -0.09249508004893359,
+   "revenue_yoy": 0.008392434988179653,
+   "sector": "Financial Services"
   }
  },
  "fundamentals:CMG": {
@@ -4769,6 +4853,50 @@
    "revenue_qoq": 0.04139228598306688,
    "revenue_yoy": 0.03894885030502104,
    "sector": "Consumer Cyclical"
+  }
+ },
+ "fundamentals:CRCL": {
+  "fetched_at": "2026-09-21T12:41:26.387913+00:00",
+  "value": {
+   "description": "Circle Internet Group, Inc. operates as a platform, network, and market infrastructure for stablecoin and blockchain applications.",
+   "gross_margin": 0.22079379451459044,
+   "gross_margin_change": 0.005813380098333043,
+   "industry": "Capital Markets",
+   "last_earnings": {
+    "eps_actual": 0.18,
+    "eps_estimate": 0.15844,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-11",
+   "operating_margin": 0.047996977107291304,
+   "operating_margin_change": -0.01806817179068646,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 658078000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 739759000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 770232000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 694133000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 701315000.0
+    }
+   ],
+   "revenue_qoq": 0.010346720297118805,
+   "revenue_yoy": 0.06570193806813185,
+   "sector": "Financial Services"
   }
  },
  "fundamentals:CRDO": {
@@ -6344,10 +6472,17 @@
   }
  },
  "fundamentals:EPD": {
-  "fetched_at": "2026-08-30T00:19:10.533062+00:00",
+  "fetched_at": "2026-09-21T12:41:26.279187+00:00",
   "value": {
+   "description": "Enterprise Products Partners L.P. provides midstream energy services to producers and consumers of natural gas, natural gas liquids (NGLs), crude oil, petrochemicals, and refined products.",
    "gross_margin": 0.12064152389293338,
    "gross_margin_change": -0.010249620275007684,
+   "industry": "Oil & Gas Midstream",
+   "last_earnings": {
+    "eps_actual": 0.7866,
+    "eps_estimate": 0.76534,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-27",
    "operating_margin": 0.11713832174722207,
@@ -6376,7 +6511,8 @@
     }
    ],
    "revenue_qoq": 0.26991519532879193,
-   "revenue_yoy": 0.6077620346739416
+   "revenue_yoy": 0.6077620346739416,
+   "sector": "Energy"
   }
  },
  "fundamentals:ETN": {
@@ -6424,10 +6560,17 @@
   }
  },
  "fundamentals:ETSY": {
-  "fetched_at": "2026-08-27T14:23:01.803778+00:00",
+  "fetched_at": "2026-09-21T12:41:26.571444+00:00",
   "value": {
+   "description": "Etsy, Inc., together with its subsidiaries, operates two-sided online marketplaces that connect buyers and sellers in the United States, the United Kingdom, and internationally.",
    "gross_margin": 0.7242788932730622,
    "gross_margin_change": 0.0025703564500827447,
+   "industry": "Internet Retail",
+   "last_earnings": {
+    "eps_actual": -0.36,
+    "eps_estimate": 0.73271,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-04",
    "operating_margin": 0.18743911909539393,
@@ -6456,7 +6599,8 @@
     }
    ],
    "revenue_qoq": 0.05866838170882205,
-   "revenue_yoy": 0.062279557039789823
+   "revenue_yoy": 0.062279557039789823,
+   "sector": "Consumer Cyclical"
   }
  },
  "fundamentals:EXE": {
@@ -6584,7 +6728,7 @@
   }
  },
  "fundamentals:FCEL": {
-  "fetched_at": "2026-09-18T12:41:59.110344+00:00",
+  "fetched_at": "2026-09-21T12:41:26.077364+00:00",
   "value": {
    "description": "FuelCell Energy, Inc., together with its subsidiaries, engages in the design, development, production, construction, operation, and servicing of high temperature fuel cells for clean electric power generation.",
    "gross_margin": -0.7424926517378261,
@@ -6625,6 +6769,50 @@
    "revenue_qoq": -0.0727190985978814,
    "revenue_yoy": -0.29399054403867964,
    "sector": "Industrials"
+  }
+ },
+ "fundamentals:FCX": {
+  "fetched_at": "2026-09-21T12:41:26.426820+00:00",
+  "value": {
+   "description": "Freeport-McMoRan Inc. engages in the mining of mineral properties in North America, South America, and Indonesia.",
+   "gross_margin": 0.3109972969127899,
+   "gross_margin_change": 0.04551766906550081,
+   "industry": "Copper",
+   "last_earnings": {
+    "eps_actual": 0.74,
+    "eps_estimate": 0.62446,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-10-22",
+   "operating_margin": 0.2824014795845782,
+   "operating_margin_change": 0.05173096306228109,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 7582000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 6972000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 5633000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 6234000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 7029000000.0
+    }
+   ],
+   "revenue_qoq": 0.12752646775745902,
+   "revenue_yoy": -0.07293590081772616,
+   "sector": "Basic Materials"
   }
  },
  "fundamentals:FDX": {
@@ -6700,39 +6888,47 @@
   }
  },
  "fundamentals:FIGR": {
-  "fetched_at": "2026-09-04T12:42:19.667614+00:00",
+  "fetched_at": "2026-09-21T12:41:26.348062+00:00",
   "value": {
-   "gross_margin": 0.9430484698377752,
-   "gross_margin_change": -0.0029516422824176214,
-   "latest_quarter": "2026-03-31",
+   "description": "Figure Technology Solutions, Inc., a financial technology company, provides blockchain-based products and solutions in the United States.",
+   "gross_margin": 0.9607428990898406,
+   "gross_margin_change": 0.010844393257805618,
+   "industry": "Capital Markets",
+   "last_earnings": {
+    "eps_actual": 0.3958,
+    "eps_estimate": 0.32,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-12",
-   "operating_margin": 0.25463423583620876,
-   "operating_margin_change": 0.11694363150836931,
+   "operating_margin": 0.4353228341492193,
+   "operating_margin_change": 0.09474316898685964,
    "profitable": true,
    "revenue_history": [
     {
-     "quarter": "2025-03-31",
-     "revenue": 67699000.0
-    },
-    {
      "quarter": "2025-06-30",
-     "revenue": 96585000.0
+     "revenue": 112617000.0
     },
     {
      "quarter": "2025-09-30",
-     "revenue": 134926000.0
+     "revenue": 152790000.0
     },
     {
      "quarter": "2025-12-31",
-     "revenue": 142704000.0
+     "revenue": 167012000.0
     },
     {
      "quarter": "2026-03-31",
-     "revenue": 141717000.0
+     "revenue": 161093000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 222049000.0
     }
    ],
-   "revenue_qoq": -0.006916414396232806,
-   "revenue_yoy": 1.0933396357405574
+   "revenue_qoq": 0.37839012247583703,
+   "revenue_yoy": 0.9717183018549598,
+   "sector": "Financial Services"
   }
  },
  "fundamentals:FIS": {
@@ -7344,20 +7540,23 @@
   }
  },
  "fundamentals:GLXY": {
-  "fetched_at": "2026-08-27T20:31:37.476614+00:00",
+  "fetched_at": "2026-09-21T12:41:26.368261+00:00",
   "value": {
-   "gross_margin": -0.0073308181572291796,
-   "gross_margin_change": -0.002908557574323417,
-   "latest_quarter": "2026-03-31",
+   "description": "Galaxy Digital Inc. engages in the digital asset and data centre infrastructure businesses in North America and internationally.",
+   "gross_margin": -0.0011494583914835137,
+   "gross_margin_change": 0.006181359765745666,
+   "industry": "Capital Markets",
+   "last_earnings": {
+    "eps_actual": -0.09,
+    "eps_estimate": -0.2828,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-20",
-   "operating_margin": 0.006644163927020855,
-   "operating_margin_change": 0.028255037405958448,
+   "operating_margin": 0.009039304410932892,
+   "operating_margin_change": 0.0023951404839120368,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-03-31",
-     "revenue": 12976206000.0
-    },
     {
      "quarter": "2025-06-30",
      "revenue": 8661555000.0
@@ -7373,10 +7572,15 @@
     {
      "quarter": "2026-03-31",
      "revenue": 10041444000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 8576213000.0
     }
    ],
-   "revenue_qoq": -0.031412075281255225,
-   "revenue_yoy": -0.226164874386242
+   "revenue_qoq": -0.14591835596553648,
+   "revenue_yoy": -0.00985296520082135,
+   "sector": "Financial Services"
   }
  },
  "fundamentals:GM": {
@@ -7972,10 +8176,17 @@
   }
  },
  "fundamentals:HOOD": {
-  "fetched_at": "2026-08-30T00:19:10.681882+00:00",
+  "fetched_at": "2026-09-21T12:41:26.444012+00:00",
   "value": {
+   "description": "Robinhood Markets, Inc. operates financial services platform in the United States.",
    "gross_margin": 0.8195718654434251,
    "gross_margin_change": 0.01357373985767063,
+   "industry": "Capital Markets",
+   "last_earnings": {
+    "eps_actual": 0.62,
+    "eps_estimate": 0.43141,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-04",
    "operating_margin": 0.43883792048929665,
@@ -8004,7 +8215,8 @@
     }
    ],
    "revenue_qoq": 0.22586691658856606,
-   "revenue_yoy": 0.3225480283114257
+   "revenue_yoy": 0.3225480283114257,
+   "sector": "Financial Services"
   }
  },
  "fundamentals:HPE": {
@@ -8052,20 +8264,23 @@
   }
  },
  "fundamentals:HRL": {
-  "fetched_at": "2026-09-02T12:43:19.743348+00:00",
+  "fetched_at": "2026-09-21T12:41:26.209827+00:00",
   "value": {
-   "gross_margin": 0.17442878288367086,
-   "gross_margin_change": 0.019316186482302933,
-   "latest_quarter": "2026-04-30",
+   "description": "Hormel Foods Corporation develops, processes, and distributes various meat, nut, and other food products to foodservice, convenience stores, and commercial customers in the United States and internationally.",
+   "gross_margin": 0.15922390355964697,
+   "gross_margin_change": -0.015204879324023896,
+   "industry": "Packaged Foods",
+   "last_earnings": {
+    "eps_actual": 0.37,
+    "eps_estimate": 0.3536,
+    "quarter": "2026-07-31"
+   },
+   "latest_quarter": "2026-07-31",
    "next_earnings": "2026-08-27",
-   "operating_margin": 0.06724180851779588,
-   "operating_margin_change": -0.008031775318981041,
+   "operating_margin": 0.0499822208444643,
+   "operating_margin_change": -0.017259587673331578,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-04-30",
-     "revenue": 2898810000.0
-    },
     {
      "quarter": "2025-07-31",
      "revenue": 3032876000.0
@@ -8081,10 +8296,15 @@
     {
      "quarter": "2026-04-30",
      "revenue": 2972600000.0
+    },
+    {
+     "quarter": "2026-07-31",
+     "revenue": 2961333000.0
     }
    ],
-   "revenue_qoq": -0.01807442035307172,
-   "revenue_yoy": 0.02545527302582773
+   "revenue_qoq": -0.00379028459934061,
+   "revenue_yoy": -0.023589160915250096,
+   "sector": "Consumer Defensive"
   }
  },
  "fundamentals:HSBC": {
@@ -8124,10 +8344,17 @@
   }
  },
  "fundamentals:HSY": {
-  "fetched_at": "2026-09-09T12:42:53.175598+00:00",
+  "fetched_at": "2026-09-21T12:41:26.544941+00:00",
   "value": {
+   "description": "The Hershey Company, together with its subsidiaries, engages in the manufacture and sale of confectionery products and pantry items in the United States and internationally.",
    "gross_margin": 0.453236207291198,
    "gross_margin_change": 0.059336330126084136,
+   "industry": "Confectioners",
+   "last_earnings": {
+    "eps_actual": 1.9,
+    "eps_estimate": 1.42761,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-05",
    "operating_margin": 0.2306011611211686,
@@ -8156,7 +8383,8 @@
     }
    ],
    "revenue_qoq": -0.1020760158844547,
-   "revenue_yoy": 0.06600635326639437
+   "revenue_yoy": 0.06600635326639437,
+   "sector": "Consumer Defensive"
   }
  },
  "fundamentals:HUM": {
@@ -8284,10 +8512,17 @@
   }
  },
  "fundamentals:IBKR": {
-  "fetched_at": "2026-08-30T00:19:10.949352+00:00",
+  "fetched_at": "2026-09-21T12:41:26.303193+00:00",
   "value": {
+   "description": "Interactive Brokers Group, Inc. operates as an automated electronic broker in the United States and internationally.",
    "gross_margin": 0.8918558077436582,
    "gross_margin_change": -0.004969589081738612,
+   "industry": "Capital Markets",
+   "last_earnings": {
+    "eps_actual": 0.69,
+    "eps_estimate": 0.63902,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-20",
    "operating_margin": 0.8564753004005341,
@@ -8316,7 +8551,8 @@
     }
    ],
    "revenue_qoq": 0.13227513227513232,
-   "revenue_yoy": 0.21344673957067628
+   "revenue_yoy": 0.21344673957067628,
+   "sector": "Financial Services"
   }
  },
  "fundamentals:IBM": {
@@ -8848,20 +9084,23 @@
   }
  },
  "fundamentals:JD": {
-  "fetched_at": "2026-08-26T20:48:33.736374+00:00",
+  "fetched_at": "2026-09-21T12:41:26.465577+00:00",
   "value": {
-   "gross_margin": 0.16796961614728187,
-   "gross_margin_change": 0.011658231014831905,
-   "latest_quarter": "2026-03-31",
+   "description": "JD.com, Inc. operates as a supply chain-based technology and service provider in the People's Republic of China and Europe.",
+   "gross_margin": 0.1712090900430426,
+   "gross_margin_change": 0.003239473895760736,
+   "industry": "Internet Retail",
+   "last_earnings": {
+    "eps_actual": 6.29,
+    "eps_estimate": 5.61488,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-12",
-   "operating_margin": 0.012059145881771588,
-   "operating_margin_change": 0.024963507135759847,
+   "operating_margin": 0.01196012713589164,
+   "operating_margin_change": -9.901874587994915e-05,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-03-31",
-     "revenue": 301082000000.0
-    },
     {
      "quarter": "2025-06-30",
      "revenue": 356660000000.0
@@ -8877,10 +9116,15 @@
     {
      "quarter": "2026-03-31",
      "revenue": 315694000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 346401000000.0
     }
    ],
-   "revenue_qoq": -0.10386506341474488,
-   "revenue_yoy": 0.048531629257145825
+   "revenue_qoq": 0.09726824076479113,
+   "revenue_yoy": -0.02876408904839345,
+   "sector": "Consumer Cyclical"
   }
  },
  "fundamentals:JNJ": {
@@ -9013,6 +9257,50 @@
    "revenue_qoq": 0.03555482057218451,
    "revenue_yoy": -0.01416876574307302,
    "sector": "Consumer Defensive"
+  }
+ },
+ "fundamentals:KKR": {
+  "fetched_at": "2026-09-21T12:41:26.514804+00:00",
+  "value": {
+   "description": "KKR & Co. Inc. is a private equity and real estate investment firm specializing in direct and fund of fund investments.",
+   "gross_margin": 0.18894710234845352,
+   "gross_margin_change": -0.08807427170668192,
+   "industry": "Asset Management",
+   "last_earnings": {
+    "eps_actual": 1.63,
+    "eps_estimate": 1.42696,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-05",
+   "operating_margin": 0.05757370071447005,
+   "operating_margin_change": -0.04976262897147727,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 5002879000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 5464926000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 5685044000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 4252726000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 5657340000.0
+    }
+   ],
+   "revenue_qoq": 0.3302855627190653,
+   "revenue_yoy": 0.13081687564300482,
+   "sector": "Financial Services"
   }
  },
  "fundamentals:KLAC": {
@@ -10864,10 +11152,17 @@
   }
  },
  "fundamentals:MU": {
-  "fetched_at": "2026-09-01T12:42:09.503347+00:00",
+  "fetched_at": "2026-09-21T12:41:26.217383+00:00",
   "value": {
+   "description": "Micron Technology, Inc. designs, develops, manufactures, and sells memory and storage products in the United States, Taiwan, Japan, Mainland China, Hong Kong, Europe, and internationally.",
    "gross_margin": 0.8456194519490544,
    "gross_margin_change": 0.10148701272021954,
+   "industry": "Semiconductors",
+   "last_earnings": {
+    "eps_actual": 25.11,
+    "eps_estimate": 20.68603,
+    "quarter": "2026-05-31"
+   },
    "latest_quarter": "2026-05-31",
    "next_earnings": "2026-09-30",
    "operating_margin": 0.8036954843689695,
@@ -10896,7 +11191,8 @@
     }
    ],
    "revenue_qoq": 0.737468566638726,
-   "revenue_yoy": 3.457155144608107
+   "revenue_yoy": 3.457155144608107,
+   "sector": "Technology"
   }
  },
  "fundamentals:NBIS": {
@@ -12756,7 +13052,7 @@
   }
  },
  "fundamentals:RBRK": {
-  "fetched_at": "2026-09-18T12:41:59.241948+00:00",
+  "fetched_at": "2026-09-21T12:41:26.351200+00:00",
   "value": {
    "description": "Rubrik, Inc. provides data security solutions to individuals and businesses worldwide.",
    "gross_margin": 0.7843537892618078,
@@ -13320,7 +13616,7 @@
   }
  },
  "fundamentals:S": {
-  "fetched_at": "2026-09-18T12:41:59.218173+00:00",
+  "fetched_at": "2026-09-21T12:41:26.293027+00:00",
   "value": {
    "description": "SentinelOne, Inc. operates as a cybersecurity provider in the United States and internationally.",
    "gross_margin": 0.7206564810723985,
@@ -13920,20 +14216,23 @@
   }
  },
  "fundamentals:SNDK": {
-  "fetched_at": "2026-09-01T12:42:09.178886+00:00",
+  "fetched_at": "2026-09-21T12:41:26.279164+00:00",
   "value": {
-   "gross_margin": 0.7835294117647059,
-   "gross_margin_change": 0.2741079241614002,
-   "latest_quarter": "2026-03-31",
+   "description": "Sandisk Corporation develops, manufactures, and sells data storage devices and solutions using NAND flash technology in the Americas, Europe, the Middle East, Africa, Asia, and internationally.",
+   "gross_margin": 0.8457334076965979,
+   "gross_margin_change": 0.062203995931891964,
+   "industry": "Computer Hardware",
+   "last_earnings": {
+    "eps_actual": 39.25,
+    "eps_estimate": 34.515,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-06",
-   "operating_margin": 0.6998319327731093,
-   "operating_margin_change": 0.344460031946663,
+   "operating_margin": 0.784941438929169,
+   "operating_margin_change": 0.08510950615605972,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-03-31",
-     "revenue": 1695000000.0
-    },
     {
      "quarter": "2025-06-30",
      "revenue": 1901000000.0
@@ -13949,10 +14248,15 @@
     {
      "quarter": "2026-03-31",
      "revenue": 5950000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 8965000000.0
     }
    ],
-   "revenue_qoq": 0.9669421487603307,
-   "revenue_yoy": 2.510324483775811
+   "revenue_qoq": 0.5067226890756302,
+   "revenue_yoy": 3.7159389794844815,
+   "sector": "Technology"
   }
  },
  "fundamentals:SNOW": {
@@ -14548,20 +14852,23 @@
   }
  },
  "fundamentals:TJX": {
-  "fetched_at": "2026-08-26T20:48:35.501906+00:00",
+  "fetched_at": "2026-09-21T12:41:26.133635+00:00",
   "value": {
-   "gross_margin": 0.31278363471339804,
-   "gross_margin_change": 0.004154879711425419,
-   "latest_quarter": "2026-04-30",
+   "description": "The TJX Companies, Inc., together with its subsidiaries, operates as an off-price apparel and home fashions retailer worldwide.",
+   "gross_margin": 0.3341238471673254,
+   "gross_margin_change": 0.021340212453927365,
+   "industry": "Apparel Retail",
+   "last_earnings": {
+    "eps_actual": 1.36,
+    "eps_estimate": 1.18795,
+    "quarter": "2026-07-31"
+   },
+   "latest_quarter": "2026-07-31",
    "next_earnings": "2026-11-18",
-   "operating_margin": 0.11771276967115828,
-   "operating_margin_change": -0.014959270006461065,
+   "operating_margin": 0.13089591567852438,
+   "operating_margin_change": 0.0131831460073661,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-04-30",
-     "revenue": 13111000000.0
-    },
     {
      "quarter": "2025-07-31",
      "revenue": 14401000000.0
@@ -14577,10 +14884,15 @@
     {
      "quarter": "2026-04-30",
      "revenue": 14323000000.0
+    },
+    {
+     "quarter": "2026-07-31",
+     "revenue": 15180000000.0
     }
    ],
-   "revenue_qoq": -0.192752071239362,
-   "revenue_yoy": 0.09244146136831666
+   "revenue_qoq": 0.05983383369405848,
+   "revenue_yoy": 0.054093465731546386,
+   "sector": "Consumer Cyclical"
   }
  },
  "fundamentals:TLN": {
@@ -15327,20 +15639,23 @@
   }
  },
  "fundamentals:UNH": {
-  "fetched_at": "2026-08-26T20:48:32.821526+00:00",
+  "fetched_at": "2026-09-21T12:41:26.571423+00:00",
   "value": {
-   "gross_margin": 0.2274326223359977,
-   "gross_margin_change": 0.06407970973607718,
-   "latest_quarter": "2026-03-31",
-   "next_earnings": "2026-10-27",
-   "operating_margin": 0.08046830944943206,
-   "operating_margin_change": 0.07711186374877402,
+   "description": "UnitedHealth Group Incorporated operates as a health care company in the United States and internationally.",
+   "gross_margin": 0.20796736646672379,
+   "gross_margin_change": -0.019465255869273917,
+   "industry": "Healthcare Plans",
+   "last_earnings": {
+    "eps_actual": 6.38,
+    "eps_estimate": 4.9151,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-10-13",
+   "operating_margin": 0.07132783490431305,
+   "operating_margin_change": -0.009140474545119015,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-03-31",
-     "revenue": 109575000000.0
-    },
     {
      "quarter": "2025-06-30",
      "revenue": 111616000000.0
@@ -15356,10 +15671,15 @@
     {
      "quarter": "2026-03-31",
      "revenue": 111721000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 112032000000.0
     }
    ],
-   "revenue_qoq": -0.013196131254692434,
-   "revenue_yoy": 0.01958475929728487
+   "revenue_qoq": 0.0027837201600415806,
+   "revenue_yoy": 0.003727064220183429,
+   "sector": "Healthcare"
   }
  },
  "fundamentals:UNP": {
@@ -16115,23 +16435,26 @@
   }
  },
  "fundamentals:WOLF": {
-  "fetched_at": "2026-08-26T20:48:33.407772+00:00",
+  "fetched_at": "2026-09-21T12:41:26.226736+00:00",
   "value": {
-   "gross_margin": -0.2663115845539281,
-   "gross_margin_change": 0.19837684274577516,
-   "latest_quarter": "2026-03-31",
+   "description": "Wolfspeed, Inc., a semiconductor company, focuses on silicon carbide materials and devices for power applications in Europe, Hong Kong, Singapore, China, rest of Asia Pacific, Japan, the United States, and\u2026",
+   "gross_margin": -0.24532085561497327,
+   "gross_margin_change": 0.020990728938954845,
+   "industry": "Semiconductors",
+   "last_earnings": {
+    "eps_actual": -2.26,
+    "eps_estimate": -1.465,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-04",
-   "operating_margin": -0.7197070572569907,
-   "operating_margin_change": 0.09394279437505682,
+   "operating_margin": -0.7078877005347594,
+   "operating_margin_change": 0.011819356722231333,
    "profitable": false,
    "revenue_history": [
     {
-     "quarter": "2024-12-31",
-     "revenue": 180500000.0
-    },
-    {
-     "quarter": "2025-03-31",
-     "revenue": 185400000.0
+     "quarter": "2025-06-30",
+     "revenue": 197000000.0
     },
     {
      "quarter": "2025-09-30",
@@ -16144,10 +16467,15 @@
     {
      "quarter": "2026-03-31",
      "revenue": 150200000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 149600000.0
     }
    ],
-   "revenue_qoq": -0.10860534124629084,
-   "revenue_yoy": -0.16786703601108033
+   "revenue_qoq": -0.003994673768308976,
+   "revenue_yoy": -0.24060913705583753,
+   "sector": "Technology"
   }
  },
  "fundamentals:WRBY": {
