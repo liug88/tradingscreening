@@ -1680,20 +1680,23 @@
   }
  },
  "fundamentals:APO": {
-  "fetched_at": "2026-08-26T20:43:59.571839+00:00",
+  "fetched_at": "2026-09-22T12:43:00.290404+00:00",
   "value": {
-   "gross_margin": 0.9183310263001779,
-   "gross_margin_change": -0.04000230703315544,
-   "latest_quarter": "2026-03-31",
+   "description": "Apollo Global Management, Inc. is a private equity firm specializing in investments in credit, private equity, infrastructure, secondaries and real estate markets.",
+   "gross_margin": 0.9609970411548462,
+   "gross_margin_change": 0.042666014854668255,
+   "industry": "Asset Management",
+   "last_earnings": {
+    "eps_actual": 2.11,
+    "eps_estimate": 2.1576,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-03",
-   "operating_margin": 0.1570100850306506,
-   "operating_margin_change": -0.056392185853372134,
+   "operating_margin": 0.2555366269165247,
+   "operating_margin_change": 0.09852654188587409,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-03-31",
-     "revenue": 5556000000.0
-    },
     {
      "quarter": "2025-06-30",
      "revenue": 6814000000.0
@@ -1709,10 +1712,15 @@
     {
      "quarter": "2026-03-31",
      "revenue": 5057000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 11153000000.0
     }
    ],
-   "revenue_qoq": -0.48732765612327655,
-   "revenue_yoy": -0.08981281497480198
+   "revenue_qoq": 1.2054577812932568,
+   "revenue_yoy": 0.636777223363663,
+   "sector": "Financial Services"
   }
  },
  "fundamentals:APP": {
@@ -2660,20 +2668,23 @@
   }
  },
  "fundamentals:BEKE": {
-  "fetched_at": "2026-09-02T12:43:19.906265+00:00",
+  "fetched_at": "2026-09-22T12:42:59.974916+00:00",
   "value": {
-   "gross_margin": 0.2413709798609219,
-   "gross_margin_change": 0.027014209666636646,
-   "latest_quarter": "2026-03-31",
+   "description": "KE Holdings Inc., through its subsidiaries, engages in operating an integrated online and offline platform for housing transactions and services in the People's Republic of China.",
+   "gross_margin": 0.2858152193181026,
+   "gross_margin_change": 0.044444239457180706,
+   "industry": "Real Estate Services",
+   "last_earnings": {
+    "eps_actual": 2.85,
+    "eps_estimate": 2.11858,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-10",
-   "operating_margin": 0.06736828019640295,
-   "operating_margin_change": 0.04675379354065623,
+   "operating_margin": 0.13638876471252231,
+   "operating_margin_change": 0.06902048451611936,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-03-31",
-     "revenue": 23328347000.0
-    },
     {
      "quarter": "2025-06-30",
      "revenue": 26010636000.0
@@ -2689,10 +2700,15 @@
     {
      "quarter": "2026-03-31",
      "revenue": 18891977000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 24539470000.0
     }
    ],
-   "revenue_qoq": -0.14857915706439728,
-   "revenue_yoy": -0.19017078235333174
+   "revenue_qoq": 0.29893605100196763,
+   "revenue_yoy": -0.05656017023190052,
+   "sector": "Real Estate"
   }
  },
  "fundamentals:BIDU": {
@@ -3252,20 +3268,23 @@
   }
  },
  "fundamentals:BURL": {
-  "fetched_at": "2026-08-28T22:59:26.372556+00:00",
+  "fetched_at": "2026-09-22T12:42:59.828052+00:00",
   "value": {
-   "gross_margin": 0.441685358210737,
-   "gross_margin_change": 0.004376814185013345,
-   "latest_quarter": "2026-04-30",
+   "description": "Burlington Stores, Inc. operates as a retailer of branded merchandise in the United States and Puerto Rico.",
+   "gross_margin": 0.4624018615291199,
+   "gross_margin_change": 0.020716503318382873,
+   "industry": "Apparel Retail",
+   "last_earnings": {
+    "eps_actual": 2.96,
+    "eps_estimate": 2.18681,
+    "quarter": "2026-07-31"
+   },
+   "latest_quarter": "2026-07-31",
    "next_earnings": "2026-11-27",
-   "operating_margin": 0.05870060890031406,
-   "operating_margin_change": -0.0540822963036694,
+   "operating_margin": 0.08495491567527562,
+   "operating_margin_change": 0.02625430677496156,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-04-30",
-     "revenue": 2504020000.0
-    },
     {
      "quarter": "2025-07-31",
      "revenue": 2705071000.0
@@ -3281,10 +3300,15 @@
     {
      "quarter": "2026-04-30",
      "revenue": 2856461000.0
+    },
+    {
+     "quarter": "2026-07-31",
+     "revenue": 3002263000.0
     }
    ],
-   "revenue_qoq": -0.21684557596016207,
-   "revenue_yoy": 0.1407500738811991
+   "revenue_qoq": 0.0510428813836421,
+   "revenue_yoy": 0.10986476879904439,
+   "sector": "Consumer Cyclical"
   }
  },
  "fundamentals:BX": {
@@ -4124,7 +4148,7 @@
   }
  },
  "fundamentals:CIEN": {
-  "fetched_at": "2026-09-21T12:41:26.133604+00:00",
+  "fetched_at": "2026-09-22T12:42:59.818732+00:00",
   "value": {
    "description": "Ciena Corporation, a network technology company, provides hardware, software, and services for various network operators in the Americas, Europe, the Middle East, Africa, the Asia Pacific, Japan, and India.",
    "gross_margin": 0.45434254327463647,
@@ -6312,10 +6336,17 @@
   }
  },
  "fundamentals:ELF": {
-  "fetched_at": "2026-08-26T20:27:29.416920+00:00",
+  "fetched_at": "2026-09-22T12:43:00.043618+00:00",
   "value": {
+   "description": "e.l.f. Beauty, Inc., a beauty company, provides cosmetics and skin care products worldwide.",
    "gross_margin": 0.8320034712009229,
    "gross_margin_change": 0.10540918507964758,
+   "industry": "Household & Personal Products",
+   "last_earnings": {
+    "eps_actual": 1.75,
+    "eps_estimate": 0.71748,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-04",
    "operating_margin": 0.2472417094830122,
@@ -6344,7 +6375,8 @@
     }
    ],
    "revenue_qoq": 0.06695200448705974,
-   "revenue_yoy": 0.35516016045728627
+   "revenue_yoy": 0.35516016045728627,
+   "sector": "Consumer Defensive"
   }
  },
  "fundamentals:EMR": {
@@ -6728,7 +6760,7 @@
   }
  },
  "fundamentals:FCEL": {
-  "fetched_at": "2026-09-21T12:41:26.077364+00:00",
+  "fetched_at": "2026-09-22T12:42:59.843260+00:00",
   "value": {
    "description": "FuelCell Energy, Inc., together with its subsidiaries, engages in the design, development, production, construction, operation, and servicing of high temperature fuel cells for clean electric power generation.",
    "gross_margin": -0.7424926517378261,
@@ -7239,21 +7271,68 @@
    "sector": "Technology"
   }
  },
- "fundamentals:GAP": {
-  "fetched_at": "2026-09-01T12:42:08.885597+00:00",
+ "fundamentals:FUTU": {
+  "fetched_at": "2026-09-22T12:43:00.125981+00:00",
   "value": {
-   "gross_margin": 0.4052044609665427,
-   "gross_margin_change": 0.024184630938214102,
-   "latest_quarter": "2026-04-30",
-   "next_earnings": "2026-11-19",
-   "operating_margin": 0.12725193022590792,
-   "operating_margin_change": 0.07319149585385881,
+   "description": "Futu Holdings Limited engages in the provision of digitalized securities brokerage and wealth management product distribution service in Hong Kong and internationally.",
+   "gross_margin": 0.8631411510824539,
+   "gross_margin_change": -0.00890763998447075,
+   "industry": "Capital Markets",
+   "last_earnings": {
+    "eps_actual": 26.6402,
+    "eps_estimate": 25.851,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-17",
+   "operating_margin": 0.6199178246646558,
+   "operating_margin_change": 0.01708875562594503,
    "profitable": true,
    "revenue_history": [
     {
-     "quarter": "2025-04-30",
-     "revenue": 3463000000.0
+     "quarter": "2025-06-30",
+     "revenue": 5310890000.0
     },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 6402900000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 6438471000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 5855990000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 7200214000.0
+    }
+   ],
+   "revenue_qoq": 0.22954684007315596,
+   "revenue_yoy": 0.35574527056670346,
+   "sector": "Financial Services"
+  }
+ },
+ "fundamentals:GAP": {
+  "fetched_at": "2026-09-22T12:43:00.156870+00:00",
+  "value": {
+   "description": "The Gap, Inc. operates as an apparel retail company in the United States, Canada, Japan, Taiwan, and internationally.",
+   "gross_margin": 0.5283483976992605,
+   "gross_margin_change": 0.12314393673271773,
+   "industry": "Apparel Retail",
+   "last_earnings": {
+    "eps_actual": 1.38,
+    "eps_estimate": 0.49132,
+    "quarter": "2026-07-31"
+   },
+   "latest_quarter": "2026-07-31",
+   "next_earnings": "2026-11-19",
+   "operating_margin": 0.1851547521227061,
+   "operating_margin_change": 0.057902821896798184,
+   "profitable": true,
+   "revenue_history": [
     {
      "quarter": "2025-07-31",
      "revenue": 3725000000.0
@@ -7269,10 +7348,15 @@
     {
      "quarter": "2026-04-30",
      "revenue": 3497000000.0
+    },
+    {
+     "quarter": "2026-07-31",
+     "revenue": 3651000000.0
     }
    ],
-   "revenue_qoq": -0.1744570349386213,
-   "revenue_yoy": 0.009818076812012633
+   "revenue_qoq": 0.04403774663997706,
+   "revenue_yoy": -0.01986577181208049,
+   "sector": "Consumer Cyclical"
   }
  },
  "fundamentals:GD": {
@@ -10035,6 +10119,50 @@
    "sector": "Industrials"
   }
  },
+ "fundamentals:LNG": {
+  "fetched_at": "2026-09-22T12:43:00.010939+00:00",
+  "value": {
+   "description": "Cheniere Energy, Inc., an energy infrastructure company, primarily engages in the liquefied natural gas (LNG) related businesses in the United States.",
+   "gross_margin": 0.7641311933007676,
+   "gross_margin_change": 1.3346833405400313,
+   "industry": "Oil & Gas Midstream",
+   "last_earnings": {
+    "eps_actual": 3.0167,
+    "eps_estimate": 3.15236,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-10-29",
+   "operating_margin": 0.7484298674110258,
+   "operating_margin_change": 1.3428402286925527,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 4641000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 4441000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 5450000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 5868000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 5732000000.0
+    }
+   ],
+   "revenue_qoq": -0.023176550783912786,
+   "revenue_yoy": 0.23507864684335278,
+   "sector": "Energy"
+  }
+ },
  "fundamentals:LOW": {
   "fetched_at": "2026-09-11T20:21:48.399755+00:00",
   "value": {
@@ -12592,7 +12720,7 @@
   }
  },
  "fundamentals:PL": {
-  "fetched_at": "2026-09-18T12:41:59.739437+00:00",
+  "fetched_at": "2026-09-22T12:42:59.916390+00:00",
   "value": {
    "description": "Planet Labs PBC engages in the design, construction, and launch of constellations of satellites with the intent of providing high-cadence geospatial data delivered to customers through an online platform in the United\u2026",
    "gross_margin": 0.5655395857029607,
@@ -13227,6 +13355,50 @@
    "sector": "Industrials"
   }
  },
+ "fundamentals:REGN": {
+  "fetched_at": "2026-09-22T12:42:59.974899+00:00",
+  "value": {
+   "description": "Regeneron Pharmaceuticals, Inc. discovers, invents, develops, manufactures, and commercializes medicines to treat various diseases worldwide.",
+   "gross_margin": 0.8656396392197078,
+   "gross_margin_change": 0.051305584745863,
+   "industry": "Biotechnology",
+   "last_earnings": {
+    "eps_actual": 14.29,
+    "eps_estimate": 10.20812,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-10-28",
+   "operating_margin": 0.33106486121145734,
+   "operating_margin_change": 0.12448584085310599,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 3675600000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 3754300000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 3884300000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 3605400000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 4290700000.0
+    }
+   ],
+   "revenue_qoq": 0.190075997115438,
+   "revenue_yoy": 0.16734682772880616,
+   "sector": "Healthcare"
+  }
+ },
  "fundamentals:RGTI": {
   "fetched_at": "2026-09-18T12:41:59.140126+00:00",
   "value": {
@@ -13616,7 +13788,7 @@
   }
  },
  "fundamentals:S": {
-  "fetched_at": "2026-09-21T12:41:26.293027+00:00",
+  "fetched_at": "2026-09-22T12:42:59.974928+00:00",
   "value": {
    "description": "SentinelOne, Inc. operates as a cybersecurity provider in the United States and internationally.",
    "gross_margin": 0.7206564810723985,
@@ -13745,6 +13917,50 @@
    "revenue_qoq": -0.02190631065414672,
    "revenue_yoy": -0.014096869712351912,
    "sector": "Consumer Cyclical"
+  }
+ },
+ "fundamentals:SCCO": {
+  "fetched_at": "2026-09-22T12:43:00.166258+00:00",
+  "value": {
+   "description": "Southern Copper Corporation engages in mining, exploring, smelting, and refining copper and other minerals in Mexico, the United States, Peru, Brazil, Chile, and Other American countries.",
+   "gross_margin": 0.6233387736069014,
+   "gross_margin_change": 0.02896985983731959,
+   "industry": "Copper",
+   "last_earnings": {
+    "eps_actual": 1.98617,
+    "eps_estimate": 1.92478,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-10-27",
+   "operating_margin": 0.6116344136162276,
+   "operating_margin_change": 0.02822659501529612,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 3051000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 3377300000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 3869800000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 4251400000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 4289000000.0
+    }
+   ],
+   "revenue_qoq": 0.008844145457966857,
+   "revenue_yoy": 0.40576860045886587,
+   "sector": "Basic Materials"
   }
  },
  "fundamentals:SCHW": {
@@ -14304,20 +14520,23 @@
   }
  },
  "fundamentals:SNPS": {
-  "fetched_at": "2026-09-02T12:43:19.981768+00:00",
+  "fetched_at": "2026-09-22T12:43:00.040556+00:00",
   "value": {
-   "gross_margin": 0.7232626752812519,
-   "gross_margin_change": -0.012131492266213684,
-   "latest_quarter": "2026-04-30",
+   "description": "Synopsys, Inc. provides design IP solutions in the semiconductor and electronics industries.",
+   "gross_margin": 0.7257017258406135,
+   "gross_margin_change": 0.0024390505593616663,
+   "industry": "Software - Infrastructure",
+   "last_earnings": {
+    "eps_actual": 3.91,
+    "eps_estimate": 3.67334,
+    "quarter": "2026-07-31"
+   },
+   "latest_quarter": "2026-07-31",
    "next_earnings": "2026-08-26",
-   "operating_margin": 0.1038319672581322,
-   "operating_margin_change": -0.02956568584519985,
+   "operating_margin": 0.14520825477163882,
+   "operating_margin_change": 0.041376287513506624,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-04-30",
-     "revenue": 1604266000.0
-    },
     {
      "quarter": "2025-07-31",
      "revenue": 1739737000.0
@@ -14333,10 +14552,15 @@
     {
      "quarter": "2026-04-30",
      "revenue": 2275985000.0
+    },
+    {
+     "quarter": "2026-07-31",
+     "revenue": 2476822000.0
     }
    ],
-   "revenue_qoq": -0.05513662831005339,
-   "revenue_yoy": 0.418707994808841
+   "revenue_qoq": 0.08824179421217626,
+   "revenue_yoy": 0.42367610736565364,
+   "sector": "Technology"
   }
  },
  "fundamentals:SO": {
@@ -14717,6 +14941,50 @@
    "revenue_qoq": 0.06557178334910119,
    "revenue_yoy": 0.2173829335558104,
    "sector": "Industrials"
+  }
+ },
+ "fundamentals:TECK": {
+  "fetched_at": "2026-09-22T12:43:00.154455+00:00",
+  "value": {
+   "description": "Teck Resources Limited engages in research, exploration, development, processing, smelting, refining, and reclamation of mineral properties in Asia, the Americas, and Europe.",
+   "gross_margin": 0.463245492371706,
+   "gross_margin_change": 0.028297483241601973,
+   "industry": "Copper",
+   "last_earnings": {
+    "eps_actual": 1.93,
+    "eps_estimate": 1.41239,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-10-22",
+   "operating_margin": 0.3816920943134535,
+   "operating_margin_change": 0.005582533065672635,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 2023000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 3385000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 3058000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 3943000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 3605000000.0
+    }
+   ],
+   "revenue_qoq": -0.08572153182855691,
+   "revenue_yoy": 0.7820069204152249,
+   "sector": "Basic Materials"
   }
  },
  "fundamentals:TEM": {
@@ -15603,10 +15871,17 @@
   }
  },
  "fundamentals:UMAC": {
-  "fetched_at": "2026-09-04T12:42:19.667620+00:00",
+  "fetched_at": "2026-09-22T12:43:00.227374+00:00",
   "value": {
+   "description": "Unusual Machines, Inc. engages in the commercial drone industry.",
    "gross_margin": 0.3469663895883305,
    "gross_margin_change": 0.01913032670365744,
+   "industry": "Computer Hardware",
+   "last_earnings": {
+    "eps_actual": -0.1269,
+    "eps_estimate": 0.08333,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-05",
    "operating_margin": -0.46847997965850374,
@@ -15635,7 +15910,8 @@
     }
    ],
    "revenue_qoq": 1.065563951641313,
-   "revenue_yoy": 6.873212427670824
+   "revenue_yoy": 6.873212427670824,
+   "sector": "Technology"
   }
  },
  "fundamentals:UNH": {
@@ -15848,6 +16124,50 @@
    "revenue_qoq": 0.12189597966712684,
    "revenue_yoy": 0.10444225139640673,
    "sector": "Consumer Cyclical"
+  }
+ },
+ "fundamentals:USAR": {
+  "fetched_at": "2026-09-22T12:42:59.839943+00:00",
+  "value": {
+   "description": "USA Rare Earth, Inc. engages in mining, processing, and supplying rare earths and other critical minerals in the United States, Europe, and Asia.",
+   "gross_margin": -0.27194640096203404,
+   "gross_margin_change": -0.29054941956505265,
+   "industry": "Other Industrial Metals & Mining",
+   "last_earnings": {
+    "eps_actual": -0.15,
+    "eps_estimate": -0.126,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-05",
+   "operating_margin": -7.915134856553856,
+   "operating_margin_change": -1.5148189562379564,
+   "profitable": false,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 0.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 0.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 1643000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 5698000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 5821000.0
+    }
+   ],
+   "revenue_qoq": 0.021586521586521634,
+   "revenue_yoy": null,
+   "sector": "Basic Materials"
   }
  },
  "fundamentals:USB": {
