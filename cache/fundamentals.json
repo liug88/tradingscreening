@@ -4148,7 +4148,7 @@
   }
  },
  "fundamentals:CIEN": {
-  "fetched_at": "2026-09-22T12:42:59.818732+00:00",
+  "fetched_at": "2026-09-23T12:43:44.848985+00:00",
   "value": {
    "description": "Ciena Corporation, a network technology company, provides hardware, software, and services for various network operators in the Americas, Europe, the Middle East, Africa, the Asia Pacific, Japan, and India.",
    "gross_margin": 0.45434254327463647,
@@ -6760,7 +6760,7 @@
   }
  },
  "fundamentals:FCEL": {
-  "fetched_at": "2026-09-22T12:42:59.843260+00:00",
+  "fetched_at": "2026-09-23T12:43:44.887901+00:00",
   "value": {
    "description": "FuelCell Energy, Inc., together with its subsidiaries, engages in the design, development, production, construction, operation, and servicing of high temperature fuel cells for clean electric power generation.",
    "gross_margin": -0.7424926517378261,
@@ -12720,7 +12720,7 @@
   }
  },
  "fundamentals:PL": {
-  "fetched_at": "2026-09-22T12:42:59.916390+00:00",
+  "fetched_at": "2026-09-23T12:43:44.897228+00:00",
   "value": {
    "description": "Planet Labs PBC engages in the design, construction, and launch of constellations of satellites with the intent of providing high-cadence geospatial data delivered to customers through an online platform in the United\u2026",
    "gross_margin": 0.5655395857029607,
@@ -13788,7 +13788,7 @@
   }
  },
  "fundamentals:S": {
-  "fetched_at": "2026-09-22T12:42:59.974928+00:00",
+  "fetched_at": "2026-09-23T12:43:44.917062+00:00",
   "value": {
    "description": "SentinelOne, Inc. operates as a cybersecurity provider in the United States and internationally.",
    "gross_margin": 0.7206564810723985,
@@ -14520,7 +14520,7 @@
   }
  },
  "fundamentals:SNPS": {
-  "fetched_at": "2026-09-22T12:43:00.040556+00:00",
+  "fetched_at": "2026-09-23T12:43:44.942878+00:00",
   "value": {
    "description": "Synopsys, Inc. provides design IP solutions in the semiconductor and electronics industries.",
    "gross_margin": 0.7257017258406135,
