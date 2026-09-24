@@ -768,20 +768,23 @@
   }
  },
  "fundamentals:AEO": {
-  "fetched_at": "2026-08-26T20:43:58.971955+00:00",
+  "fetched_at": "2026-09-24T12:45:05.296358+00:00",
   "value": {
-   "gross_margin": 0.38164287178371686,
-   "gross_margin_change": 0.022190888081763505,
-   "latest_quarter": "2026-04-30",
-   "next_earnings": "2026-09-09",
-   "operating_margin": 0.023614451783465867,
-   "operating_margin_change": -0.07589031285551473,
+   "description": "American Eagle Outfitters, Inc. operates as a multi-brand specialty retailer in the United States and internationally.",
+   "gross_margin": 0.4868705967581273,
+   "gross_margin_change": 0.10522772497441046,
+   "industry": "Apparel Retail",
+   "last_earnings": {
+    "eps_actual": 0.79,
+    "eps_estimate": 0.22,
+    "quarter": "2026-07-31"
+   },
+   "latest_quarter": "2026-07-31",
+   "next_earnings": "2026-12-01",
+   "operating_margin": 0.15315041202571764,
+   "operating_margin_change": 0.12953596024225178,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-04-30",
-     "revenue": 1089599000.0
-    },
     {
      "quarter": "2025-07-31",
      "revenue": 1283675000.0
@@ -797,10 +800,15 @@
     {
      "quarter": "2026-04-30",
      "revenue": 1195285000.0
+    },
+    {
+     "quarter": "2026-07-31",
+     "revenue": 1380375000.0
     }
    ],
-   "revenue_qoq": -0.34008093813146645,
-   "revenue_yoy": 0.09699531662565763
+   "revenue_qoq": 0.15485009851207043,
+   "revenue_yoy": 0.07533059380294849,
+   "sector": "Consumer Cyclical"
   }
  },
  "fundamentals:AFL": {
@@ -4148,7 +4156,7 @@
   }
  },
  "fundamentals:CIEN": {
-  "fetched_at": "2026-09-23T12:43:44.848985+00:00",
+  "fetched_at": "2026-09-24T12:45:04.858411+00:00",
   "value": {
    "description": "Ciena Corporation, a network technology company, provides hardware, software, and services for various network operators in the Americas, Europe, the Middle East, Africa, the Asia Pacific, Japan, and India.",
    "gross_margin": 0.45434254327463647,
@@ -4500,12 +4508,19 @@
   }
  },
  "fundamentals:CMG": {
-  "fetched_at": "2026-08-26T21:06:50.557240+00:00",
+  "fetched_at": "2026-09-24T12:45:05.614164+00:00",
   "value": {
+   "description": "Chipotle Mexican Grill, Inc., together with its subsidiaries, owns and operates Chipotle Mexican Grill restaurants.",
    "gross_margin": 0.25221722040684924,
    "gross_margin_change": 0.01941130688064241,
+   "industry": "Restaurants",
+   "last_earnings": {
+    "eps_actual": 0.33,
+    "eps_estimate": 0.31744,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-11-04",
+   "next_earnings": "2026-10-28",
    "operating_margin": 0.1659718410469927,
    "operating_margin_change": 0.03045040198878418,
    "profitable": true,
@@ -4532,7 +4547,8 @@
     }
    ],
    "revenue_qoq": 0.0842939121998858,
-   "revenue_yoy": 0.09308926409376794
+   "revenue_yoy": 0.09308926409376794,
+   "sector": "Consumer Cyclical"
   }
  },
  "fundamentals:CNC": {
@@ -5224,12 +5240,19 @@
   }
  },
  "fundamentals:CSX": {
-  "fetched_at": "2026-09-04T12:42:19.786235+00:00",
+  "fetched_at": "2026-09-24T12:45:05.638775+00:00",
   "value": {
+   "description": "CSX Corporation, together with its subsidiaries, provides rail-based freight transportation services in the United States and Canada.",
    "gross_margin": 0.38271918678526046,
    "gross_margin_change": 0.02286852624534086,
+   "industry": "Railroads",
+   "last_earnings": {
+    "eps_actual": 0.54,
+    "eps_estimate": 0.51826,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-22",
+   "next_earnings": "2026-10-21",
    "operating_margin": 0.38271918678526046,
    "operating_margin_change": 0.02286852624534086,
    "profitable": true,
@@ -5256,7 +5279,8 @@
     }
    ],
    "revenue_qoq": 0.13009764503159094,
-   "revenue_yoy": 0.1010072747621713
+   "revenue_yoy": 0.1010072747621713,
+   "sector": "Industrials"
   }
  },
  "fundamentals:CTAS": {
@@ -6335,6 +6359,50 @@
    "sector": "Communication Services"
   }
  },
+ "fundamentals:EL": {
+  "fetched_at": "2026-09-24T12:45:05.314624+00:00",
+  "value": {
+   "description": "The Est\u00e9e Lauder Companies Inc. manufactures, markets, and sells skin care, makeup, fragrance, and hair care products worldwide.",
+   "gross_margin": 0.7546181417149159,
+   "gross_margin_change": -0.009390478974739214,
+   "industry": "Household & Personal Products",
+   "last_earnings": {
+    "eps_actual": 0.39,
+    "eps_estimate": 0.31935,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-02",
+   "operating_margin": 0.07003032809484422,
+   "operating_margin_change": -0.08002355121550062,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 3411000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 3481000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 4229000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 3712000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 3627000000.0
+    }
+   ],
+   "revenue_qoq": -0.022898706896551713,
+   "revenue_yoy": 0.0633245382585752,
+   "sector": "Consumer Defensive"
+  }
+ },
  "fundamentals:ELF": {
   "fetched_at": "2026-09-22T12:43:00.043618+00:00",
   "value": {
@@ -6760,7 +6828,7 @@
   }
  },
  "fundamentals:FCEL": {
-  "fetched_at": "2026-09-23T12:43:44.887901+00:00",
+  "fetched_at": "2026-09-24T12:45:05.118766+00:00",
   "value": {
    "description": "FuelCell Energy, Inc., together with its subsidiaries, engages in the design, development, production, construction, operation, and servicing of high temperature fuel cells for clean electric power generation.",
    "gross_margin": -0.7424926517378261,
@@ -8348,7 +8416,7 @@
   }
  },
  "fundamentals:HRL": {
-  "fetched_at": "2026-09-21T12:41:26.209827+00:00",
+  "fetched_at": "2026-09-24T12:45:05.620841+00:00",
   "value": {
    "description": "Hormel Foods Corporation develops, processes, and distributes various meat, nut, and other food products to foodservice, convenience stores, and commercial customers in the United States and internationally.",
    "gross_margin": 0.15922390355964697,
@@ -9820,19 +9888,19 @@
   }
  },
  "fundamentals:LEN": {
-  "fetched_at": "2026-09-11T20:21:48.536234+00:00",
+  "fetched_at": "2026-09-24T12:45:04.801287+00:00",
   "value": {
    "description": "Lennar Corporation, together with its subsidiaries, operates as a homebuilder primarily under the Lennar brand in the United States.",
    "gross_margin": 0.06989583711173178,
    "gross_margin_change": 0.010872736189543979,
    "industry": "Residential Construction",
    "last_earnings": {
-    "eps_actual": 1.31,
-    "eps_estimate": 1.23411,
-    "quarter": "2026-05-31"
+    "eps_actual": 1.23,
+    "eps_estimate": 1.28825,
+    "quarter": "2026-08-31"
    },
    "latest_quarter": "2026-05-31",
-   "next_earnings": "2026-09-16",
+   "next_earnings": "2026-12-15",
    "operating_margin": 0.052748331459247705,
    "operating_margin_change": 0.017539502240741585,
    "profitable": true,
@@ -10296,10 +10364,17 @@
   }
  },
  "fundamentals:LULU": {
-  "fetched_at": "2026-09-11T12:42:06.367525+00:00",
+  "fetched_at": "2026-09-24T12:45:04.858420+00:00",
   "value": {
+   "description": "lululemon athletica inc., together with its subsidiaries, designs, distributes, and retails technical athletic apparel, footwear, and accessories for women and men under the lululemon brand in the United States, Canada\u2026",
    "gross_margin": 0.6051743830080009,
    "gross_margin_change": 0.06349434782435692,
+   "industry": "Apparel Retail",
+   "last_earnings": {
+    "eps_actual": 2.92,
+    "eps_estimate": 1.78766,
+    "quarter": "2026-07-31"
+   },
    "latest_quarter": "2026-07-31",
    "next_earnings": "2026-09-03",
    "operating_margin": 0.187798964328575,
@@ -10328,7 +10403,8 @@
     }
    ],
    "revenue_qoq": -0.022646031745389483,
-   "revenue_yoy": -0.04339742414420289
+   "revenue_yoy": -0.04339742414420289,
+   "sector": "Consumer Cyclical"
   }
  },
  "fundamentals:LUNR": {
@@ -12720,7 +12796,7 @@
   }
  },
  "fundamentals:PL": {
-  "fetched_at": "2026-09-23T12:43:44.897228+00:00",
+  "fetched_at": "2026-09-24T12:45:05.438041+00:00",
   "value": {
    "description": "Planet Labs PBC engages in the design, construction, and launch of constellations of satellites with the intent of providing high-cadence geospatial data delivered to customers through an online platform in the United\u2026",
    "gross_margin": 0.5655395857029607,
@@ -13788,7 +13864,7 @@
   }
  },
  "fundamentals:S": {
-  "fetched_at": "2026-09-23T12:43:44.917062+00:00",
+  "fetched_at": "2026-09-24T12:45:05.314636+00:00",
   "value": {
    "description": "SentinelOne, Inc. operates as a cybersecurity provider in the United States and internationally.",
    "gross_margin": 0.7206564810723985,
@@ -14520,7 +14596,7 @@
   }
  },
  "fundamentals:SNPS": {
-  "fetched_at": "2026-09-23T12:43:44.942878+00:00",
+  "fetched_at": "2026-09-24T12:45:04.858391+00:00",
   "value": {
    "description": "Synopsys, Inc. provides design IP solutions in the semiconductor and electronics industries.",
    "gross_margin": 0.7257017258406135,
