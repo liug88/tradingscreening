@@ -256,10 +256,17 @@
   }
  },
  "fundamentals:ABNB": {
-  "fetched_at": "2026-08-26T20:43:59.834905+00:00",
+  "fetched_at": "2026-09-25T12:44:30.327491+00:00",
   "value": {
+   "description": "Airbnb, Inc., together with its subsidiaries, operates a platform for stays, experiences, and services worldwide.",
    "gross_margin": 0.8245565410199557,
    "gross_margin_change": 0.04150949098261436,
+   "industry": "Travel Services",
+   "last_earnings": {
+    "eps_actual": 1.37,
+    "eps_estimate": 1.2514,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-05",
    "operating_margin": 0.21008869179600886,
@@ -288,7 +295,8 @@
     }
    ],
    "revenue_qoq": 0.3472740851381628,
-   "revenue_yoy": 0.1653746770025839
+   "revenue_yoy": 0.1653746770025839,
+   "sector": "Consumer Cyclical"
   }
  },
  "fundamentals:ABT": {
@@ -336,27 +344,23 @@
   }
  },
  "fundamentals:ABVX": {
-  "fetched_at": "2026-09-11T20:21:44.965152+00:00",
+  "fetched_at": "2026-09-25T12:44:30.347145+00:00",
   "value": {
    "description": "ABIVAX Soci\u00e9t\u00e9 Anonyme, a clinical-stage biotechnology company, develops therapeutics that harness the body's natural regulatory mechanisms to stabilize the immune response in patients with chronic inflammatory diseases.",
    "gross_margin": null,
    "gross_margin_change": null,
    "industry": "Biotechnology",
    "last_earnings": {
-    "eps_actual": -0.70758,
-    "eps_estimate": -0.8115,
-    "quarter": "2026-03-31"
+    "eps_actual": -1.68597,
+    "eps_estimate": -0.856,
+    "quarter": "2026-06-30"
    },
-   "latest_quarter": "2026-03-31",
+   "latest_quarter": "2026-06-30",
    "next_earnings": "2026-09-21",
    "operating_margin": null,
    "operating_margin_change": null,
    "profitable": null,
    "revenue_history": [
-    {
-     "quarter": "2025-03-31",
-     "revenue": 0.0
-    },
     {
      "quarter": "2025-06-30",
      "revenue": 0.0
@@ -371,6 +375,10 @@
     },
     {
      "quarter": "2026-03-31",
+     "revenue": 0.0
+    },
+    {
+     "quarter": "2026-06-30",
      "revenue": 0.0
     }
    ],
@@ -1776,10 +1784,17 @@
   }
  },
  "fundamentals:AR": {
-  "fetched_at": "2026-08-26T20:44:00.070111+00:00",
+  "fetched_at": "2026-09-25T12:44:29.809683+00:00",
   "value": {
+   "description": "Antero Resources Corporation, an independent oil and natural gas company, engages in the development, production, exploration, and acquisition of natural gas, natural gas liquids (NGLs), and oil properties in the United\u2026",
    "gross_margin": 0.206512009798973,
    "gross_margin_change": -0.1917255521223143,
+   "industry": "Oil & Gas E&P",
+   "last_earnings": {
+    "eps_actual": 0.759,
+    "eps_estimate": 0.84771,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-28",
    "operating_margin": 0.15428596639604333,
@@ -1808,7 +1823,8 @@
     }
    ],
    "revenue_qoq": -0.2820523695579463,
-   "revenue_yoy": 0.11066049966654012
+   "revenue_yoy": 0.11066049966654012,
+   "sector": "Energy"
   }
  },
  "fundamentals:ARES": {
@@ -2975,6 +2991,50 @@
    "sector": "Financial Services"
   }
  },
+ "fundamentals:BMY": {
+  "fetched_at": "2026-09-25T12:44:30.347137+00:00",
+  "value": {
+   "description": "Bristol-Myers Squibb Company discovers, develops, licenses, manufactures, markets, distributes, and sells biopharmaceutical products worldwide.",
+   "gross_margin": 0.7127880983581284,
+   "gross_margin_change": 0.010551176084649394,
+   "industry": "Drug Manufacturers - General",
+   "last_earnings": {
+    "eps_actual": 2.04,
+    "eps_estimate": 1.59701,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-10-29",
+   "operating_margin": 0.31025977029214524,
+   "operating_margin_change": 0.01737092008760177,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 12269000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 12222000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 12503000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 11489000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 12973000000.0
+    }
+   ],
+   "revenue_qoq": 0.12916702933240498,
+   "revenue_yoy": 0.057380389599804404,
+   "sector": "Healthcare"
+  }
+ },
  "fundamentals:BP": {
   "fetched_at": "2026-09-11T20:21:46.264070+00:00",
   "value": {
@@ -3452,20 +3512,23 @@
   }
  },
  "fundamentals:CAH": {
-  "fetched_at": "2026-08-26T21:06:50.767778+00:00",
+  "fetched_at": "2026-09-25T12:44:30.193771+00:00",
   "value": {
-   "gross_margin": 0.040991138825073846,
-   "gross_margin_change": 0.0044665376700614295,
-   "latest_quarter": "2026-03-31",
+   "description": "Cardinal Health, Inc. operates as a healthcare services and products company in the United States and internationally.",
+   "gross_margin": 0.0402060560371906,
+   "gross_margin_change": -0.0007850827878832442,
+   "industry": "Medical Distribution",
+   "last_earnings": {
+    "eps_actual": 2.6,
+    "eps_estimate": 2.42064,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-05",
-   "operating_margin": 0.013816869051526091,
-   "operating_margin_change": 0.002190556710568864,
+   "operating_margin": 0.012784269380575449,
+   "operating_margin_change": -0.0010325996709506426,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-03-31",
-     "revenue": 54878000000.0
-    },
     {
      "quarter": "2025-06-30",
      "revenue": 60159000000.0
@@ -3481,10 +3544,15 @@
     {
      "quarter": "2026-03-31",
      "revenue": 60940000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 63672000000.0
     }
    ],
-   "revenue_qoq": -0.07141877580873723,
-   "revenue_yoy": 0.11046320930063058
+   "revenue_qoq": 0.04483098129307517,
+   "revenue_yoy": 0.05839525258066125,
+   "sector": "Healthcare"
   }
  },
  "fundamentals:CARR": {
@@ -4032,10 +4100,17 @@
   }
  },
  "fundamentals:CHTR": {
-  "fetched_at": "2026-08-30T00:19:10.835107+00:00",
+  "fetched_at": "2026-09-25T12:44:30.097912+00:00",
   "value": {
+   "description": "Charter Communications, Inc. operates as a broadband connectivity company in the United States.",
    "gross_margin": 0.5586278278870324,
    "gross_margin_change": -0.009144474826801585,
+   "industry": "Telecom Services",
+   "last_earnings": {
+    "eps_actual": 10.66,
+    "eps_estimate": 10.06264,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-30",
    "operating_margin": 0.23022327369510573,
@@ -4064,7 +4139,8 @@
     }
    ],
    "revenue_qoq": -0.005221740089725646,
-   "revenue_yoy": -0.017434258317594042
+   "revenue_yoy": -0.017434258317594042,
+   "sector": "Communication Services"
   }
  },
  "fundamentals:CHWY": {
@@ -4156,7 +4232,7 @@
   }
  },
  "fundamentals:CIEN": {
-  "fetched_at": "2026-09-24T12:45:04.858411+00:00",
+  "fetched_at": "2026-09-25T12:44:29.936589+00:00",
   "value": {
    "description": "Ciena Corporation, a network technology company, provides hardware, software, and services for various network operators in the Americas, Europe, the Middle East, Africa, the Asia Pacific, Japan, and India.",
    "gross_margin": 0.45434254327463647,
@@ -5284,19 +5360,19 @@
   }
  },
  "fundamentals:CTAS": {
-  "fetched_at": "2026-09-11T20:21:47.302090+00:00",
+  "fetched_at": "2026-09-25T12:44:29.762121+00:00",
   "value": {
    "description": "Cintas Corporation provides corporate identity uniforms and other garments in the United States, Canada, and Latin America.",
    "gross_margin": 0.5095310035133518,
    "gross_margin_change": -0.00022952669593612196,
    "industry": "Specialty Business Services",
    "last_earnings": {
-    "eps_actual": 1.26,
-    "eps_estimate": 1.23104,
-    "quarter": "2026-05-31"
+    "eps_actual": 1.36,
+    "eps_estimate": 1.35691,
+    "quarter": "2026-08-31"
    },
    "latest_quarter": "2026-05-31",
-   "next_earnings": "2026-09-23",
+   "next_earnings": "2026-12-17",
    "operating_margin": 0.2368753577632957,
    "operating_margin_change": 0.004632878235281079,
    "profitable": true,
@@ -6227,6 +6303,50 @@
    "sector": "Technology"
   }
  },
+ "fundamentals:DVN": {
+  "fetched_at": "2026-09-25T12:44:29.907863+00:00",
+  "value": {
+   "description": "Devon Energy Corporation, an independent energy company, engages in the exploration, development, and production of oil, natural gas, and natural gas liquids in the United States.",
+   "gross_margin": 0.3686126466226237,
+   "gross_margin_change": 0.24725724867148108,
+   "industry": "Oil & Gas E&P",
+   "last_earnings": {
+    "eps_actual": 1.57,
+    "eps_estimate": 1.41115,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-04",
+   "operating_margin": 0.34286099501146017,
+   "operating_margin_change": 0.260906700291208,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 4284000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 4331000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 4121000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 3807000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 7417000000.0
+    }
+   ],
+   "revenue_qoq": 0.948253217756764,
+   "revenue_yoy": 0.7313258636788049,
+   "sector": "Energy"
+  }
+ },
  "fundamentals:DXCM": {
   "fetched_at": "2026-09-16T12:43:49.681369+00:00",
   "value": {
@@ -6612,6 +6732,50 @@
    ],
    "revenue_qoq": 0.26991519532879193,
    "revenue_yoy": 0.6077620346739416,
+   "sector": "Energy"
+  }
+ },
+ "fundamentals:EQT": {
+  "fetched_at": "2026-09-25T12:44:29.762135+00:00",
+  "value": {
+   "description": "EQT Corporation engages in the exploration, production, gathering, and transmission of hydrocarbons and natural gas.",
+   "gross_margin": 0.33443324080892767,
+   "gross_margin_change": -0.342009285535382,
+   "industry": "Oil & Gas E&P",
+   "last_earnings": {
+    "eps_actual": 0.39,
+    "eps_estimate": 0.40337,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-10-20",
+   "operating_margin": 0.20348212768367982,
+   "operating_margin_change": -0.4263281711685474,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 1837755000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 1822787000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 2273906000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 3617005000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 1765300000.0
+    }
+   ],
+   "revenue_qoq": -0.5119442743374698,
+   "revenue_yoy": -0.03942582117855753,
    "sector": "Energy"
   }
  },
@@ -8160,10 +8324,17 @@
   }
  },
  "fundamentals:HLF": {
-  "fetched_at": "2026-08-30T00:19:10.747402+00:00",
+  "fetched_at": "2026-09-25T12:44:29.907846+00:00",
   "value": {
+   "description": "Herbalife Ltd., together with its subsidiaries, provides health and wellness products in North America, Mexico, South and Central America, Europe, the Middle East, Africa, China, and the Asia Pacific.",
    "gross_margin": 0.7766807356044618,
    "gross_margin_change": -0.0023201754189211554,
+   "industry": "Packaged Foods",
+   "last_earnings": {
+    "eps_actual": 0.51,
+    "eps_estimate": 0.53608,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-04",
    "operating_margin": 0.09669882423876998,
@@ -8192,7 +8363,8 @@
     }
    ],
    "revenue_qoq": 0.00728818706346801,
-   "revenue_yoy": 0.05376856484790715
+   "revenue_yoy": 0.05376856484790715,
+   "sector": "Consumer Defensive"
   }
  },
  "fundamentals:HLT": {
@@ -8416,7 +8588,7 @@
   }
  },
  "fundamentals:HRL": {
-  "fetched_at": "2026-09-24T12:45:05.620841+00:00",
+  "fetched_at": "2026-09-25T12:44:30.241946+00:00",
   "value": {
    "description": "Hormel Foods Corporation develops, processes, and distributes various meat, nut, and other food products to foodservice, convenience stores, and commercial customers in the United States and internationally.",
    "gross_margin": 0.15922390355964697,
@@ -8749,6 +8921,50 @@
    "revenue_qoq": 0.07821825720927311,
    "revenue_yoy": 0.010897096071155188,
    "sector": "Technology"
+  }
+ },
+ "fundamentals:ICE": {
+  "fetched_at": "2026-09-25T12:44:30.061521+00:00",
+  "value": {
+   "description": "Intercontinental Exchange, Inc., together with its subsidiaries, provides technology and data to financial institutions, corporations, and government entities in the United States, the United Kingdom, the European\u2026",
+   "gross_margin": 0.5303240099695375,
+   "gross_margin_change": -0.07905951430760372,
+   "industry": "Financial Data & Stock Exchanges",
+   "last_earnings": {
+    "eps_actual": 1.9,
+    "eps_estimate": 1.83828,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-10-29",
+   "operating_margin": 0.3885350318471338,
+   "operating_margin_change": -0.07682230585062944,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 3262000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 3007000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 3142000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 3666000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 3611000000.0
+    }
+   ],
+   "revenue_qoq": -0.015002727768685165,
+   "revenue_yoy": 0.10698957694665845,
+   "sector": "Financial Services"
   }
  },
  "fundamentals:INFQ": {
@@ -9720,20 +9936,23 @@
   }
  },
  "fundamentals:KSS": {
-  "fetched_at": "2026-08-27T20:31:37.435203+00:00",
+  "fetched_at": "2026-09-25T12:44:29.816005+00:00",
   "value": {
-   "gross_margin": 0.4310072623934323,
-   "gross_margin_change": 0.07357443811351733,
-   "latest_quarter": "2026-04-30",
+   "description": "Kohl's Corporation operates as an omnichannel retailer in the United States.",
+   "gross_margin": 0.46145092460881937,
+   "gross_margin_change": 0.03044366221538708,
+   "industry": "Department Stores",
+   "last_earnings": {
+    "eps_actual": 1.28,
+    "eps_estimate": 0.57125,
+    "quarter": "2026-07-31"
+   },
+   "latest_quarter": "2026-07-31",
    "next_earnings": "2026-11-24",
-   "operating_margin": 0.014524786864540574,
-   "operating_margin_change": -0.026457235172961842,
+   "operating_margin": 0.07425320056899004,
+   "operating_margin_change": 0.059728413704449465,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-04-30",
-     "revenue": 3233000000.0
-    },
     {
      "quarter": "2025-07-31",
      "revenue": 3546000000.0
@@ -9749,10 +9968,15 @@
     {
      "quarter": "2026-04-30",
      "revenue": 3167000000.0
+    },
+    {
+     "quarter": "2026-07-31",
+     "revenue": 3515000000.0
     }
    ],
-   "revenue_qoq": -0.3877827179586314,
-   "revenue_yoy": -0.02041447571914634
+   "revenue_qoq": 0.10988317019261129,
+   "revenue_yoy": -0.008742244782853903,
+   "sector": "Consumer Cyclical"
   }
  },
  "fundamentals:KTOS": {
@@ -10108,10 +10332,17 @@
   }
  },
  "fundamentals:LMND": {
-  "fetched_at": "2026-08-26T20:48:33.287532+00:00",
+  "fetched_at": "2026-09-25T12:44:30.145744+00:00",
   "value": {
+   "description": "Lemonade, Inc. provides various insurance products in the United States, Europe, and the United Kingdom.",
    "gross_margin": null,
    "gross_margin_change": null,
+   "industry": "Insurance - Property & Casualty",
+   "last_earnings": {
+    "eps_actual": -0.56,
+    "eps_estimate": -0.56273,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-04",
    "operating_margin": null,
@@ -10140,7 +10371,8 @@
     }
    ],
    "revenue_qoq": 0.14108527131782944,
-   "revenue_yoy": 0.7940280316879951
+   "revenue_yoy": 0.7940280316879951,
+   "sector": "Financial Services"
   }
  },
  "fundamentals:LMT": {
@@ -10364,7 +10596,7 @@
   }
  },
  "fundamentals:LULU": {
-  "fetched_at": "2026-09-24T12:45:04.858420+00:00",
+  "fetched_at": "2026-09-25T12:44:30.241962+00:00",
   "value": {
    "description": "lululemon athletica inc., together with its subsidiaries, designs, distributes, and retails technical athletic apparel, footwear, and accessories for women and men under the lululemon brand in the United States, Canada\u2026",
    "gross_margin": 0.6051743830080009,
@@ -10653,6 +10885,50 @@
    "revenue_qoq": -0.38201111672561905,
    "revenue_yoy": 0.020655122052994024,
    "sector": "Consumer Cyclical"
+  }
+ },
+ "fundamentals:MA": {
+  "fetched_at": "2026-09-25T12:44:30.062855+00:00",
+  "value": {
+   "description": "Mastercard Incorporated, a technology company, provides transaction processing and other payment-related products and services in the United States and internationally.",
+   "gross_margin": 0.7901261183572276,
+   "gross_margin_change": 0.032683870202905085,
+   "industry": "Credit Services",
+   "last_earnings": {
+    "eps_actual": 5.04,
+    "eps_estimate": 4.77606,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-10-29",
+   "operating_margin": 0.6174409830764256,
+   "operating_margin_change": 0.02622878969704956,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 8133000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 8602000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 8806000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 8398000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 9277000000.0
+    }
+   ],
+   "revenue_qoq": 0.10466777804239102,
+   "revenue_yoy": 0.14066150252059506,
+   "sector": "Financial Services"
   }
  },
  "fundamentals:MAR": {
@@ -12619,6 +12895,50 @@
    "sector": "Consumer Defensive"
   }
  },
+ "fundamentals:PFE": {
+  "fetched_at": "2026-09-25T12:44:30.061509+00:00",
+  "value": {
+   "description": "Pfizer Inc. discovers, develops, manufactures, markets, distributes, and sells biopharmaceutical products in the United States and internationally.",
+   "gross_margin": 0.7278169482506319,
+   "gross_margin_change": -0.026646719569437316,
+   "industry": "Drug Manufacturers - General",
+   "last_earnings": {
+    "eps_actual": 0.77,
+    "eps_estimate": 0.68221,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-03",
+   "operating_margin": 0.2352667287481708,
+   "operating_margin_change": -0.060096593051137154,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 14653000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 16654000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 17557000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 14450000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 15034000000.0
+    }
+   ],
+   "revenue_qoq": 0.04041522491349481,
+   "revenue_yoy": 0.026001501399030902,
+   "sector": "Healthcare"
+  }
+ },
  "fundamentals:PG": {
   "fetched_at": "2026-09-11T20:21:45.915824+00:00",
   "value": {
@@ -12796,7 +13116,7 @@
   }
  },
  "fundamentals:PL": {
-  "fetched_at": "2026-09-24T12:45:05.438041+00:00",
+  "fetched_at": "2026-09-25T12:44:29.632204+00:00",
   "value": {
    "description": "Planet Labs PBC engages in the design, construction, and launch of constellations of satellites with the intent of providing high-cadence geospatial data delivered to customers through an online platform in the United\u2026",
    "gross_margin": 0.5655395857029607,
@@ -14391,6 +14711,50 @@
    "sector": "Energy"
   }
  },
+ "fundamentals:SLS": {
+  "fetched_at": "2026-09-25T12:44:30.379056+00:00",
+  "value": {
+   "description": "SELLAS Life Sciences Group, Inc., a late-stage clinical biopharmaceutical company, focuses on the development of novel therapeutics for various cancer indications in the United States.",
+   "gross_margin": null,
+   "gross_margin_change": null,
+   "industry": "Biotechnology",
+   "last_earnings": {
+    "eps_actual": -0.05,
+    "eps_estimate": -0.045,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-11",
+   "operating_margin": null,
+   "operating_margin_change": null,
+   "profitable": null,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 0.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 0.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 0.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 0.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 0.0
+    }
+   ],
+   "revenue_qoq": null,
+   "revenue_yoy": null,
+   "sector": "Healthcare"
+  }
+ },
  "fundamentals:SMCI": {
   "fetched_at": "2026-09-18T12:41:59.544659+00:00",
   "value": {
@@ -14596,7 +14960,7 @@
   }
  },
  "fundamentals:SNPS": {
-  "fetched_at": "2026-09-24T12:45:04.858391+00:00",
+  "fetched_at": "2026-09-25T12:44:29.700476+00:00",
   "value": {
    "description": "Synopsys, Inc. provides design IP solutions in the semiconductor and electronics industries.",
    "gross_margin": 0.7257017258406135,
@@ -16459,10 +16823,17 @@
   }
  },
  "fundamentals:VKTX": {
-  "fetched_at": "2026-08-26T21:06:50.480032+00:00",
+  "fetched_at": "2026-09-25T12:44:29.700492+00:00",
   "value": {
+   "description": "Viking Therapeutics, Inc., a clinical-stage biopharmaceutical company, focuses on the development of novel therapies for metabolic and endocrine disorders.",
    "gross_margin": null,
    "gross_margin_change": null,
+   "industry": "Biotechnology",
+   "last_earnings": {
+    "eps_actual": -1.1,
+    "eps_estimate": -1.20685,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-28",
    "operating_margin": null,
@@ -16491,7 +16862,8 @@
     }
    ],
    "revenue_qoq": null,
-   "revenue_yoy": null
+   "revenue_yoy": null,
+   "sector": "Healthcare"
   }
  },
  "fundamentals:VRT": {
@@ -16536,6 +16908,50 @@
    "revenue_qoq": 0.23581807888280815,
    "revenue_yoy": 0.2411584094613548,
    "sector": "Industrials"
+  }
+ },
+ "fundamentals:VRTX": {
+  "fetched_at": "2026-09-25T12:44:29.938598+00:00",
+  "value": {
+   "description": "Vertex Pharmaceuticals Incorporated operates as a biotechnology company in the United States, Europe, and internationally.",
+   "gross_margin": 0.8532649449593569,
+   "gross_margin_change": -0.015227471927716674,
+   "industry": "Biotechnology",
+   "last_earnings": {
+    "eps_actual": 4.73,
+    "eps_estimate": 4.74531,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-02",
+   "operating_margin": 0.38054530729775937,
+   "operating_margin_change": -0.0007195492424662553,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 2964700000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 3076400000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 3190000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 2986900000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 3333900000.0
+    }
+   ],
+   "revenue_qoq": 0.11617395962369015,
+   "revenue_yoy": 0.12453199311903407,
+   "sector": "Healthcare"
   }
  },
  "fundamentals:VST": {
