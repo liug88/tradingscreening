@@ -4232,7 +4232,7 @@
   }
  },
  "fundamentals:CIEN": {
-  "fetched_at": "2026-09-25T12:44:29.936589+00:00",
+  "fetched_at": "2026-09-28T12:50:02.071721+00:00",
   "value": {
    "description": "Ciena Corporation, a network technology company, provides hardware, software, and services for various network operators in the Americas, Europe, the Middle East, Africa, the Asia Pacific, Japan, and India.",
    "gross_margin": 0.45434254327463647,
@@ -4848,19 +4848,19 @@
   }
  },
  "fundamentals:COST": {
-  "fetched_at": "2026-09-15T12:42:51.962071+00:00",
+  "fetched_at": "2026-09-28T12:50:01.941286+00:00",
   "value": {
    "description": "Costco Wholesale Corporation, together with its subsidiaries, engages in the operation of membership warehouses in the United States, Puerto Rico, Canada, Mexico, Japan, the United Kingdom, Korea, Australia, Taiwan\u2026",
    "gross_margin": 0.12772413401959534,
    "gross_margin_change": 0.00016116435136251384,
    "industry": "Discount Stores",
    "last_earnings": {
-    "eps_actual": 4.93,
-    "eps_estimate": 4.92303,
-    "quarter": "2026-05-31"
+    "eps_actual": 6.75,
+    "eps_estimate": 6.52731,
+    "quarter": "2026-08-31"
    },
    "latest_quarter": "2026-05-31",
-   "next_earnings": "2026-09-24",
+   "next_earnings": "2026-12-10",
    "operating_margin": 0.03991379188112354,
    "operating_margin_change": 0.0024696491738229395,
    "profitable": true,
@@ -5440,10 +5440,17 @@
   }
  },
  "fundamentals:CVS": {
-  "fetched_at": "2026-08-26T20:45:37.198427+00:00",
+  "fetched_at": "2026-09-28T12:50:02.025338+00:00",
   "value": {
+   "description": "CVS Health Corporation provides health solutions in the United States.",
    "gross_margin": 0.14844103453476098,
    "gross_margin_change": -0.007136206418776936,
+   "industry": "Healthcare Plans",
+   "last_earnings": {
+    "eps_actual": 2.58,
+    "eps_estimate": 1.85133,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-28",
    "operating_margin": 0.04432777861559342,
@@ -5472,7 +5479,8 @@
     }
    ],
    "revenue_qoq": 0.05645948260410649,
-   "revenue_yoy": 0.07259768488095841
+   "revenue_yoy": 0.07259768488095841,
+   "sector": "Healthcare"
   }
  },
  "fundamentals:CZR": {
@@ -5820,7 +5828,7 @@
   }
  },
  "fundamentals:DG": {
-  "fetched_at": "2026-09-15T12:42:52.564199+00:00",
+  "fetched_at": "2026-09-28T12:50:02.039319+00:00",
   "value": {
    "description": "Dollar General Corporation, a discount retailer, provides various merchandise products in the southern, southwestern, midwestern, and eastern United States.",
    "gross_margin": 0.32602277336989544,
@@ -8712,10 +8720,17 @@
   }
  },
  "fundamentals:HUM": {
-  "fetched_at": "2026-08-30T00:19:11.092422+00:00",
+  "fetched_at": "2026-09-28T12:50:01.955717+00:00",
   "value": {
+   "description": "Humana Inc. provides medical and specialty insurance products in the United States.",
    "gross_margin": null,
    "gross_margin_change": null,
+   "industry": "Healthcare Plans",
+   "last_earnings": {
+    "eps_actual": 7.61,
+    "eps_estimate": 6.99512,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-06",
    "operating_margin": null,
@@ -8744,7 +8759,8 @@
     }
    ],
    "revenue_qoq": 0.030745560936238814,
-   "revenue_yoy": 0.2617944917870816
+   "revenue_yoy": 0.2617944917870816,
+   "sector": "Healthcare"
   }
  },
  "fundamentals:HUT": {
@@ -9581,6 +9597,50 @@
    "revenue_qoq": 0.060582345032408336,
    "revenue_yoy": 0.1775767568290183,
    "sector": "Financial Services"
+  }
+ },
+ "fundamentals:KGC": {
+  "fetched_at": "2026-09-28T12:50:02.130962+00:00",
+  "value": {
+   "description": "Kinross Gold Corporation, together with its subsidiaries, engages in the acquisition, exploration, and development of gold properties principally in the United States, Brazil, Chile, Canada, and Mauritania.",
+   "gross_margin": 0.575443456503284,
+   "gross_margin_change": -0.023260700991420524,
+   "industry": "Gold",
+   "last_earnings": {
+    "eps_actual": 0.71,
+    "eps_estimate": 0.65991,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-10",
+   "operating_margin": 0.5247754792011081,
+   "operating_margin_change": -0.026082185790377577,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 1728500000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 1802100000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 2023000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 2407700000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 2238100000.0
+    }
+   ],
+   "revenue_qoq": -0.07044066951862771,
+   "revenue_yoy": 0.29482210008678034,
+   "sector": "Basic Materials"
   }
  },
  "fundamentals:KHC": {
@@ -10596,7 +10656,7 @@
   }
  },
  "fundamentals:LULU": {
-  "fetched_at": "2026-09-25T12:44:30.241962+00:00",
+  "fetched_at": "2026-09-28T12:50:02.130941+00:00",
   "value": {
    "description": "lululemon athletica inc., together with its subsidiaries, designs, distributes, and retails technical athletic apparel, footwear, and accessories for women and men under the lululemon brand in the United States, Canada\u2026",
    "gross_margin": 0.6051743830080009,
@@ -13116,7 +13176,7 @@
   }
  },
  "fundamentals:PL": {
-  "fetched_at": "2026-09-25T12:44:29.632204+00:00",
+  "fetched_at": "2026-09-28T12:50:01.989985+00:00",
   "value": {
    "description": "Planet Labs PBC engages in the design, construction, and launch of constellations of satellites with the intent of providing high-cadence geospatial data delivered to customers through an online platform in the United\u2026",
    "gross_margin": 0.5655395857029607,
@@ -13380,10 +13440,17 @@
   }
  },
  "fundamentals:PYPL": {
-  "fetched_at": "2026-08-28T16:37:15.209705+00:00",
+  "fetched_at": "2026-09-28T12:50:01.941305+00:00",
   "value": {
+   "description": "PayPal Holdings, Inc. operates a technology platform that enables digital payments for merchants and consumers worldwide.",
    "gross_margin": 0.44920525224602625,
    "gross_margin_change": -0.006918296179689032,
+   "industry": "Credit Services",
+   "last_earnings": {
+    "eps_actual": 1.38,
+    "eps_estimate": 1.2774,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-27",
    "operating_margin": 0.17737848422022576,
@@ -13412,7 +13479,8 @@
     }
    ],
    "revenue_qoq": 0.03938704657009451,
-   "revenue_yoy": 0.04753861003860993
+   "revenue_yoy": 0.04753861003860993,
+   "sector": "Financial Services"
   }
  },
  "fundamentals:QBTS": {
@@ -14960,7 +15028,7 @@
   }
  },
  "fundamentals:SNPS": {
-  "fetched_at": "2026-09-25T12:44:29.700476+00:00",
+  "fetched_at": "2026-09-28T12:50:01.955697+00:00",
   "value": {
    "description": "Synopsys, Inc. provides design IP solutions in the semiconductor and electronics industries.",
    "gross_margin": 0.7257017258406135,
@@ -16256,7 +16324,7 @@
   }
  },
  "fundamentals:UL": {
-  "fetched_at": "2026-09-15T12:42:51.819588+00:00",
+  "fetched_at": "2026-09-28T12:50:02.140712+00:00",
   "value": {
    "description": "Unilever PLC operates as a fast-moving consumer goods company in the Asia Pacific, Africa, the Americas, and Europe.",
    "gross_margin": null,
