@@ -344,7 +344,7 @@
   }
  },
  "fundamentals:ABVX": {
-  "fetched_at": "2026-09-25T12:44:30.347145+00:00",
+  "fetched_at": "2026-09-29T12:48:56.589403+00:00",
   "value": {
    "description": "ABIVAX Soci\u00e9t\u00e9 Anonyme, a clinical-stage biotechnology company, develops therapeutics that harness the body's natural regulatory mechanisms to stabilize the immune response in patients with chronic inflammatory diseases.",
    "gross_margin": null,
@@ -4064,10 +4064,17 @@
   }
  },
  "fundamentals:CF": {
-  "fetched_at": "2026-08-28T22:59:26.372540+00:00",
+  "fetched_at": "2026-09-29T12:48:56.896422+00:00",
   "value": {
+   "description": "CF Industries Holdings, Inc., together with its subsidiaries, engages in the production of ammonia in North America, Europe, and internationally.",
    "gross_margin": 0.5153015301530153,
    "gross_margin_change": 0.13967212431212905,
+   "industry": "Agricultural Inputs",
+   "last_earnings": {
+    "eps_actual": 4.73,
+    "eps_estimate": 5.5694,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-04",
    "operating_margin": 0.4963996399639964,
@@ -4096,7 +4103,8 @@
     }
    ],
    "revenue_qoq": 0.11883182275931525,
-   "revenue_yoy": 0.17566137566137563
+   "revenue_yoy": 0.17566137566137563,
+   "sector": "Basic Materials"
   }
  },
  "fundamentals:CHTR": {
@@ -5828,7 +5836,7 @@
   }
  },
  "fundamentals:DG": {
-  "fetched_at": "2026-09-28T12:50:02.039319+00:00",
+  "fetched_at": "2026-09-29T12:48:56.443742+00:00",
   "value": {
    "description": "Dollar General Corporation, a discount retailer, provides various merchandise products in the southern, southwestern, midwestern, and eastern United States.",
    "gross_margin": 0.32602277336989544,
@@ -6136,7 +6144,7 @@
   }
  },
  "fundamentals:DLTR": {
-  "fetched_at": "2026-09-15T12:42:53.226274+00:00",
+  "fetched_at": "2026-09-29T12:48:56.488440+00:00",
   "value": {
    "description": "Dollar Tree, Inc. operates retail discount stores under the Dollar Tree and Dollar Tree Canada brands in the United States and Canada.",
    "gross_margin": 0.42913804383382403,
@@ -7088,10 +7096,17 @@
   }
  },
  "fundamentals:FDX": {
-  "fetched_at": "2026-09-04T12:42:19.825520+00:00",
+  "fetched_at": "2026-09-29T12:48:56.648070+00:00",
   "value": {
+   "description": "FedEx Corporation, together with its subsidiaries, provides transportation, e-commerce, and business services in the United States and internationally.",
    "gross_margin": 0.22685648018554805,
    "gross_margin_change": 0.013398146852214715,
+   "industry": "Integrated Freight & Logistics",
+   "last_earnings": {
+    "eps_actual": 3.83,
+    "eps_estimate": 3.61287,
+    "quarter": "2025-08-31"
+   },
    "latest_quarter": "2026-05-31",
    "next_earnings": "2026-10-28",
    "operating_margin": 0.0835366097492702,
@@ -7120,7 +7135,8 @@
     }
    ],
    "revenue_qoq": 0.04195833333333332,
-   "revenue_yoy": 0.12542754275427548
+   "revenue_yoy": 0.12542754275427548,
+   "sector": "Industrials"
   }
  },
  "fundamentals:FIG": {
@@ -8596,7 +8612,7 @@
   }
  },
  "fundamentals:HRL": {
-  "fetched_at": "2026-09-25T12:44:30.241946+00:00",
+  "fetched_at": "2026-09-29T12:48:56.432568+00:00",
   "value": {
    "description": "Hormel Foods Corporation develops, processes, and distributes various meat, nut, and other food products to foodservice, convenience stores, and commercial customers in the United States and internationally.",
    "gross_margin": 0.15922390355964697,
@@ -10656,7 +10672,7 @@
   }
  },
  "fundamentals:LULU": {
-  "fetched_at": "2026-09-28T12:50:02.130941+00:00",
+  "fetched_at": "2026-09-29T12:48:56.618916+00:00",
   "value": {
    "description": "lululemon athletica inc., together with its subsidiaries, designs, distributes, and retails technical athletic apparel, footwear, and accessories for women and men under the lululemon brand in the United States, Canada\u2026",
    "gross_margin": 0.6051743830080009,
@@ -11245,6 +11261,50 @@
    "revenue_qoq": -0.03963414634146345,
    "revenue_yoy": 0.08235799420165368,
    "sector": "Consumer Defensive"
+  }
+ },
+ "fundamentals:MDT": {
+  "fetched_at": "2026-09-29T12:48:56.776902+00:00",
+  "value": {
+   "description": "Medtronic plc develops, manufactures, and sells device-based medical therapies to healthcare systems, physicians, clinicians, and patients in the United States, Ireland, and internationally.",
+   "gross_margin": 0.6498564985649856,
+   "gross_margin_change": -0.0036562984167620716,
+   "industry": "Medical Devices",
+   "last_earnings": {
+    "eps_actual": 1.45,
+    "eps_estimate": 1.38739,
+    "quarter": "2026-07-31"
+   },
+   "latest_quarter": "2026-07-31",
+   "next_earnings": "2026-11-17",
+   "operating_margin": 0.1881918819188192,
+   "operating_margin_change": -0.01706966595514839,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-07-31",
+     "revenue": 8578000000.0
+    },
+    {
+     "quarter": "2025-10-31",
+     "revenue": 8961000000.0
+    },
+    {
+     "quarter": "2026-01-31",
+     "revenue": 9017000000.0
+    },
+    {
+     "quarter": "2026-04-30",
+     "revenue": 9807000000.0
+    },
+    {
+     "quarter": "2026-07-31",
+     "revenue": 9756000000.0
+    }
+   ],
+   "revenue_qoq": -0.005200367084735369,
+   "revenue_yoy": 0.137328048496153,
+   "sector": "Healthcare"
   }
  },
  "fundamentals:META": {
@@ -12085,6 +12145,50 @@
    "revenue_qoq": 1.6874219307301717,
    "revenue_yoy": 7.05620370119734,
    "sector": "Real Estate"
+  }
+ },
+ "fundamentals:NMAX": {
+  "fetched_at": "2026-09-29T12:48:57.066508+00:00",
+  "value": {
+   "description": "Newsmax Inc., through its subsidiaries, operates as a television broadcaster and multi-platform content publisher in the United States.",
+   "gross_margin": 0.4311834958145529,
+   "gross_margin_change": 0.045405134615423004,
+   "industry": "Broadcasting",
+   "last_earnings": {
+    "eps_actual": 0.02,
+    "eps_estimate": -0.03,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-13",
+   "operating_margin": 0.0241140590350433,
+   "operating_margin_change": 0.110626148596467,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 46439744.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 45272696.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 52240774.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 51658491.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 54115485.0
+    }
+   ],
+   "revenue_qoq": 0.047562248769519755,
+   "revenue_yoy": 0.16528387839519532,
+   "sector": "Communication Services"
   }
  },
  "fundamentals:NN": {
@@ -13607,6 +13711,50 @@
    "sector": "Industrials"
   }
  },
+ "fundamentals:RARE": {
+  "fetched_at": "2026-09-29T12:48:57.026986+00:00",
+  "value": {
+   "description": "Ultragenyx Pharmaceutical Inc., a biopharmaceutical company, focuses on the identification, acquisition, development, and commercialization of novel products for the treatment of rare and ultra-rare genetic diseases in\u2026",
+   "gross_margin": 0.8411214953271028,
+   "gross_margin_change": 0.06170973062122043,
+   "industry": "Biotechnology",
+   "last_earnings": {
+    "eps_actual": -0.9,
+    "eps_estimate": -0.99714,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-03",
+   "operating_margin": -0.35046728971962615,
+   "operating_margin_change": 0.8921797691039033,
+   "profitable": false,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 167000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 159933000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 207279000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 136000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 214000000.0
+    }
+   ],
+   "revenue_qoq": 0.5735294117647058,
+   "revenue_yoy": 0.2814371257485031,
+   "sector": "Healthcare"
+  }
+ },
  "fundamentals:RBLX": {
   "fetched_at": "2026-08-26T20:48:35.055408+00:00",
   "value": {
@@ -13860,6 +14008,50 @@
    ],
    "revenue_qoq": 0.190075997115438,
    "revenue_yoy": 0.16734682772880616,
+   "sector": "Healthcare"
+  }
+ },
+ "fundamentals:REPL": {
+  "fetched_at": "2026-09-29T12:48:57.027006+00:00",
+  "value": {
+   "description": "Replimune Group, Inc., a clinical-stage biotechnology company, focuses on the development and commercialization of oncolytic immunotherapies to treat cancer in the United States and the United Kingdom.",
+   "gross_margin": null,
+   "gross_margin_change": null,
+   "industry": "Biotechnology",
+   "last_earnings": {
+    "eps_actual": -0.72,
+    "eps_estimate": -0.76803,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-05",
+   "operating_margin": null,
+   "operating_margin_change": null,
+   "profitable": null,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 0.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 0.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 0.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 0.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 0.0
+    }
+   ],
+   "revenue_qoq": null,
+   "revenue_yoy": null,
    "sector": "Healthcare"
   }
  },
@@ -14603,6 +14795,50 @@
    "sector": "Consumer Cyclical"
   }
  },
+ "fundamentals:SHEL": {
+  "fetched_at": "2026-09-29T12:48:56.679746+00:00",
+  "value": {
+   "description": "Shell plc operates as an energy and petrochemical company in Europe, Asia, Oceania, Africa, the United States, and other parts of the Americas.",
+   "gross_margin": 0.19516394828023326,
+   "gross_margin_change": 0.0023987418690754325,
+   "industry": "Oil & Gas Integrated",
+   "last_earnings": {
+    "eps_actual": 3.52,
+    "eps_estimate": 3.18169,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-10-29",
+   "operating_margin": 0.16032493873066847,
+   "operating_margin_change": 0.011582633411473753,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 65406000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 68153000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 64093000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 69691000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 94664000000.0
+    }
+   ],
+   "revenue_qoq": 0.35833895337991994,
+   "revenue_yoy": 0.4473289912240468,
+   "sector": "Energy"
+  }
+ },
  "fundamentals:SHOP": {
   "fetched_at": "2026-09-11T20:21:48.605247+00:00",
   "value": {
@@ -15028,7 +15264,7 @@
   }
  },
  "fundamentals:SNPS": {
-  "fetched_at": "2026-09-28T12:50:01.955697+00:00",
+  "fetched_at": "2026-09-29T12:48:56.403589+00:00",
   "value": {
    "description": "Synopsys, Inc. provides design IP solutions in the semiconductor and electronics industries.",
    "gross_margin": 0.7257017258406135,
@@ -15405,6 +15641,50 @@
    "revenue_qoq": 0.26689928132486207,
    "revenue_yoy": -0.03272365805168986,
    "sector": "Consumer Defensive"
+  }
+ },
+ "fundamentals:SU": {
+  "fetched_at": "2026-09-29T12:48:57.079887+00:00",
+  "value": {
+   "description": "Suncor Energy Inc. operates as an integrated energy company in Canada, the United States, and internationally.",
+   "gross_margin": 0.49466042400967963,
+   "gross_margin_change": 0.006267219496646326,
+   "industry": "Oil & Gas Integrated",
+   "last_earnings": {
+    "eps_actual": 3.23,
+    "eps_estimate": 3.08168,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-03",
+   "operating_margin": 0.2760271450365616,
+   "operating_margin_change": 0.08785440479534776,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 12749000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 13565000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 12733000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 15422000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 19009000000.0
+    }
+   ],
+   "revenue_qoq": 0.23258980676955,
+   "revenue_yoy": 0.4910189034434074,
+   "sector": "Energy"
   }
  },
  "fundamentals:SYM": {
@@ -16324,7 +16604,7 @@
   }
  },
  "fundamentals:UL": {
-  "fetched_at": "2026-09-28T12:50:02.140712+00:00",
+  "fetched_at": "2026-09-29T12:48:56.807574+00:00",
   "value": {
    "description": "Unilever PLC operates as a fast-moving consumer goods company in the Asia Pacific, Africa, the Americas, and Europe.",
    "gross_margin": null,
@@ -17559,10 +17839,17 @@
   }
  },
  "fundamentals:XOM": {
-  "fetched_at": "2026-09-01T12:42:09.023362+00:00",
+  "fetched_at": "2026-09-29T12:48:56.896446+00:00",
   "value": {
+   "description": "ExxonMobil Holdings Corporation engages in the exploration and production of crude oil and natural gas in the United States, Canada, and internationally.",
    "gross_margin": 0.2251744099747662,
    "gross_margin_change": 0.0581129268276179,
+   "industry": "Oil & Gas Integrated",
+   "last_earnings": {
+    "eps_actual": 4.11,
+    "eps_estimate": 3.62887,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-30",
    "operating_margin": 0.158868059618088,
@@ -17591,7 +17878,8 @@
     }
    ],
    "revenue_qoq": 0.3771960414136435,
-   "revenue_yoy": 0.4410332549039344
+   "revenue_yoy": 0.4410332549039344,
+   "sector": "Energy"
   }
  },
  "fundamentals:XP": {
