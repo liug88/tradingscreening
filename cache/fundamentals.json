@@ -1,9 +1,16 @@
 {
  "fundamentals:AA": {
-  "fetched_at": "2026-08-26T20:44:00.130533+00:00",
+  "fetched_at": "2026-09-30T12:51:41.440139+00:00",
   "value": {
+   "description": "Alcoa Corporation, together with its subsidiaries, engages in the bauxite mining, alumina refining, aluminum production, and energy generation business in Australia, Brazil, Canada, Iceland, Norway, Spain, the United\u2026",
    "gross_margin": 0.2518910741301059,
    "gross_margin_change": 0.03861202621278678,
+   "industry": "Aluminum",
+   "last_earnings": {
+    "eps_actual": 2.12,
+    "eps_estimate": 2.19038,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-15",
    "operating_margin": 0.1800302571860817,
@@ -32,7 +39,8 @@
     }
    ],
    "revenue_qoq": 0.24209207641716257,
-   "revenue_yoy": 0.31411530815109345
+   "revenue_yoy": 0.31411530815109345,
+   "sector": "Basic Materials"
   }
  },
  "fundamentals:AAL": {
@@ -344,7 +352,7 @@
   }
  },
  "fundamentals:ABVX": {
-  "fetched_at": "2026-09-29T12:48:56.589403+00:00",
+  "fetched_at": "2026-09-30T12:51:41.033432+00:00",
   "value": {
    "description": "ABIVAX Soci\u00e9t\u00e9 Anonyme, a clinical-stage biotechnology company, develops therapeutics that harness the body's natural regulatory mechanisms to stabilize the immune response in patients with chronic inflammatory diseases.",
    "gross_margin": null,
@@ -3080,10 +3088,17 @@
   }
  },
  "fundamentals:BROS": {
-  "fetched_at": "2026-08-26T20:45:36.733463+00:00",
+  "fetched_at": "2026-09-30T12:51:40.899913+00:00",
   "value": {
+   "description": "Dutch Bros Inc., together with its subsidiaries, operates and franchises drive-thru shops in the United States.",
    "gross_margin": 0.2742229749968685,
    "gross_margin_change": 0.042799153045669974,
+   "industry": "Restaurants",
+   "last_earnings": {
+    "eps_actual": 0.33,
+    "eps_estimate": 0.29678,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-04",
    "operating_margin": 0.1278113319209732,
@@ -3112,7 +3127,8 @@
     }
    ],
    "revenue_qoq": 0.18612568150693787,
-   "revenue_yoy": 0.32475656124267394
+   "revenue_yoy": 0.32475656124267394,
+   "sector": "Consumer Cyclical"
   }
  },
  "fundamentals:BRUN": {
@@ -3896,19 +3912,19 @@
   }
  },
  "fundamentals:CCL": {
-  "fetched_at": "2026-09-17T12:43:42.004980+00:00",
+  "fetched_at": "2026-09-30T12:51:40.895335+00:00",
   "value": {
    "description": "Carnival Corporation Ltd., a cruise company, provides leisure travel services.",
    "gross_margin": 0.36590124568512683,
    "gross_margin_change": 0.00483068607442122,
    "industry": "Travel Services",
    "last_earnings": {
-    "eps_actual": 0.41,
-    "eps_estimate": 0.33862,
-    "quarter": "2026-05-31"
+    "eps_actual": 1.43,
+    "eps_estimate": 1.3508,
+    "quarter": "2026-08-31"
    },
    "latest_quarter": "2026-05-31",
-   "next_earnings": "2026-09-29",
+   "next_earnings": "2026-12-18",
    "operating_margin": 0.12787032868077441,
    "operating_margin_change": 0.029573491697806042,
    "profitable": true,
@@ -3984,10 +4000,17 @@
   }
  },
  "fundamentals:CEG": {
-  "fetched_at": "2026-08-28T22:59:26.372551+00:00",
+  "fetched_at": "2026-09-30T12:51:40.899889+00:00",
   "value": {
+   "description": "Constellation Energy Corporation produces and sells energy products and services in the United States.",
    "gross_margin": 0.1636460554371002,
    "gross_margin_change": -0.105190484753513,
+   "industry": "Utilities - Independent Power Producers",
+   "last_earnings": {
+    "eps_actual": 2.55,
+    "eps_estimate": 2.28235,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-09",
    "operating_margin": -0.006263326226012793,
@@ -4016,7 +4039,8 @@
     }
    ],
    "revenue_qoq": -0.32530120481927716,
-   "revenue_yoy": 0.22996230126208816
+   "revenue_yoy": 0.22996230126208816,
+   "sector": "Utilities"
   }
  },
  "fundamentals:CELH": {
@@ -4240,7 +4264,7 @@
   }
  },
  "fundamentals:CIEN": {
-  "fetched_at": "2026-09-28T12:50:02.071721+00:00",
+  "fetched_at": "2026-09-30T12:51:41.310341+00:00",
   "value": {
    "description": "Ciena Corporation, a network technology company, provides hardware, software, and services for various network operators in the Americas, Europe, the Middle East, Africa, the Asia Pacific, Japan, and India.",
    "gross_margin": 0.45434254327463647,
@@ -5412,10 +5436,17 @@
   }
  },
  "fundamentals:CVNA": {
-  "fetched_at": "2026-08-30T00:19:10.362641+00:00",
+  "fetched_at": "2026-09-30T12:51:41.033461+00:00",
   "value": {
+   "description": "Carvana Co., together with its subsidiaries, operates an e-commerce platform for buying and selling used cars.",
    "gross_margin": 0.1876355748373102,
    "gross_margin_change": -0.009970146555724646,
+   "industry": "Auto & Truck Dealerships",
+   "last_earnings": {
+    "eps_actual": 0.42,
+    "eps_estimate": 0.38149,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-28",
    "operating_margin": 0.09219088937093275,
@@ -5444,7 +5475,8 @@
     }
    ],
    "revenue_qoq": 0.1467661691542288,
-   "revenue_yoy": 0.5239669421487603
+   "revenue_yoy": 0.5239669421487603,
+   "sector": "Consumer Cyclical"
   }
  },
  "fundamentals:CVS": {
@@ -5577,6 +5609,50 @@
    "revenue_qoq": 0.24618392834615865,
    "revenue_yoy": 0.18674915905814515,
    "sector": "Industrials"
+  }
+ },
+ "fundamentals:DASH": {
+  "fetched_at": "2026-09-30T12:51:41.180294+00:00",
+  "value": {
+   "description": "DoorDash, Inc., together with its subsidiaries, operates a commerce platform that connects merchants, consumers, and dashers in the United States and internationally.",
+   "gross_margin": 0.5269420745397395,
+   "gross_margin_change": 0.02050005273597344,
+   "industry": "Internet Retail",
+   "last_earnings": {
+    "eps_actual": 0.46,
+    "eps_estimate": 0.47144,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-04",
+   "operating_margin": 0.03547373147732375,
+   "operating_margin_change": -0.013832512328424515,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 3284000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 3446000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 3955000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 4036000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 4454000000.0
+    }
+   ],
+   "revenue_qoq": 0.10356788899900882,
+   "revenue_yoy": 0.35627283800243603,
+   "sector": "Consumer Cyclical"
   }
  },
  "fundamentals:DBRG": {
@@ -7008,7 +7084,7 @@
   }
  },
  "fundamentals:FCEL": {
-  "fetched_at": "2026-09-24T12:45:05.118766+00:00",
+  "fetched_at": "2026-09-30T12:51:41.258440+00:00",
   "value": {
    "description": "FuelCell Energy, Inc., together with its subsidiaries, engages in the design, development, production, construction, operation, and servicing of high temperature fuel cells for clean electric power generation.",
    "gross_margin": -0.7424926517378261,
@@ -8612,7 +8688,7 @@
   }
  },
  "fundamentals:HRL": {
-  "fetched_at": "2026-09-29T12:48:56.432568+00:00",
+  "fetched_at": "2026-09-30T12:51:41.025788+00:00",
   "value": {
    "description": "Hormel Foods Corporation develops, processes, and distributes various meat, nut, and other food products to foodservice, convenience stores, and commercial customers in the United States and internationally.",
    "gross_margin": 0.15922390355964697,
@@ -10672,7 +10748,7 @@
   }
  },
  "fundamentals:LULU": {
-  "fetched_at": "2026-09-29T12:48:56.618916+00:00",
+  "fetched_at": "2026-09-30T12:51:41.180312+00:00",
   "value": {
    "description": "lululemon athletica inc., together with its subsidiaries, designs, distributes, and retails technical athletic apparel, footwear, and accessories for women and men under the lululemon brand in the United States, Canada\u2026",
    "gross_margin": 0.6051743830080009,
@@ -12352,20 +12428,23 @@
   }
  },
  "fundamentals:NU": {
-  "fetched_at": "2026-09-01T12:42:09.503354+00:00",
+  "fetched_at": "2026-09-30T12:51:41.180324+00:00",
   "value": {
+   "description": "Nu Holdings Ltd. provides digital banking platform in Brazil, Mexico, Colombia, the Cayman Islands, and the United States.",
    "gross_margin": null,
    "gross_margin_change": null,
-   "latest_quarter": "2026-03-31",
+   "industry": "Banks - Regional",
+   "last_earnings": {
+    "eps_actual": 0.2162,
+    "eps_estimate": 0.19127,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-12",
    "operating_margin": null,
    "operating_margin_change": null,
    "profitable": null,
    "revenue_history": [
-    {
-     "quarter": "2025-03-31",
-     "revenue": 2250376000.0
-    },
     {
      "quarter": "2025-06-30",
      "revenue": 2509867000.0
@@ -12381,10 +12460,15 @@
     {
      "quarter": "2026-03-31",
      "revenue": 3538310000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 3769281000.0
     }
    ],
-   "revenue_qoq": 0.12777696323730958,
-   "revenue_yoy": 0.5723194701685408
+   "revenue_qoq": 0.06527720861089059,
+   "revenue_yoy": 0.5017851543528005,
+   "sector": "Financial Services"
   }
  },
  "fundamentals:NVDA": {
@@ -14276,10 +14360,17 @@
   }
  },
  "fundamentals:RKT": {
-  "fetched_at": "2026-09-03T12:43:54.563877+00:00",
+  "fetched_at": "2026-09-30T12:51:41.033449+00:00",
   "value": {
+   "description": "Rocket Companies, Inc., a fintech company, engages in the mortgage, real estate, and personal finance businesses in the United States and Canada.",
    "gross_margin": null,
    "gross_margin_change": null,
+   "industry": "Mortgage Finance",
+   "last_earnings": {
+    "eps_actual": 0.16,
+    "eps_estimate": 0.16437,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-05",
    "operating_margin": null,
@@ -14308,7 +14399,8 @@
     }
    ],
    "revenue_qoq": -0.07021604938271608,
-   "revenue_yoy": 0.8595679012345678
+   "revenue_yoy": 0.8595679012345678,
+   "sector": "Financial Services"
   }
  },
  "fundamentals:ROKU": {
@@ -15104,10 +15196,17 @@
   }
  },
  "fundamentals:SMMT": {
-  "fetched_at": "2026-08-26T21:06:49.541035+00:00",
+  "fetched_at": "2026-09-30T12:51:41.207939+00:00",
   "value": {
+   "description": "Summit Therapeutics Inc., a biopharmaceutical company, focuses on discovery, development, and commercialization of patient, physician, caregiver, and societal friendly medicinal therapies.",
    "gross_margin": null,
    "gross_margin_change": null,
+   "industry": "Biotechnology",
+   "last_earnings": {
+    "eps_actual": -0.21041,
+    "eps_estimate": -0.21482,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-19",
    "operating_margin": null,
@@ -15136,7 +15235,8 @@
     }
    ],
    "revenue_qoq": null,
-   "revenue_yoy": null
+   "revenue_yoy": null,
+   "sector": "Healthcare"
   }
  },
  "fundamentals:SMR": {
@@ -15264,7 +15364,7 @@
   }
  },
  "fundamentals:SNPS": {
-  "fetched_at": "2026-09-29T12:48:56.403589+00:00",
+  "fetched_at": "2026-09-30T12:51:40.897550+00:00",
   "value": {
    "description": "Synopsys, Inc. provides design IP solutions in the semiconductor and electronics industries.",
    "gross_margin": 0.7257017258406135,
@@ -15429,6 +15529,46 @@
    "revenue_qoq": -0.06542118556179866,
    "revenue_yoy": 0.08245146598566144,
    "sector": "Technology"
+  }
+ },
+ "fundamentals:SPCX": {
+  "fetched_at": "2026-09-30T12:51:41.336790+00:00",
+  "value": {
+   "description": "Space Exploration Technologies Corp. provides satellite-based broadband services in the United States, Ireland, Canada, and internationally.",
+   "gross_margin": 0.5527258766316867,
+   "gross_margin_change": 0.061460431382432346,
+   "industry": "Aerospace & Defense",
+   "last_earnings": {
+    "eps_actual": -0.09,
+    "eps_estimate": -0.28931,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-03",
+   "operating_margin": -0.018044535449193756,
+   "operating_margin_change": 0.3982315616960981,
+   "profitable": false,
+   "revenue_history": [
+    {
+     "quarter": "2025-03-31",
+     "revenue": 4067000000.0
+    },
+    {
+     "quarter": "2025-06-30",
+     "revenue": 4071000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 4694000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 7814000000.0
+    }
+   ],
+   "revenue_qoq": 0.6646783127396676,
+   "revenue_yoy": null,
+   "sector": "Industrials"
   }
  },
  "fundamentals:SPGI": {
@@ -16623,10 +16763,17 @@
   }
  },
  "fundamentals:ULTA": {
-  "fetched_at": "2026-09-09T12:42:53.168505+00:00",
+  "fetched_at": "2026-09-30T12:51:41.336766+00:00",
   "value": {
+   "description": "Ulta Beauty, Inc. operates as a specialty beauty retailer in the United States, Mexico, and Kuwait.",
    "gross_margin": 0.3910008841523272,
    "gross_margin_change": -0.009655656266534973,
+   "industry": "Specialty Retail",
+   "last_earnings": {
+    "eps_actual": 6.55,
+    "eps_estimate": 6.2022,
+    "quarter": "2026-07-31"
+   },
    "latest_quarter": "2026-07-31",
    "next_earnings": "2026-12-03",
    "operating_margin": 0.12655105485565654,
@@ -16655,7 +16802,8 @@
     }
    ],
    "revenue_qoq": -0.04051415724541285,
-   "revenue_yoy": 0.08865330760356316
+   "revenue_yoy": 0.08865330760356316,
+   "sector": "Consumer Cyclical"
   }
  },
  "fundamentals:UMAC": {
@@ -17963,10 +18111,17 @@
   }
  },
  "fundamentals:XYZ": {
-  "fetched_at": "2026-08-27T20:31:37.435196+00:00",
+  "fetched_at": "2026-09-30T12:51:41.218099+00:00",
   "value": {
+   "description": "Block, Inc., together with its subsidiaries, builds ecosystems focused on commerce and financial products and services in the United States and internationally.",
    "gross_margin": 0.47842713020425415,
    "gross_margin_change": -0.001895222333295532,
+   "industry": "Software - Infrastructure",
+   "last_earnings": {
+    "eps_actual": 1.02,
+    "eps_estimate": 0.87395,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-09",
    "operating_margin": 0.15599408071128176,
@@ -17995,7 +18150,52 @@
     }
    ],
    "revenue_qoq": 0.09259603222600798,
-   "revenue_yoy": 0.09302733506902428
+   "revenue_yoy": 0.09302733506902428,
+   "sector": "Technology"
+  }
+ },
+ "fundamentals:ZIM": {
+  "fetched_at": "2026-09-30T12:51:41.427315+00:00",
+  "value": {
+   "description": "ZIM Integrated Shipping Services Ltd., together with its subsidiaries, provides container shipping and related services in Israel and internationally.",
+   "gross_margin": 0.14320211152917392,
+   "gross_margin_change": 0.10224256981775251,
+   "industry": "Marine Shipping",
+   "last_earnings": {
+    "eps_actual": 0.7335,
+    "eps_estimate": 2.44,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-19",
+   "operating_margin": 0.08378727466726568,
+   "operating_margin_change": 0.09359751455269354,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 1635700000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 1777200000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 1484700000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 1396500000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 1780700000.0
+    }
+   ],
+   "revenue_qoq": 0.2751163623344075,
+   "revenue_yoy": 0.08864706241975906,
+   "sector": "Industrials"
   }
  },
  "fundamentals:ZM": {
