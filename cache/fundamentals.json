@@ -996,20 +996,23 @@
   }
  },
  "fundamentals:AI": {
-  "fetched_at": "2026-09-04T12:42:19.252888+00:00",
+  "fetched_at": "2026-10-01T12:48:27.346148+00:00",
   "value": {
-   "gross_margin": 0.21943798449612403,
-   "gross_margin_change": 0.046043316828080466,
-   "latest_quarter": "2026-04-30",
+   "description": "C3.ai, Inc. operates as an enterprise artificial intelligence application software company in North America, Europe, the Middle East, Africa, the Asia Pacific, and internationally.",
+   "gross_margin": 0.31826252983293557,
+   "gross_margin_change": 0.09882454533681154,
+   "industry": "Software - Infrastructure",
+   "last_earnings": {
+    "eps_actual": -0.2,
+    "eps_estimate": -0.26031,
+    "quarter": "2026-07-31"
+   },
+   "latest_quarter": "2026-07-31",
    "next_earnings": "2026-09-02",
-   "operating_margin": -2.1381782945736436,
-   "operating_margin_change": 0.49809658338354756,
+   "operating_margin": -1.8629116945107398,
+   "operating_margin_change": 0.2752666000629038,
    "profitable": false,
    "revenue_history": [
-    {
-     "quarter": "2025-04-30",
-     "revenue": 108723000.0
-    },
     {
      "quarter": "2025-07-31",
      "revenue": 70261000.0
@@ -1025,10 +1028,15 @@
     {
      "quarter": "2026-04-30",
      "revenue": 51600000.0
+    },
+    {
+     "quarter": "2026-07-31",
+     "revenue": 52375000.0
     }
    ],
-   "revenue_qoq": -0.03116785580172743,
-   "revenue_yoy": -0.5253994095085677
+   "revenue_qoq": 0.015019379844961156,
+   "revenue_yoy": -0.2545651214756408,
+   "sector": "Technology"
   }
  },
  "fundamentals:AIG": {
@@ -1836,12 +1844,19 @@
   }
  },
  "fundamentals:ARES": {
-  "fetched_at": "2026-08-26T20:43:59.718893+00:00",
+  "fetched_at": "2026-10-01T12:48:27.803470+00:00",
   "value": {
+   "description": "Ares Management Corporation operates as an alternative asset manager.",
    "gross_margin": 0.5179510153225863,
    "gross_margin_change": 0.013789707536192908,
+   "industry": "Asset Management",
+   "last_earnings": {
+    "eps_actual": 1.29,
+    "eps_estimate": 1.27172,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-11-02",
+   "next_earnings": "2026-10-29",
    "operating_margin": 0.174038400963174,
    "operating_margin_change": 0.010784947170805415,
    "profitable": true,
@@ -1868,7 +1883,8 @@
     }
    ],
    "revenue_qoq": 0.023040082037415255,
-   "revenue_yoy": 0.05812930329568755
+   "revenue_yoy": 0.05812930329568755,
+   "sector": "Financial Services"
   }
  },
  "fundamentals:ARM": {
@@ -6220,7 +6236,7 @@
   }
  },
  "fundamentals:DLTR": {
-  "fetched_at": "2026-09-29T12:48:56.488440+00:00",
+  "fetched_at": "2026-10-01T12:48:27.346174+00:00",
   "value": {
    "description": "Dollar Tree, Inc. operates retail discount stores under the Dollar Tree and Dollar Tree Canada brands in the United States and Canada.",
    "gross_margin": 0.42913804383382403,
@@ -7048,10 +7064,17 @@
   }
  },
  "fundamentals:F": {
-  "fetched_at": "2026-08-26T20:48:35.833626+00:00",
+  "fetched_at": "2026-10-01T12:48:27.773389+00:00",
   "value": {
+   "description": "Ford Motor Company develops, delivers, and services Ford trucks, sport utility vehicles, commercial vans and cars, and Lincoln luxury vehicles in the United States, Canada, the United Kingdom, Mexico, and\u2026",
    "gross_margin": 0.0687841643200265,
    "gross_margin_change": -0.04995904424354135,
+   "industry": "Auto Manufacturers",
+   "last_earnings": {
+    "eps_actual": 0.42,
+    "eps_estimate": 0.34634,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-22",
    "operating_margin": 0.013210203743581249,
@@ -7080,7 +7103,8 @@
     }
    ],
    "revenue_qoq": 0.11659306868887698,
-   "revenue_yoy": -0.03762155268611511
+   "revenue_yoy": -0.03762155268611511,
+   "sector": "Consumer Cyclical"
   }
  },
  "fundamentals:FCEL": {
@@ -8300,10 +8324,17 @@
   }
  },
  "fundamentals:HAL": {
-  "fetched_at": "2026-08-30T00:19:10.942978+00:00",
+  "fetched_at": "2026-10-01T12:48:27.443810+00:00",
   "value": {
+   "description": "Halliburton Company provides products and services to the energy industry worldwide.",
    "gross_margin": 0.1407070353517676,
    "gross_margin_change": -0.004239280827425307,
+   "industry": "Oil & Gas Equipment & Services",
+   "last_earnings": {
+    "eps_actual": 0.55,
+    "eps_estimate": 0.53773,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-20",
    "operating_margin": 0.11953097654882744,
@@ -8332,7 +8363,8 @@
     }
    ],
    "revenue_qoq": 0.057756386523509784,
-   "revenue_yoy": 0.0370235934664247
+   "revenue_yoy": 0.0370235934664247,
+   "sector": "Energy"
   }
  },
  "fundamentals:HD": {
@@ -8688,7 +8720,7 @@
   }
  },
  "fundamentals:HRL": {
-  "fetched_at": "2026-09-30T12:51:41.025788+00:00",
+  "fetched_at": "2026-10-01T12:48:27.340974+00:00",
   "value": {
    "description": "Hormel Foods Corporation develops, processes, and distributes various meat, nut, and other food products to foodservice, convenience stores, and commercial customers in the United States and internationally.",
    "gross_margin": 0.15922390355964697,
@@ -11383,6 +11415,50 @@
    "sector": "Healthcare"
   }
  },
+ "fundamentals:MELI": {
+  "fetched_at": "2026-10-01T12:48:27.575412+00:00",
+  "value": {
+   "description": "MercadoLibre, Inc. operates online commerce platforms in Brazil, Mexico, Argentina, and internationally.",
+   "gross_margin": 0.40898810109155276,
+   "gross_margin_change": -0.027642763803868375,
+   "industry": "Internet Retail",
+   "last_earnings": {
+    "eps_actual": 9.19,
+    "eps_estimate": 8.88879,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-04",
+   "operating_margin": 0.06716491297079359,
+   "operating_margin_change": -0.0019136624955715803,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 6790000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 7409000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 8759000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 8845000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 10169000000.0
+    }
+   ],
+   "revenue_qoq": 0.14968908988128882,
+   "revenue_yoy": 0.4976435935198822,
+   "sector": "Consumer Cyclical"
+  }
+ },
  "fundamentals:META": {
   "fetched_at": "2026-08-26T20:48:32.659785+00:00",
   "value": {
@@ -11580,10 +11656,17 @@
   }
  },
  "fundamentals:MP": {
-  "fetched_at": "2026-09-09T12:42:53.287187+00:00",
+  "fetched_at": "2026-10-01T12:48:27.519518+00:00",
   "value": {
+   "description": "MP Materials Corp., together with its subsidiaries, produces rare earth materials in the Western Hemisphere.",
    "gross_margin": 0.007549082864780164,
    "gross_margin_change": 0.18110863674844133,
+   "industry": "Other Industrial Metals & Mining",
+   "last_earnings": {
+    "eps_actual": -0.01,
+    "eps_estimate": -0.00366,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-05",
    "operating_margin": -0.16223615079730852,
@@ -11612,7 +11695,8 @@
     }
    ],
    "revenue_qoq": 0.1968140850974638,
-   "revenue_yoy": 0.8903002108271043
+   "revenue_yoy": 0.8903002108271043,
+   "sector": "Basic Materials"
   }
  },
  "fundamentals:MRK": {
@@ -12903,6 +12987,50 @@
    "sector": "Technology"
   }
  },
+ "fundamentals:OXY": {
+  "fetched_at": "2026-10-01T12:48:27.642784+00:00",
+  "value": {
+   "description": "Occidental Petroleum Corporation, together with its subsidiaries, engages in the acquisition, exploration, and development of oil and gas properties in the United States and internationally.",
+   "gross_margin": 0.575077495350279,
+   "gross_margin_change": 0.21236239018775505,
+   "industry": "Oil & Gas E&P",
+   "last_earnings": {
+    "eps_actual": 2.4,
+    "eps_estimate": 1.86063,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-09",
+   "operating_margin": 0.45443273403595785,
+   "operating_margin_change": 0.2771860801162638,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 5258000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 6624000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 1752000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 5230000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 8065000000.0
+    }
+   ],
+   "revenue_qoq": 0.5420650095602295,
+   "revenue_yoy": 0.5338531761125904,
+   "sector": "Energy"
+  }
+ },
  "fundamentals:PAAS": {
   "fetched_at": "2026-08-30T00:19:11.086110+00:00",
   "value": {
@@ -13020,10 +13148,17 @@
   }
  },
  "fundamentals:PCG": {
-  "fetched_at": "2026-09-02T12:43:19.853446+00:00",
+  "fetched_at": "2026-10-01T12:48:27.519538+00:00",
   "value": {
+   "description": "PG&E Corporation, through its subsidiary, Pacific Gas and Electric Company, engages in the sale and delivery of electricity and natural gas to customers in northern and central California, the United States.",
    "gross_margin": 0.415282954930532,
    "gross_margin_change": 0.01737567401206086,
+   "industry": "Utilities - Regulated Electric",
+   "last_earnings": {
+    "eps_actual": 0.4,
+    "eps_estimate": 0.3583,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-22",
    "operating_margin": 0.2139952558454761,
@@ -13052,7 +13187,8 @@
     }
    ],
    "revenue_qoq": -0.14227583200116267,
-   "revenue_yoy": 0.0006781959986437158
+   "revenue_yoy": 0.0006781959986437158,
+   "sector": "Utilities"
   }
  },
  "fundamentals:PDD": {
@@ -13840,10 +13976,17 @@
   }
  },
  "fundamentals:RBLX": {
-  "fetched_at": "2026-08-26T20:48:35.055408+00:00",
+  "fetched_at": "2026-10-01T12:48:27.642816+00:00",
   "value": {
+   "description": "Roblox Corporation operates an immersive platform for connection and communication in the United States and internationally.",
    "gross_margin": 0.8012253233492171,
    "gross_margin_change": 0.005108818494848233,
+   "industry": "Electronic Gaming & Multimedia",
+   "last_earnings": {
+    "eps_actual": -0.26,
+    "eps_estimate": -0.33442,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-29",
    "operating_margin": -0.15588835942818244,
@@ -13872,7 +14015,8 @@
     }
    ],
    "revenue_qoq": 0.018723994452149784,
-   "revenue_yoy": 0.35892691951896394
+   "revenue_yoy": 0.35892691951896394,
+   "sector": "Communication Services"
   }
  },
  "fundamentals:RBRK": {
@@ -15364,7 +15508,7 @@
   }
  },
  "fundamentals:SNPS": {
-  "fetched_at": "2026-09-30T12:51:40.897550+00:00",
+  "fetched_at": "2026-10-01T12:48:27.221628+00:00",
   "value": {
    "description": "Synopsys, Inc. provides design IP solutions in the semiconductor and electronics industries.",
    "gross_margin": 0.7257017258406135,
@@ -15572,12 +15716,19 @@
   }
  },
  "fundamentals:SPGI": {
-  "fetched_at": "2026-08-30T00:19:10.511777+00:00",
+  "fetched_at": "2026-10-01T12:48:27.452441+00:00",
   "value": {
+   "description": "S&P Global Inc., together with its subsidiaries, provides benchmarks, data, analytics, and workflow solutions in the global capital, energy and commodity, and automotive markets.",
    "gross_margin": 0.7190062711046792,
    "gross_margin_change": 0.015098335357855874,
+   "industry": "Financial Data & Stock Exchanges",
+   "last_earnings": {
+    "eps_actual": 4.87,
+    "eps_estimate": 5.01771,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-29",
+   "next_earnings": "2026-10-27",
    "operating_margin": 0.43439459720212253,
    "operating_margin_change": -0.003629857365127498,
    "profitable": true,
@@ -15604,7 +15755,8 @@
     }
    ],
    "revenue_qoq": -0.005993766482857876,
-   "revenue_yoy": 0.10412782956058586
+   "revenue_yoy": 0.10412782956058586,
+   "sector": "Financial Services"
   }
  },
  "fundamentals:SPOT": {
@@ -16356,10 +16508,17 @@
   }
  },
  "fundamentals:TSLA": {
-  "fetched_at": "2026-08-30T00:19:10.800469+00:00",
+  "fetched_at": "2026-10-01T12:48:27.738942+00:00",
   "value": {
+   "description": "Tesla, Inc. designs, develops, manufactures, leases, and sells electric vehicles, and energy generation and storage systems in the United States, China, and internationally.",
    "gross_margin": 0.16826037682391273,
    "gross_margin_change": -0.042576269444010606,
+   "industry": "Auto Manufacturers",
+   "last_earnings": {
+    "eps_actual": 0.33,
+    "eps_estimate": 0.54236,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-21",
    "operating_margin": 0.014095480946309675,
@@ -16388,7 +16547,8 @@
     }
    ],
    "revenue_qoq": 0.261267700004467,
-   "revenue_yoy": 0.25515647226173543
+   "revenue_yoy": 0.25515647226173543,
+   "sector": "Consumer Cyclical"
   }
  },
  "fundamentals:TSM": {
@@ -17239,20 +17399,23 @@
   }
  },
  "fundamentals:VALE": {
-  "fetched_at": "2026-08-26T21:06:49.701245+00:00",
+  "fetched_at": "2026-10-01T12:48:27.424693+00:00",
   "value": {
-   "gross_margin": 0.3332253186433355,
-   "gross_margin_change": -0.05384520576896107,
-   "latest_quarter": "2026-03-31",
+   "description": "Vale S.A., together with its subsidiaries, produces iron ore and nickel in Brazil, Asia, the Middle East, North Africa, Europe, the Americas, and Oceania.",
+   "gross_margin": 0.30520099066488854,
+   "gross_margin_change": -0.02802432797844695,
+   "industry": "Other Industrial Metals & Mining",
+   "last_earnings": {
+    "eps_actual": 0.3645,
+    "eps_estimate": 0.494,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-29",
-   "operating_margin": 0.2801901058543962,
-   "operating_margin_change": -0.03599434260853329,
+   "operating_margin": 0.22547151838445417,
+   "operating_margin_change": -0.0560147637499161,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-03-31",
-     "revenue": 8119000000.0
-    },
     {
      "quarter": "2025-06-30",
      "revenue": 8804000000.0
@@ -17268,10 +17431,15 @@
     {
      "quarter": "2026-03-31",
      "revenue": 9258000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 10498000000.0
     }
    ],
-   "revenue_qoq": -0.16292947558770343,
-   "revenue_yoy": 0.14028821283409276
+   "revenue_qoq": 0.13393821559732122,
+   "revenue_yoy": 0.192412539754657,
+   "sector": "Basic Materials"
   }
  },
  "fundamentals:VFC": {
@@ -17539,7 +17707,7 @@
   }
  },
  "fundamentals:WDAY": {
-  "fetched_at": "2026-09-18T12:41:59.544673+00:00",
+  "fetched_at": "2026-10-01T12:48:27.773411+00:00",
   "value": {
    "description": "Workday, Inc. provides enterprise cloud applications in the United States and internationally.",
    "gross_margin": 0.7538693846734617,
@@ -17875,10 +18043,17 @@
   }
  },
  "fundamentals:WYNN": {
-  "fetched_at": "2026-08-26T20:48:35.501895+00:00",
+  "fetched_at": "2026-10-01T12:48:27.642804+00:00",
   "value": {
+   "description": "Wynn Resorts, Limited designs, develops, and operates integrated resorts.",
    "gross_margin": 0.4087104919779012,
    "gross_margin_change": 0.007061815410845218,
+   "industry": "Resorts & Casinos",
+   "last_earnings": {
+    "eps_actual": 1.24,
+    "eps_estimate": 0.98139,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-05",
    "operating_margin": 0.16522944015750704,
@@ -17907,7 +18082,8 @@
     }
    ],
    "revenue_qoq": 9.209580980229504e-05,
-   "revenue_yoy": 0.06855576341770653
+   "revenue_yoy": 0.06855576341770653,
+   "sector": "Consumer Cyclical"
   }
  },
  "fundamentals:XE": {
@@ -18154,6 +18330,50 @@
    "sector": "Technology"
   }
  },
+ "fundamentals:ZETA": {
+  "fetched_at": "2026-10-01T12:48:27.324291+00:00",
+  "value": {
+   "description": "Zeta Global Holdings Corp. operates an omnichannel data-driven cloud platform that provides enterprises with consumer intelligence and marketing automation software in the United States and internationally.",
+   "gross_margin": 0.5912129657652123,
+   "gross_margin_change": 0.001115464856818793,
+   "industry": "Software - Infrastructure",
+   "last_earnings": {
+    "eps_actual": 0.26703,
+    "eps_estimate": 0.19095,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-03",
+   "operating_margin": 0.038223350483099425,
+   "operating_margin_change": 0.0645188206272312,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 308442000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 337169000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 394638000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 396304000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 442766000.0
+    }
+   ],
+   "revenue_qoq": 0.11723828172312167,
+   "revenue_yoy": 0.4354919239273509,
+   "sector": "Technology"
+  }
+ },
  "fundamentals:ZIM": {
   "fetched_at": "2026-09-30T12:51:41.427315+00:00",
   "value": {
@@ -18199,20 +18419,23 @@
   }
  },
  "fundamentals:ZM": {
-  "fetched_at": "2026-08-26T20:48:35.582810+00:00",
+  "fetched_at": "2026-10-01T12:48:27.424676+00:00",
   "value": {
-   "gross_margin": 0.7786233480709537,
-   "gross_margin_change": 0.015753177291991216,
-   "latest_quarter": "2026-04-30",
+   "description": "Zoom Communications, Inc. provides an Artificial Intelligence-first open work platform for human connection in the Americas, the Asia Pacific, Europe, the Middle East, and Africa.",
+   "gross_margin": 0.7715955863412404,
+   "gross_margin_change": -0.007027761729713311,
+   "industry": "Software - Application",
+   "last_earnings": {
+    "eps_actual": 1.55,
+    "eps_estimate": 1.47575,
+    "quarter": "2026-07-31"
+   },
+   "latest_quarter": "2026-07-31",
    "next_earnings": "2026-11-24",
-   "operating_margin": 0.2505823216352463,
-   "operating_margin_change": 0.05018648910384274,
+   "operating_margin": 0.24609443814167836,
+   "operating_margin_change": -0.004487883493567935,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-04-30",
-     "revenue": 1174715000.0
-    },
     {
      "quarter": "2025-07-31",
      "revenue": 1217227000.0
@@ -18228,10 +18451,15 @@
     {
      "quarter": "2026-04-30",
      "revenue": 1239006000.0
+    },
+    {
+     "quarter": "2026-07-31",
+     "revenue": 1277217000.0
     }
    ],
-   "revenue_qoq": -0.006404211093575585,
-   "revenue_yoy": 0.05472901937916852
+   "revenue_qoq": 0.030840044358138696,
+   "revenue_yoy": 0.04928415160031774,
+   "sector": "Technology"
   }
  },
  "fundamentals:ZS": {
