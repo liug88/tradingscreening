@@ -996,7 +996,7 @@
   }
  },
  "fundamentals:AI": {
-  "fetched_at": "2026-10-01T12:48:27.346148+00:00",
+  "fetched_at": "2026-10-02T12:47:35.070515+00:00",
   "value": {
    "description": "C3.ai, Inc. operates as an enterprise artificial intelligence application software company in North America, Europe, the Middle East, Africa, the Asia Pacific, and internationally.",
    "gross_margin": 0.31826252983293557,
@@ -1632,10 +1632,17 @@
   }
  },
  "fundamentals:APA": {
-  "fetched_at": "2026-08-26T20:44:00.373974+00:00",
+  "fetched_at": "2026-10-02T12:47:35.063245+00:00",
   "value": {
+   "description": "APA Corporation, an independent energy company, explores for, develops, and produces natural gas, crude oil, and natural gas liquids.",
    "gross_margin": 0.6536030341340076,
    "gross_margin_change": 0.11814966069180732,
+   "industry": "Oil & Gas E&P",
+   "last_earnings": {
+    "eps_actual": 1.89,
+    "eps_estimate": 1.87114,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-04",
    "operating_margin": 0.5566793088916983,
@@ -1664,7 +1671,8 @@
     }
    ],
    "revenue_qoq": 0.019767941555651092,
-   "revenue_yoy": 0.08953168044077131
+   "revenue_yoy": 0.08953168044077131,
+   "sector": "Energy"
   }
  },
  "fundamentals:APLD": {
@@ -4280,7 +4288,7 @@
   }
  },
  "fundamentals:CIEN": {
-  "fetched_at": "2026-09-30T12:51:41.310341+00:00",
+  "fetched_at": "2026-10-02T12:47:35.437960+00:00",
   "value": {
    "description": "Ciena Corporation, a network technology company, provides hardware, software, and services for various network operators in the Americas, Europe, the Middle East, Africa, the Asia Pacific, Japan, and India.",
    "gross_margin": 0.45434254327463647,
@@ -5151,6 +5159,50 @@
    "sector": "Basic Materials"
   }
  },
+ "fundamentals:CRM": {
+  "fetched_at": "2026-10-02T12:47:35.129946+00:00",
+  "value": {
+   "description": "Salesforce, Inc. provides customer relationship management technology services that connect companies and customers together in the United States, Europe, and the Asia Pacific.",
+   "gross_margin": 0.7665050683120317,
+   "gross_margin_change": -0.0026496968006962662,
+   "industry": "Software - Application",
+   "last_earnings": {
+    "eps_actual": 5.9,
+    "eps_estimate": 3.27116,
+    "quarter": "2026-07-31"
+   },
+   "latest_quarter": "2026-07-31",
+   "next_earnings": "2026-12-02",
+   "operating_margin": 0.21375055090348172,
+   "operating_margin_change": -0.0042499880348098595,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-07-31",
+     "revenue": 10236000000.0
+    },
+    {
+     "quarter": "2025-10-31",
+     "revenue": 10259000000.0
+    },
+    {
+     "quarter": "2026-01-31",
+     "revenue": 11201000000.0
+    },
+    {
+     "quarter": "2026-04-30",
+     "revenue": 11133000000.0
+    },
+    {
+     "quarter": "2026-07-31",
+     "revenue": 11345000000.0
+    }
+   ],
+   "revenue_qoq": 0.01904248630198513,
+   "revenue_yoy": 0.1083431027745212,
+   "sector": "Technology"
+  }
+ },
  "fundamentals:CROX": {
   "fetched_at": "2026-08-26T20:27:29.416933+00:00",
   "value": {
@@ -5537,6 +5589,50 @@
    "revenue_qoq": 0.05645948260410649,
    "revenue_yoy": 0.07259768488095841,
    "sector": "Healthcare"
+  }
+ },
+ "fundamentals:CVX": {
+  "fetched_at": "2026-10-02T12:47:35.185534+00:00",
+  "value": {
+   "description": "Chevron Corporation, through its subsidiaries, engages in the integrated energy and chemicals operations.",
+   "gross_margin": 0.364737570499561,
+   "gross_margin_change": 0.08121919216664825,
+   "industry": "Oil & Gas Integrated",
+   "last_earnings": {
+    "eps_actual": 6.06,
+    "eps_estimate": 5.56791,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-10-30",
+   "operating_margin": 0.21244363755413026,
+   "operating_margin_change": 0.1446919342990205,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 44375000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 48169000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 45787000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 47556000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 67199000000.0
+    }
+   ],
+   "revenue_qoq": 0.413049878038523,
+   "revenue_yoy": 0.5143436619718309,
+   "sector": "Energy"
   }
  },
  "fundamentals:CZR": {
@@ -6236,7 +6332,7 @@
   }
  },
  "fundamentals:DLTR": {
-  "fetched_at": "2026-10-01T12:48:27.346174+00:00",
+  "fetched_at": "2026-10-02T12:47:35.233210+00:00",
   "value": {
    "description": "Dollar Tree, Inc. operates retail discount stores under the Dollar Tree and Dollar Tree Canada brands in the United States and Canada.",
    "gross_margin": 0.42913804383382403,
@@ -6764,16 +6860,27 @@
   }
  },
  "fundamentals:EOG": {
-  "fetched_at": "2026-09-03T12:43:54.239544+00:00",
+  "fetched_at": "2026-10-02T12:47:35.286754+00:00",
   "value": {
-   "gross_margin": 0.7172121497527667,
-   "gross_margin_change": 0.058881282632316845,
-   "latest_quarter": "2026-06-30",
+   "description": "EOG Resources, Inc., together with its subsidiaries, explores for, develops, produces, and markets crude oil, natural gas liquids, and natural gas in producing basins in the United States, the Republic of Trinidad and\u2026",
+   "gross_margin": 0.6583308671204499,
+   "gross_margin_change": 0.06961690992957781,
+   "industry": "Oil & Gas E&P",
+   "last_earnings": {
+    "eps_actual": 5.07,
+    "eps_estimate": 4.96567,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-03-31",
    "next_earnings": "2026-11-05",
-   "operating_margin": 0.4060513303508359,
-   "operating_margin_change": 0.037155207237488774,
+   "operating_margin": 0.36889612311334713,
+   "operating_margin_change": 0.07400845284977026,
    "profitable": true,
    "revenue_history": [
+    {
+     "quarter": "2025-03-31",
+     "revenue": 5842000000.0
+    },
     {
      "quarter": "2025-06-30",
      "revenue": 5355000000.0
@@ -6789,14 +6896,11 @@
     {
      "quarter": "2026-03-31",
      "revenue": 6758000000.0
-    },
-    {
-     "quarter": "2026-06-30",
-     "revenue": 8494000000.0
     }
    ],
-   "revenue_qoq": 0.25688073394495414,
-   "revenue_yoy": 0.5861811391223155
+   "revenue_qoq": 0.1954714310985317,
+   "revenue_yoy": 0.15679561793906194,
+   "sector": "Energy"
   }
  },
  "fundamentals:EPD": {
@@ -6884,6 +6988,50 @@
    ],
    "revenue_qoq": -0.5119442743374698,
    "revenue_yoy": -0.03942582117855753,
+   "sector": "Energy"
+  }
+ },
+ "fundamentals:ET": {
+  "fetched_at": "2026-10-02T12:47:35.334398+00:00",
+  "value": {
+   "description": "Energy Transfer LP, together with its subsidiaries, provides energy-related services in the United States.",
+   "gross_margin": 0.16959864856993068,
+   "gross_margin_change": -0.011849624808773718,
+   "industry": "Oil & Gas Midstream",
+   "last_earnings": {
+    "eps_actual": 0.59,
+    "eps_estimate": 0.36778,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-03",
+   "operating_margin": 0.10409506611522107,
+   "operating_margin_change": -0.003319142951791282,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 19242000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 19954000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 25320000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 27771000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 34334000000.0
+    }
+   ],
+   "revenue_qoq": 0.23632566346188466,
+   "revenue_yoy": 0.7843259536430724,
    "sector": "Energy"
   }
  },
@@ -7240,10 +7388,17 @@
   }
  },
  "fundamentals:FIG": {
-  "fetched_at": "2026-09-11T12:42:06.494470+00:00",
+  "fetched_at": "2026-10-02T12:47:35.166878+00:00",
   "value": {
+   "description": "Figma, Inc. develops and sells a collaborative, browser-based platform for designing, prototyping, building digital experiences, and subscriptions for access to its platform.",
    "gross_margin": 0.8365988170221275,
    "gross_margin_change": 0.04253153635010054,
+   "industry": "Software - Application",
+   "last_earnings": {
+    "eps_actual": 0.08,
+    "eps_estimate": 0.04083,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-04",
    "operating_margin": -0.3169262030409395,
@@ -7272,7 +7427,8 @@
     }
    ],
    "revenue_qoq": 0.10989716259945603,
-   "revenue_yoy": 0.48246675212305723
+   "revenue_yoy": 0.48246675212305723,
+   "sector": "Technology"
   }
  },
  "fundamentals:FIGR": {
@@ -8323,6 +8479,50 @@
    "sector": "Healthcare"
   }
  },
+ "fundamentals:GTLB": {
+  "fetched_at": "2026-10-02T12:47:35.268940+00:00",
+  "value": {
+   "description": "GitLab Inc., together with its subsidiaries, develops software for the software development lifecycle in the United States, Europe, and the Asia Pacific.",
+   "gross_margin": 0.8405681667330412,
+   "gross_margin_change": -0.017516767283721424,
+   "industry": "Software - Infrastructure",
+   "last_earnings": {
+    "eps_actual": 0.24,
+    "eps_estimate": 0.17964,
+    "quarter": "2026-07-31"
+   },
+   "latest_quarter": "2026-07-31",
+   "next_earnings": "2026-12-01",
+   "operating_margin": -0.1988967839750711,
+   "operating_margin_change": -0.13927716238496216,
+   "profitable": false,
+   "revenue_history": [
+    {
+     "quarter": "2025-07-31",
+     "revenue": 235960000.0
+    },
+    {
+     "quarter": "2025-10-31",
+     "revenue": 244353000.0
+    },
+    {
+     "quarter": "2026-01-31",
+     "revenue": 260402000.0
+    },
+    {
+     "quarter": "2026-04-30",
+     "revenue": 264158000.0
+    },
+    {
+     "quarter": "2026-07-31",
+     "revenue": 286254000.0
+    }
+   ],
+   "revenue_qoq": 0.08364690828973576,
+   "revenue_yoy": 0.21314629598236978,
+   "sector": "Technology"
+  }
+ },
  "fundamentals:HAL": {
   "fetched_at": "2026-10-01T12:48:27.443810+00:00",
   "value": {
@@ -8719,8 +8919,52 @@
    "sector": "Technology"
   }
  },
+ "fundamentals:HPQ": {
+  "fetched_at": "2026-10-02T12:47:35.387242+00:00",
+  "value": {
+   "description": "HP Inc. provides personal computing, printing, 3D printing, hybrid work, gaming, and other related technologies in the United States and internationally.",
+   "gross_margin": 0.18785481916182944,
+   "gross_margin_change": -0.02147333186537767,
+   "industry": "Computer Hardware",
+   "last_earnings": {
+    "eps_actual": 0.83,
+    "eps_estimate": 0.69175,
+    "quarter": "2026-07-31"
+   },
+   "latest_quarter": "2026-07-31",
+   "next_earnings": "2026-11-24",
+   "operating_margin": 0.06021560247496332,
+   "operating_margin_change": -0.007871571317374267,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-07-31",
+     "revenue": 13932000000.0
+    },
+    {
+     "quarter": "2025-10-31",
+     "revenue": 14639000000.0
+    },
+    {
+     "quarter": "2026-01-31",
+     "revenue": 14438000000.0
+    },
+    {
+     "quarter": "2026-04-30",
+     "revenue": 14408000000.0
+    },
+    {
+     "quarter": "2026-07-31",
+     "revenue": 15677000000.0
+    }
+   ],
+   "revenue_qoq": 0.08807606885063857,
+   "revenue_yoy": 0.1252512202124605,
+   "sector": "Technology"
+  }
+ },
  "fundamentals:HRL": {
-  "fetched_at": "2026-10-01T12:48:27.340974+00:00",
+  "fetched_at": "2026-10-02T12:47:35.067209+00:00",
   "value": {
    "description": "Hormel Foods Corporation develops, processes, and distributes various meat, nut, and other food products to foodservice, convenience stores, and commercial customers in the United States and internationally.",
    "gross_margin": 0.15922390355964697,
@@ -9548,19 +9792,19 @@
   }
  },
  "fundamentals:JBL": {
-  "fetched_at": "2026-09-11T20:21:44.966296+00:00",
+  "fetched_at": "2026-10-02T12:47:35.543856+00:00",
   "value": {
    "description": "Jabil Inc. provides engineering, manufacturing, and supply chain solutions worldwide.",
    "gross_margin": 0.09461775797051765,
    "gross_margin_change": 0.004542896825866602,
    "industry": "Electronic Components",
    "last_earnings": {
-    "eps_actual": 3.16,
-    "eps_estimate": 3.11795,
-    "quarter": "2026-05-31"
+    "eps_actual": 4.4,
+    "eps_estimate": 4.07545,
+    "quarter": "2026-08-31"
    },
    "latest_quarter": "2026-05-31",
-   "next_earnings": "2026-09-30",
+   "next_earnings": "2026-12-16",
    "operating_margin": 0.052108330476516966,
    "operating_margin_change": 0.005380486960458043,
    "profitable": true,
@@ -10948,10 +11192,17 @@
   }
  },
  "fundamentals:LYFT": {
-  "fetched_at": "2026-09-03T12:43:54.736591+00:00",
+  "fetched_at": "2026-10-02T12:47:35.063222+00:00",
   "value": {
+   "description": "Lyft, Inc. operates multimodal transportation networks that offer access to various transportation options through platform and mobile based applications in the United States and internationally.",
    "gross_margin": 0.4974782267198396,
    "gross_margin_change": 0.021046696427907963,
+   "industry": "Software - Application",
+   "last_earnings": {
+    "eps_actual": 0.13,
+    "eps_estimate": 0.1409,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-04",
    "operating_margin": 0.02580139123340696,
@@ -10980,7 +11231,8 @@
     }
    ],
    "revenue_qoq": 0.11696836513300002,
-   "revenue_yoy": 0.16078814595043522
+   "revenue_yoy": 0.16078814595043522,
+   "sector": "Technology"
   }
  },
  "fundamentals:LYV": {
@@ -12475,6 +12727,50 @@
    "sector": "Technology"
   }
  },
+ "fundamentals:NOW": {
+  "fetched_at": "2026-10-02T12:47:35.387256+00:00",
+  "value": {
+   "description": "ServiceNow, Inc. provides cloud-based solution for digital workflows in the North America, Brazil, Europe, the Middle East and Africa, Asia Pacific, and internationally.",
+   "gross_margin": 0.7067970905442689,
+   "gross_margin_change": -0.04386603942920597,
+   "industry": "Software - Application",
+   "last_earnings": {
+    "eps_actual": 0.9,
+    "eps_estimate": 0.85672,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-10-28",
+   "operating_margin": 0.040632054176072234,
+   "operating_margin_change": -0.09278969648705773,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 3215000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 3407000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 3568000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 3770000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 3987000000.0
+    }
+   ],
+   "revenue_qoq": 0.05755968169761272,
+   "revenue_yoy": 0.2401244167962675,
+   "sector": "Technology"
+  }
+ },
  "fundamentals:NRG": {
   "fetched_at": "2026-08-26T20:48:34.022438+00:00",
   "value": {
@@ -13108,6 +13404,50 @@
    ],
    "revenue_qoq": 0.13590939373750843,
    "revenue_yoy": 0.34447817687182125,
+   "sector": "Technology"
+  }
+ },
+ "fundamentals:PATH": {
+  "fetched_at": "2026-10-02T12:47:35.174372+00:00",
+  "value": {
+   "description": "UiPath, Inc. provides an automation platform that offers a range of robotic process automation (RPA) solutions primarily in the United States, Romania, the United Kingdom, the Netherlands, and internationally.",
+   "gross_margin": 0.803568991068991,
+   "gross_margin_change": -0.012560765947324137,
+   "industry": "Software - Infrastructure",
+   "last_earnings": {
+    "eps_actual": 0.15,
+    "eps_estimate": 0.14766,
+    "quarter": "2026-07-31"
+   },
+   "latest_quarter": "2026-07-31",
+   "next_earnings": "2026-12-02",
+   "operating_margin": 0.07703482703482703,
+   "operating_margin_change": 0.01014141383827459,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-07-31",
+     "revenue": 361728000.0
+    },
+    {
+     "quarter": "2025-10-31",
+     "revenue": 411113000.0
+    },
+    {
+     "quarter": "2026-01-31",
+     "revenue": 481107000.0
+    },
+    {
+     "quarter": "2026-04-30",
+     "revenue": 418382000.0
+    },
+    {
+     "quarter": "2026-07-31",
+     "revenue": 410256000.0
+    }
+   ],
+   "revenue_qoq": -0.019422441692042214,
+   "revenue_yoy": 0.13415605095541405,
    "sector": "Technology"
   }
  },
@@ -16463,6 +16803,50 @@
    "sector": "Consumer Cyclical"
   }
  },
+ "fundamentals:TSCO": {
+  "fetched_at": "2026-10-02T12:47:35.366607+00:00",
+  "value": {
+   "description": "Tractor Supply Company operates as a rural lifestyle retailer in the United States.",
+   "gross_margin": 0.3705114863231215,
+   "gross_margin_change": 0.008270858001546533,
+   "industry": "Specialty Retail",
+   "last_earnings": {
+    "eps_actual": 0.69,
+    "eps_estimate": 0.82031,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-10-22",
+   "operating_margin": 0.11667592243126108,
+   "operating_margin_change": 0.051690396076643136,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 4439729000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 3719044000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 3898320000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 3592046000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 4541314000.0
+    }
+   ],
+   "revenue_qoq": 0.2642694442109037,
+   "revenue_yoy": 0.02288090106400631,
+   "sector": "Consumer Cyclical"
+  }
+ },
  "fundamentals:TSEM": {
   "fetched_at": "2026-09-11T20:21:47.312421+00:00",
   "value": {
@@ -17662,6 +18046,50 @@
    "sector": "Utilities"
   }
  },
+ "fundamentals:VZ": {
+  "fetched_at": "2026-10-02T12:47:35.470373+00:00",
+  "value": {
+   "description": "Verizon Communications Inc., through its subsidiaries, engages in the provision of communications, technology, information, and streaming products and services to consumers, businesses, and governmental entities\u2026",
+   "gross_margin": 0.6180188596619274,
+   "gross_margin_change": 0.015028151183414051,
+   "industry": "Telecom Services",
+   "last_earnings": {
+    "eps_actual": 1.3,
+    "eps_estimate": 1.26575,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-10-26",
+   "operating_margin": 0.2095874813884915,
+   "operating_margin_change": -0.029727268901868525,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 34504000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 33821000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 36381000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 34440000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 34253000000.0
+    }
+   ],
+   "revenue_qoq": -0.005429732868757253,
+   "revenue_yoy": -0.007274518896359883,
+   "sector": "Communication Services"
+  }
+ },
  "fundamentals:W": {
   "fetched_at": "2026-09-15T12:42:51.998883+00:00",
   "value": {
@@ -17795,10 +18223,17 @@
   }
  },
  "fundamentals:WFC": {
-  "fetched_at": "2026-08-26T20:48:35.308506+00:00",
+  "fetched_at": "2026-10-02T12:47:35.277842+00:00",
   "value": {
+   "description": "Wells Fargo & Company, a financial services company, provides diversified banking, investment, mortgage, and consumer and commercial finance products and services in the United States and internationally.",
    "gross_margin": null,
    "gross_margin_change": null,
+   "industry": "Banks - Diversified",
+   "last_earnings": {
+    "eps_actual": 2.0,
+    "eps_estimate": 1.71847,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-13",
    "operating_margin": null,
@@ -17827,7 +18262,8 @@
     }
    ],
    "revenue_qoq": 0.05483540054089331,
-   "revenue_yoy": 0.09981039428265848
+   "revenue_yoy": 0.09981039428265848,
+   "sector": "Financial Services"
   }
  },
  "fundamentals:WMB": {
