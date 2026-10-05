@@ -1,6 +1,6 @@
 {
  "cboe_weekly_equities": {
-  "fetched_at": "2026-09-28T12:49:49.289793+00:00",
+  "fetched_at": "2026-10-05T12:50:10.222946+00:00",
   "value": [
    "AA",
    "AAL",
@@ -100,7 +100,6 @@
    "BUD",
    "BULL",
    "BURL",
-   "BW",
    "BX",
    "BYND",
    "C",
@@ -166,7 +165,6 @@
    "DAL",
    "DASH",
    "DAVE",
-   "DBRG",
    "DBX",
    "DDOG",
    "DE",
@@ -230,6 +228,7 @@
    "GEMI",
    "GEV",
    "GILD",
+   "GLND",
    "GLW",
    "GLXY",
    "GM",
@@ -360,7 +359,6 @@
    "NEE",
    "NEM",
    "NET",
-   "NFE",
    "NFLX",
    "NIO",
    "NKE",

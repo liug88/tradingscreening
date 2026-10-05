@@ -484,19 +484,19 @@
   }
  },
  "fundamentals:ACN": {
-  "fetched_at": "2026-09-15T12:42:52.375527+00:00",
+  "fetched_at": "2026-10-05T12:50:25.482148+00:00",
   "value": {
    "description": "Accenture plc provides strategy and consulting, industry X, song, and technology and operation services in the Americas, Europe, the Middle East, Africa, and the Asia Pacific.",
    "gross_margin": 0.3277213274991367,
    "gross_margin_change": 0.02516418766158568,
    "industry": "Information Technology Services",
    "last_earnings": {
-    "eps_actual": 3.8,
-    "eps_estimate": 3.70865,
-    "quarter": "2026-05-31"
+    "eps_actual": 3.29,
+    "eps_estimate": 3.18294,
+    "quarter": "2026-08-31"
    },
    "latest_quarter": "2026-05-31",
-   "next_earnings": "2026-10-01",
+   "next_earnings": "2026-12-17",
    "operating_margin": 0.16963743841269732,
    "operating_margin_change": 0.031445359088669134,
    "profitable": true,
@@ -996,7 +996,7 @@
   }
  },
  "fundamentals:AI": {
-  "fetched_at": "2026-10-02T12:47:35.070515+00:00",
+  "fetched_at": "2026-10-05T12:50:25.812661+00:00",
   "value": {
    "description": "C3.ai, Inc. operates as an enterprise artificial intelligence application software company in North America, Europe, the Middle East, Africa, the Asia Pacific, and internationally.",
    "gross_margin": 0.31826252983293557,
@@ -3508,19 +3508,19 @@
   }
  },
  "fundamentals:CAG": {
-  "fetched_at": "2026-09-15T12:42:53.012665+00:00",
+  "fetched_at": "2026-10-05T12:50:25.694830+00:00",
   "value": {
    "description": "Conagra Brands, Inc., together with its subsidiaries, operates as a branded consumer packaged goods food company primarily in the United States.",
    "gross_margin": 0.24430103049859478,
    "gross_margin_change": 0.008380232736918902,
    "industry": "Packaged Foods",
    "last_earnings": {
-    "eps_actual": 0.47,
-    "eps_estimate": 0.45729,
-    "quarter": "2026-05-31"
+    "eps_actual": 0.41,
+    "eps_estimate": 0.28291,
+    "quarter": "2026-08-31"
    },
    "latest_quarter": "2026-05-31",
-   "next_earnings": "2026-09-30",
+   "next_earnings": "2026-12-18",
    "operating_margin": 0.10513167482044343,
    "operating_margin_change": 0.004658183178288325,
    "profitable": true,
@@ -4288,7 +4288,7 @@
   }
  },
  "fundamentals:CIEN": {
-  "fetched_at": "2026-10-02T12:47:35.437960+00:00",
+  "fetched_at": "2026-10-05T12:50:25.783748+00:00",
   "value": {
    "description": "Ciena Corporation, a network technology company, provides hardware, software, and services for various network operators in the Americas, Europe, the Middle East, Africa, the Asia Pacific, Japan, and India.",
    "gross_margin": 0.45434254327463647,
@@ -4725,6 +4725,50 @@
    "revenue_qoq": 0.07278151529713273,
    "revenue_yoy": 0.09923679783349071,
    "sector": "Healthcare"
+  }
+ },
+ "fundamentals:CNQ": {
+  "fetched_at": "2026-10-05T12:50:25.632927+00:00",
+  "value": {
+   "description": "Canadian Natural Resources Limited engages in the acquisition, exploration, development, production, marketing, and sale of crude oil, natural gas, and natural gas liquids (NGLs) in Western Canada, the United Kingdom\u2026",
+   "gross_margin": 0.37248751016614384,
+   "gross_margin_change": 0.0849189838842993,
+   "industry": "Oil & Gas E&P",
+   "last_earnings": {
+    "eps_actual": 2.19,
+    "eps_estimate": 2.04236,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-05",
+   "operating_margin": 0.368943882886023,
+   "operating_margin_change": 0.1536101195838624,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 9675000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 11070000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 10710000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 12404000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 17214000000.0
+    }
+   ],
+   "revenue_qoq": 0.3877781360851338,
+   "revenue_yoy": 0.7792248062015503,
+   "sector": "Energy"
   }
  },
  "fundamentals:COF": {
@@ -5900,20 +5944,23 @@
   }
  },
  "fundamentals:DE": {
-  "fetched_at": "2026-08-26T21:06:49.857602+00:00",
+  "fetched_at": "2026-10-05T12:50:25.817601+00:00",
   "value": {
-   "gross_margin": 0.36862205927283836,
-   "gross_margin_change": 0.04071110036872877,
-   "latest_quarter": "2026-04-30",
+   "description": "Deere & Company engages in the manufacture and distribution of various equipment worldwide.",
+   "gross_margin": 0.35727007772020725,
+   "gross_margin_change": -0.011351981552631119,
+   "industry": "Farm & Heavy Construction Machinery",
+   "last_earnings": {
+    "eps_actual": 5.1,
+    "eps_estimate": 4.70933,
+    "quarter": "2026-07-31"
+   },
+   "latest_quarter": "2026-07-31",
    "next_earnings": "2026-11-25",
-   "operating_margin": 0.20837152459517264,
-   "operating_margin_change": 0.07052905884174798,
+   "operating_margin": 0.18911917098445596,
+   "operating_margin_change": -0.01925235361071667,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-04-30",
-     "revenue": 12525000000.0
-    },
     {
      "quarter": "2025-07-31",
      "revenue": 11783000000.0
@@ -5929,10 +5976,15 @@
     {
      "quarter": "2026-04-30",
      "revenue": 13092000000.0
+    },
+    {
+     "quarter": "2026-07-31",
+     "revenue": 12352000000.0
     }
    ],
-   "revenue_qoq": 0.40111301369863006,
-   "revenue_yoy": 0.04526946107784435
+   "revenue_qoq": -0.05652306752215097,
+   "revenue_yoy": 0.04828990919120768,
+   "sector": "Industrials"
   }
  },
  "fundamentals:DECK": {
@@ -6332,7 +6384,7 @@
   }
  },
  "fundamentals:DLTR": {
-  "fetched_at": "2026-10-02T12:47:35.233210+00:00",
+  "fetched_at": "2026-10-05T12:50:25.543483+00:00",
   "value": {
    "description": "Dollar Tree, Inc. operates retail discount stores under the Dollar Tree and Dollar Tree Canada brands in the United States and Canada.",
    "gross_margin": 0.42913804383382403,
@@ -7256,7 +7308,7 @@
   }
  },
  "fundamentals:FCEL": {
-  "fetched_at": "2026-09-30T12:51:41.258440+00:00",
+  "fetched_at": "2026-10-05T12:50:25.496417+00:00",
   "value": {
    "description": "FuelCell Energy, Inc., together with its subsidiaries, engages in the design, development, production, construction, operation, and servicing of high temperature fuel cells for clean electric power generation.",
    "gross_margin": -0.7424926517378261,
@@ -8964,7 +9016,7 @@
   }
  },
  "fundamentals:HRL": {
-  "fetched_at": "2026-10-02T12:47:35.067209+00:00",
+  "fetched_at": "2026-10-05T12:50:25.343063+00:00",
   "value": {
    "description": "Hormel Foods Corporation develops, processes, and distributes various meat, nut, and other food products to foodservice, convenience stores, and commercial customers in the United States and internationally.",
    "gross_margin": 0.15922390355964697,
@@ -9008,10 +9060,17 @@
   }
  },
  "fundamentals:HSBC": {
-  "fetched_at": "2026-08-30T00:19:10.178327+00:00",
+  "fetched_at": "2026-10-05T12:50:25.666645+00:00",
   "value": {
+   "description": "HSBC Holdings plc engages in the provision of banking and financial products and services worldwide.",
    "gross_margin": null,
    "gross_margin_change": null,
+   "industry": "Banks - Diversified",
+   "last_earnings": {
+    "eps_actual": 2.25,
+    "eps_estimate": 2.32568,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-03-31",
    "next_earnings": "2026-10-27",
    "operating_margin": null,
@@ -9040,7 +9099,8 @@
     }
    ],
    "revenue_qoq": 0.07910624612085981,
-   "revenue_yoy": 0.0780721533258173
+   "revenue_yoy": 0.0780721533258173,
+   "sector": "Financial Services"
   }
  },
  "fundamentals:HSY": {
@@ -13840,7 +13900,7 @@
   }
  },
  "fundamentals:PL": {
-  "fetched_at": "2026-09-28T12:50:01.989985+00:00",
+  "fetched_at": "2026-10-05T12:50:25.343095+00:00",
   "value": {
    "description": "Planet Labs PBC engages in the design, construction, and launch of constellations of satellites with the intent of providing high-cadence geospatial data delivered to customers through an online platform in the United\u2026",
    "gross_margin": 0.5655395857029607,
@@ -17288,7 +17348,7 @@
   }
  },
  "fundamentals:UL": {
-  "fetched_at": "2026-09-29T12:48:56.807574+00:00",
+  "fetched_at": "2026-10-05T12:50:25.666681+00:00",
   "value": {
    "description": "Unilever PLC operates as a fast-moving consumer goods company in the Asia Pacific, Africa, the Americas, and Europe.",
    "gross_margin": null,
@@ -17439,10 +17499,17 @@
   }
  },
  "fundamentals:UNP": {
-  "fetched_at": "2026-09-11T12:42:06.582429+00:00",
+  "fetched_at": "2026-10-05T12:50:25.234686+00:00",
   "value": {
+   "description": "Union Pacific Corporation, through its subsidiary, Union Pacific Railroad Company, operates in the railroad business in the United States.",
    "gross_margin": 0.4552738927738928,
    "gross_margin_change": 0.001357212703119115,
+   "industry": "Railroads",
+   "last_earnings": {
+    "eps_actual": 3.41,
+    "eps_estimate": 3.24241,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-22",
    "operating_margin": 0.40253496503496505,
@@ -17471,7 +17538,8 @@
     }
    ],
    "revenue_qoq": 0.10406948689078344,
-   "revenue_yoy": 0.11537211569710748
+   "revenue_yoy": 0.11537211569710748,
+   "sector": "Industrials"
   }
  },
  "fundamentals:UPS": {
@@ -17870,6 +17938,50 @@
    "sector": "Consumer Cyclical"
   }
  },
+ "fundamentals:VG": {
+  "fetched_at": "2026-10-05T12:50:25.506550+00:00",
+  "value": {
+   "description": "Venture Global, Inc., a liquefied natural gas (LNG) company, engages in the ownership, development, construction, and operation of LNG production facilities and associated infrastructure in the United States, Germany\u2026",
+   "gross_margin": 0.580602883355177,
+   "gross_margin_change": 0.24052895424015197,
+   "industry": "Oil & Gas Midstream",
+   "last_earnings": {
+    "eps_actual": 0.51,
+    "eps_estimate": 0.48823,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-09",
+   "operating_margin": 0.4779379641764963,
+   "operating_margin_change": 0.22766616595949263,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 3101000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 3329000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 4445000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 4599000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 4578000000.0
+    }
+   ],
+   "revenue_qoq": -0.004566210045662156,
+   "revenue_yoy": 0.4762979683972912,
+   "sector": "Energy"
+  }
+ },
  "fundamentals:VKTX": {
   "fetched_at": "2026-09-25T12:44:29.700492+00:00",
   "value": {
@@ -17912,6 +18024,25 @@
    "revenue_qoq": null,
    "revenue_yoy": null,
    "sector": "Healthcare"
+  }
+ },
+ "fundamentals:VOD": {
+  "fetched_at": "2026-10-05T12:50:25.386718+00:00",
+  "value": {
+   "description": "Vodafone Group Public Limited Company provides telecommunication services in Germany, the United Kingdom, rest of Europe, Turkey, and South Africa.",
+   "gross_margin": null,
+   "gross_margin_change": null,
+   "industry": "Telecom Services",
+   "last_earnings": null,
+   "latest_quarter": null,
+   "next_earnings": "2026-11-10",
+   "operating_margin": null,
+   "operating_margin_change": null,
+   "profitable": null,
+   "revenue_history": [],
+   "revenue_qoq": null,
+   "revenue_yoy": null,
+   "sector": "Communication Services"
   }
  },
  "fundamentals:VRT": {
@@ -18267,10 +18398,17 @@
   }
  },
  "fundamentals:WMB": {
-  "fetched_at": "2026-08-26T21:06:49.767839+00:00",
+  "fetched_at": "2026-10-05T12:50:25.343107+00:00",
   "value": {
+   "description": "The Williams Companies, Inc., together with its subsidiaries, operates as an energy infrastructure company primarily in the United States.",
    "gross_margin": 0.6374058303308221,
    "gross_margin_change": 0.014303520099798961,
+   "industry": "Oil & Gas Midstream",
+   "last_earnings": {
+    "eps_actual": 0.5,
+    "eps_estimate": 0.49877,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-02",
    "operating_margin": 0.3832296102194563,
@@ -18299,7 +18437,8 @@
     }
    ],
    "revenue_qoq": 0.0075907590759076715,
-   "revenue_yoy": 0.09780654440848613
+   "revenue_yoy": 0.09780654440848613,
+   "sector": "Energy"
   }
  },
  "fundamentals:WMT": {
