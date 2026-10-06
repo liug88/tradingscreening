@@ -996,7 +996,7 @@
   }
  },
  "fundamentals:AI": {
-  "fetched_at": "2026-10-05T12:50:25.812661+00:00",
+  "fetched_at": "2026-10-06T12:46:45.020034+00:00",
   "value": {
    "description": "C3.ai, Inc. operates as an enterprise artificial intelligence application software company in North America, Europe, the Middle East, Africa, the Asia Pacific, and internationally.",
    "gross_margin": 0.31826252983293557,
@@ -1596,20 +1596,23 @@
   }
  },
  "fundamentals:ANF": {
-  "fetched_at": "2026-08-26T20:43:59.073284+00:00",
+  "fetched_at": "2026-10-06T12:46:44.905589+00:00",
   "value": {
-   "gross_margin": 0.6284519684940398,
-   "gross_margin_change": 0.0335844333012445,
-   "latest_quarter": "2026-04-30",
-   "next_earnings": "2026-08-26",
-   "operating_margin": 0.0797228639072167,
-   "operating_margin_change": -0.06156993607745215,
+   "description": "Abercrombie & Fitch Co., through its subsidiaries, operates as an omnichannel retailer in the Americas, Europe, the Middle East, Africa, and the Asia-Pacific.",
+   "gross_margin": 0.7109716749730992,
+   "gross_margin_change": 0.08251970647905937,
+   "industry": "Apparel Retail",
+   "last_earnings": {
+    "eps_actual": 4.17,
+    "eps_estimate": 1.96764,
+    "quarter": "2026-07-31"
+   },
+   "latest_quarter": "2026-07-31",
+   "next_earnings": "2026-11-25",
+   "operating_margin": 0.199496482562018,
+   "operating_margin_change": 0.1197736186548013,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-04-30",
-     "revenue": 1097311000.0
-    },
     {
      "quarter": "2025-07-31",
      "revenue": 1208560000.0
@@ -1625,10 +1628,15 @@
     {
      "quarter": "2026-04-30",
      "revenue": 1113821000.0
+    },
+    {
+     "quarter": "2026-07-31",
+     "revenue": 1266689000.0
     }
    ],
-   "revenue_qoq": -0.3329622314501959,
-   "revenue_yoy": 0.015045871225204177
+   "revenue_qoq": 0.13724646958532838,
+   "revenue_yoy": 0.04809773614880508,
+   "sector": "Consumer Cyclical"
   }
  },
  "fundamentals:APA": {
@@ -4903,6 +4911,50 @@
    "sector": "Financial Services"
   }
  },
+ "fundamentals:COP": {
+  "fetched_at": "2026-10-06T12:46:45.087166+00:00",
+  "value": {
+   "description": "ConocoPhillips explores for, produces, transports, and markets crude oil, bitumen, natural gas, liquefied natural gas (LNG), and natural gas liquids.",
+   "gross_margin": 0.3671520275559731,
+   "gross_margin_change": 0.09458049021697174,
+   "industry": "Oil & Gas E&P",
+   "last_earnings": {
+    "eps_actual": 3.24,
+    "eps_estimate": 2.93009,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-05",
+   "operating_margin": 0.312040081415375,
+   "operating_margin_change": 0.0971425495328802,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 14004000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 15031000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 13392000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 15761000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 19161000000.0
+    }
+   ],
+   "revenue_qoq": 0.21572235264259887,
+   "revenue_yoy": 0.3682519280205656,
+   "sector": "Energy"
+  }
+ },
  "fundamentals:CORZ": {
   "fetched_at": "2026-09-11T20:21:47.111921+00:00",
   "value": {
@@ -6384,7 +6436,7 @@
   }
  },
  "fundamentals:DLTR": {
-  "fetched_at": "2026-10-05T12:50:25.543483+00:00",
+  "fetched_at": "2026-10-06T12:46:45.087151+00:00",
   "value": {
    "description": "Dollar Tree, Inc. operates retail discount stores under the Dollar Tree and Dollar Tree Canada brands in the United States and Canada.",
    "gross_margin": 0.42913804383382403,
@@ -11932,10 +11984,17 @@
   }
  },
  "fundamentals:MOS": {
-  "fetched_at": "2026-08-26T21:06:49.979807+00:00",
+  "fetched_at": "2026-10-06T12:46:45.170881+00:00",
   "value": {
+   "description": "The Mosaic Company, through its subsidiaries, produces and markets concentrated phosphate and potash crop nutrients.",
    "gross_margin": 0.07602422010552035,
    "gross_margin_change": -0.002561503710356905,
+   "industry": "Agricultural Inputs",
+   "last_earnings": {
+    "eps_actual": 0.13,
+    "eps_estimate": 0.13812,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-03",
    "operating_margin": -0.010374986721433378,
@@ -11964,7 +12023,8 @@
     }
    ],
    "revenue_qoq": -0.05800533689126086,
-   "revenue_yoy": -0.06041853811092257
+   "revenue_yoy": -0.06041853811092257,
+   "sector": "Basic Materials"
   }
  },
  "fundamentals:MP": {
@@ -12532,19 +12592,19 @@
   }
  },
  "fundamentals:NKE": {
-  "fetched_at": "2026-09-15T12:42:53.375603+00:00",
+  "fetched_at": "2026-10-06T12:46:45.424940+00:00",
   "value": {
    "description": "NIKE, Inc., together with its subsidiaries, designs, develops, markets, and sells athletic footwear, apparel, equipment, accessories, and services for men, women, and kids in North America, Europe, the Middle East\u2026",
    "gross_margin": 0.4915238789646373,
    "gross_margin_change": 0.08989252866762515,
    "industry": "Footwear & Accessories",
    "last_earnings": {
-    "eps_actual": 0.72,
-    "eps_estimate": 0.12718,
-    "quarter": "2026-05-31"
+    "eps_actual": 0.48,
+    "eps_estimate": 0.43689,
+    "quarter": "2026-08-31"
    },
    "latest_quarter": "2026-05-31",
-   "next_earnings": "2026-10-01",
+   "next_earnings": "2026-12-17",
    "operating_margin": 0.11948596427269413,
    "operating_margin_change": 0.07045679502010083,
    "profitable": true,
@@ -12865,6 +12925,50 @@
    ],
    "revenue_qoq": -0.27057332293291736,
    "revenue_yoy": 0.10994065281899101
+  }
+ },
+ "fundamentals:NTR": {
+  "fetched_at": "2026-10-06T12:46:45.424918+00:00",
+  "value": {
+   "description": "Nutrien Ltd. provides crop inputs and services.",
+   "gross_margin": 0.30068442471328155,
+   "gross_margin_change": 0.02843831158063187,
+   "industry": "Agricultural Inputs",
+   "last_earnings": {
+    "eps_actual": 2.61,
+    "eps_estimate": 2.71601,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-04",
+   "operating_margin": 0.18396226415094338,
+   "operating_margin_change": 0.10010516855054642,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 10438000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 6007000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 5340000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 6046000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 10812000000.0
+    }
+   ],
+   "revenue_qoq": 0.7882897783658618,
+   "revenue_yoy": 0.03583061889250816,
+   "sector": "Basic Materials"
   }
  },
  "fundamentals:NU": {
@@ -13900,7 +14004,7 @@
   }
  },
  "fundamentals:PL": {
-  "fetched_at": "2026-10-05T12:50:25.343095+00:00",
+  "fetched_at": "2026-10-06T12:46:45.087123+00:00",
   "value": {
    "description": "Planet Labs PBC engages in the design, construction, and launch of constellations of satellites with the intent of providing high-cadence geospatial data delivered to customers through an online platform in the United\u2026",
    "gross_margin": 0.5655395857029607,
