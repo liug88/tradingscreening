@@ -996,7 +996,7 @@
   }
  },
  "fundamentals:AI": {
-  "fetched_at": "2026-10-06T12:46:45.020034+00:00",
+  "fetched_at": "2026-10-07T12:49:53.616148+00:00",
   "value": {
    "description": "C3.ai, Inc. operates as an enterprise artificial intelligence application software company in North America, Europe, the Middle East, Africa, the Asia Pacific, and internationally.",
    "gross_margin": 0.31826252983293557,
@@ -3908,16 +3908,27 @@
   }
  },
  "fundamentals:CCJ": {
-  "fetched_at": "2026-09-04T12:42:19.374621+00:00",
+  "fetched_at": "2026-10-07T12:49:53.293356+00:00",
   "value": {
-   "gross_margin": 0.2336477539163304,
-   "gross_margin_change": -0.12310228896455541,
-   "latest_quarter": "2026-06-30",
+   "description": "Cameco Corporation provides uranium for the generation of electricity in the Americas, Europe, and Asia.",
+   "gross_margin": 0.3567500428808858,
+   "gross_margin_change": 0.12959525450854104,
+   "industry": "Uranium",
+   "last_earnings": {
+    "eps_actual": 0.18,
+    "eps_estimate": 0.37581,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-03-31",
    "next_earnings": "2026-10-30",
-   "operating_margin": 0.09110537103758792,
-   "operating_margin_change": -0.10306874310245809,
+   "operating_margin": 0.194174114140046,
+   "operating_margin_change": 0.024037636576824173,
    "profitable": true,
    "revenue_history": [
+    {
+     "quarter": "2025-03-31",
+     "revenue": 789432000.0
+    },
     {
      "quarter": "2025-06-30",
      "revenue": 877016000.0
@@ -3933,14 +3944,11 @@
     {
      "quarter": "2026-03-31",
      "revenue": 845365000.0
-    },
-    {
-     "quarter": "2026-06-30",
-     "revenue": 813772000.0
     }
    ],
-   "revenue_qoq": -0.03737202273574136,
-   "revenue_yoy": -0.07211270946026072
+   "revenue_qoq": -0.29607470876737196,
+   "revenue_yoy": 0.07085220766323119,
+   "sector": "Energy"
   }
  },
  "fundamentals:CCL": {
@@ -6128,7 +6136,7 @@
   }
  },
  "fundamentals:DG": {
-  "fetched_at": "2026-09-29T12:48:56.443742+00:00",
+  "fetched_at": "2026-10-07T12:49:53.395168+00:00",
   "value": {
    "description": "Dollar General Corporation, a discount retailer, provides various merchandise products in the southern, southwestern, midwestern, and eastern United States.",
    "gross_margin": 0.32602277336989544,
@@ -6436,7 +6444,7 @@
   }
  },
  "fundamentals:DLTR": {
-  "fetched_at": "2026-10-06T12:46:45.087151+00:00",
+  "fetched_at": "2026-10-07T12:49:53.501836+00:00",
   "value": {
    "description": "Dollar Tree, Inc. operates retail discount stores under the Dollar Tree and Dollar Tree Canada brands in the United States and Canada.",
    "gross_margin": 0.42913804383382403,
@@ -7360,7 +7368,7 @@
   }
  },
  "fundamentals:FCEL": {
-  "fetched_at": "2026-10-05T12:50:25.496417+00:00",
+  "fetched_at": "2026-10-07T12:49:53.501859+00:00",
   "value": {
    "description": "FuelCell Energy, Inc., together with its subsidiaries, engages in the design, development, production, construction, operation, and servicing of high temperature fuel cells for clean electric power generation.",
    "gross_margin": -0.7424926517378261,
@@ -12892,10 +12900,17 @@
   }
  },
  "fundamentals:NRG": {
-  "fetched_at": "2026-08-26T20:48:34.022438+00:00",
+  "fetched_at": "2026-10-07T12:49:53.164506+00:00",
   "value": {
+   "description": "NRG Energy, Inc., together with its subsidiaries, operates as an energy and home services company in the United States and Canada.",
    "gross_margin": 0.2688143296350755,
    "gross_margin_change": 0.1325038772169788,
+   "industry": "Utilities - Independent Power Producers",
+   "last_earnings": {
+    "eps_actual": 1.49,
+    "eps_estimate": 1.74005,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-05",
    "operating_margin": 0.12765673038363856,
@@ -12924,7 +12939,8 @@
     }
    ],
    "revenue_qoq": -0.27057332293291736,
-   "revenue_yoy": 0.10994065281899101
+   "revenue_yoy": 0.10994065281899101,
+   "sector": "Utilities"
   }
  },
  "fundamentals:NTR": {
@@ -14004,7 +14020,7 @@
   }
  },
  "fundamentals:PL": {
-  "fetched_at": "2026-10-06T12:46:45.087123+00:00",
+  "fetched_at": "2026-10-07T12:49:53.316028+00:00",
   "value": {
    "description": "Planet Labs PBC engages in the design, construction, and launch of constellations of satellites with the intent of providing high-cadence geospatial data delivered to customers through an online platform in the United\u2026",
    "gross_margin": 0.5655395857029607,
@@ -16396,7 +16412,7 @@
   }
  },
  "fundamentals:STZ": {
-  "fetched_at": "2026-09-15T12:42:52.799080+00:00",
+  "fetched_at": "2026-10-07T12:49:53.293367+00:00",
   "value": {
    "description": "Constellation Brands, Inc., together with its subsidiaries, produces, imports, markets, and sells beer, wine, and spirits in the United States, Canada, Mexico, New Zealand, and Italy.",
    "gross_margin": 0.5428536194351955,
@@ -17449,6 +17465,50 @@
    "revenue_qoq": 0.07483147769446341,
    "revenue_yoy": 0.12172950754881029,
    "sector": "Technology"
+  }
+ },
+ "fundamentals:UEC": {
+  "fetched_at": "2026-10-07T12:49:53.293339+00:00",
+  "value": {
+   "description": "Uranium Energy Corp., together with its subsidiaries, engages in exploration, pre-extraction, extraction, and processing of uranium and titanium concentrates properties in the United States, Canada, and the Republic of\u2026",
+   "gross_margin": null,
+   "gross_margin_change": null,
+   "industry": "Uranium",
+   "last_earnings": {
+    "eps_actual": -0.12,
+    "eps_estimate": -0.05,
+    "quarter": "2026-07-31"
+   },
+   "latest_quarter": "2026-04-30",
+   "next_earnings": "2026-12-08",
+   "operating_margin": null,
+   "operating_margin_change": null,
+   "profitable": null,
+   "revenue_history": [
+    {
+     "quarter": "2025-04-30",
+     "revenue": 0.0
+    },
+    {
+     "quarter": "2025-07-31",
+     "revenue": 0.0
+    },
+    {
+     "quarter": "2025-10-31",
+     "revenue": 0.0
+    },
+    {
+     "quarter": "2026-01-31",
+     "revenue": 20200000.0
+    },
+    {
+     "quarter": "2026-04-30",
+     "revenue": 0.0
+    }
+   ],
+   "revenue_qoq": -1.0,
+   "revenue_yoy": null,
+   "sector": "Energy"
   }
  },
  "fundamentals:UL": {
