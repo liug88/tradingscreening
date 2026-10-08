@@ -996,7 +996,7 @@
   }
  },
  "fundamentals:AI": {
-  "fetched_at": "2026-10-07T12:49:53.616148+00:00",
+  "fetched_at": "2026-10-08T12:49:32.101215+00:00",
   "value": {
    "description": "C3.ai, Inc. operates as an enterprise artificial intelligence application software company in North America, Europe, the Middle East, Africa, the Asia Pacific, and internationally.",
    "gross_margin": 0.31826252983293557,
@@ -6444,7 +6444,7 @@
   }
  },
  "fundamentals:DLTR": {
-  "fetched_at": "2026-10-07T12:49:53.501836+00:00",
+  "fetched_at": "2026-10-08T12:49:32.059536+00:00",
   "value": {
    "description": "Dollar Tree, Inc. operates retail discount stores under the Dollar Tree and Dollar Tree Canada brands in the United States and Canada.",
    "gross_margin": 0.42913804383382403,
@@ -14020,7 +14020,7 @@
   }
  },
  "fundamentals:PL": {
-  "fetched_at": "2026-10-07T12:49:53.316028+00:00",
+  "fetched_at": "2026-10-08T12:49:32.059511+00:00",
   "value": {
    "description": "Planet Labs PBC engages in the design, construction, and launch of constellations of satellites with the intent of providing high-cadence geospatial data delivered to customers through an online platform in the United\u2026",
    "gross_margin": 0.5655395857029607,
@@ -16323,6 +16323,50 @@
    "sector": "Communication Services"
   }
  },
+ "fundamentals:SRPT": {
+  "fetched_at": "2026-10-08T12:49:32.129007+00:00",
+  "value": {
+   "description": "Sarepta Therapeutics, Inc., a commercial-stage biopharmaceutical company, focuses on the discovery and development of RNA-targeted therapeutics, siRNA platform, gene therapy, and other genetic therapeutic modalities for\u2026",
+   "gross_margin": 0.6277018624252649,
+   "gross_margin_change": -0.2234645941984763,
+   "industry": "Biotechnology",
+   "last_earnings": {
+    "eps_actual": 0.64,
+    "eps_estimate": 0.48606,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-04",
+   "operating_margin": 0.1303199244363254,
+   "operating_margin_change": -0.360144674094332,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 611091000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 399356000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 442934000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 730803000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 401251000.0
+    }
+   ],
+   "revenue_qoq": -0.4509450563284496,
+   "revenue_yoy": -0.3433858459705674,
+   "sector": "Healthcare"
+  }
+ },
  "fundamentals:STM": {
   "fetched_at": "2026-09-11T20:21:48.068365+00:00",
   "value": {
@@ -16412,16 +16456,16 @@
   }
  },
  "fundamentals:STZ": {
-  "fetched_at": "2026-10-07T12:49:53.293367+00:00",
+  "fetched_at": "2026-10-08T12:49:31.989686+00:00",
   "value": {
    "description": "Constellation Brands, Inc., together with its subsidiaries, produces, imports, markets, and sells beer, wine, and spirits in the United States, Canada, Mexico, New Zealand, and Italy.",
    "gross_margin": 0.5428536194351955,
    "gross_margin_change": 0.0472281637534957,
    "industry": "Beverages - Brewers",
    "last_earnings": {
-    "eps_actual": 3.43,
-    "eps_estimate": 3.20174,
-    "quarter": "2026-05-31"
+    "eps_actual": 3.74,
+    "eps_estimate": 3.54593,
+    "quarter": "2026-08-31"
    },
    "latest_quarter": "2026-05-31",
    "next_earnings": "2026-10-06",
@@ -17512,7 +17556,7 @@
   }
  },
  "fundamentals:UL": {
-  "fetched_at": "2026-10-05T12:50:25.666681+00:00",
+  "fetched_at": "2026-10-08T12:49:32.059548+00:00",
   "value": {
    "description": "Unilever PLC operates as a fast-moving consumer goods company in the Asia Pacific, Africa, the Americas, and Europe.",
    "gross_margin": null,
