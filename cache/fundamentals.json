@@ -6136,7 +6136,7 @@
   }
  },
  "fundamentals:DG": {
-  "fetched_at": "2026-10-07T12:49:53.395168+00:00",
+  "fetched_at": "2026-10-09T12:47:17.566375+00:00",
   "value": {
    "description": "Dollar General Corporation, a discount retailer, provides various merchandise products in the southern, southwestern, midwestern, and eastern United States.",
    "gross_margin": 0.32602277336989544,
@@ -6444,7 +6444,7 @@
   }
  },
  "fundamentals:DLTR": {
-  "fetched_at": "2026-10-08T12:49:32.059536+00:00",
+  "fetched_at": "2026-10-09T12:47:17.755390+00:00",
   "value": {
    "description": "Dollar Tree, Inc. operates retail discount stores under the Dollar Tree and Dollar Tree Canada brands in the United States and Canada.",
    "gross_margin": 0.42913804383382403,
@@ -13756,16 +13756,16 @@
   }
  },
  "fundamentals:PEP": {
-  "fetched_at": "2026-09-15T12:42:53.375639+00:00",
+  "fetched_at": "2026-10-09T12:47:17.657291+00:00",
   "value": {
    "description": "PepsiCo, Inc. engages in the manufacture, marketing, distribution, and sale of various beverages and convenient foods worldwide.",
    "gross_margin": 0.5422025557255696,
    "gross_margin_change": -0.00971844412013323,
    "industry": "Beverages - Non-Alcoholic",
    "last_earnings": {
-    "eps_actual": 2.2,
-    "eps_estimate": 2.2082,
-    "quarter": "2026-06-30"
+    "eps_actual": 2.34,
+    "eps_estimate": 2.29525,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-08",
@@ -16456,7 +16456,7 @@
   }
  },
  "fundamentals:STZ": {
-  "fetched_at": "2026-10-08T12:49:31.989686+00:00",
+  "fetched_at": "2026-10-09T12:47:17.566338+00:00",
   "value": {
    "description": "Constellation Brands, Inc., together with its subsidiaries, produces, imports, markets, and sells beer, wine, and spirits in the United States, Canada, Mexico, New Zealand, and Italy.",
    "gross_margin": 0.5428536194351955,
@@ -16585,6 +16585,50 @@
    "revenue_qoq": 0.06557178334910119,
    "revenue_yoy": 0.2173829335558104,
    "sector": "Industrials"
+  }
+ },
+ "fundamentals:T": {
+  "fetched_at": "2026-10-09T12:47:17.657264+00:00",
+  "value": {
+   "description": "AT&T Inc. provides telecommunications and technology services worldwide.",
+   "gross_margin": 0.618258444768363,
+   "gross_margin_change": 0.01710310927671066,
+   "industry": "Telecom Services",
+   "last_earnings": {
+    "eps_actual": 0.65,
+    "eps_estimate": 0.58827,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-10-21",
+   "operating_margin": 0.23208061347360415,
+   "operating_margin_change": 0.020755786456528036,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 30847000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 30709000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 33466000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 31506000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 31558000000.0
+    }
+   ],
+   "revenue_qoq": 0.0016504792737890295,
+   "revenue_yoy": 0.02304924303822098,
+   "sector": "Communication Services"
   }
  },
  "fundamentals:TECK": {
@@ -17556,7 +17600,7 @@
   }
  },
  "fundamentals:UL": {
-  "fetched_at": "2026-10-08T12:49:32.059548+00:00",
+  "fetched_at": "2026-10-09T12:47:17.580492+00:00",
   "value": {
    "description": "Unilever PLC operates as a fast-moving consumer goods company in the Asia Pacific, Africa, the Americas, and Europe.",
    "gross_margin": null,
