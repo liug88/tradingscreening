@@ -1,6 +1,6 @@
 {
  "cboe_weekly_equities": {
-  "fetched_at": "2026-10-05T12:50:10.222946+00:00",
+  "fetched_at": "2026-10-12T13:07:54.936558+00:00",
   "value": [
    "AA",
    "AAL",
@@ -412,7 +412,6 @@
    "POET",
    "PONY",
    "PPG",
-   "PSKY",
    "PSX",
    "PTON",
    "PURR",
@@ -467,6 +466,7 @@
    "SIG",
    "SIRI",
    "SKHY",
+   "SKYD",
    "SLB",
    "SLS",
    "SMCI",
@@ -556,7 +556,6 @@
    "VST",
    "VZ",
    "W",
-   "WBD",
    "WDAY",
    "WDC",
    "WEN",
