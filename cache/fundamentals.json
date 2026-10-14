@@ -396,19 +396,19 @@
   }
  },
  "fundamentals:ACI": {
-  "fetched_at": "2026-09-15T12:42:51.777704+00:00",
+  "fetched_at": "2026-10-14T12:44:40.804720+00:00",
   "value": {
    "description": "Albertsons Companies, Inc., through its subsidiaries, operates in the food and drug retail industry in the United States.",
    "gross_margin": 0.2661457163934952,
    "gross_margin_change": -0.006071622957291356,
    "industry": "Grocery Stores",
    "last_earnings": {
-    "eps_actual": 0.42,
-    "eps_estimate": 0.53842,
-    "quarter": "2026-05-31"
+    "eps_actual": 0.36,
+    "eps_estimate": 0.32835,
+    "quarter": "2026-08-31"
    },
    "latest_quarter": "2026-05-31",
-   "next_earnings": "2026-10-13",
+   "next_earnings": "2027-01-06",
    "operating_margin": 0.010380248259935209,
    "operating_margin_change": 0.03458502601247567,
    "profitable": true,
@@ -3480,16 +3480,16 @@
   }
  },
  "fundamentals:C": {
-  "fetched_at": "2026-09-11T20:21:48.893884+00:00",
+  "fetched_at": "2026-10-14T12:44:40.974961+00:00",
   "value": {
    "description": "Citigroup Inc., a diversified financial service holding company, provides various financial products and services to consumers, corporations, governments, and institutions.",
    "gross_margin": null,
    "gross_margin_change": null,
    "industry": "Banks - Diversified",
    "last_earnings": {
-    "eps_actual": 3.13897,
-    "eps_estimate": 2.7149,
-    "quarter": "2026-06-30"
+    "eps_actual": 2.8325,
+    "eps_estimate": 2.62405,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-13",
@@ -5060,10 +5060,17 @@
   }
  },
  "fundamentals:CPB": {
-  "fetched_at": "2026-09-10T12:42:59.634093+00:00",
+  "fetched_at": "2026-10-14T12:44:41.120403+00:00",
   "value": {
+   "description": "The Campbell's Company, together with its subsidiaries, engages in the manufacture and marketing of food and beverage products in the United States and internationally.",
    "gross_margin": 0.27472527472527475,
    "gross_margin_change": -0.0049159109221511565,
+   "industry": "Packaged Foods",
+   "last_earnings": {
+    "eps_actual": 0.39,
+    "eps_estimate": 0.38719,
+    "quarter": "2026-07-31"
+   },
    "latest_quarter": "2026-04-30",
    "next_earnings": "2026-09-03",
    "operating_margin": 0.10397295012679628,
@@ -5092,7 +5099,8 @@
     }
    ],
    "revenue_qoq": -0.07722308892355689,
-   "revenue_yoy": -0.04404040404040399
+   "revenue_yoy": -0.04404040404040399,
+   "sector": "Consumer Defensive"
   }
  },
  "fundamentals:CPNG": {
@@ -6144,7 +6152,7 @@
   }
  },
  "fundamentals:DG": {
-  "fetched_at": "2026-10-13T12:51:53.970898+00:00",
+  "fetched_at": "2026-10-14T12:44:40.831479+00:00",
   "value": {
    "description": "Dollar General Corporation, a discount retailer, provides various merchandise products in the southern, southwestern, midwestern, and eastern United States.",
    "gross_margin": 0.32602277336989544,
@@ -8556,16 +8564,16 @@
   }
  },
  "fundamentals:GS": {
-  "fetched_at": "2026-09-11T20:21:45.994700+00:00",
+  "fetched_at": "2026-10-14T12:44:41.062717+00:00",
   "value": {
    "description": "The Goldman Sachs Group, Inc., a financial institution, provides a range of financial services for corporations, financial institutions, governments, and individuals in the Americas, Europe, the Middle East, Africa, and\u2026",
    "gross_margin": null,
    "gross_margin_change": null,
    "industry": "Capital Markets",
    "last_earnings": {
-    "eps_actual": 20.98,
-    "eps_estimate": 14.54249,
-    "quarter": "2026-06-30"
+    "eps_actual": 17.01,
+    "eps_estimate": 13.08695,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-13",
@@ -10096,16 +10104,16 @@
   }
  },
  "fundamentals:JPM": {
-  "fetched_at": "2026-09-11T20:21:49.053032+00:00",
+  "fetched_at": "2026-10-14T12:44:41.028477+00:00",
   "value": {
    "description": "JPMorgan Chase & Co. operates as a bank and financial holding company in the United States, rest of North America, Europe, the Middle East, Africa, the Asia Pacific, Latin America, and the Caribbean.",
    "gross_margin": null,
    "gross_margin_change": null,
    "industry": "Banks - Diversified",
    "last_earnings": {
-    "eps_actual": 6.14,
-    "eps_estimate": 5.79998,
-    "quarter": "2026-06-30"
+    "eps_actual": 5.75,
+    "eps_estimate": 5.94266,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-13",
@@ -11328,10 +11336,17 @@
   }
  },
  "fundamentals:LVS": {
-  "fetched_at": "2026-08-26T20:48:36.235232+00:00",
+  "fetched_at": "2026-10-14T12:44:40.893098+00:00",
   "value": {
+   "description": "Las Vegas Sands Corp., together with its subsidiaries, owns, develops, and operates integrated resorts in Macao and Singapore.",
    "gross_margin": 0.46924540266328474,
    "gross_margin_change": -0.018620706123326114,
+   "industry": "Resorts & Casinos",
+   "last_earnings": {
+    "eps_actual": 0.59,
+    "eps_estimate": 0.75675,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-21",
    "operating_margin": 0.19816106531388714,
@@ -11360,7 +11375,8 @@
     }
    ],
    "revenue_qoq": -0.12022315202231515,
-   "revenue_yoy": -0.006614173228346454
+   "revenue_yoy": -0.006614173228346454,
+   "sector": "Consumer Cyclical"
   }
  },
  "fundamentals:LYFT": {
@@ -13860,7 +13876,7 @@
   }
  },
  "fundamentals:PEP": {
-  "fetched_at": "2026-10-09T12:47:17.657291+00:00",
+  "fetched_at": "2026-10-14T12:44:40.831447+00:00",
   "value": {
    "description": "PepsiCo, Inc. engages in the manufacture, marketing, distribution, and sale of various beverages and convenient foods worldwide.",
    "gross_margin": 0.5422025557255696,
@@ -16560,7 +16576,7 @@
   }
  },
  "fundamentals:STZ": {
-  "fetched_at": "2026-10-13T12:51:53.922114+00:00",
+  "fetched_at": "2026-10-14T12:44:40.974923+00:00",
   "value": {
    "description": "Constellation Brands, Inc., together with its subsidiaries, produces, imports, markets, and sells beer, wine, and spirits in the United States, Canada, Mexico, New Zealand, and Italy.",
    "gross_margin": 0.5428536194351955,
@@ -17704,7 +17720,7 @@
   }
  },
  "fundamentals:UL": {
-  "fetched_at": "2026-10-13T12:51:53.970876+00:00",
+  "fetched_at": "2026-10-14T12:44:40.831469+00:00",
   "value": {
    "description": "Unilever PLC operates as a fast-moving consumer goods company in the Asia Pacific, Africa, the Americas, and Europe.",
    "gross_margin": null,
@@ -17811,16 +17827,16 @@
   }
  },
  "fundamentals:UNH": {
-  "fetched_at": "2026-09-21T12:41:26.571423+00:00",
+  "fetched_at": "2026-10-14T12:44:40.974950+00:00",
   "value": {
    "description": "UnitedHealth Group Incorporated operates as a health care company in the United States and internationally.",
    "gross_margin": 0.20796736646672379,
    "gross_margin_change": -0.019465255869273917,
    "industry": "Healthcare Plans",
    "last_earnings": {
-    "eps_actual": 6.38,
-    "eps_estimate": 4.9151,
-    "quarter": "2026-06-30"
+    "eps_actual": 4.69,
+    "eps_estimate": 4.14082,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-13",
@@ -18710,16 +18726,16 @@
   }
  },
  "fundamentals:WFC": {
-  "fetched_at": "2026-10-02T12:47:35.277842+00:00",
+  "fetched_at": "2026-10-14T12:44:41.028501+00:00",
   "value": {
    "description": "Wells Fargo & Company, a financial services company, provides diversified banking, investment, mortgage, and consumer and commercial finance products and services in the United States and internationally.",
    "gross_margin": null,
    "gross_margin_change": null,
    "industry": "Banks - Diversified",
    "last_earnings": {
-    "eps_actual": 2.0,
-    "eps_estimate": 1.71847,
-    "quarter": "2026-06-30"
+    "eps_actual": 1.87,
+    "eps_estimate": 1.85577,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-13",
