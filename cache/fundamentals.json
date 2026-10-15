@@ -308,7 +308,7 @@
   }
  },
  "fundamentals:ABT": {
-  "fetched_at": "2026-09-16T12:43:50.805537+00:00",
+  "fetched_at": "2026-10-15T12:46:28.771318+00:00",
   "value": {
    "description": "Abbott Laboratories, together with its subsidiaries, discovers, develops, manufactures, and sells health care products worldwide.",
    "gross_margin": 0.5619849516302401,
@@ -320,7 +320,7 @@
     "quarter": "2026-06-30"
    },
    "latest_quarter": "2026-03-31",
-   "next_earnings": "2026-10-14",
+   "next_earnings": "2026-10-21",
    "operating_margin": 0.12047653170906485,
    "operating_margin_change": -0.07596294817574185,
    "profitable": true,
@@ -352,7 +352,7 @@
   }
  },
  "fundamentals:ABVX": {
-  "fetched_at": "2026-09-30T12:51:41.033432+00:00",
+  "fetched_at": "2026-10-15T12:46:29.156272+00:00",
   "value": {
    "description": "ABIVAX Soci\u00e9t\u00e9 Anonyme, a clinical-stage biotechnology company, develops therapeutics that harness the body's natural regulatory mechanisms to stabilize the immune response in patients with chronic inflammatory diseases.",
    "gross_margin": null,
@@ -1180,10 +1180,17 @@
   }
  },
  "fundamentals:ALB": {
-  "fetched_at": "2026-08-26T20:44:00.223896+00:00",
+  "fetched_at": "2026-10-15T12:46:29.360195+00:00",
   "value": {
+   "description": "Albemarle Corporation provides energy storage solutions worldwide.",
    "gross_margin": 0.33860872947084086,
    "gross_margin_change": -0.012028304372478815,
+   "industry": "Specialty Chemicals",
+   "last_earnings": {
+    "eps_actual": 3.75,
+    "eps_estimate": 3.24074,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-04",
    "operating_margin": 0.26402659763335673,
@@ -1212,7 +1219,8 @@
     }
    ],
    "revenue_qoq": 0.22018280558061654,
-   "revenue_yoy": 0.3107695384633893
+   "revenue_yoy": 0.3107695384633893,
+   "sector": "Basic Materials"
   }
  },
  "fundamentals:ALGN": {
@@ -2520,16 +2528,16 @@
   }
  },
  "fundamentals:BAC": {
-  "fetched_at": "2026-09-16T12:43:50.298628+00:00",
+  "fetched_at": "2026-10-15T12:46:29.360160+00:00",
   "value": {
    "description": "Bank of America Corporation, through its subsidiaries, provides various financial products and services for individual consumers, small and middle-market businesses, institutional investors, large corporations, and\u2026",
    "gross_margin": null,
    "gross_margin_change": null,
    "industry": "Banks - Diversified",
    "last_earnings": {
-    "eps_actual": 1.21,
-    "eps_estimate": 1.12309,
-    "quarter": "2026-06-30"
+    "eps_actual": 0.91,
+    "eps_estimate": 1.10665,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-03-31",
    "next_earnings": "2026-10-14",
@@ -2996,19 +3004,19 @@
   }
  },
  "fundamentals:BLK": {
-  "fetched_at": "2026-09-16T12:43:50.805549+00:00",
+  "fetched_at": "2026-10-15T12:46:29.360183+00:00",
   "value": {
    "description": "BlackRock, Inc. is a publicly owned investment manager.",
    "gross_margin": 0.48955392433653305,
    "gross_margin_change": 0.009410597970453627,
    "industry": "Asset Management",
    "last_earnings": {
-    "eps_actual": 13.91,
-    "eps_estimate": 12.68929,
-    "quarter": "2026-06-30"
+    "eps_actual": 15.93,
+    "eps_estimate": 14.30163,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-14",
+   "next_earnings": "2027-01-14",
    "operating_margin": 0.3489553924336533,
    "operating_margin_change": 0.011391940657003552,
    "profitable": true,
@@ -3480,7 +3488,7 @@
   }
  },
  "fundamentals:C": {
-  "fetched_at": "2026-10-14T12:44:40.974961+00:00",
+  "fetched_at": "2026-10-15T12:46:29.139676+00:00",
   "value": {
    "description": "Citigroup Inc., a diversified financial service holding company, provides various financial products and services to consumers, corporations, governments, and institutions.",
    "gross_margin": null,
@@ -3492,7 +3500,7 @@
     "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-13",
+   "next_earnings": "2027-01-14",
    "operating_margin": null,
    "operating_margin_change": null,
    "profitable": null,
@@ -5060,7 +5068,7 @@
   }
  },
  "fundamentals:CPB": {
-  "fetched_at": "2026-10-14T12:44:41.120403+00:00",
+  "fetched_at": "2026-10-15T12:46:28.984452+00:00",
   "value": {
    "description": "The Campbell's Company, together with its subsidiaries, engages in the manufacture and marketing of food and beverage products in the United States and internationally.",
    "gross_margin": 0.27472527472527475,
@@ -6152,7 +6160,7 @@
   }
  },
  "fundamentals:DG": {
-  "fetched_at": "2026-10-14T12:44:40.831479+00:00",
+  "fetched_at": "2026-10-15T12:46:28.771293+00:00",
   "value": {
    "description": "Dollar General Corporation, a discount retailer, provides various merchandise products in the southern, southwestern, midwestern, and eastern United States.",
    "gross_margin": 0.32602277336989544,
@@ -6460,7 +6468,7 @@
   }
  },
  "fundamentals:DLTR": {
-  "fetched_at": "2026-10-13T12:51:54.040139+00:00",
+  "fetched_at": "2026-10-15T12:46:29.067114+00:00",
   "value": {
    "description": "Dollar Tree, Inc. operates retail discount stores under the Dollar Tree and Dollar Tree Canada brands in the United States and Canada.",
    "gross_margin": 0.42913804383382403,
@@ -8564,7 +8572,7 @@
   }
  },
  "fundamentals:GS": {
-  "fetched_at": "2026-10-14T12:44:41.062717+00:00",
+  "fetched_at": "2026-10-15T12:46:29.208269+00:00",
   "value": {
    "description": "The Goldman Sachs Group, Inc., a financial institution, provides a range of financial services for corporations, financial institutions, governments, and individuals in the Americas, Europe, the Middle East, Africa, and\u2026",
    "gross_margin": null,
@@ -8575,12 +8583,16 @@
     "eps_estimate": 13.08695,
     "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-03-31",
    "next_earnings": "2026-10-13",
    "operating_margin": null,
    "operating_margin_change": null,
    "profitable": null,
    "revenue_history": [
+    {
+     "quarter": "2025-03-31",
+     "revenue": 15062000000.0
+    },
     {
      "quarter": "2025-06-30",
      "revenue": 14583000000.0
@@ -8596,14 +8608,10 @@
     {
      "quarter": "2026-03-31",
      "revenue": 17227000000.0
-    },
-    {
-     "quarter": "2026-06-30",
-     "revenue": 20338000000.0
     }
    ],
-   "revenue_qoq": 0.1805886109014918,
-   "revenue_yoy": 0.394637591716382,
+   "revenue_qoq": 0.28043704474505726,
+   "revenue_yoy": 0.1437392112601248,
    "sector": "Financial Services"
   }
  },
@@ -9136,7 +9144,7 @@
   }
  },
  "fundamentals:HRL": {
-  "fetched_at": "2026-10-05T12:50:25.343063+00:00",
+  "fetched_at": "2026-10-15T12:46:28.856262+00:00",
   "value": {
    "description": "Hormel Foods Corporation develops, processes, and distributes various meat, nut, and other food products to foodservice, convenience stores, and commercial customers in the United States and internationally.",
    "gross_margin": 0.15922390355964697,
@@ -10060,16 +10068,16 @@
   }
  },
  "fundamentals:JNJ": {
-  "fetched_at": "2026-09-18T12:41:59.409200+00:00",
+  "fetched_at": "2026-10-15T12:46:29.493934+00:00",
   "value": {
    "description": "Johnson & Johnson, together with its subsidiaries, engages in the research and development, manufacture, and sale of a range of products in the healthcare field worldwide.",
    "gross_margin": 0.6819043856183327,
    "gross_margin_change": 0.018784112989291057,
    "industry": "Drug Manufacturers - General",
    "last_earnings": {
-    "eps_actual": 2.9,
-    "eps_estimate": 2.85484,
-    "quarter": "2026-06-30"
+    "eps_actual": 2.59,
+    "eps_estimate": 2.52225,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-13",
@@ -10104,7 +10112,7 @@
   }
  },
  "fundamentals:JPM": {
-  "fetched_at": "2026-10-14T12:44:41.028477+00:00",
+  "fetched_at": "2026-10-15T12:46:28.630510+00:00",
   "value": {
    "description": "JPMorgan Chase & Co. operates as a bank and financial holding company in the United States, rest of North America, Europe, the Middle East, Africa, the Asia Pacific, Latin America, and the Caribbean.",
    "gross_margin": null,
@@ -10116,7 +10124,7 @@
     "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-13",
+   "next_earnings": "2027-01-14",
    "operating_margin": null,
    "operating_margin_change": null,
    "profitable": null,
@@ -11204,7 +11212,7 @@
   }
  },
  "fundamentals:LULU": {
-  "fetched_at": "2026-09-30T12:51:41.180312+00:00",
+  "fetched_at": "2026-10-15T12:46:29.367016+00:00",
   "value": {
    "description": "lululemon athletica inc., together with its subsidiaries, designs, distributes, and retails technical athletic apparel, footwear, and accessories for women and men under the lululemon brand in the United States, Canada\u2026",
    "gross_margin": 0.6051743830080009,
@@ -12236,19 +12244,19 @@
   }
  },
  "fundamentals:MS": {
-  "fetched_at": "2026-09-14T12:43:45.966321+00:00",
+  "fetched_at": "2026-10-15T12:46:29.199376+00:00",
   "value": {
    "description": "Morgan Stanley, a financial holding company, provides various financial products and services to corporations, governments, financial institutions, and individuals in the Americas, Asia, Europe, the Middle East, and\u2026",
    "gross_margin": null,
    "gross_margin_change": null,
    "industry": "Capital Markets",
    "last_earnings": {
-    "eps_actual": 3.46,
-    "eps_estimate": 2.93372,
-    "quarter": "2026-06-30"
+    "eps_actual": 3.03,
+    "eps_estimate": 2.9159,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-14",
+   "next_earnings": "2027-01-14",
    "operating_margin": null,
    "operating_margin_change": null,
    "profitable": null,
@@ -13876,7 +13884,7 @@
   }
  },
  "fundamentals:PEP": {
-  "fetched_at": "2026-10-14T12:44:40.831447+00:00",
+  "fetched_at": "2026-10-15T12:46:28.837487+00:00",
   "value": {
    "description": "PepsiCo, Inc. engages in the manufacture, marketing, distribution, and sale of various beverages and convenient foods worldwide.",
    "gross_margin": 0.5422025557255696,
@@ -16576,7 +16584,7 @@
   }
  },
  "fundamentals:STZ": {
-  "fetched_at": "2026-10-14T12:44:40.974923+00:00",
+  "fetched_at": "2026-10-15T12:46:29.053676+00:00",
   "value": {
    "description": "Constellation Brands, Inc., together with its subsidiaries, produces, imports, markets, and sells beer, wine, and spirits in the United States, Canada, Mexico, New Zealand, and Italy.",
    "gross_margin": 0.5428536194351955,
@@ -17720,7 +17728,7 @@
   }
  },
  "fundamentals:UL": {
-  "fetched_at": "2026-10-14T12:44:40.831469+00:00",
+  "fetched_at": "2026-10-15T12:46:28.771331+00:00",
   "value": {
    "description": "Unilever PLC operates as a fast-moving consumer goods company in the Asia Pacific, Africa, the Americas, and Europe.",
    "gross_margin": null,
@@ -17827,7 +17835,7 @@
   }
  },
  "fundamentals:UNH": {
-  "fetched_at": "2026-10-14T12:44:40.974950+00:00",
+  "fetched_at": "2026-10-15T12:46:28.845279+00:00",
   "value": {
    "description": "UnitedHealth Group Incorporated operates as a health care company in the United States and internationally.",
    "gross_margin": 0.20796736646672379,
@@ -18638,7 +18646,7 @@
   }
  },
  "fundamentals:WDAY": {
-  "fetched_at": "2026-10-01T12:48:27.773411+00:00",
+  "fetched_at": "2026-10-15T12:46:29.053697+00:00",
   "value": {
    "description": "Workday, Inc. provides enterprise cloud applications in the United States and internationally.",
    "gross_margin": 0.7538693846734617,
@@ -18726,7 +18734,7 @@
   }
  },
  "fundamentals:WFC": {
-  "fetched_at": "2026-10-14T12:44:41.028501+00:00",
+  "fetched_at": "2026-10-15T12:46:28.917905+00:00",
   "value": {
    "description": "Wells Fargo & Company, a financial services company, provides diversified banking, investment, mortgage, and consumer and commercial finance products and services in the United States and internationally.",
    "gross_margin": null,
@@ -18734,11 +18742,11 @@
    "industry": "Banks - Diversified",
    "last_earnings": {
     "eps_actual": 1.87,
-    "eps_estimate": 1.85577,
+    "eps_estimate": 1.8552,
     "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-13",
+   "next_earnings": "2027-01-14",
    "operating_margin": null,
    "operating_margin_change": null,
    "profitable": null,
@@ -18767,6 +18775,50 @@
    "revenue_qoq": 0.05483540054089331,
    "revenue_yoy": 0.09981039428265848,
    "sector": "Financial Services"
+  }
+ },
+ "fundamentals:WGS": {
+  "fetched_at": "2026-10-15T12:46:29.458127+00:00",
+  "value": {
+   "description": "GeneDx Holdings Corp., a genomics company, provides genetic testing services.",
+   "gross_margin": 0.6836595595945474,
+   "gross_margin_change": 0.01658541090598753,
+   "industry": "Diagnostics & Research",
+   "last_earnings": {
+    "eps_actual": 0.01,
+    "eps_estimate": -0.1875,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-10-27",
+   "operating_margin": -0.13319643481300245,
+   "operating_margin_change": 0.122871787457031,
+   "profitable": false,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 102692000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 116743000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 120989000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 102254000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 114440000.0
+    }
+   ],
+   "revenue_qoq": 0.11917382205097105,
+   "revenue_yoy": 0.11440034277256261,
+   "sector": "Healthcare"
   }
  },
  "fundamentals:WMB": {
