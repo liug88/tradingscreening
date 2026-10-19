@@ -1,15 +1,15 @@
 {
  "fundamentals:AA": {
-  "fetched_at": "2026-09-30T12:51:41.440139+00:00",
+  "fetched_at": "2026-10-19T12:47:52.476041+00:00",
   "value": {
    "description": "Alcoa Corporation, together with its subsidiaries, engages in the bauxite mining, alumina refining, aluminum production, and energy generation business in Australia, Brazil, Canada, Iceland, Norway, Spain, the United\u2026",
    "gross_margin": 0.2518910741301059,
    "gross_margin_change": 0.03861202621278678,
    "industry": "Aluminum",
    "last_earnings": {
-    "eps_actual": 2.12,
-    "eps_estimate": 2.19038,
-    "quarter": "2026-06-30"
+    "eps_actual": 1.82,
+    "eps_estimate": 1.51426,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-15",
@@ -352,7 +352,7 @@
   }
  },
  "fundamentals:ABVX": {
-  "fetched_at": "2026-10-16T12:45:10.906601+00:00",
+  "fetched_at": "2026-10-19T12:47:52.663057+00:00",
   "value": {
    "description": "ABIVAX Soci\u00e9t\u00e9 Anonyme, a clinical-stage biotechnology company, develops therapeutics that harness the body's natural regulatory mechanisms to stabilize the immune response in patients with chronic inflammatory diseases.",
    "gross_margin": null,
@@ -5068,7 +5068,7 @@
   }
  },
  "fundamentals:CPB": {
-  "fetched_at": "2026-10-16T12:45:10.825767+00:00",
+  "fetched_at": "2026-10-19T12:47:52.449280+00:00",
   "value": {
    "description": "The Campbell's Company, together with its subsidiaries, engages in the manufacture and marketing of food and beverage products in the United States and internationally.",
    "gross_margin": 0.27472527472527475,
@@ -6468,7 +6468,7 @@
   }
  },
  "fundamentals:DLTR": {
-  "fetched_at": "2026-10-16T12:45:11.169069+00:00",
+  "fetched_at": "2026-10-19T12:47:52.613036+00:00",
   "value": {
    "description": "Dollar Tree, Inc. operates retail discount stores under the Dollar Tree and Dollar Tree Canada brands in the United States and Canada.",
    "gross_margin": 0.42913804383382403,
@@ -8572,7 +8572,7 @@
   }
  },
  "fundamentals:GS": {
-  "fetched_at": "2026-10-16T12:45:11.157632+00:00",
+  "fetched_at": "2026-10-19T12:47:52.777290+00:00",
   "value": {
    "description": "The Goldman Sachs Group, Inc., a financial institution, provides a range of financial services for corporations, financial institutions, governments, and individuals in the Americas, Europe, the Middle East, Africa, and\u2026",
    "gross_margin": null,
@@ -9144,7 +9144,7 @@
   }
  },
  "fundamentals:HRL": {
-  "fetched_at": "2026-10-16T12:45:11.062282+00:00",
+  "fetched_at": "2026-10-19T12:47:52.613006+00:00",
   "value": {
    "description": "Hormel Foods Corporation develops, processes, and distributes various meat, nut, and other food products to foodservice, convenience stores, and commercial customers in the United States and internationally.",
    "gross_margin": 0.15922390355964697,
@@ -11212,7 +11212,7 @@
   }
  },
  "fundamentals:LULU": {
-  "fetched_at": "2026-10-16T12:45:10.906582+00:00",
+  "fetched_at": "2026-10-19T12:47:52.795863+00:00",
   "value": {
    "description": "lululemon athletica inc., together with its subsidiaries, designs, distributes, and retails technical athletic apparel, footwear, and accessories for women and men under the lululemon brand in the United States, Canada\u2026",
    "gross_margin": 0.6051743830080009,
@@ -13928,7 +13928,7 @@
   }
  },
  "fundamentals:PEP": {
-  "fetched_at": "2026-10-16T12:45:11.062318+00:00",
+  "fetched_at": "2026-10-19T12:47:52.469549+00:00",
   "value": {
    "description": "PepsiCo, Inc. engages in the manufacture, marketing, distribution, and sale of various beverages and convenient foods worldwide.",
    "gross_margin": 0.5422025557255696,
@@ -14060,16 +14060,16 @@
   }
  },
  "fundamentals:PGR": {
-  "fetched_at": "2026-09-16T12:43:50.486097+00:00",
+  "fetched_at": "2026-10-19T12:47:52.873649+00:00",
   "value": {
    "description": "The Progressive Corporation operates as an insurance company in the United States.",
    "gross_margin": null,
    "gross_margin_change": null,
    "industry": "Insurance - Property & Casualty",
    "last_earnings": {
-    "eps_actual": 4.8543,
-    "eps_estimate": 4.83823,
-    "quarter": "2026-06-30"
+    "eps_actual": 4.5956,
+    "eps_estimate": 4.41103,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-14",
@@ -14324,19 +14324,19 @@
   }
  },
  "fundamentals:PNC": {
-  "fetched_at": "2026-09-11T20:21:45.638495+00:00",
+  "fetched_at": "2026-10-19T12:47:52.531014+00:00",
   "value": {
    "description": "The PNC Financial Services Group, Inc. operates as a diversified financial services company in the United States.",
    "gross_margin": null,
    "gross_margin_change": null,
    "industry": "Banks - Regional",
    "last_earnings": {
-    "eps_actual": 4.81,
-    "eps_estimate": 4.45296,
-    "quarter": "2026-06-30"
+    "eps_actual": 4.97,
+    "eps_estimate": 4.89238,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-15",
+   "next_earnings": "2027-01-15",
    "operating_margin": null,
    "operating_margin_change": null,
    "profitable": null,
@@ -14359,11 +14359,11 @@
     },
     {
      "quarter": "2026-06-30",
-     "revenue": 6429000000.0
+     "revenue": 6435000000.0
     }
    ],
-   "revenue_qoq": 0.044177359103459546,
-   "revenue_yoy": 0.13546450017661593,
+   "revenue_qoq": 0.04515185967191804,
+   "revenue_yoy": 0.13652419639703295,
    "sector": "Financial Services"
   }
  },
@@ -15548,16 +15548,16 @@
   }
  },
  "fundamentals:SCHW": {
-  "fetched_at": "2026-09-16T12:43:50.524696+00:00",
+  "fetched_at": "2026-10-19T12:47:52.745759+00:00",
   "value": {
    "description": "The Charles Schwab Corporation, together with its subsidiaries, operates as a savings and loan holding company that provides wealth management, securities brokerage, banking, asset management, custody, and financial\u2026",
    "gross_margin": null,
    "gross_margin_change": null,
    "industry": "Capital Markets",
    "last_earnings": {
-    "eps_actual": 1.62,
-    "eps_estimate": 1.54954,
-    "quarter": "2026-06-30"
+    "eps_actual": 1.69,
+    "eps_estimate": 1.65538,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-15",
@@ -17879,7 +17879,7 @@
   }
  },
  "fundamentals:UNH": {
-  "fetched_at": "2026-10-15T12:46:28.845279+00:00",
+  "fetched_at": "2026-10-19T12:47:52.745780+00:00",
   "value": {
    "description": "UnitedHealth Group Incorporated operates as a health care company in the United States and internationally.",
    "gross_margin": 0.20796736646672379,
@@ -17891,7 +17891,7 @@
     "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-13",
+   "next_earnings": "2027-01-12",
    "operating_margin": 0.07132783490431305,
    "operating_margin_change": -0.009140474545119015,
    "profitable": true,
@@ -18143,7 +18143,7 @@
   }
  },
  "fundamentals:USB": {
-  "fetched_at": "2026-10-16T12:45:11.029293+00:00",
+  "fetched_at": "2026-10-19T12:47:52.397549+00:00",
   "value": {
    "description": "U.S. Bancorp, a financial services holding company, provides various financial services to individuals, businesses, institutional organizations, governmental entities, and other financial institutions in the United\u2026",
    "gross_margin": null,
@@ -18690,7 +18690,7 @@
   }
  },
  "fundamentals:WDAY": {
-  "fetched_at": "2026-10-16T12:45:11.062305+00:00",
+  "fetched_at": "2026-10-19T12:47:52.613027+00:00",
   "value": {
    "description": "Workday, Inc. provides enterprise cloud applications in the United States and internationally.",
    "gross_margin": 0.7538693846734617,
