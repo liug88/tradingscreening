@@ -1,6 +1,6 @@
 {
  "fundamentals:AA": {
-  "fetched_at": "2026-10-19T12:47:52.476041+00:00",
+  "fetched_at": "2026-10-20T12:46:08.505384+00:00",
   "value": {
    "description": "Alcoa Corporation, together with its subsidiaries, engages in the bauxite mining, alumina refining, aluminum production, and energy generation business in Australia, Brazil, Canada, Iceland, Norway, Spain, the United\u2026",
    "gross_margin": 0.2518910741301059,
@@ -352,7 +352,7 @@
   }
  },
  "fundamentals:ABVX": {
-  "fetched_at": "2026-10-19T12:47:52.663057+00:00",
+  "fetched_at": "2026-10-20T12:46:08.661214+00:00",
   "value": {
    "description": "ABIVAX Soci\u00e9t\u00e9 Anonyme, a clinical-stage biotechnology company, develops therapeutics that harness the body's natural regulatory mechanisms to stabilize the immune response in patients with chronic inflammatory diseases.",
    "gross_margin": null,
@@ -1700,19 +1700,19 @@
   }
  },
  "fundamentals:APLD": {
-  "fetched_at": "2026-09-11T20:21:47.186496+00:00",
+  "fetched_at": "2026-10-20T12:46:08.797233+00:00",
   "value": {
    "description": "Applied Digital Corporation designs, develops, and operates digital infrastructure solutions to high-performance computing (HPC) and artificial intelligence industries in North America.",
    "gross_margin": 0.15659190953394989,
    "gross_margin_change": -0.2682839166463924,
    "industry": "Information Technology Services",
    "last_earnings": {
-    "eps_actual": 0.04,
-    "eps_estimate": -0.19,
-    "quarter": "2026-05-31"
+    "eps_actual": -0.01,
+    "eps_estimate": -0.30305,
+    "quarter": "2026-08-31"
    },
    "latest_quarter": "2026-05-31",
-   "next_earnings": "2026-10-08",
+   "next_earnings": "2027-01-06",
    "operating_margin": -0.4821815736485938,
    "operating_margin_change": -0.2775178497764238,
    "profitable": false,
@@ -4320,7 +4320,7 @@
   }
  },
  "fundamentals:CIEN": {
-  "fetched_at": "2026-10-05T12:50:25.783748+00:00",
+  "fetched_at": "2026-10-20T12:46:08.907605+00:00",
   "value": {
    "description": "Ciena Corporation, a network technology company, provides hardware, software, and services for various network operators in the Americas, Europe, the Middle East, Africa, the Asia Pacific, Japan, and India.",
    "gross_margin": 0.45434254327463647,
@@ -6160,7 +6160,7 @@
   }
  },
  "fundamentals:DG": {
-  "fetched_at": "2026-10-15T12:46:28.771293+00:00",
+  "fetched_at": "2026-10-20T12:46:08.904986+00:00",
   "value": {
    "description": "Dollar General Corporation, a discount retailer, provides various merchandise products in the southern, southwestern, midwestern, and eastern United States.",
    "gross_margin": 0.32602277336989544,
@@ -6468,7 +6468,7 @@
   }
  },
  "fundamentals:DLTR": {
-  "fetched_at": "2026-10-19T12:47:52.613036+00:00",
+  "fetched_at": "2026-10-20T12:46:08.904999+00:00",
   "value": {
    "description": "Dollar Tree, Inc. operates retail discount stores under the Dollar Tree and Dollar Tree Canada brands in the United States and Canada.",
    "gross_margin": 0.42913804383382403,
@@ -9144,7 +9144,7 @@
   }
  },
  "fundamentals:HRL": {
-  "fetched_at": "2026-10-19T12:47:52.613006+00:00",
+  "fetched_at": "2026-10-20T12:46:08.556953+00:00",
   "value": {
    "description": "Hormel Foods Corporation develops, processes, and distributes various meat, nut, and other food products to foodservice, convenience stores, and commercial customers in the United States and internationally.",
    "gross_margin": 0.15922390355964697,
@@ -11212,7 +11212,7 @@
   }
  },
  "fundamentals:LULU": {
-  "fetched_at": "2026-10-19T12:47:52.795863+00:00",
+  "fetched_at": "2026-10-20T12:46:08.604338+00:00",
   "value": {
    "description": "lululemon athletica inc., together with its subsidiaries, designs, distributes, and retails technical athletic apparel, footwear, and accessories for women and men under the lululemon brand in the United States, Canada\u2026",
    "gross_margin": 0.6051743830080009,
@@ -13928,7 +13928,7 @@
   }
  },
  "fundamentals:PEP": {
-  "fetched_at": "2026-10-19T12:47:52.469549+00:00",
+  "fetched_at": "2026-10-20T12:46:08.557998+00:00",
   "value": {
    "description": "PepsiCo, Inc. engages in the manufacture, marketing, distribution, and sale of various beverages and convenient foods worldwide.",
    "gross_margin": 0.5422025557255696,
@@ -14192,7 +14192,7 @@
   }
  },
  "fundamentals:PL": {
-  "fetched_at": "2026-10-08T12:49:32.059511+00:00",
+  "fetched_at": "2026-10-20T12:46:08.797246+00:00",
   "value": {
    "description": "Planet Labs PBC engages in the design, construction, and launch of constellations of satellites with the intent of providing high-cadence geospatial data delivered to customers through an online platform in the United\u2026",
    "gross_margin": 0.5655395857029607,
@@ -15548,7 +15548,7 @@
   }
  },
  "fundamentals:SCHW": {
-  "fetched_at": "2026-10-19T12:47:52.745759+00:00",
+  "fetched_at": "2026-10-20T12:46:08.661235+00:00",
   "value": {
    "description": "The Charles Schwab Corporation, together with its subsidiaries, operates as a savings and loan holding company that provides wealth management, securities brokerage, banking, asset management, custody, and financial\u2026",
    "gross_margin": null,
@@ -15899,6 +15899,50 @@
    "sector": "Communication Services"
   }
  },
+ "fundamentals:SKHY": {
+  "fetched_at": "2026-10-20T12:46:08.797215+00:00",
+  "value": {
+   "description": "SK hynix Inc. through its subsidiaries, engages in research, develops, manufactures, distributes, and sells semiconductor devices in Korea, China, rest of Asia, the United States, Europe, and internationally.",
+   "gross_margin": 0.8319767939851193,
+   "gross_margin_change": 0.03923511559310955,
+   "industry": "Semiconductors",
+   "last_earnings": {
+    "eps_actual": 90.61569,
+    "eps_estimate": 4.87,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-10-27",
+   "operating_margin": 0.7632824654086185,
+   "operating_margin_change": 0.047935582887226325,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 22231952000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 24448929000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 32826653000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 52576287000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 79318746000000.0
+    }
+   ],
+   "revenue_qoq": 0.5086410723526369,
+   "revenue_yoy": 2.5677814525688074,
+   "sector": "Technology"
+  }
+ },
  "fundamentals:SLB": {
   "fetched_at": "2026-09-16T12:43:50.639319+00:00",
   "value": {
@@ -16109,6 +16153,50 @@
    ],
    "revenue_qoq": -0.8672566371681416,
    "revenue_yoy": -0.990687856965483
+  }
+ },
+ "fundamentals:SMTC": {
+  "fetched_at": "2026-10-20T12:46:08.805334+00:00",
+  "value": {
+   "description": "Semtech Corporation provides semiconductor, Internet of Things systems, and cloud connectivity service solutions in the Asia- Pacific, North America, and Europe.",
+   "gross_margin": 0.5375243878538981,
+   "gross_margin_change": 0.017061736059163723,
+   "industry": "Semiconductors",
+   "last_earnings": {
+    "eps_actual": 0.71,
+    "eps_estimate": 0.61402,
+    "quarter": "2026-07-31"
+   },
+   "latest_quarter": "2026-07-31",
+   "next_earnings": "2026-11-23",
+   "operating_margin": 0.16222493279628866,
+   "operating_margin_change": 0.06955712530671757,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-07-31",
+     "revenue": 257589000.0
+    },
+    {
+     "quarter": "2025-10-31",
+     "revenue": 266971000.0
+    },
+    {
+     "quarter": "2026-01-31",
+     "revenue": 274355000.0
+    },
+    {
+     "quarter": "2026-04-30",
+     "revenue": 291018000.0
+    },
+    {
+     "quarter": "2026-07-31",
+     "revenue": 341871000.0
+    }
+   ],
+   "revenue_qoq": 0.1747417685503989,
+   "revenue_yoy": 0.32719564888252206,
+   "sector": "Technology"
   }
  },
  "fundamentals:SNDK": {
@@ -17376,19 +17464,19 @@
   }
  },
  "fundamentals:TSM": {
-  "fetched_at": "2026-09-11T20:21:46.021229+00:00",
+  "fetched_at": "2026-10-20T12:46:08.904959+00:00",
   "value": {
    "description": "Taiwan Semiconductor Manufacturing Company Limited, together with its subsidiaries, manufactures, packages, tests, and sells integrated circuits and other semiconductor devices in Taiwan, China, Europe, the Middle East\u2026",
    "gross_margin": 0.6772072338183784,
    "gross_margin_change": 0.014749653229433224,
    "industry": "Semiconductors",
    "last_earnings": {
-    "eps_actual": 4.31,
-    "eps_estimate": 3.88658,
-    "quarter": "2026-06-30"
+    "eps_actual": 4.6,
+    "eps_estimate": 4.52449,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-15",
+   "next_earnings": "2027-01-14",
    "operating_margin": 0.6034163322359585,
    "operating_margin_change": 0.02238568215698511,
    "profitable": true,
@@ -17772,7 +17860,7 @@
   }
  },
  "fundamentals:UL": {
-  "fetched_at": "2026-10-16T12:45:10.906611+00:00",
+  "fetched_at": "2026-10-20T12:46:08.705047+00:00",
   "value": {
    "description": "Unilever PLC operates as a fast-moving consumer goods company in the Asia Pacific, Africa, the Americas, and Europe.",
    "gross_margin": null,
@@ -18143,7 +18231,7 @@
   }
  },
  "fundamentals:USB": {
-  "fetched_at": "2026-10-19T12:47:52.397549+00:00",
+  "fetched_at": "2026-10-20T12:46:08.556933+00:00",
   "value": {
    "description": "U.S. Bancorp, a financial services holding company, provides various financial services to individuals, businesses, institutional organizations, governmental entities, and other financial institutions in the United\u2026",
    "gross_margin": null,
@@ -18690,7 +18778,7 @@
   }
  },
  "fundamentals:WDAY": {
-  "fetched_at": "2026-10-19T12:47:52.613027+00:00",
+  "fetched_at": "2026-10-20T12:46:08.650227+00:00",
   "value": {
    "description": "Workday, Inc. provides enterprise cloud applications in the United States and internationally.",
    "gross_margin": 0.7538693846734617,

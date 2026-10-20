@@ -1,6 +1,6 @@
 {
  "cboe_weekly_equities": {
-  "fetched_at": "2026-10-12T13:07:54.936558+00:00",
+  "fetched_at": "2026-10-20T12:45:55.194574+00:00",
   "value": [
    "AA",
    "AAL",
@@ -227,6 +227,7 @@
    "GEHC",
    "GEMI",
    "GEV",
+   "GFL",
    "GILD",
    "GLND",
    "GLW",
@@ -573,6 +574,7 @@
    "XOM",
    "XP",
    "XPEV",
+   "XRPN",
    "XYZ",
    "ZETA",
    "ZIM",
