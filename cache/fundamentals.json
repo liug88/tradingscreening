@@ -1,6 +1,6 @@
 {
  "fundamentals:AA": {
-  "fetched_at": "2026-10-20T12:46:08.505384+00:00",
+  "fetched_at": "2026-10-21T12:46:23.608195+00:00",
   "value": {
    "description": "Alcoa Corporation, together with its subsidiaries, engages in the bauxite mining, alumina refining, aluminum production, and energy generation business in Australia, Brazil, Canada, Iceland, Norway, Spain, the United\u2026",
    "gross_margin": 0.2518910741301059,
@@ -352,7 +352,7 @@
   }
  },
  "fundamentals:ABVX": {
-  "fetched_at": "2026-10-20T12:46:08.661214+00:00",
+  "fetched_at": "2026-10-21T12:46:23.029667+00:00",
   "value": {
    "description": "ABIVAX Soci\u00e9t\u00e9 Anonyme, a clinical-stage biotechnology company, develops therapeutics that harness the body's natural regulatory mechanisms to stabilize the immune response in patients with chronic inflammatory diseases.",
    "gross_margin": null,
@@ -2096,27 +2096,30 @@
   }
  },
  "fundamentals:ASST": {
-  "fetched_at": "2026-08-26T20:43:59.362743+00:00",
+  "fetched_at": "2026-10-21T12:46:23.315654+00:00",
   "value": {
-   "gross_margin": -4.245289855072464,
-   "gross_margin_change": 14.269260409477802,
-   "latest_quarter": "2026-03-31",
+   "description": "Strive, Inc. is a privately owned investment manager.",
+   "gross_margin": -5.05338320299218,
+   "gross_margin_change": -0.8080933479197157,
+   "industry": "Asset Management",
+   "last_earnings": {
+    "eps_actual": -3.65,
+    "eps_estimate": -0.245,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
    "next_earnings": "2026-11-10",
-   "operating_margin": -6.471376811594203,
-   "operating_margin_change": 14.624522659305269,
+   "operating_margin": -7.295137708262496,
+   "operating_margin_change": -0.8237608966682934,
    "profitable": false,
    "revenue_history": [
-    {
-     "quarter": "2024-12-31",
-     "revenue": 1035106.0
-    },
     {
      "quarter": "2025-03-31",
      "revenue": 1423000.0
     },
     {
      "quarter": "2025-06-30",
-     "revenue": 1510371.0
+     "revenue": 1511000.0
     },
     {
      "quarter": "2025-12-31",
@@ -2125,10 +2128,15 @@
     {
      "quarter": "2026-03-31",
      "revenue": 2760000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 2941000.0
     }
    ],
-   "revenue_qoq": 0.8253968253968254,
-   "revenue_yoy": 1.666393586743773
+   "revenue_qoq": 0.06557971014492758,
+   "revenue_yoy": 1.066760365425158,
+   "sector": "Financial Services"
   }
  },
  "fundamentals:ASTS": {
@@ -3044,6 +3052,94 @@
    ],
    "revenue_qoq": 0.05762914302776956,
    "revenue_yoy": 0.3062880324543611,
+   "sector": "Financial Services"
+  }
+ },
+ "fundamentals:BLSH": {
+  "fetched_at": "2026-10-21T12:46:23.632486+00:00",
+  "value": {
+   "description": "Bullish, a global digital asset platform that provides market infrastructure and information services in United States.",
+   "gross_margin": 0.0008822348078124749,
+   "gross_margin_change": 0.00030783981140711876,
+   "industry": "Software - Infrastructure",
+   "last_earnings": {
+    "eps_actual": 0.0943,
+    "eps_estimate": 0.09119,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-11-18",
+   "operating_margin": -0.000254333547789439,
+   "operating_margin_change": -0.00040416901506682465,
+   "profitable": false,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 58662937000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 41649657000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 64401273000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 51870229000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 32650038000.0
+    }
+   ],
+   "revenue_qoq": -0.3705437853378284,
+   "revenue_yoy": -0.4434298780505995,
+   "sector": "Technology"
+  }
+ },
+ "fundamentals:BMNR": {
+  "fetched_at": "2026-10-21T12:46:23.652598+00:00",
+  "value": {
+   "description": "Bitmine Immersion Technologies, Inc. operates as a blockchain technology company primarily in the United States.",
+   "gross_margin": 0.8769528312023208,
+   "gross_margin_change": 0.006107799049436147,
+   "industry": "Capital Markets",
+   "last_earnings": {
+    "eps_actual": -0.12825,
+    "eps_estimate": 0.18,
+    "quarter": "2026-05-31"
+   },
+   "latest_quarter": "2026-05-31",
+   "next_earnings": "2026-11-20",
+   "operating_margin": -0.2549693778876115,
+   "operating_margin_change": 349.5402484465848,
+   "profitable": false,
+   "revenue_history": [
+    {
+     "quarter": "2025-05-31",
+     "revenue": 2052000.0
+    },
+    {
+     "quarter": "2025-08-31",
+     "revenue": 1324891.0
+    },
+    {
+     "quarter": "2025-11-30",
+     "revenue": 2293000.0
+    },
+    {
+     "quarter": "2026-02-28",
+     "revenue": 11041000.0
+    },
+    {
+     "quarter": "2026-05-31",
+     "revenue": 46535000.0
+    }
+   ],
+   "revenue_qoq": 3.214745041210035,
+   "revenue_yoy": 21.67787524366472,
    "sector": "Financial Services"
   }
  },
@@ -4804,19 +4900,19 @@
   }
  },
  "fundamentals:COF": {
-  "fetched_at": "2026-09-16T12:43:50.211635+00:00",
+  "fetched_at": "2026-10-21T12:46:23.183082+00:00",
   "value": {
    "description": "Capital One Financial Corporation operates as the financial services holding company for the Capital One, National Association, which engages in the provision of various financial products and services in the United\u2026",
    "gross_margin": null,
    "gross_margin_change": null,
    "industry": "Credit Services",
    "last_earnings": {
-    "eps_actual": 5.81,
-    "eps_estimate": 4.69355,
-    "quarter": "2026-06-30"
+    "eps_actual": 6.69,
+    "eps_estimate": 5.50252,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-20",
+   "next_earnings": "2027-01-19",
    "operating_margin": null,
    "operating_margin_change": null,
    "profitable": null,
@@ -5068,7 +5164,7 @@
   }
  },
  "fundamentals:CPB": {
-  "fetched_at": "2026-10-19T12:47:52.449280+00:00",
+  "fetched_at": "2026-10-21T12:46:23.338095+00:00",
   "value": {
    "description": "The Campbell's Company, together with its subsidiaries, engages in the manufacture and marketing of food and beverage products in the United States and internationally.",
    "gross_margin": 0.27472527472527475,
@@ -5808,19 +5904,19 @@
   }
  },
  "fundamentals:DAL": {
-  "fetched_at": "2026-09-11T20:21:47.312402+00:00",
+  "fetched_at": "2026-10-21T12:46:23.784989+00:00",
   "value": {
    "description": "Delta Air Lines, Inc. provides scheduled air transportation for passengers and cargo in the United States and internationally.",
    "gross_margin": 0.22984258743736397,
    "gross_margin_change": 0.043958898778350464,
    "industry": "Airlines",
    "last_earnings": {
-    "eps_actual": 1.56,
-    "eps_estimate": 1.4922,
-    "quarter": "2026-06-30"
+    "eps_actual": 1.72,
+    "eps_estimate": 1.75723,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-08",
+   "next_earnings": "2026-10-09",
    "operating_margin": 0.09434630763779926,
    "operating_margin_change": 0.0627454498101217,
    "profitable": true,
@@ -8316,7 +8412,7 @@
   }
  },
  "fundamentals:GLXY": {
-  "fetched_at": "2026-09-21T12:41:26.368261+00:00",
+  "fetched_at": "2026-10-21T12:46:23.757563+00:00",
   "value": {
    "description": "Galaxy Digital Inc. engages in the digital asset and data centre infrastructure businesses in North America and internationally.",
    "gross_margin": -0.0011494583914835137,
@@ -8328,7 +8424,7 @@
     "quarter": "2026-06-30"
    },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-20",
+   "next_earnings": "2026-10-27",
    "operating_margin": 0.009039304410932892,
    "operating_margin_change": 0.0023951404839120368,
    "profitable": true,
@@ -8704,19 +8800,19 @@
   }
  },
  "fundamentals:HAL": {
-  "fetched_at": "2026-10-01T12:48:27.443810+00:00",
+  "fetched_at": "2026-10-21T12:46:23.121601+00:00",
   "value": {
    "description": "Halliburton Company provides products and services to the energy industry worldwide.",
    "gross_margin": 0.1407070353517676,
    "gross_margin_change": -0.004239280827425307,
    "industry": "Oil & Gas Equipment & Services",
    "last_earnings": {
-    "eps_actual": 0.55,
-    "eps_estimate": 0.53773,
-    "quarter": "2026-06-30"
+    "eps_actual": 0.6,
+    "eps_estimate": 0.58499,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-20",
+   "next_earnings": "2027-01-20",
    "operating_margin": 0.11953097654882744,
    "operating_margin_change": -0.006163210789195517,
    "profitable": true,
@@ -9144,7 +9240,7 @@
   }
  },
  "fundamentals:HRL": {
-  "fetched_at": "2026-10-20T12:46:08.556953+00:00",
+  "fetched_at": "2026-10-21T12:46:23.412635+00:00",
   "value": {
    "description": "Hormel Foods Corporation develops, processes, and distributes various meat, nut, and other food products to foodservice, convenience stores, and commercial customers in the United States and internationally.",
    "gross_margin": 0.15922390355964697,
@@ -10068,7 +10164,7 @@
   }
  },
  "fundamentals:JNJ": {
-  "fetched_at": "2026-10-15T12:46:29.493934+00:00",
+  "fetched_at": "2026-10-21T12:46:23.039699+00:00",
   "value": {
    "description": "Johnson & Johnson, together with its subsidiaries, engages in the research and development, manufacture, and sale of a range of products in the healthcare field worldwide.",
    "gross_margin": 0.6819043856183327,
@@ -10992,7 +11088,7 @@
   }
  },
  "fundamentals:LMT": {
-  "fetched_at": "2026-09-16T12:43:50.741874+00:00",
+  "fetched_at": "2026-10-21T12:46:23.039715+00:00",
   "value": {
    "description": "Lockheed Martin Corporation, an aerospace and defense company, engages in the research, design, development, manufacture, integration, and sustainment of technology systems, products, and services in the United States\u2026",
    "gross_margin": 0.12191596471115984,
@@ -11004,7 +11100,7 @@
     "quarter": "2026-06-30"
    },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-20",
+   "next_earnings": "2026-10-22",
    "operating_margin": 0.1235607835318746,
    "operating_margin_change": 0.009083229567055776,
    "profitable": true,
@@ -11212,7 +11308,7 @@
   }
  },
  "fundamentals:LULU": {
-  "fetched_at": "2026-10-20T12:46:08.604338+00:00",
+  "fetched_at": "2026-10-21T12:46:23.485737+00:00",
   "value": {
    "description": "lululemon athletica inc., together with its subsidiaries, designs, distributes, and retails technical athletic apparel, footwear, and accessories for women and men under the lululemon brand in the United States, Canada\u2026",
    "gross_margin": 0.6051743830080009,
@@ -11980,19 +12076,19 @@
   }
  },
  "fundamentals:MMM": {
-  "fetched_at": "2026-09-11T20:21:48.372034+00:00",
+  "fetched_at": "2026-10-21T12:46:22.975239+00:00",
   "value": {
    "description": "3M Company provides diversified technology services in the America, the Asia Pacific, Europe, the Middle East, Africa, and internationally.",
    "gross_margin": 0.4127692307692308,
    "gross_margin_change": 0.005472381681336902,
    "industry": "Conglomerates",
    "last_earnings": {
-    "eps_actual": 2.4,
-    "eps_estimate": 2.24645,
-    "quarter": "2026-06-30"
+    "eps_actual": 2.46,
+    "eps_estimate": 2.38338,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-20",
+   "next_earnings": "2027-01-19",
    "operating_margin": 0.20307692307692307,
    "operating_margin_change": -0.029758897818599306,
    "profitable": true,
@@ -13928,7 +14024,7 @@
   }
  },
  "fundamentals:PEP": {
-  "fetched_at": "2026-10-20T12:46:08.557998+00:00",
+  "fetched_at": "2026-10-21T12:46:23.485718+00:00",
   "value": {
    "description": "PepsiCo, Inc. engages in the manufacture, marketing, distribution, and sale of various beverages and convenient foods worldwide.",
    "gross_margin": 0.5422025557255696,
@@ -15328,16 +15424,16 @@
   }
  },
  "fundamentals:RTX": {
-  "fetched_at": "2026-09-16T12:43:49.951553+00:00",
+  "fetched_at": "2026-10-21T12:46:23.172635+00:00",
   "value": {
    "description": "RTX Corporation, an aerospace and defense company, provides systems and services for commercial, military, and government customers worldwide.",
    "gross_margin": 0.20774647887323944,
    "gross_margin_change": -0.00035281447700516444,
    "industry": "Aerospace & Defense",
    "last_earnings": {
-    "eps_actual": 1.89,
-    "eps_estimate": 1.6621,
-    "quarter": "2026-06-30"
+    "eps_actual": 2.26,
+    "eps_estimate": 1.7791,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-20",
@@ -15548,7 +15644,7 @@
   }
  },
  "fundamentals:SCHW": {
-  "fetched_at": "2026-10-20T12:46:08.661235+00:00",
+  "fetched_at": "2026-10-21T12:46:23.268194+00:00",
   "value": {
    "description": "The Charles Schwab Corporation, together with its subsidiaries, operates as a savings and loan holding company that provides wealth management, securities brokerage, banking, asset management, custody, and financial\u2026",
    "gross_margin": null,
@@ -15560,7 +15656,7 @@
     "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-15",
+   "next_earnings": "2027-01-21",
    "operating_margin": null,
    "operating_margin_change": null,
    "profitable": null,
@@ -16076,7 +16172,7 @@
   }
  },
  "fundamentals:SMMT": {
-  "fetched_at": "2026-09-30T12:51:41.207939+00:00",
+  "fetched_at": "2026-10-21T12:46:23.723701+00:00",
   "value": {
    "description": "Summit Therapeutics Inc., a biopharmaceutical company, focuses on discovery, development, and commercialization of patient, physician, caregiver, and societal friendly medicinal therapies.",
    "gross_margin": null,
@@ -16088,7 +16184,7 @@
     "quarter": "2026-06-30"
    },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-19",
+   "next_earnings": "2026-10-27",
    "operating_margin": null,
    "operating_margin_change": null,
    "profitable": null,
@@ -17860,7 +17956,7 @@
   }
  },
  "fundamentals:UL": {
-  "fetched_at": "2026-10-20T12:46:08.705047+00:00",
+  "fetched_at": "2026-10-21T12:46:23.464173+00:00",
   "value": {
    "description": "Unilever PLC operates as a fast-moving consumer goods company in the Asia Pacific, Africa, the Americas, and Europe.",
    "gross_margin": null,
@@ -18186,6 +18282,50 @@
    "sector": "Consumer Cyclical"
   }
  },
+ "fundamentals:URI": {
+  "fetched_at": "2026-10-21T12:46:23.581491+00:00",
+  "value": {
+   "description": "United Rentals, Inc., through its subsidiaries, operates as an equipment rental company in the United States, Canada, Europe, Australia, and New Zealand.",
+   "gross_margin": 0.3927437641723356,
+   "gross_margin_change": 0.024111392779612884,
+   "industry": "Rental & Leasing Services",
+   "last_earnings": {
+    "eps_actual": 12.76,
+    "eps_estimate": 11.58804,
+    "quarter": "2026-06-30"
+   },
+   "latest_quarter": "2026-06-30",
+   "next_earnings": "2026-10-21",
+   "operating_margin": 0.2594104308390023,
+   "operating_margin_change": 0.03005033046259073,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-06-30",
+     "revenue": 3943000000.0
+    },
+    {
+     "quarter": "2025-09-30",
+     "revenue": 4229000000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 4208000000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 3985000000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 4410000000.0
+    }
+   ],
+   "revenue_qoq": 0.1066499372647427,
+   "revenue_yoy": 0.1184377377631245,
+   "sector": "Industrials"
+  }
+ },
  "fundamentals:USAR": {
   "fetched_at": "2026-09-22T12:42:59.839943+00:00",
   "value": {
@@ -18231,7 +18371,7 @@
   }
  },
  "fundamentals:USB": {
-  "fetched_at": "2026-10-20T12:46:08.556933+00:00",
+  "fetched_at": "2026-10-21T12:46:23.338076+00:00",
   "value": {
    "description": "U.S. Bancorp, a financial services holding company, provides various financial services to individuals, businesses, institutional organizations, governmental entities, and other financial institutions in the United\u2026",
    "gross_margin": null,
@@ -18778,7 +18918,7 @@
   }
  },
  "fundamentals:WDAY": {
-  "fetched_at": "2026-10-20T12:46:08.650227+00:00",
+  "fetched_at": "2026-10-21T12:46:23.190380+00:00",
   "value": {
    "description": "Workday, Inc. provides enterprise cloud applications in the United States and internationally.",
    "gross_margin": 0.7538693846734617,
