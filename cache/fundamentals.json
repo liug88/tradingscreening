@@ -1,6 +1,6 @@
 {
  "fundamentals:AA": {
-  "fetched_at": "2026-10-22T12:47:07.766688+00:00",
+  "fetched_at": "2026-10-23T12:44:50.990544+00:00",
   "value": {
    "description": "Alcoa Corporation, together with its subsidiaries, engages in the bauxite mining, alumina refining, aluminum production, and energy generation business in Australia, Brazil, Canada, Iceland, Norway, Spain, the United\u2026",
    "gross_margin": 0.2518910741301059,
@@ -44,16 +44,16 @@
   }
  },
  "fundamentals:AAL": {
-  "fetched_at": "2026-09-11T20:21:47.994345+00:00",
+  "fetched_at": "2026-10-23T12:44:50.338482+00:00",
   "value": {
    "description": "American Airlines Group Inc., through its subsidiaries, operates as a network air carrier in the United States, Latin America, Atlantic, and Pacific.",
    "gross_margin": 0.1787272184045414,
    "gross_margin_change": 0.016996338588555204,
    "industry": "Airlines",
    "last_earnings": {
-    "eps_actual": 0.15,
-    "eps_estimate": 0.04579,
-    "quarter": "2026-06-30"
+    "eps_actual": -0.28,
+    "eps_estimate": -0.36175,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-22",
@@ -308,16 +308,16 @@
   }
  },
  "fundamentals:ABT": {
-  "fetched_at": "2026-10-15T12:46:28.771318+00:00",
+  "fetched_at": "2026-10-23T12:44:50.758039+00:00",
   "value": {
    "description": "Abbott Laboratories, together with its subsidiaries, discovers, develops, manufactures, and sells health care products worldwide.",
    "gross_margin": 0.5619849516302401,
    "gross_margin_change": -0.008483675649627265,
    "industry": "Medical Devices",
    "last_earnings": {
-    "eps_actual": 1.31,
-    "eps_estimate": 1.2767,
-    "quarter": "2026-06-30"
+    "eps_actual": 1.42,
+    "eps_estimate": 1.41959,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-03-31",
    "next_earnings": "2026-10-21",
@@ -3540,16 +3540,16 @@
   }
  },
  "fundamentals:BX": {
-  "fetched_at": "2026-09-11T20:21:48.669984+00:00",
+  "fetched_at": "2026-10-23T12:44:50.558148+00:00",
   "value": {
    "description": "Blackstone Inc. is an alternative asset management firm specializing in private equity, venture capital, real estate, hedge fund solutions, credit, secondary funds of funds, public debt and equity and multi-asset class\u2026",
    "gross_margin": null,
    "gross_margin_change": null,
    "industry": "Asset Management",
    "last_earnings": {
-    "eps_actual": 1.52,
-    "eps_estimate": 1.33671,
-    "quarter": "2026-06-30"
+    "eps_actual": 1.32,
+    "eps_estimate": 1.25859,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-22",
@@ -4680,16 +4680,16 @@
   }
  },
  "fundamentals:CMCSA": {
-  "fetched_at": "2026-09-17T12:43:42.543722+00:00",
+  "fetched_at": "2026-10-23T12:44:50.486717+00:00",
   "value": {
    "description": "Comcast Corporation operates as a media and technology company worldwide.",
    "gross_margin": 0.7198062792251169,
    "gross_margin_change": 0.06580240091504275,
    "industry": "Telecom Services",
    "last_earnings": {
-    "eps_actual": 1.04,
-    "eps_estimate": 0.96637,
-    "quarter": "2026-06-30"
+    "eps_actual": 1.07,
+    "eps_estimate": 0.98659,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-22",
@@ -5164,7 +5164,7 @@
   }
  },
  "fundamentals:CPB": {
-  "fetched_at": "2026-10-22T12:47:07.950743+00:00",
+  "fetched_at": "2026-10-23T12:44:50.486697+00:00",
   "value": {
    "description": "The Campbell's Company, together with its subsidiaries, engages in the manufacture and marketing of food and beverage products in the United States and internationally.",
    "gross_margin": 0.27472527472527475,
@@ -5904,7 +5904,7 @@
   }
  },
  "fundamentals:DAL": {
-  "fetched_at": "2026-10-22T12:47:07.983866+00:00",
+  "fetched_at": "2026-10-23T12:44:50.912245+00:00",
   "value": {
    "description": "Delta Air Lines, Inc. provides scheduled air transportation for passengers and cargo in the United States and internationally.",
    "gross_margin": 0.22984258743736397,
@@ -6520,9 +6520,9 @@
   }
  },
  "fundamentals:DLR": {
-  "fetched_at": "2026-09-11T20:21:48.230375+00:00",
+  "fetched_at": "2026-10-23T12:44:51.038543+00:00",
   "value": {
-   "description": "Digital Realty Trust, Inc. is a real estate investment firm specializing in Core strategies.",
+   "description": "Digital Realty Trust, Inc. brings companies and data together by delivering the full spectrum of data center, colocation, and interconnection solutions.",
    "gross_margin": 0.5729730126414758,
    "gross_margin_change": 0.03155764526785754,
    "industry": "REIT - Specialty",
@@ -6532,7 +6532,7 @@
     "quarter": "2026-06-30"
    },
    "latest_quarter": "2026-03-31",
-   "next_earnings": "2026-10-22",
+   "next_earnings": "2026-10-29",
    "operating_margin": 0.17283675794548956,
    "operating_margin_change": 0.033811841005016524,
    "profitable": true,
@@ -9064,16 +9064,16 @@
   }
  },
  "fundamentals:HON": {
-  "fetched_at": "2026-09-11T20:21:47.622750+00:00",
+  "fetched_at": "2026-10-23T12:44:50.674145+00:00",
   "value": {
    "description": "Honeywell International Inc. engages in the industrial automation, building automation, and energy and sustainability solutions businesses in the United States, Europe, and internationally.",
    "gross_margin": 0.3758617141681243,
    "gross_margin_change": -0.011210362830672616,
    "industry": "Conglomerates",
    "last_earnings": {
-    "eps_actual": 1.95,
-    "eps_estimate": 1.81873,
-    "quarter": "2026-06-30"
+    "eps_actual": 2.27,
+    "eps_estimate": 2.16441,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-22",
@@ -9240,7 +9240,7 @@
   }
  },
  "fundamentals:HRL": {
-  "fetched_at": "2026-10-22T12:47:07.613506+00:00",
+  "fetched_at": "2026-10-23T12:44:50.847791+00:00",
   "value": {
    "description": "Hormel Foods Corporation develops, processes, and distributes various meat, nut, and other food products to foodservice, convenience stores, and commercial customers in the United States and internationally.",
    "gross_margin": 0.15922390355964697,
@@ -9724,7 +9724,7 @@
   }
  },
  "fundamentals:INTC": {
-  "fetched_at": "2026-09-11T20:21:46.420970+00:00",
+  "fetched_at": "2026-10-23T12:44:51.232263+00:00",
   "value": {
    "description": "Intel Corporation designs, develops, manufactures, markets, sells, and services computing and related end products and services in the United States, Ireland, Israel, and internationally.",
    "gross_margin": 0.40358382936507936,
@@ -9736,7 +9736,7 @@
     "quarter": "2026-06-30"
    },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-22",
+   "next_earnings": "2026-10-29",
    "operating_margin": 0.12189980158730158,
    "operating_margin_change": 0.05310699021512806,
    "profitable": true,
@@ -10164,7 +10164,7 @@
   }
  },
  "fundamentals:JNJ": {
-  "fetched_at": "2026-10-22T12:47:07.315790+00:00",
+  "fetched_at": "2026-10-23T12:44:50.338502+00:00",
   "value": {
    "description": "Johnson & Johnson, together with its subsidiaries, engages in the research and development, manufacture, and sale of a range of products in the healthcare field worldwide.",
    "gross_margin": 0.6819043856183327,
@@ -11308,7 +11308,7 @@
   }
  },
  "fundamentals:LULU": {
-  "fetched_at": "2026-10-21T12:46:23.485737+00:00",
+  "fetched_at": "2026-10-23T12:44:50.558170+00:00",
   "value": {
    "description": "lululemon athletica inc., together with its subsidiaries, designs, distributes, and retails technical athletic apparel, footwear, and accessories for women and men under the lululemon brand in the United States, Canada\u2026",
    "gross_margin": 0.6051743830080009,
@@ -11396,16 +11396,16 @@
   }
  },
  "fundamentals:LUV": {
-  "fetched_at": "2026-10-22T12:47:08.163089+00:00",
+  "fetched_at": "2026-10-23T12:44:50.396746+00:00",
   "value": {
    "description": "Southwest Airlines Co. operates as a passenger airline company that provides scheduled air transportation services in the United States and internationally.",
    "gross_margin": 0.16437381404174572,
    "gross_margin_change": -0.02420392081823497,
    "industry": "Airlines",
    "last_earnings": {
-    "eps_actual": 0.94,
-    "eps_estimate": 0.52174,
-    "quarter": "2026-06-30"
+    "eps_actual": 0.66,
+    "eps_estimate": 0.5779,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-21",
@@ -12472,19 +12472,19 @@
   }
  },
  "fundamentals:MU": {
-  "fetched_at": "2026-09-21T12:41:26.217383+00:00",
+  "fetched_at": "2026-10-23T12:44:51.296409+00:00",
   "value": {
-   "description": "Micron Technology, Inc. designs, develops, manufactures, and sells memory and storage products in the United States, Taiwan, Japan, Mainland China, Hong Kong, Europe, and internationally.",
+   "description": "Micron Technology, Inc. engages in the provision of semiconductor memory and storage products in the United States, Taiwan, Mainland China, other Asia Pacific countries, Japan, Europe, and internationally.",
    "gross_margin": 0.8456194519490544,
    "gross_margin_change": 0.10148701272021954,
    "industry": "Semiconductors",
    "last_earnings": {
-    "eps_actual": 25.11,
-    "eps_estimate": 20.68603,
-    "quarter": "2026-05-31"
+    "eps_actual": 33.42,
+    "eps_estimate": 31.81801,
+    "quarter": "2026-08-31"
    },
    "latest_quarter": "2026-05-31",
-   "next_earnings": "2026-09-30",
+   "next_earnings": "2026-12-23",
    "operating_margin": 0.8036954843689695,
    "operating_margin_change": 0.1274591054921883,
    "profitable": true,
@@ -12692,16 +12692,16 @@
   }
  },
  "fundamentals:NEM": {
-  "fetched_at": "2026-10-16T12:45:11.157611+00:00",
+  "fetched_at": "2026-10-23T12:44:51.088597+00:00",
   "value": {
    "description": "Newmont Corporation operates as a gold producer.",
    "gross_margin": 0.5599869238313174,
    "gross_margin_change": -0.08843240010463438,
    "industry": "Gold",
    "last_earnings": {
-    "eps_actual": 2.1,
-    "eps_estimate": 1.98708,
-    "quarter": "2026-06-30"
+    "eps_actual": 2.2,
+    "eps_estimate": 1.94635,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-22",
@@ -12780,19 +12780,19 @@
   }
  },
  "fundamentals:NFLX": {
-  "fetched_at": "2026-09-15T12:42:52.157028+00:00",
+  "fetched_at": "2026-10-23T12:44:51.173124+00:00",
   "value": {
    "description": "Netflix, Inc. provides entertainment services worldwide.",
    "gross_margin": 0.5193475477347101,
    "gross_margin_change": 2.9572692429757907e-05,
    "industry": "Entertainment",
    "last_earnings": {
-    "eps_actual": 0.8,
-    "eps_estimate": 0.78858,
-    "quarter": "2026-06-30"
+    "eps_actual": 0.87,
+    "eps_estimate": 0.82268,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-20",
+   "next_earnings": "2027-01-19",
    "operating_margin": 0.3338081764416353,
    "operating_margin_change": 0.010781605383940018,
    "profitable": true,
@@ -12868,7 +12868,7 @@
   }
  },
  "fundamentals:NLY": {
-  "fetched_at": "2026-10-22T12:47:07.950777+00:00",
+  "fetched_at": "2026-10-23T12:44:50.920399+00:00",
   "value": {
    "description": "Annaly Capital Management, Inc., a diversified capital manager, engages in the residential mortgage finance business.",
    "gross_margin": null,
@@ -14216,16 +14216,16 @@
   }
  },
  "fundamentals:PHM": {
-  "fetched_at": "2026-09-16T12:43:50.003276+00:00",
+  "fetched_at": "2026-10-23T12:44:50.355674+00:00",
   "value": {
    "description": "PulteGroup, Inc., through its subsidiaries, engages in the homebuilding business in the United States.",
    "gross_margin": 0.25044734351889814,
    "gross_margin_change": 0.0092595381857557,
    "industry": "Residential Construction",
    "last_earnings": {
-    "eps_actual": 2.48,
-    "eps_estimate": 2.35585,
-    "quarter": "2026-06-30"
+    "eps_actual": 2.53,
+    "eps_estimate": 2.61969,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-22",
@@ -14824,7 +14824,7 @@
   }
  },
  "fundamentals:RBRK": {
-  "fetched_at": "2026-09-21T12:41:26.351200+00:00",
+  "fetched_at": "2026-10-23T12:44:51.207578+00:00",
   "value": {
    "description": "Rubrik, Inc. provides data security solutions to individuals and businesses worldwide.",
    "gross_margin": 0.7843537892618078,
@@ -15440,7 +15440,7 @@
   }
  },
  "fundamentals:RTX": {
-  "fetched_at": "2026-10-22T12:47:07.625667+00:00",
+  "fetched_at": "2026-10-23T12:44:50.355693+00:00",
   "value": {
    "description": "RTX Corporation, an aerospace and defense company, provides systems and services for commercial, military, and government customers worldwide.",
    "gross_margin": 0.20774647887323944,
@@ -16960,7 +16960,7 @@
   }
  },
  "fundamentals:T": {
-  "fetched_at": "2026-10-09T12:47:17.657264+00:00",
+  "fetched_at": "2026-10-23T12:44:51.127197+00:00",
   "value": {
    "description": "AT&T Inc. provides telecommunications and technology services worldwide.",
    "gross_margin": 0.618258444768363,
@@ -16968,8 +16968,8 @@
    "industry": "Telecom Services",
    "last_earnings": {
     "eps_actual": 0.65,
-    "eps_estimate": 0.58827,
-    "quarter": "2026-06-30"
+    "eps_estimate": 0.60323,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-21",
@@ -17092,7 +17092,7 @@
   }
  },
  "fundamentals:TER": {
-  "fetched_at": "2026-09-11T20:21:45.321616+00:00",
+  "fetched_at": "2026-10-23T12:44:51.259384+00:00",
   "value": {
    "description": "Teradyne, Inc. engages in the design, development, manufacture, and sale of automated test systems and robotics products in the United States, Asia Pacific, Europe, the Middle East, and Africa.",
    "gross_margin": 0.5979111957200581,
@@ -17104,7 +17104,7 @@
     "quarter": "2026-06-30"
    },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-21",
+   "next_earnings": "2026-10-27",
    "operating_margin": 0.33171205200942067,
    "operating_margin_change": -0.03977272686673783,
    "profitable": true,
@@ -17312,7 +17312,7 @@
   }
  },
  "fundamentals:TMUS": {
-  "fetched_at": "2026-09-11T20:21:48.254593+00:00",
+  "fetched_at": "2026-10-23T12:44:50.633087+00:00",
   "value": {
    "description": "T-Mobile US, Inc., together with its subsidiaries, provides wireless communications services in the United States, Puerto Rico, and the United States Virgin Islands.",
    "gross_margin": 0.6475363081918301,
@@ -17324,7 +17324,7 @@
     "quarter": "2026-06-30"
    },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-22",
+   "next_earnings": "2026-10-28",
    "operating_margin": 0.2408845596946163,
    "operating_margin_change": 0.04626820967081399,
    "profitable": true,
@@ -17444,16 +17444,16 @@
   }
  },
  "fundamentals:TSCO": {
-  "fetched_at": "2026-10-02T12:47:35.366607+00:00",
+  "fetched_at": "2026-10-23T12:44:51.088612+00:00",
   "value": {
    "description": "Tractor Supply Company operates as a rural lifestyle retailer in the United States.",
    "gross_margin": 0.3705114863231215,
    "gross_margin_change": 0.008270858001546533,
    "industry": "Specialty Retail",
    "last_earnings": {
-    "eps_actual": 0.69,
-    "eps_estimate": 0.82031,
-    "quarter": "2026-06-30"
+    "eps_actual": 0.43,
+    "eps_estimate": 0.40538,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-22",
@@ -17532,7 +17532,7 @@
   }
  },
  "fundamentals:TSLA": {
-  "fetched_at": "2026-10-22T12:47:07.290633+00:00",
+  "fetched_at": "2026-10-23T12:44:50.898909+00:00",
   "value": {
    "description": "Tesla, Inc. designs, develops, manufactures, leases, and sells electric vehicles, and energy generation and storage systems in the United States, China, and internationally.",
    "gross_margin": 0.16826037682391273,
@@ -17840,7 +17840,7 @@
   }
  },
  "fundamentals:UAL": {
-  "fetched_at": "2026-10-22T12:47:07.328356+00:00",
+  "fetched_at": "2026-10-23T12:44:50.587474+00:00",
   "value": {
    "description": "United Airlines Holdings, Inc., through its subsidiaries, provides air transportation services in the United States, Canada, Atlantic, the Pacific, and Latin America.",
    "gross_margin": 0.24315301041195111,
@@ -18299,7 +18299,7 @@
   }
  },
  "fundamentals:URI": {
-  "fetched_at": "2026-10-22T12:47:07.477995+00:00",
+  "fetched_at": "2026-10-23T12:44:50.758057+00:00",
   "value": {
    "description": "United Rentals, Inc., through its subsidiaries, operates as an equipment rental company in the United States, Canada, Europe, Australia, and New Zealand.",
    "gross_margin": 0.3927437641723356,
@@ -18387,7 +18387,7 @@
   }
  },
  "fundamentals:USB": {
-  "fetched_at": "2026-10-22T12:47:07.592109+00:00",
+  "fetched_at": "2026-10-23T12:44:50.781968+00:00",
   "value": {
    "description": "U.S. Bancorp, a financial services holding company, provides various financial services to individuals, businesses, institutional organizations, governmental entities, and other financial institutions in the United\u2026",
    "gross_margin": null,
