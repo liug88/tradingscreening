@@ -44,27 +44,23 @@
   }
  },
  "fundamentals:AAL": {
-  "fetched_at": "2026-10-23T12:44:50.338482+00:00",
+  "fetched_at": "2026-10-26T14:15:03.126210+00:00",
   "value": {
    "description": "American Airlines Group Inc., through its subsidiaries, operates as a network air carrier in the United States, Latin America, Atlantic, and Pacific.",
-   "gross_margin": 0.1787272184045414,
-   "gross_margin_change": 0.016996338588555204,
+   "gross_margin": 0.162105907560453,
+   "gross_margin_change": -0.016621310844088383,
    "industry": "Airlines",
    "last_earnings": {
     "eps_actual": -0.28,
     "eps_estimate": -0.36175,
     "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-10-22",
-   "operating_margin": 0.02706901703017628,
-   "operating_margin_change": 0.029009787587968114,
+   "operating_margin": 0.007591062136516682,
+   "operating_margin_change": -0.019477954893659596,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 14392000000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 13691000000.0
@@ -80,10 +76,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 16735000000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 16335000000.0
     }
    ],
-   "revenue_qoq": 0.20291834387579066,
-   "revenue_yoy": 0.16279877709838808,
+   "revenue_qoq": -0.023902001792650118,
+   "revenue_yoy": 0.19311956759915283,
    "sector": "Industrials"
   }
  },
@@ -308,7 +308,7 @@
   }
  },
  "fundamentals:ABT": {
-  "fetched_at": "2026-10-23T12:44:50.758039+00:00",
+  "fetched_at": "2026-10-26T14:15:03.483247+00:00",
   "value": {
    "description": "Abbott Laboratories, together with its subsidiaries, discovers, develops, manufactures, and sells health care products worldwide.",
    "gross_margin": 0.5619849516302401,
@@ -2316,16 +2316,16 @@
   }
  },
  "fundamentals:AXP": {
-  "fetched_at": "2026-09-15T12:42:52.050048+00:00",
+  "fetched_at": "2026-10-26T14:15:03.510377+00:00",
   "value": {
    "description": "American Express Company, together with its subsidiaries, operates as an integrated payments company in the United States, Europe, the Middle East and Africa, the Asia Pacific, Australia, New Zealand, Latin America\u2026",
    "gross_margin": null,
    "gross_margin_change": null,
    "industry": "Credit Services",
    "last_earnings": {
-    "eps_actual": 4.53,
-    "eps_estimate": 4.40307,
-    "quarter": "2026-06-30"
+    "eps_actual": 5.42,
+    "eps_estimate": 4.50016,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-23",
@@ -3540,7 +3540,7 @@
   }
  },
  "fundamentals:BX": {
-  "fetched_at": "2026-10-23T12:44:50.558148+00:00",
+  "fetched_at": "2026-10-26T14:15:03.259018+00:00",
   "value": {
    "description": "Blackstone Inc. is an alternative asset management firm specializing in private equity, venture capital, real estate, hedge fund solutions, credit, secondary funds of funds, public debt and equity and multi-asset class\u2026",
    "gross_margin": null,
@@ -4548,27 +4548,23 @@
   }
  },
  "fundamentals:CLF": {
-  "fetched_at": "2026-09-17T12:43:42.222876+00:00",
+  "fetched_at": "2026-10-26T14:15:03.584786+00:00",
   "value": {
    "description": "Cleveland-Cliffs Inc. operates as a steel producer in the United States and Canada.",
-   "gross_margin": 0.02525832376578645,
-   "gross_margin_change": 0.04191821811767593,
+   "gross_margin": 0.08285816108339274,
+   "gross_margin_change": 0.05759983731760629,
    "industry": "Steel",
    "last_earnings": {
-    "eps_actual": -0.2,
-    "eps_estimate": -0.21563,
-    "quarter": "2026-06-30"
+    "eps_actual": 0.28,
+    "eps_estimate": 0.23345,
+    "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-10-19",
-   "operating_margin": -0.008802143130501339,
-   "operating_margin_change": 0.03447294829574815,
-   "profitable": false,
+   "operating_margin": 0.05559515324305061,
+   "operating_margin_change": 0.06439729637355195,
+   "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 4934000000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 4734000000.0
@@ -4584,10 +4580,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 5226000000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 5612000000.0
     }
    ],
-   "revenue_qoq": 0.06176351076798059,
-   "revenue_yoy": 0.05918119173084713,
+   "revenue_qoq": 0.0738614619211635,
+   "revenue_yoy": 0.18546683565694977,
    "sector": "Basic Materials"
   }
  },
@@ -4680,27 +4680,23 @@
   }
  },
  "fundamentals:CMCSA": {
-  "fetched_at": "2026-10-23T12:44:50.486717+00:00",
+  "fetched_at": "2026-10-26T14:15:03.165236+00:00",
   "value": {
    "description": "Comcast Corporation operates as a media and technology company worldwide.",
-   "gross_margin": 0.7198062792251169,
-   "gross_margin_change": 0.06580240091504275,
+   "gross_margin": 0.7434978496825722,
+   "gross_margin_change": 0.02369157045745529,
    "industry": "Telecom Services",
    "last_earnings": {
     "eps_actual": 1.07,
     "eps_estimate": 0.98659,
     "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-10-22",
-   "operating_margin": 0.17234468937875752,
-   "operating_margin_change": 0.04089540940927536,
+   "operating_margin": 0.1815823605706874,
+   "operating_margin_change": 0.009237671191929892,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 30313000000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 31198000000.0
@@ -4716,10 +4712,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 29940000000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 29298000000.0
     }
    ],
-   "revenue_qoq": -0.048224560511173964,
-   "revenue_yoy": -0.012304951670900288,
+   "revenue_qoq": -0.021442885771543074,
+   "revenue_yoy": -0.06090133982947621,
    "sector": "Communication Services"
   }
  },
@@ -5164,27 +5164,23 @@
   }
  },
  "fundamentals:CPB": {
-  "fetched_at": "2026-10-23T12:44:50.486697+00:00",
+  "fetched_at": "2026-10-26T14:15:03.207806+00:00",
   "value": {
    "description": "The Campbell's Company, together with its subsidiaries, engages in the manufacture and marketing of food and beverage products in the United States and internationally.",
-   "gross_margin": 0.27472527472527475,
-   "gross_margin_change": -0.0049159109221511565,
+   "gross_margin": 0.27281235376696306,
+   "gross_margin_change": -0.0019129209583116924,
    "industry": "Packaged Foods",
    "last_earnings": {
     "eps_actual": 0.39,
     "eps_estimate": 0.38719,
     "quarter": "2026-07-31"
    },
-   "latest_quarter": "2026-04-30",
+   "latest_quarter": "2026-07-31",
    "next_earnings": "2026-09-03",
-   "operating_margin": 0.10397295012679628,
-   "operating_margin_change": -0.002501308843562533,
+   "operating_margin": 0.09031352363125877,
+   "operating_margin_change": -0.013659426495537502,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-04-30",
-     "revenue": 2475000000.0
-    },
     {
      "quarter": "2025-07-31",
      "revenue": 2321000000.0
@@ -5200,10 +5196,14 @@
     {
      "quarter": "2026-04-30",
      "revenue": 2366000000.0
+    },
+    {
+     "quarter": "2026-07-31",
+     "revenue": 2137000000.0
     }
    ],
-   "revenue_qoq": -0.07722308892355689,
-   "revenue_yoy": -0.04404040404040399,
+   "revenue_qoq": -0.09678782755705828,
+   "revenue_yoy": -0.07927617406290388,
    "sector": "Consumer Defensive"
   }
  },
@@ -5904,27 +5904,23 @@
   }
  },
  "fundamentals:DAL": {
-  "fetched_at": "2026-10-23T12:44:50.912245+00:00",
+  "fetched_at": "2026-10-26T14:15:03.350167+00:00",
   "value": {
    "description": "Delta Air Lines, Inc. provides scheduled air transportation for passengers and cargo in the United States and internationally.",
-   "gross_margin": 0.22984258743736397,
-   "gross_margin_change": 0.043958898778350464,
+   "gross_margin": 0.20147627068265134,
+   "gross_margin_change": -0.028366316754712628,
    "industry": "Airlines",
    "last_earnings": {
     "eps_actual": 1.72,
     "eps_estimate": 1.75723,
     "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-10-09",
-   "operating_margin": 0.09434630763779926,
-   "operating_margin_change": 0.0627454498101217,
+   "operating_margin": 0.07203011988506886,
+   "operating_margin_change": -0.022316187752730407,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 16648000000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 16673000000.0
@@ -5940,10 +5936,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 19757000000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 20186000000.0
     }
    ],
-   "revenue_qoq": 0.24618392834615865,
-   "revenue_yoy": 0.18674915905814515,
+   "revenue_qoq": 0.021713822948828287,
+   "revenue_yoy": 0.21069993402507037,
    "sector": "Industrials"
   }
  },
@@ -6564,7 +6564,7 @@
   }
  },
  "fundamentals:DLTR": {
-  "fetched_at": "2026-10-22T12:47:08.062243+00:00",
+  "fetched_at": "2026-10-26T14:15:03.520346+00:00",
   "value": {
    "description": "Dollar Tree, Inc. operates retail discount stores under the Dollar Tree and Dollar Tree Canada brands in the United States and Canada.",
    "gross_margin": 0.42913804383382403,
@@ -9064,30 +9064,26 @@
   }
  },
  "fundamentals:HON": {
-  "fetched_at": "2026-10-23T12:44:50.674145+00:00",
+  "fetched_at": "2026-10-26T14:15:03.408210+00:00",
   "value": {
    "description": "Honeywell International Inc. engages in the industrial automation, building automation, and energy and sustainability solutions businesses in the United States, Europe, and internationally.",
-   "gross_margin": 0.3758617141681243,
-   "gross_margin_change": -0.011210362830672616,
+   "gross_margin": 0.4040849018822587,
+   "gross_margin_change": 0.0282231877141344,
    "industry": "Conglomerates",
    "last_earnings": {
     "eps_actual": 2.27,
     "eps_estimate": 2.16441,
     "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-10-22",
-   "operating_margin": 0.18366087045992385,
-   "operating_margin_change": -0.00632053608059896,
+   "operating_margin": 0.14817781337605127,
+   "operating_margin_change": -0.03548305708387259,
    "profitable": true,
    "revenue_history": [
     {
-     "quarter": "2025-06-30",
-     "revenue": 9322000000.0
-    },
-    {
      "quarter": "2025-09-30",
-     "revenue": 10408000000.0
+     "revenue": 4929000000.0
     },
     {
      "quarter": "2025-12-31",
@@ -9100,10 +9096,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 9719000000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 4994000000.0
     }
    ],
-   "revenue_qoq": 0.06299901564038057,
-   "revenue_yoy": 0.04258742759064571,
+   "revenue_qoq": -0.48616112768803377,
+   "revenue_yoy": 0.013187259078920599,
    "sector": "Industrials"
   }
  },
@@ -9240,7 +9240,7 @@
   }
  },
  "fundamentals:HRL": {
-  "fetched_at": "2026-10-23T12:44:50.847791+00:00",
+  "fetched_at": "2026-10-26T14:15:03.189904+00:00",
   "value": {
    "description": "Hormel Foods Corporation develops, processes, and distributes various meat, nut, and other food products to foodservice, convenience stores, and commercial customers in the United States and internationally.",
    "gross_margin": 0.15922390355964697,
@@ -10164,27 +10164,23 @@
   }
  },
  "fundamentals:JNJ": {
-  "fetched_at": "2026-10-23T12:44:50.338502+00:00",
+  "fetched_at": "2026-10-26T14:15:03.073388+00:00",
   "value": {
    "description": "Johnson & Johnson, together with its subsidiaries, engages in the research and development, manufacture, and sale of a range of products in the healthcare field worldwide.",
-   "gross_margin": 0.6819043856183327,
-   "gross_margin_change": 0.018784112989291057,
+   "gross_margin": 0.6812079215717154,
+   "gross_margin_change": -0.0006964640466172733,
    "industry": "Drug Manufacturers - General",
    "last_earnings": {
     "eps_actual": 2.59,
     "eps_estimate": 2.52225,
     "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-10-13",
-   "operating_margin": 0.28344527854602924,
-   "operating_margin_change": 0.017673522249794515,
+   "operating_margin": 0.2506004173392653,
+   "operating_margin_change": -0.03284486120676394,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 23743000000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 23993000000.0
@@ -10200,10 +10196,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 25310000000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 25399000000.0
     }
    ],
-   "revenue_qoq": 0.051866012800265926,
-   "revenue_yoy": 0.06599839952828201,
+   "revenue_qoq": 0.0035163966811537772,
+   "revenue_yoy": 0.05860042512399444,
    "sector": "Healthcare"
   }
  },
@@ -11308,7 +11308,7 @@
   }
  },
  "fundamentals:LULU": {
-  "fetched_at": "2026-10-23T12:44:50.558170+00:00",
+  "fetched_at": "2026-10-26T14:15:03.328184+00:00",
   "value": {
    "description": "lululemon athletica inc., together with its subsidiaries, designs, distributes, and retails technical athletic apparel, footwear, and accessories for women and men under the lululemon brand in the United States, Canada\u2026",
    "gross_margin": 0.6051743830080009,
@@ -11396,27 +11396,23 @@
   }
  },
  "fundamentals:LUV": {
-  "fetched_at": "2026-10-23T12:44:50.396746+00:00",
+  "fetched_at": "2026-10-26T14:15:03.129422+00:00",
   "value": {
    "description": "Southwest Airlines Co. operates as a passenger airline company that provides scheduled air transportation services in the United States and internationally.",
-   "gross_margin": 0.16437381404174572,
-   "gross_margin_change": -0.02420392081823497,
+   "gross_margin": 0.16680517630297995,
+   "gross_margin_change": 0.002431362261234221,
    "industry": "Airlines",
    "last_earnings": {
     "eps_actual": 0.66,
     "eps_estimate": 0.5779,
     "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-10-21",
-   "operating_margin": 0.033799810246679315,
-   "operating_margin_change": -0.011723710238904901,
+   "operating_margin": 0.0449958447109106,
+   "operating_margin_change": 0.011196034464231286,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 7244000000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 6949000000.0
@@ -11432,10 +11428,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 8432000000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 8423000000.0
     }
    ],
-   "revenue_qoq": 0.16319492343771547,
-   "revenue_yoy": 0.16399779127553837,
+   "revenue_qoq": -0.0010673624288425332,
+   "revenue_yoy": 0.2121168513455174,
    "sector": "Industrials"
   }
  },
@@ -12868,7 +12868,7 @@
   }
  },
  "fundamentals:NLY": {
-  "fetched_at": "2026-10-23T12:44:50.920399+00:00",
+  "fetched_at": "2026-10-26T14:15:03.421478+00:00",
   "value": {
    "description": "Annaly Capital Management, Inc., a diversified capital manager, engages in the residential mortgage finance business.",
    "gross_margin": null,
@@ -14040,27 +14040,23 @@
   }
  },
  "fundamentals:PEP": {
-  "fetched_at": "2026-10-22T12:47:07.740589+00:00",
+  "fetched_at": "2026-10-26T14:15:03.460351+00:00",
   "value": {
    "description": "PepsiCo, Inc. engages in the manufacture, marketing, distribution, and sale of various beverages and convenient foods worldwide.",
-   "gross_margin": 0.5422025557255696,
-   "gross_margin_change": -0.00971844412013323,
+   "gross_margin": 0.5441956160481127,
+   "gross_margin_change": 0.0019930603225430943,
    "industry": "Beverages - Non-Alcoholic",
    "last_earnings": {
     "eps_actual": 2.34,
     "eps_estimate": 2.29525,
     "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-10-08",
-   "operating_margin": 0.16637029072412224,
-   "operating_margin_change": 0.0011180148407708979,
+   "operating_margin": 0.16855266281554165,
+   "operating_margin_change": 0.0021823720914194156,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 22726000000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 23937000000.0
@@ -14076,10 +14072,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 24181000000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 25274000000.0
     }
    ],
-   "revenue_qoq": 0.24368667386720166,
-   "revenue_yoy": 0.06402358532077801,
+   "revenue_qoq": 0.045200777469914355,
+   "revenue_yoy": 0.05585495258386608,
    "sector": "Consumer Defensive"
   }
  },
@@ -14172,7 +14172,7 @@
   }
  },
  "fundamentals:PGR": {
-  "fetched_at": "2026-10-19T12:47:52.873649+00:00",
+  "fetched_at": "2026-10-26T14:15:03.584798+00:00",
   "value": {
    "description": "The Progressive Corporation operates as an insurance company in the United States.",
    "gross_margin": null,
@@ -14216,27 +14216,23 @@
   }
  },
  "fundamentals:PHM": {
-  "fetched_at": "2026-10-23T12:44:50.355674+00:00",
+  "fetched_at": "2026-10-26T14:15:03.270353+00:00",
   "value": {
    "description": "PulteGroup, Inc., through its subsidiaries, engages in the homebuilding business in the United States.",
-   "gross_margin": 0.25044734351889814,
-   "gross_margin_change": 0.0092595381857557,
+   "gross_margin": 0.25302339345812597,
+   "gross_margin_change": 0.0025760499392278313,
    "industry": "Residential Construction",
    "last_earnings": {
     "eps_actual": 2.53,
-    "eps_estimate": 2.61969,
+    "eps_estimate": 2.62257,
     "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-10-22",
-   "operating_margin": 0.1539416569146993,
-   "operating_margin_change": 0.024749725513514287,
+   "operating_margin": 0.15271502720538238,
+   "operating_margin_change": -0.0012266297093169176,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 4403755000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 4404799000.0
@@ -14252,10 +14248,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 3982957000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 3973846000.0
     }
    ],
-   "revenue_qoq": 0.16851191642717245,
-   "revenue_yoy": -0.09555436212959167,
+   "revenue_qoq": -0.002287496450501525,
+   "revenue_yoy": -0.09783715443088326,
    "sector": "Consumer Cyclical"
   }
  },
@@ -14656,12 +14656,19 @@
   }
  },
  "fundamentals:QCOM": {
-  "fetched_at": "2026-08-26T20:48:33.431046+00:00",
+  "fetched_at": "2026-10-26T14:15:03.510353+00:00",
   "value": {
+   "description": "QUALCOMM Incorporated engages in the development and commercialization of foundational technologies for the wireless industry worldwide.",
    "gross_margin": 0.5305117120739922,
    "gross_margin_change": -0.007180523042528253,
+   "industry": "Semiconductors",
+   "last_earnings": {
+    "eps_actual": 2.21,
+    "eps_estimate": 2.22643,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-29",
+   "next_earnings": "2026-11-04",
    "operating_margin": 0.16346637177038303,
    "operating_margin_change": -0.054384368865526,
    "profitable": true,
@@ -14688,7 +14695,8 @@
     }
    ],
    "revenue_qoq": -0.06151523728653652,
-   "revenue_yoy": -0.04032802701398941
+   "revenue_yoy": -0.04032802701398941,
+   "sector": "Technology"
   }
  },
  "fundamentals:QXO": {
@@ -15440,27 +15448,23 @@
   }
  },
  "fundamentals:RTX": {
-  "fetched_at": "2026-10-23T12:44:50.355693+00:00",
+  "fetched_at": "2026-10-26T14:15:03.198578+00:00",
   "value": {
    "description": "RTX Corporation, an aerospace and defense company, provides systems and services for commercial, military, and government customers worldwide.",
-   "gross_margin": 0.20774647887323944,
-   "gross_margin_change": -0.00035281447700516444,
+   "gross_margin": 0.23252553575005008,
+   "gross_margin_change": 0.024779056876810646,
    "industry": "Aerospace & Defense",
    "last_earnings": {
     "eps_actual": 2.26,
     "eps_estimate": 1.7791,
     "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-10-20",
-   "operating_margin": 0.11376881981544439,
-   "operating_margin_change": -0.001967726660366445,
+   "operating_margin": 0.13366713398758262,
+   "operating_margin_change": 0.019898314172138235,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 21581000000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 22478000000.0
@@ -15476,23 +15480,27 @@
     {
      "quarter": "2026-06-30",
      "revenue": 24708000000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 24965000000.0
     }
    ],
-   "revenue_qoq": 0.11922449719152017,
-   "revenue_yoy": 0.14489597330985582,
+   "revenue_qoq": 0.010401489396147046,
+   "revenue_yoy": 0.11064151614912365,
    "sector": "Industrials"
   }
  },
  "fundamentals:S": {
-  "fetched_at": "2026-09-24T12:45:05.314636+00:00",
+  "fetched_at": "2026-10-26T14:15:03.251641+00:00",
   "value": {
    "description": "SentinelOne, Inc. operates as a cybersecurity provider in the United States and internationally.",
    "gross_margin": 0.7206564810723985,
    "gross_margin_change": 0.0024675323018993334,
    "industry": "Software - Infrastructure",
    "last_earnings": {
-    "eps_actual": -0.27,
-    "eps_estimate": -0.23174,
+    "eps_actual": 0.08,
+    "eps_estimate": 0.07183,
     "quarter": "2026-07-31"
    },
    "latest_quarter": "2026-07-31",
@@ -16056,19 +16064,19 @@
   }
  },
  "fundamentals:SLB": {
-  "fetched_at": "2026-09-16T12:43:50.639319+00:00",
+  "fetched_at": "2026-10-26T14:15:03.328158+00:00",
   "value": {
    "description": "SLB N.V. engages in the provision of technology for the energy industry worldwide.",
    "gross_margin": 0.15548372715113687,
    "gross_margin_change": 0.0028636147787025057,
    "industry": "Oil & Gas Equipment & Services",
    "last_earnings": {
-    "eps_actual": 0.55,
-    "eps_estimate": 0.5174,
-    "quarter": "2026-06-30"
+    "eps_actual": 0.64,
+    "eps_estimate": 0.61474,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-23",
+   "next_earnings": "2027-01-22",
    "operating_margin": 0.1270619705751226,
    "operating_margin_change": 0.004369618780603629,
    "profitable": true,
@@ -16488,10 +16496,17 @@
   }
  },
  "fundamentals:SOFI": {
-  "fetched_at": "2026-09-04T12:42:19.422177+00:00",
+  "fetched_at": "2026-10-26T14:15:03.393412+00:00",
   "value": {
+   "description": "SoFi Technologies, Inc. provides various financial services in the United States, Latin America, Canada, and Hong Kong.",
    "gross_margin": null,
    "gross_margin_change": null,
+   "industry": "Credit Services",
+   "last_earnings": {
+    "eps_actual": 0.12,
+    "eps_estimate": 0.1092,
+    "quarter": "2026-06-30"
+   },
    "latest_quarter": "2026-06-30",
    "next_earnings": "2026-10-27",
    "operating_margin": null,
@@ -16520,7 +16535,8 @@
     }
    ],
    "revenue_qoq": 0.1075167580300409,
-   "revenue_yoy": 0.4254454092899651
+   "revenue_yoy": 0.4254454092899651,
+   "sector": "Financial Services"
   }
  },
  "fundamentals:SONY": {
@@ -17444,7 +17460,7 @@
   }
  },
  "fundamentals:TSCO": {
-  "fetched_at": "2026-10-23T12:44:51.088612+00:00",
+  "fetched_at": "2026-10-26T14:15:03.584761+00:00",
   "value": {
    "description": "Tractor Supply Company operates as a rural lifestyle retailer in the United States.",
    "gross_margin": 0.3705114863231215,
@@ -17532,27 +17548,23 @@
   }
  },
  "fundamentals:TSLA": {
-  "fetched_at": "2026-10-23T12:44:50.898909+00:00",
+  "fetched_at": "2026-10-26T14:15:03.129454+00:00",
   "value": {
    "description": "Tesla, Inc. designs, develops, manufactures, leases, and sells electric vehicles, and energy generation and storage systems in the United States, China, and internationally.",
-   "gross_margin": 0.16826037682391273,
-   "gross_margin_change": -0.042576269444010606,
+   "gross_margin": 0.19589246238322755,
+   "gross_margin_change": 0.027632085559314817,
    "industry": "Auto Manufacturers",
    "last_earnings": {
     "eps_actual": 0.48,
     "eps_estimate": 0.45114,
     "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-10-21",
-   "operating_margin": 0.014095480946309675,
-   "operating_margin_change": -0.02793784196430809,
+   "operating_margin": 0.02560079868786993,
+   "operating_margin_change": 0.011505317741560253,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 22496000000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 28095000000.0
@@ -17568,10 +17580,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 28236000000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 28046000000.0
     }
    ],
-   "revenue_qoq": 0.261267700004467,
-   "revenue_yoy": 0.25515647226173543,
+   "revenue_qoq": -0.006728998441705603,
+   "revenue_yoy": -0.0017440825769710067,
    "sector": "Consumer Cyclical"
   }
  },
@@ -17840,27 +17856,23 @@
   }
  },
  "fundamentals:UAL": {
-  "fetched_at": "2026-10-23T12:44:50.587474+00:00",
+  "fetched_at": "2026-10-26T14:15:03.344422+00:00",
   "value": {
    "description": "United Airlines Holdings, Inc., through its subsidiaries, provides air transportation services in the United States, Canada, Atlantic, the Pacific, and Latin America.",
-   "gross_margin": 0.24315301041195111,
-   "gross_margin_change": -0.00821610240294482,
+   "gross_margin": 0.2574401432087715,
+   "gross_margin_change": 0.014287132796820395,
    "industry": "Airlines",
    "last_earnings": {
     "eps_actual": 2.54,
     "eps_estimate": 2.5729,
     "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-10-20",
-   "operating_margin": 0.05381394296061566,
-   "operating_margin_change": 0.012192913387778857,
+   "operating_margin": 0.06886328037592303,
+   "operating_margin_change": 0.015049337415307368,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 15236000000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 15225000000.0
@@ -17876,10 +17888,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 17672000000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 17876000000.0
     }
    ],
-   "revenue_qoq": 0.20974808324205907,
-   "revenue_yoy": 0.15988448411656608,
+   "revenue_qoq": 0.011543684925305664,
+   "revenue_yoy": 0.17412151067323478,
    "sector": "Industrials"
   }
  },
@@ -18299,27 +18315,23 @@
   }
  },
  "fundamentals:URI": {
-  "fetched_at": "2026-10-23T12:44:50.758057+00:00",
+  "fetched_at": "2026-10-26T14:15:03.419931+00:00",
   "value": {
    "description": "United Rentals, Inc., through its subsidiaries, operates as an equipment rental company in the United States, Canada, Europe, Australia, and New Zealand.",
-   "gross_margin": 0.3927437641723356,
-   "gross_margin_change": 0.024111392779612884,
+   "gross_margin": 0.4181483752299203,
+   "gross_margin_change": 0.025404611057584736,
    "industry": "Rental & Leasing Services",
    "last_earnings": {
     "eps_actual": 15.55,
     "eps_estimate": 14.02809,
     "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-10-21",
-   "operating_margin": 0.2594104308390023,
-   "operating_margin_change": 0.03005033046259073,
+   "operating_margin": 0.2910279991825056,
+   "operating_margin_change": 0.03161756834350332,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 3943000000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 4229000000.0
@@ -18335,10 +18347,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 4410000000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 4893000000.0
     }
    ],
-   "revenue_qoq": 0.1066499372647427,
-   "revenue_yoy": 0.1184377377631245,
+   "revenue_qoq": 0.10952380952380958,
+   "revenue_yoy": 0.15701111373847243,
    "sector": "Industrials"
   }
  },
@@ -18387,7 +18403,7 @@
   }
  },
  "fundamentals:USB": {
-  "fetched_at": "2026-10-23T12:44:50.781968+00:00",
+  "fetched_at": "2026-10-26T14:15:03.278138+00:00",
   "value": {
    "description": "U.S. Bancorp, a financial services holding company, provides various financial services to individuals, businesses, institutional organizations, governmental entities, and other financial institutions in the United\u2026",
    "gross_margin": null,
