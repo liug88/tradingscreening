@@ -1,6 +1,6 @@
 {
  "cboe_weekly_equities": {
-  "fetched_at": "2026-10-27T12:48:20.479124+00:00",
+  "fetched_at": "2026-11-04T12:32:58.340841+00:00",
   "value": [
    "AA",
    "AAL",
@@ -33,7 +33,6 @@
    "AKAM",
    "ALAB",
    "ALB",
-   "ALDX",
    "ALGN",
    "ALT",
    "AMAT",
@@ -306,7 +305,6 @@
    "KR",
    "KSS",
    "KTOS",
-   "KVUE",
    "LAC",
    "LAES",
    "LASE",
@@ -500,7 +498,6 @@
    "STX",
    "STZ",
    "SU",
-   "SVIA",
    "SYM",
    "T",
    "TDOC",
@@ -536,7 +533,6 @@
    "UAMY",
    "UBER",
    "UEC",
-   "UL",
    "ULTA",
    "UMAC",
    "UNH",
