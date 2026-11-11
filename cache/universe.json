@@ -1,6 +1,6 @@
 {
  "cboe_weekly_equities": {
-  "fetched_at": "2026-11-04T12:32:58.340841+00:00",
+  "fetched_at": "2026-11-11T12:33:29.487796+00:00",
   "value": [
    "AA",
    "AAL",
@@ -215,6 +215,7 @@
    "FISV",
    "FLG",
    "FLY",
+   "FOXA",
    "FPS",
    "FRMI",
    "FSLR",
@@ -446,7 +447,6 @@
    "RKLB",
    "RKT",
    "RNG",
-   "ROKU",
    "ROST",
    "RR",
    "RTX",
