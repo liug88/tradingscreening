@@ -88,7 +88,7 @@
   }
  },
  "fundamentals:AAOI": {
-  "fetched_at": "2026-11-10T12:32:35.724519+00:00",
+  "fetched_at": "2026-11-17T12:34:54.815714+00:00",
   "value": {
    "description": "Applied Optoelectronics, Inc. engages in the design, manufacture, and sale of fiber-optic networking products in the United States, Taiwan, and China.",
    "gross_margin": 0.2821861973135711,
@@ -264,7 +264,7 @@
   }
  },
  "fundamentals:ABNB": {
-  "fetched_at": "2026-11-16T12:42:18.007209+00:00",
+  "fetched_at": "2026-11-17T12:34:54.041539+00:00",
   "value": {
    "description": "Airbnb, Inc., together with its subsidiaries, operates a platform for stays, experiences, and services worldwide.",
    "gross_margin": 0.8662969808995687,
@@ -1048,7 +1048,7 @@
   }
  },
  "fundamentals:AIG": {
-  "fetched_at": "2026-11-16T12:42:17.582821+00:00",
+  "fetched_at": "2026-11-17T12:34:52.888234+00:00",
   "value": {
    "description": "American International Group, Inc. provides insurance products for commercial, institutional, and individual customers in North America and internationally.",
    "gross_margin": null,
@@ -1092,7 +1092,7 @@
   }
  },
  "fundamentals:AKAM": {
-  "fetched_at": "2026-11-16T12:42:18.734910+00:00",
+  "fetched_at": "2026-11-17T12:34:53.461578+00:00",
   "value": {
    "description": "Akamai Technologies, Inc. engages in the provision of security, delivery, and cloud computing solutions in the United States and internationally.",
    "gross_margin": 0.5501715300264448,
@@ -1136,7 +1136,7 @@
   }
  },
  "fundamentals:ALAB": {
-  "fetched_at": "2026-11-16T12:42:18.271574+00:00",
+  "fetched_at": "2026-11-17T12:34:53.276724+00:00",
   "value": {
    "description": "Astera Labs, Inc. designs, manufactures, and sells semiconductor-based connectivity solutions for cloud and AI infrastructure in Taiwan and the United States.",
    "gross_margin": 0.7227777787276094,
@@ -1444,7 +1444,7 @@
   }
  },
  "fundamentals:AMKR": {
-  "fetched_at": "2026-11-16T12:42:18.634664+00:00",
+  "fetched_at": "2026-11-17T12:34:53.889724+00:00",
   "value": {
    "description": "Amkor Technology, Inc. provides outsourced semiconductor packaging and test services in the United States, Japan, Europe, and the Asia Pacific.",
    "gross_margin": 0.18262677230544014,
@@ -1568,7 +1568,7 @@
   }
  },
  "fundamentals:ANET": {
-  "fetched_at": "2026-11-16T12:42:17.032966+00:00",
+  "fetched_at": "2026-11-17T12:34:54.240142+00:00",
   "value": {
    "description": "Arista Networks, Inc. engages in the development, marketing, and sale of data-driven, client to cloud networking solutions for AI, data center, campus, and routing environments in the Americas, Europe, the Middle East\u2026",
    "gross_margin": 0.6358541119860017,
@@ -1656,7 +1656,7 @@
   }
  },
  "fundamentals:APA": {
-  "fetched_at": "2026-11-16T12:42:17.499844+00:00",
+  "fetched_at": "2026-11-17T12:34:52.952484+00:00",
   "value": {
    "description": "APA Corporation, an independent energy company, explores for, develops, and produces natural gas, crude oil, and natural gas liquids.",
    "gross_margin": 0.5290718671000361,
@@ -2096,7 +2096,7 @@
   }
  },
  "fundamentals:ASST": {
-  "fetched_at": "2026-11-12T12:34:36.281230+00:00",
+  "fetched_at": "2026-11-17T12:34:55.093510+00:00",
   "value": {
    "description": "Strive, Inc. is a privately owned investment manager.",
    "gross_margin": -5.385756676557864,
@@ -2140,7 +2140,7 @@
   }
  },
  "fundamentals:ASTS": {
-  "fetched_at": "2026-11-16T12:42:18.424513+00:00",
+  "fetched_at": "2026-11-17T12:34:53.218733+00:00",
   "value": {
    "description": "AST SpaceMobile, Inc., together with its subsidiaries, designs and develops the constellation of BlueBird satellites in the United States.",
    "gross_margin": 0.40185723399730633,
@@ -2272,27 +2272,23 @@
   }
  },
  "fundamentals:AXON": {
-  "fetched_at": "2026-09-16T12:43:50.639343+00:00",
+  "fetched_at": "2026-11-17T12:34:55.180249+00:00",
   "value": {
    "description": "Axon Enterprise, Inc. provides public safety technology solutions in the United States and internationally.",
-   "gross_margin": 0.6042167695538092,
-   "gross_margin_change": 0.013037038459914996,
+   "gross_margin": 0.5668105583157412,
+   "gross_margin_change": -0.03740621123806798,
    "industry": "Aerospace & Defense",
    "last_earnings": {
-    "eps_actual": 1.88,
-    "eps_estimate": 1.84394,
-    "quarter": "2026-06-30"
+    "eps_actual": 1.72,
+    "eps_estimate": 1.88886,
+    "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-11-03",
-   "operating_margin": 0.05172331817392737,
-   "operating_margin_change": 0.015502124012819044,
+   "latest_quarter": "2026-09-30",
+   "next_earnings": "2026-11-05",
+   "operating_margin": 0.04631535384798262,
+   "operating_margin_change": -0.005407964325944752,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 668538000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 710641000.0
@@ -2308,10 +2304,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 904389000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 908554000.0
     }
    ],
-   "revenue_qoq": 0.12020140088809628,
-   "revenue_yoy": 0.35278622905504253,
+   "revenue_qoq": 0.0046053191712858155,
+   "revenue_yoy": 0.2784992703770257,
    "sector": "Industrials"
   }
  },
@@ -2360,27 +2360,23 @@
   }
  },
  "fundamentals:AXTI": {
-  "fetched_at": "2026-11-12T12:34:35.269250+00:00",
+  "fetched_at": "2026-11-17T12:34:54.670709+00:00",
   "value": {
    "description": "AXT, Inc. designs, develops, manufactures, and distributes compound and single element semiconductor substrates.",
-   "gross_margin": 0.4489692996280653,
-   "gross_margin_change": 0.15265374473280457,
+   "gross_margin": 0.5598011170140308,
+   "gross_margin_change": 0.11083181738596548,
    "industry": "Semiconductor Equipment & Materials",
    "last_earnings": {
     "eps_actual": 0.41,
     "eps_estimate": 0.308,
     "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-10-29",
-   "operating_margin": 0.21902120237870096,
-   "operating_margin_change": 0.2778906125703515,
+   "operating_margin": 0.387236071379921,
+   "operating_margin_change": 0.16821486900122004,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 17974000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 27955000.0
@@ -2396,10 +2392,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 47589000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 73410000.0
     }
    ],
-   "revenue_qoq": 0.7675308275144852,
-   "revenue_yoy": 1.6476577278290865,
+   "revenue_qoq": 0.5425833701065372,
+   "revenue_yoy": 1.6260060812019317,
    "sector": "Technology"
   }
  },
@@ -2712,7 +2712,7 @@
   }
  },
  "fundamentals:BE": {
-  "fetched_at": "2026-11-16T12:42:18.401205+00:00",
+  "fetched_at": "2026-11-17T12:34:53.540981+00:00",
   "value": {
    "description": "Bloom Energy Corporation designs, manufactures, sells, and installs solid oxide fuel cell systems for on-site power generation in the United States and internationally.",
    "gross_margin": 0.3375072926283968,
@@ -2756,19 +2756,19 @@
   }
  },
  "fundamentals:BEKE": {
-  "fetched_at": "2026-09-22T12:42:59.974916+00:00",
+  "fetched_at": "2026-11-17T12:34:53.445240+00:00",
   "value": {
    "description": "KE Holdings Inc., through its subsidiaries, engages in operating an integrated online and offline platform for housing transactions and services in the People's Republic of China.",
    "gross_margin": 0.2858152193181026,
    "gross_margin_change": 0.044444239457180706,
    "industry": "Real Estate Services",
    "last_earnings": {
-    "eps_actual": 2.85,
-    "eps_estimate": 2.11858,
-    "quarter": "2026-06-30"
+    "eps_actual": 2.35,
+    "eps_estimate": 1.71442,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-11-10",
+   "next_earnings": "2026-11-16",
    "operating_margin": 0.13638876471252231,
    "operating_margin_change": 0.06902048451611936,
    "profitable": true,
@@ -3936,30 +3936,30 @@
   }
  },
  "fundamentals:CBRS": {
-  "fetched_at": "2026-11-16T12:42:16.680604+00:00",
+  "fetched_at": "2026-11-17T12:34:53.356369+00:00",
   "value": {
    "description": "Cerebras Systems Inc. operates as an artificial intelligence infrastructure company.",
-   "gross_margin": 0.14190772305813115,
-   "gross_margin_change": -0.3036627349421377,
+   "gross_margin": 0.1996783818527672,
+   "gross_margin_change": 0.057770658794636054,
    "industry": "Semiconductors",
    "last_earnings": {
     "eps_actual": 0.1248,
     "eps_estimate": -0.1435,
     "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-11-12",
-   "operating_margin": -2.649675198489812,
-   "operating_margin_change": -2.5719268349436963,
+   "operating_margin": -1.0632800307387256,
+   "operating_margin_change": 1.5863951677510864,
    "profitable": false,
    "revenue_history": [
     {
-     "quarter": "2025-03-31",
-     "revenue": 99512000.0
+     "quarter": "2025-09-30",
+     "revenue": 135714000.0
     },
     {
-     "quarter": "2025-06-30",
-     "revenue": 103322000.0
+     "quarter": "2025-12-31",
+     "revenue": 171443000.0
     },
     {
      "quarter": "2026-03-31",
@@ -3968,10 +3968,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 180110000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 210809000.0
     }
    ],
-   "revenue_qoq": -0.06874657456335376,
-   "revenue_yoy": null,
+   "revenue_qoq": 0.17044583865415586,
+   "revenue_yoy": 0.5533327438584081,
    "sector": "Technology"
   }
  },
@@ -4020,7 +4024,7 @@
   }
  },
  "fundamentals:CCJ": {
-  "fetched_at": "2026-11-16T12:42:18.339176+00:00",
+  "fetched_at": "2026-11-17T12:34:53.251596+00:00",
   "value": {
    "description": "Cameco Corporation provides uranium for the generation of electricity in the Americas, Europe, and Asia.",
    "gross_margin": 0.1974529289378804,
@@ -4152,7 +4156,7 @@
   }
  },
  "fundamentals:CDNS": {
-  "fetched_at": "2026-11-13T12:33:20.459058+00:00",
+  "fetched_at": "2026-11-17T12:34:54.055985+00:00",
   "value": {
    "description": "Cadence Design Systems, Inc. develops computational, AI-driven software, hardware, and silicon intellectual property products and solutions.",
    "gross_margin": 0.8557206802623628,
@@ -4196,7 +4200,7 @@
   }
  },
  "fundamentals:CEG": {
-  "fetched_at": "2026-11-16T12:42:16.946918+00:00",
+  "fetched_at": "2026-11-17T12:34:52.935110+00:00",
   "value": {
    "description": "Constellation Energy Corporation produces and sells energy products and services in the United States.",
    "gross_margin": 0.33078534031413614,
@@ -4416,27 +4420,23 @@
   }
  },
  "fundamentals:CI": {
-  "fetched_at": "2026-09-16T12:43:50.370010+00:00",
+  "fetched_at": "2026-11-17T12:34:54.144131+00:00",
   "value": {
    "description": "The Cigna Group, together with its subsidiaries, provides insurance and related products and services in the United States.",
-   "gross_margin": 0.08772200123256205,
-   "gross_margin_change": -0.004060345162330475,
+   "gross_margin": 0.08597198757425473,
+   "gross_margin_change": -0.00175001365830732,
    "industry": "Healthcare Plans",
    "last_earnings": {
-    "eps_actual": 7.78,
-    "eps_estimate": 7.59972,
-    "quarter": "2026-06-30"
+    "eps_actual": 7.98,
+    "eps_estimate": 7.50728,
+    "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-11-05",
-   "operating_margin": 0.033671354137486696,
-   "operating_margin_change": 0.002101038434329662,
+   "latest_quarter": "2026-09-30",
+   "next_earnings": "2027-02-04",
+   "operating_margin": 0.028734535942013188,
+   "operating_margin_change": -0.004936818195473508,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 66942000000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 69515000000.0
@@ -4452,10 +4452,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 71396000000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 73396000000.0
     }
    ],
-   "revenue_qoq": 0.04545188309025949,
-   "revenue_yoy": 0.06653520958441628,
+   "revenue_qoq": 0.028012773824864112,
+   "revenue_yoy": 0.05582967704811903,
    "sector": "Healthcare"
   }
  },
@@ -4856,7 +4860,7 @@
   }
  },
  "fundamentals:CNC": {
-  "fetched_at": "2026-11-11T12:33:42.231494+00:00",
+  "fetched_at": "2026-11-17T12:34:53.040410+00:00",
   "value": {
    "description": "Centene Corporation operates as a managed care company that provides programs and services to under-insured families, and commercial organizations in the United States.",
    "gross_margin": 0.06371552115623828,
@@ -4900,27 +4904,23 @@
   }
  },
  "fundamentals:CNQ": {
-  "fetched_at": "2026-10-05T12:50:25.632927+00:00",
+  "fetched_at": "2026-11-17T12:34:54.440329+00:00",
   "value": {
    "description": "Canadian Natural Resources Limited engages in the acquisition, exploration, development, production, marketing, and sale of crude oil, natural gas, and natural gas liquids (NGLs) in Western Canada, the United Kingdom\u2026",
-   "gross_margin": 0.37248751016614384,
-   "gross_margin_change": 0.0849189838842993,
+   "gross_margin": 0.3125998849325577,
+   "gross_margin_change": -0.05988762523358615,
    "industry": "Oil & Gas E&P",
    "last_earnings": {
-    "eps_actual": 2.19,
-    "eps_estimate": 2.04236,
-    "quarter": "2026-06-30"
+    "eps_actual": 1.65,
+    "eps_estimate": 1.40492,
+    "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-11-05",
-   "operating_margin": 0.368943882886023,
-   "operating_margin_change": 0.1536101195838624,
+   "operating_margin": 0.26823499328773254,
+   "operating_margin_change": -0.10070888959829044,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 9675000000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 11070000000.0
@@ -4936,10 +4936,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 17214000000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 15643000000.0
     }
    ],
-   "revenue_qoq": 0.3877781360851338,
-   "revenue_yoy": 0.7792248062015503,
+   "revenue_qoq": -0.0912629255257349,
+   "revenue_yoy": 0.4130984643179765,
    "sector": "Energy"
   }
  },
@@ -5120,7 +5124,7 @@
   }
  },
  "fundamentals:CORZ": {
-  "fetched_at": "2026-11-16T12:42:16.675289+00:00",
+  "fetched_at": "2026-11-17T12:34:53.889752+00:00",
   "value": {
    "description": "Core Scientific, Inc. provides infrastructure for high-density colocation services and digital asset mining in the United States.",
    "gross_margin": 0.5293688215540268,
@@ -5508,27 +5512,23 @@
   }
  },
  "fundamentals:CRSP": {
-  "fetched_at": "2026-09-15T12:42:53.499336+00:00",
+  "fetched_at": "2026-11-17T12:34:55.123195+00:00",
   "value": {
    "description": "CRISPR Therapeutics AG, a gene editing company, focuses on developing gene-based medicines for serious human diseases using its Clustered Regularly Interspaced Short Palindromic Repeats (CRISPR)/CRISPR-associated\u2026",
-   "gross_margin": -3.0272,
-   "gross_margin_change": 41.9218,
+   "gross_margin": -2.350158240688144,
+   "gross_margin_change": 0.6770417593118561,
    "industry": "Biotechnology",
    "last_earnings": {
-    "eps_actual": -0.94,
-    "eps_estimate": -1.18374,
-    "quarter": "2026-06-30"
+    "eps_actual": -1.15,
+    "eps_estimate": -1.05997,
+    "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-11-09",
-   "operating_margin": -11.7269,
-   "operating_margin_change": 118.52109999999999,
+   "latest_quarter": "2026-09-30",
+   "next_earnings": "2026-11-02",
+   "operating_margin": -9.605615515702345,
+   "operating_margin_change": 1.8739844842976545,
    "profitable": false,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 0.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 0.0
@@ -5544,9 +5544,13 @@
     {
      "quarter": "2026-06-30",
      "revenue": 10000000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 12323000.0
     }
    ],
-   "revenue_qoq": 9.0,
+   "revenue_qoq": 0.23229999999999995,
    "revenue_yoy": null,
    "sector": "Healthcare"
   }
@@ -5596,7 +5600,7 @@
   }
  },
  "fundamentals:CRWV": {
-  "fetched_at": "2026-11-16T12:42:18.205429+00:00",
+  "fetched_at": "2026-11-17T12:34:53.196535+00:00",
   "value": {
    "description": "CoreWeave, Inc. operates as a cloud infrastructure technology company in the United States, Denmark, Middle East and Asia Pacific.",
    "gross_margin": 0.12373668396612947,
@@ -5816,7 +5820,7 @@
   }
  },
  "fundamentals:CVS": {
-  "fetched_at": "2026-11-16T12:42:16.852020+00:00",
+  "fetched_at": "2026-11-17T12:34:52.789598+00:00",
   "value": {
    "description": "CVS Health Corporation provides health solutions in the United States.",
    "gross_margin": 0.13743669222040794,
@@ -5904,7 +5908,7 @@
   }
  },
  "fundamentals:CZR": {
-  "fetched_at": "2026-11-16T12:42:19.106365+00:00",
+  "fetched_at": "2026-11-17T12:34:54.175489+00:00",
   "value": {
    "description": "Caesars Entertainment, Inc. operates as a gaming and hospitality company.",
    "gross_margin": 0.49115646258503404,
@@ -6080,27 +6084,23 @@
   }
  },
  "fundamentals:DBX": {
-  "fetched_at": "2026-09-11T20:21:47.688969+00:00",
+  "fetched_at": "2026-11-17T12:34:53.196507+00:00",
   "value": {
    "description": "Dropbox, Inc. provides a content collaboration platform in the United States and internationally.",
-   "gross_margin": 0.8020585906571654,
-   "gross_margin_change": 0.005553427829524504,
+   "gross_margin": 0.8060568021340028,
+   "gross_margin_change": 0.003998211476837321,
    "industry": "Software - Infrastructure",
    "last_earnings": {
-    "eps_actual": 0.75,
-    "eps_estimate": 0.73872,
-    "quarter": "2026-06-30"
+    "eps_actual": 0.88,
+    "eps_estimate": 0.7279,
+    "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-11-05",
-   "operating_margin": 0.26096595407759304,
-   "operating_margin_change": -0.013537620187696886,
+   "operating_margin": 0.2749097756158795,
+   "operating_margin_change": 0.013943821538286438,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 625700000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 634400000.0
@@ -6116,35 +6116,35 @@
     {
      "quarter": "2026-06-30",
      "revenue": 631500000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 637300000.0
     }
    ],
-   "revenue_qoq": 0.003177124702144596,
-   "revenue_yoy": 0.009269618027808901,
+   "revenue_qoq": 0.009184481393507582,
+   "revenue_yoy": 0.004571248423707486,
    "sector": "Technology"
   }
  },
  "fundamentals:DDOG": {
-  "fetched_at": "2026-09-15T12:42:51.777742+00:00",
+  "fetched_at": "2026-11-17T12:34:54.815722+00:00",
   "value": {
    "description": "Datadog, Inc. operates an observability and security platform for cloud applications in the United States and internationally.",
-   "gross_margin": 0.7858913517629791,
-   "gross_margin_change": -0.006216562778179391,
+   "gross_margin": 0.8018803932870544,
+   "gross_margin_change": 0.01598904152407532,
    "industry": "Software - Application",
    "last_earnings": {
-    "eps_actual": 0.65,
-    "eps_estimate": 0.58324,
-    "quarter": "2026-06-30"
+    "eps_actual": 0.81,
+    "eps_estimate": 0.64093,
+    "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-11-05",
-   "operating_margin": 0.0066565369600536444,
-   "operating_margin_change": -0.0006236803634256773,
+   "latest_quarter": "2026-09-30",
+   "next_earnings": "2026-11-04",
+   "operating_margin": 0.06334110217276896,
+   "operating_margin_change": 0.05668456521271532,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 826760000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 885651000.0
@@ -6160,10 +6160,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 1121454000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 1197090000.0
     }
    ],
-   "revenue_qoq": 0.11429354964994953,
-   "revenue_yoy": 0.3564444336929702,
+   "revenue_qoq": 0.06744458533296949,
+   "revenue_yoy": 0.3516498033649824,
    "sector": "Technology"
   }
  },
@@ -6652,7 +6656,7 @@
   }
  },
  "fundamentals:DOCN": {
-  "fetched_at": "2026-11-16T12:42:17.067856+00:00",
+  "fetched_at": "2026-11-17T12:34:53.297933+00:00",
   "value": {
    "description": "DigitalOcean Holdings, Inc., through its subsidiaries, operates an agentic inference cloud platform in North America, Europe, Asia, and internationally.",
    "gross_margin": 0.5014757528207427,
@@ -6740,7 +6744,7 @@
   }
  },
  "fundamentals:DUOL": {
-  "fetched_at": "2026-11-16T12:42:17.499859+00:00",
+  "fetched_at": "2026-11-17T12:34:52.789574+00:00",
   "value": {
    "description": "Duolingo, Inc. operates as a mobile learning platform in the United States, the United Kingdom, and internationally.",
    "gross_margin": 0.7285660195400104,
@@ -6828,7 +6832,7 @@
   }
  },
  "fundamentals:DXCM": {
-  "fetched_at": "2026-11-16T12:42:17.369951+00:00",
+  "fetched_at": "2026-11-17T12:34:53.962019+00:00",
   "value": {
    "description": "DexCom, Inc., a medical device company, focuses on the design, development, and commercialization of continuous glucose monitoring (CGM) systems for the management of diabetes and metabolic health in the United States\u2026",
    "gross_margin": 0.6429155820007437,
@@ -6916,7 +6920,7 @@
   }
  },
  "fundamentals:ECHO": {
-  "fetched_at": "2026-11-16T12:42:18.472648+00:00",
+  "fetched_at": "2026-11-17T12:34:54.175476+00:00",
   "value": {
    "description": "EchoStar Corporation provides pay-tv services in the United States, Mexico, Canada, South and Central America, Asia, Africa, Australia, Europe, India, and the Middle East.",
    "gross_margin": 0.42281602432044385,
@@ -7136,7 +7140,7 @@
   }
  },
  "fundamentals:EOG": {
-  "fetched_at": "2026-11-16T12:42:16.946908+00:00",
+  "fetched_at": "2026-11-17T12:34:52.957408+00:00",
   "value": {
    "description": "EOG Resources, Inc., together with its subsidiaries, explores for, develops, produces, and markets crude oil, natural gas liquids, and natural gas in producing basins in the United States, the Republic of Trinidad and\u2026",
    "gross_margin": 0.6971030436376972,
@@ -7180,7 +7184,7 @@
   }
  },
  "fundamentals:EPD": {
-  "fetched_at": "2026-11-16T12:42:17.369969+00:00",
+  "fetched_at": "2026-11-17T12:34:53.073782+00:00",
   "value": {
    "description": "Enterprise Products Partners L.P. provides midstream energy services to producers and consumers of natural gas, natural gas liquids (NGLs), crude oil, petrochemicals, and refined products.",
    "gross_margin": 0.10937151771785157,
@@ -7224,7 +7228,7 @@
   }
  },
  "fundamentals:EQT": {
-  "fetched_at": "2026-11-16T12:42:18.291961+00:00",
+  "fetched_at": "2026-11-17T12:34:54.976198+00:00",
   "value": {
    "description": "EQT Corporation engages in the exploration, production, gathering, and transmission of hydrocarbons and natural gas.",
    "gross_margin": 0.33487135854169825,
@@ -7400,7 +7404,7 @@
   }
  },
  "fundamentals:EXE": {
-  "fetched_at": "2026-11-16T12:42:17.890843+00:00",
+  "fetched_at": "2026-11-17T12:34:54.359114+00:00",
   "value": {
    "description": "Expand Energy Corporation operates as an independent natural gas production company in the United States.",
    "gross_margin": 0.5122249388753056,
@@ -7708,27 +7712,23 @@
   }
  },
  "fundamentals:FIG": {
-  "fetched_at": "2026-10-02T12:47:35.166878+00:00",
+  "fetched_at": "2026-11-17T12:34:55.070167+00:00",
   "value": {
    "description": "Figma, Inc. develops and sells a collaborative, browser-based platform for designing, prototyping, building digital experiences, and subscriptions for access to its platform.",
-   "gross_margin": 0.8365988170221275,
-   "gross_margin_change": 0.04253153635010054,
+   "gross_margin": 0.8033417217020298,
+   "gross_margin_change": -0.033257095320097685,
    "industry": "Software - Application",
    "last_earnings": {
-    "eps_actual": 0.08,
-    "eps_estimate": 0.04083,
-    "quarter": "2026-06-30"
+    "eps_actual": 0.1,
+    "eps_estimate": 0.05222,
+    "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-11-04",
-   "operating_margin": -0.3169262030409395,
-   "operating_margin_change": 0.09513717286889711,
+   "operating_margin": -0.3044466870201704,
+   "operating_margin_change": 0.012479516020769077,
    "profitable": false,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 249640000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 274173000.0
@@ -7744,15 +7744,19 @@
     {
      "quarter": "2026-06-30",
      "revenue": 370083000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 391415000.0
     }
    ],
-   "revenue_qoq": 0.10989716259945603,
-   "revenue_yoy": 0.48246675212305723,
+   "revenue_qoq": 0.05764112374791597,
+   "revenue_yoy": 0.4276205169728602,
    "sector": "Technology"
   }
  },
  "fundamentals:FIGR": {
-  "fetched_at": "2026-11-16T12:42:17.761289+00:00",
+  "fetched_at": "2026-11-17T12:34:52.996157+00:00",
   "value": {
    "description": "Figure Technology Solutions, Inc., a financial technology company, provides blockchain-based products and solutions in the United States.",
    "gross_margin": 0.9607428990898406,
@@ -7796,27 +7800,23 @@
   }
  },
  "fundamentals:FIS": {
-  "fetched_at": "2026-09-15T12:42:53.175575+00:00",
+  "fetched_at": "2026-11-17T12:34:54.906942+00:00",
   "value": {
    "description": "Fidelity National Information Services, Inc. provides solutions to financial institutions, businesses, and developers worldwide.",
-   "gross_margin": 0.34764583950251704,
-   "gross_margin_change": 0.011378768182334964,
+   "gross_margin": 0.37029530978575564,
+   "gross_margin_change": 0.022649470283238604,
    "industry": "Information Technology Services",
    "last_earnings": {
-    "eps_actual": 1.48,
-    "eps_estimate": 1.47206,
-    "quarter": "2026-06-30"
+    "eps_actual": 1.61,
+    "eps_estimate": 1.60034,
+    "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-11-04",
-   "operating_margin": 0.15013325436778205,
-   "operating_margin_change": -0.009806047604903834,
+   "operating_margin": 0.1910828025477707,
+   "operating_margin_change": 0.040949548179988665,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 2616000000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 2717000000.0
@@ -7832,10 +7832,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 3377000000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 3454000000.0
     }
    ],
-   "revenue_qoq": 0.0248861911987861,
-   "revenue_yoy": 0.29090214067278297,
+   "revenue_qoq": 0.0228013029315961,
+   "revenue_yoy": 0.27125506072874495,
    "sector": "Technology"
   }
  },
@@ -7928,7 +7932,7 @@
   }
  },
  "fundamentals:FLY": {
-  "fetched_at": "2026-11-16T12:42:17.659689+00:00",
+  "fetched_at": "2026-11-17T12:34:54.248413+00:00",
   "value": {
    "description": "Firefly Aerospace Inc. operates as a space and defense technology company and provides mission solutions for national security, government, and commercial customers in United States.",
    "gross_margin": 0.22855568204405413,
@@ -8016,7 +8020,7 @@
   }
  },
  "fundamentals:FPS": {
-  "fetched_at": "2026-11-16T12:42:17.921471+00:00",
+  "fetched_at": "2026-11-17T12:34:53.196527+00:00",
   "value": {
    "description": "Forgent Power Solutions, Inc. engages in the design and manufacture of electrical distribution equipment used in data centers, the power grid, and energy-intensive industrial facilities.",
    "gross_margin": 0.3307359904381005,
@@ -8104,27 +8108,23 @@
   }
  },
  "fundamentals:FSLY": {
-  "fetched_at": "2026-09-11T20:21:45.400017+00:00",
+  "fetched_at": "2026-11-17T12:34:54.493158+00:00",
   "value": {
    "description": "Fastly, Inc. operates an edge cloud platform for processing, serving, and securing its customer's applications in the United States, the Asia Pacific, Europe, and internationally.",
-   "gross_margin": 0.6325163514567661,
-   "gross_margin_change": 0.007268549166870697,
+   "gross_margin": 0.6330937521359882,
+   "gross_margin_change": 0.0005774006792220732,
    "industry": "Software - Application",
    "last_earnings": {
-    "eps_actual": 0.15,
-    "eps_estimate": 0.06628,
-    "quarter": "2026-06-30"
+    "eps_actual": 0.17,
+    "eps_estimate": 0.11856,
+    "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-11-04",
-   "operating_margin": -0.07873246889268316,
-   "operating_margin_change": 0.059372154245548606,
+   "operating_margin": -0.05393994521354624,
+   "operating_margin_change": 0.024792523679136924,
    "profitable": false,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 148709000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 158223000.0
@@ -8140,10 +8140,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 183317000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 190193000.0
     }
    ],
-   "revenue_qoq": 0.05950722744637926,
-   "revenue_yoy": 0.2327229690200323,
+   "revenue_qoq": 0.03750879623821035,
+   "revenue_yoy": 0.20205659101394868,
    "sector": "Technology"
   }
  },
@@ -8192,27 +8196,23 @@
   }
  },
  "fundamentals:FTNT": {
-  "fetched_at": "2026-09-15T12:42:52.236477+00:00",
+  "fetched_at": "2026-11-17T12:34:54.864401+00:00",
   "value": {
    "description": "Fortinet, Inc. provides cybersecurity and convergence of networking and security solutions worldwide.",
-   "gross_margin": 0.8023829288539479,
-   "gross_margin_change": -0.0005474344678514376,
+   "gross_margin": 0.7895015396458814,
+   "gross_margin_change": -0.012881389208066474,
    "industry": "Software - Infrastructure",
    "last_earnings": {
-    "eps_actual": 0.9,
-    "eps_estimate": 0.74669,
-    "quarter": "2026-06-30"
+    "eps_actual": 0.91,
+    "eps_estimate": 0.85848,
+    "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-11-04",
-   "operating_margin": 0.33658870062014745,
-   "operating_margin_change": 0.023007385741254716,
+   "latest_quarter": "2026-09-30",
+   "next_earnings": "2026-10-28",
+   "operating_margin": 0.3388664357197845,
+   "operating_margin_change": 0.002277735099637024,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 1630000000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 1724900000.0
@@ -8228,10 +8228,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 2047900000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 2078400000.0
     }
    ],
-   "revenue_qoq": 0.10721237024221453,
-   "revenue_yoy": 0.25638036809815956,
+   "revenue_qoq": 0.0148933053371747,
+   "revenue_yoy": 0.20493941677778427,
    "sector": "Technology"
   }
  },
@@ -8543,6 +8547,50 @@
    "sector": "Industrials"
   }
  },
+ "fundamentals:GFL": {
+  "fetched_at": "2026-11-17T12:34:54.049027+00:00",
+  "value": {
+   "description": "GFL Environmental Inc. provides non-hazardous solid waste management services in Canada and the United States.",
+   "gross_margin": 0.1979306825035958,
+   "gross_margin_change": -0.00013893450020335818,
+   "industry": "Waste Management",
+   "last_earnings": {
+    "eps_actual": 0.26,
+    "eps_estimate": 0.28056,
+    "quarter": "2026-09-30"
+   },
+   "latest_quarter": "2026-09-30",
+   "next_earnings": "2026-10-28",
+   "operating_margin": 0.06124437433303948,
+   "operating_margin_change": 0.00564318324565885,
+   "profitable": true,
+   "revenue_history": [
+    {
+     "quarter": "2025-09-30",
+     "revenue": 1694200000.0
+    },
+    {
+     "quarter": "2025-12-31",
+     "revenue": 1686400000.0
+    },
+    {
+     "quarter": "2026-03-31",
+     "revenue": 1643800000.0
+    },
+    {
+     "quarter": "2026-06-30",
+     "revenue": 1947800000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 2155300000.0
+    }
+   ],
+   "revenue_qoq": 0.10653044460416883,
+   "revenue_yoy": 0.27216385314602753,
+   "sector": "Industrials"
+  }
+ },
  "fundamentals:GILD": {
   "fetched_at": "2026-10-13T12:51:54.040163+00:00",
   "value": {
@@ -8632,7 +8680,7 @@
   }
  },
  "fundamentals:GLXY": {
-  "fetched_at": "2026-11-16T12:42:18.554978+00:00",
+  "fetched_at": "2026-11-17T12:34:53.809885+00:00",
   "value": {
    "description": "Galaxy Digital Inc. engages in the digital asset and data centre infrastructure businesses in North America and internationally.",
    "gross_margin": 0.0024998955304227698,
@@ -8764,7 +8812,7 @@
   }
  },
  "fundamentals:GNRC": {
-  "fetched_at": "2026-11-16T12:42:17.371340+00:00",
+  "fetched_at": "2026-11-17T12:34:53.889744+00:00",
   "value": {
    "description": "Generac Holdings Inc. designs, manufactures, and distributes energy technology products and solutions worldwide.",
    "gross_margin": 0.3985552746839422,
@@ -8808,7 +8856,7 @@
   }
  },
  "fundamentals:GOOG": {
-  "fetched_at": "2026-11-16T12:42:17.206622+00:00",
+  "fetched_at": "2026-11-17T12:34:53.506880+00:00",
   "value": {
    "description": "Alphabet Inc. offers various products and platforms in the United States, Europe, the Middle East, Africa, the Asia-Pacific, Canada, and Latin America.",
    "gross_margin": 0.5969571317714008,
@@ -8852,7 +8900,7 @@
   }
  },
  "fundamentals:GOOGL": {
-  "fetched_at": "2026-11-16T12:42:17.249450+00:00",
+  "fetched_at": "2026-11-17T12:34:53.648786+00:00",
   "value": {
    "description": "Alphabet Inc. offers various products and platforms in the United States, Europe, the Middle East, Africa, the Asia-Pacific, Canada, and Latin America.",
    "gross_margin": 0.5969571317714008,
@@ -9116,27 +9164,23 @@
   }
  },
  "fundamentals:HIMS": {
-  "fetched_at": "2026-09-15T12:42:52.263206+00:00",
+  "fetched_at": "2026-11-17T12:34:54.459803+00:00",
   "value": {
    "description": "Hims & Hers Health, Inc. operates as a consumer-first health and wellness platform that connects consumers to licensed healthcare professionals in the United States, the United Kingdom, Canada, Germany, the Republic of\u2026",
-   "gross_margin": 0.6383351876093647,
-   "gross_margin_change": -0.014163398158859142,
+   "gross_margin": 0.5718940264361116,
+   "gross_margin_change": -0.06644116117325305,
    "industry": "Drug Manufacturers - Specialty & Generic",
    "last_earnings": {
-    "eps_actual": -0.37,
-    "eps_estimate": -0.05,
-    "quarter": "2026-06-30"
+    "eps_actual": -0.14,
+    "eps_estimate": 0.05632,
+    "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-11-09",
-   "operating_margin": -0.12903636947799696,
-   "operating_margin_change": -0.00023767714905323367,
+   "operating_margin": -0.0742902132027813,
+   "operating_margin_change": 0.05474615627521566,
    "profitable": false,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 544833000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 598976000.0
@@ -9152,10 +9196,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 753214000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 890373000.0
     }
    ],
-   "revenue_qoq": 0.23862694539092,
-   "revenue_yoy": 0.38246765522646387,
+   "revenue_qoq": 0.1820983146887869,
+   "revenue_yoy": 0.48649194625494174,
    "sector": "Healthcare"
   }
  },
@@ -9688,7 +9736,7 @@
   }
  },
  "fundamentals:HUT": {
-  "fetched_at": "2026-11-16T12:42:18.152548+00:00",
+  "fetched_at": "2026-11-17T12:34:53.616447+00:00",
   "value": {
    "description": "Hut 8 Corp., together with its subsidiaries, operates as an energy infrastructure platform that integrates power, digital infrastructure, and compute at scale to fuel energy-intensive use cases in the United States and\u2026",
    "gross_margin": 0.574721053594293,
@@ -9952,27 +10000,23 @@
   }
  },
  "fundamentals:INOD": {
-  "fetched_at": "2026-09-15T12:42:51.777729+00:00",
+  "fetched_at": "2026-11-17T12:34:54.815729+00:00",
   "value": {
    "description": "Innodata Inc. operates as a data engineering company in the United States, the United Kingdom, the Netherlands, Canada, Germany, Belgium, and internationally.",
-   "gross_margin": 0.46081048815957976,
-   "gross_margin_change": 0.019148261201668182,
+   "gross_margin": 0.3716559643581752,
+   "gross_margin_change": -0.08915452380140454,
    "industry": "Information Technology Services",
    "last_earnings": {
-    "eps_actual": 0.41,
-    "eps_estimate": 0.26067,
-    "quarter": "2026-06-30"
+    "eps_actual": 0.29,
+    "eps_estimate": 0.27233,
+    "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-11-05",
-   "operating_margin": 0.17212563217642335,
-   "operating_margin_change": -0.015452062726791005,
+   "operating_margin": 0.09051642996088602,
+   "operating_margin_change": -0.08160920221553733,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 58393000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 62550000.0
@@ -9988,10 +10032,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 92142000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 95618000.0
     }
    ],
-   "revenue_qoq": 0.022709110282365552,
-   "revenue_yoy": 0.5779631120168514,
+   "revenue_qoq": 0.03772438193223504,
+   "revenue_yoy": 0.5286650679456435,
    "sector": "Technology"
   }
  },
@@ -10260,7 +10308,7 @@
   }
  },
  "fundamentals:IRM": {
-  "fetched_at": "2026-11-16T12:42:17.018606+00:00",
+  "fetched_at": "2026-11-17T12:34:53.926312+00:00",
   "value": {
    "description": "Iron Mountain Incorporated partners with more than 240,000 customers across 61 countries, including approximately 95% of the Fortune 1000.",
    "gross_margin": 0.534492069544267,
@@ -11360,7 +11408,7 @@
   }
  },
  "fundamentals:LMND": {
-  "fetched_at": "2026-11-16T12:42:16.675245+00:00",
+  "fetched_at": "2026-11-17T12:34:52.745232+00:00",
   "value": {
    "description": "Lemonade, Inc. provides various insurance products in the United States, Europe, and the United Kingdom.",
    "gross_margin": null,
@@ -11448,7 +11496,7 @@
   }
  },
  "fundamentals:LNG": {
-  "fetched_at": "2026-11-16T12:42:17.466990+00:00",
+  "fetched_at": "2026-11-17T12:34:52.862440+00:00",
   "value": {
    "description": "Cheniere Energy, Inc., an energy infrastructure company, primarily engages in the liquefied natural gas (LNG) related businesses in the United States.",
    "gross_margin": 0.3293374372266321,
@@ -11536,27 +11584,23 @@
   }
  },
  "fundamentals:LQDA": {
-  "fetched_at": "2026-11-05T12:33:46.955902+00:00",
+  "fetched_at": "2026-11-17T12:34:54.329059+00:00",
   "value": {
    "description": "Liquidia Corporation, a biopharmaceutical company, develops, manufactures, and commercializes various products for rare cardiopulmonary diseases in the United States.",
-   "gross_margin": 0.9327232800750237,
-   "gross_margin_change": 0.021926606760004685,
+   "gross_margin": 0.9344118952507767,
+   "gross_margin_change": 0.0016886151757530277,
    "industry": "Drug Manufacturers - Specialty & Generic",
    "last_earnings": {
-    "eps_actual": 0.74,
-    "eps_estimate": 0.8525,
-    "quarter": "2026-06-30"
+    "eps_actual": 1.2223,
+    "eps_estimate": 0.97571,
+    "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-11-10",
-   "operating_margin": 0.498121494183913,
-   "operating_margin_change": 0.03521553700933727,
+   "operating_margin": 0.5602751886373724,
+   "operating_margin_change": 0.06215369445345936,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 8837000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 54342000.0
@@ -11572,10 +11616,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 171679000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 225300000.0
     }
    ],
-   "revenue_qoq": 0.2921311105257216,
-   "revenue_yoy": 18.4272943306552,
+   "revenue_qoq": 0.3123329003547317,
+   "revenue_yoy": 3.14596444738876,
    "sector": "Healthcare"
   }
  },
@@ -11668,27 +11716,23 @@
   }
  },
  "fundamentals:LUNR": {
-  "fetched_at": "2026-11-16T12:42:17.659667+00:00",
+  "fetched_at": "2026-11-17T12:34:54.228150+00:00",
   "value": {
    "description": "Intuitive Machines, Inc. operates as a space infrastructure and services company in the United States.",
-   "gross_margin": 0.16277309106640708,
-   "gross_margin_change": 0.015700172697948767,
+   "gross_margin": 0.2570416258133523,
+   "gross_margin_change": 0.09426853474694524,
    "industry": "Aerospace & Defense",
    "last_earnings": {
     "eps_actual": -0.1034,
     "eps_estimate": -0.1075,
     "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-11-12",
-   "operating_margin": -0.2317267417851454,
-   "operating_margin_change": -0.018248551946883684,
+   "operating_margin": -0.12719865109783998,
+   "operating_margin_change": 0.10452809068730542,
    "profitable": false,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 50313000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 50987000.0
@@ -11704,10 +11748,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 203412000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 269256000.0
     }
    ],
-   "revenue_qoq": 0.10772749550727001,
-   "revenue_yoy": 3.042931250372667,
+   "revenue_qoq": 0.32369771694885263,
+   "revenue_yoy": 4.28087551728872,
    "sector": "Industrials"
   }
  },
@@ -12276,27 +12324,23 @@
   }
  },
  "fundamentals:MELI": {
-  "fetched_at": "2026-11-05T12:33:46.320237+00:00",
+  "fetched_at": "2026-11-17T12:34:54.976213+00:00",
   "value": {
    "description": "MercadoLibre, Inc. operates online commerce platforms in Brazil, Mexico, Argentina, and internationally.",
-   "gross_margin": 0.40898810109155276,
-   "gross_margin_change": -0.027642763803868375,
+   "gross_margin": 0.40781395348837207,
+   "gross_margin_change": -0.0011741476031806863,
    "industry": "Internet Retail",
    "last_earnings": {
-    "eps_actual": 9.19,
-    "eps_estimate": 8.88879,
-    "quarter": "2026-06-30"
+    "eps_actual": 8.83,
+    "eps_estimate": 9.27012,
+    "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-11-04",
-   "operating_margin": 0.06716491297079359,
-   "operating_margin_change": -0.0019136624955715803,
+   "operating_margin": 0.06288372093023256,
+   "operating_margin_change": -0.00428119204056103,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 6790000000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 7409000000.0
@@ -12312,10 +12356,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 10169000000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 10750000000.0
     }
    ],
-   "revenue_qoq": 0.14968908988128882,
-   "revenue_yoy": 0.4976435935198822,
+   "revenue_qoq": 0.05713442816402803,
+   "revenue_yoy": 0.45093804831961126,
    "sector": "Consumer Cyclical"
   }
  },
@@ -12488,7 +12536,7 @@
   }
  },
  "fundamentals:MOS": {
-  "fetched_at": "2026-11-16T12:42:18.916905+00:00",
+  "fetched_at": "2026-11-17T12:34:54.815700+00:00",
   "value": {
    "description": "The Mosaic Company, through its subsidiaries, produces and markets concentrated phosphate and potash crop nutrients.",
    "gross_margin": 0.027123782493710894,
@@ -12532,7 +12580,7 @@
   }
  },
  "fundamentals:MP": {
-  "fetched_at": "2026-11-16T12:42:16.675268+00:00",
+  "fetched_at": "2026-11-17T12:34:54.852274+00:00",
   "value": {
    "description": "MP Materials Corp., together with its subsidiaries, produces rare earth materials in the Western Hemisphere.",
    "gross_margin": 0.17538180217398666,
@@ -13148,7 +13196,7 @@
   }
  },
  "fundamentals:NET": {
-  "fetched_at": "2026-11-16T12:42:16.803557+00:00",
+  "fetched_at": "2026-11-17T12:34:53.756772+00:00",
   "value": {
    "description": "Cloudflare, Inc. operates as a cloud services provider that delivers a range of services to businesses worldwide.",
    "gross_margin": 0.7121082972423461,
@@ -13156,7 +13204,7 @@
    "industry": "Software - Infrastructure",
    "last_earnings": {
     "eps_actual": 0.38,
-    "eps_estimate": 0.34355,
+    "eps_estimate": 0.34225,
     "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-09-30",
@@ -13536,7 +13584,7 @@
   }
  },
  "fundamentals:NRG": {
-  "fetched_at": "2026-11-16T12:42:16.794498+00:00",
+  "fetched_at": "2026-11-17T12:34:53.398552+00:00",
   "value": {
    "description": "NRG Energy, Inc., together with its subsidiaries, operates as an energy and home services company in the United States and Canada.",
    "gross_margin": 0.23536868793577012,
@@ -13624,7 +13672,7 @@
   }
  },
  "fundamentals:NU": {
-  "fetched_at": "2026-11-16T12:42:16.675279+00:00",
+  "fetched_at": "2026-11-17T12:34:52.853894+00:00",
   "value": {
    "description": "Nu Holdings Ltd. provides digital banking platform in Brazil, Mexico, Colombia, the Cayman Islands, and the United States.",
    "gross_margin": null,
@@ -13976,7 +14024,7 @@
   }
  },
  "fundamentals:ON": {
-  "fetched_at": "2026-11-16T12:42:17.160531+00:00",
+  "fetched_at": "2026-11-17T12:34:53.470167+00:00",
   "value": {
    "description": "ON Semiconductor Corporation provides intelligent sensing and power solutions in Hong Kong, Singapore, the United Kingdom, the United States, and internationally.",
    "gross_margin": 0.4139813040701388,
@@ -14108,7 +14156,7 @@
   }
  },
  "fundamentals:OSCR": {
-  "fetched_at": "2026-11-11T12:33:42.225891+00:00",
+  "fetched_at": "2026-11-17T12:34:54.118512+00:00",
   "value": {
    "description": "Oscar Health, Inc. operates as a healthcare technology company in the United States.",
    "gross_margin": null,
@@ -14240,7 +14288,7 @@
   }
  },
  "fundamentals:OXY": {
-  "fetched_at": "2026-11-16T12:42:17.198277+00:00",
+  "fetched_at": "2026-11-17T12:34:54.631090+00:00",
   "value": {
    "description": "Occidental Petroleum Corporation, together with its subsidiaries, engages in the acquisition, exploration, and development of oil and gas properties in the United States and internationally.",
    "gross_margin": 0.47921425308359983,
@@ -14284,27 +14332,23 @@
   }
  },
  "fundamentals:PAA": {
-  "fetched_at": "2026-10-13T12:51:53.970890+00:00",
+  "fetched_at": "2026-11-17T12:34:54.440309+00:00",
   "value": {
    "description": "Plains All American Pipeline, L.P., through its subsidiaries, engages in the pipeline transportation, terminalling, storage, and gathering of crude oil and natural gas liquids (NGL) in the United States and Canada.",
-   "gross_margin": 0.032046572090657324,
-   "gross_margin_change": -0.002676763915758072,
+   "gross_margin": 0.039675739800962236,
+   "gross_margin_change": 0.007629167710304911,
    "industry": "Oil & Gas Midstream",
    "last_earnings": {
     "eps_actual": 0.41,
     "eps_estimate": 0.4966,
     "quarter": "2026-06-30"
    },
-   "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-11-06",
-   "operating_margin": 0.02582942406601481,
-   "operating_margin_change": -0.00239832252580556,
+   "latest_quarter": "2026-09-30",
+   "next_earnings": "2027-02-05",
+   "operating_margin": 0.03453502932841231,
+   "operating_margin_change": 0.008705605262397505,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 10642000000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 11578000000.0
@@ -14320,15 +14364,19 @@
     {
      "quarter": "2026-06-30",
      "revenue": 17693000000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 15173000000.0
     }
    ],
-   "revenue_qoq": 0.41884522854851647,
-   "revenue_yoy": 0.6625634279270813,
+   "revenue_qoq": -0.14242920929181035,
+   "revenue_yoy": 0.3105026774917947,
    "sector": "Energy"
   }
  },
  "fundamentals:PAAS": {
-  "fetched_at": "2026-11-12T12:34:36.537691+00:00",
+  "fetched_at": "2026-11-17T12:34:55.104445+00:00",
   "value": {
    "description": "Pan American Silver Corp. engages in the exploration, mine development, extraction, processing, refining, and reclamation of mines in Chile, Peru, Brazil, Mexico, Canada, Argentina, Bolivia, and Guatemala.",
    "gross_margin": 0.37077534791252487,
@@ -14460,20 +14508,23 @@
   }
  },
  "fundamentals:PBR": {
-  "fetched_at": "2026-08-26T20:48:35.942698+00:00",
+  "fetched_at": "2026-11-17T12:34:54.670689+00:00",
   "value": {
-   "gross_margin": 0.5800279703633172,
-   "gross_margin_change": 0.09814643162813302,
-   "latest_quarter": "2026-06-30",
+   "description": "Petr\u00f3leo Brasileiro S.A. - Petrobras explores, produces, and sells oil and gas in Brazil, China, the United States, the Americas, Asia, Europe, Singapore, and internationally.",
+   "gross_margin": 0.5367089375644681,
+   "gross_margin_change": -0.04331903279884908,
+   "industry": "Oil & Gas Integrated",
+   "last_earnings": {
+    "eps_actual": 1.4456,
+    "eps_estimate": 1.41,
+    "quarter": "2026-09-30"
+   },
+   "latest_quarter": "2026-09-30",
    "next_earnings": "2026-11-10",
-   "operating_margin": 0.41869253429345077,
-   "operating_margin_change": 0.12878098407758154,
+   "operating_margin": 0.3921181967113646,
+   "operating_margin_change": -0.04091658770854789,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 21037000000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 23477000000.0
@@ -14489,14 +14540,19 @@
     {
      "quarter": "2026-06-30",
      "revenue": 33607000000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 32962000000.0
     }
    ],
-   "revenue_qoq": 0.43110836311304435,
-   "revenue_yoy": 0.5975186576032705
+   "revenue_qoq": -0.019192430148480932,
+   "revenue_yoy": 0.40401243770498785,
+   "sector": "Energy"
   }
  },
  "fundamentals:PCG": {
-  "fetched_at": "2026-11-06T12:33:10.395560+00:00",
+  "fetched_at": "2026-11-17T12:34:53.073801+00:00",
   "value": {
    "description": "PG&E Corporation, through its subsidiary, Pacific Gas and Electric Company, engages in the sale and delivery of electricity and natural gas to customers in northern and central California, the United States.",
    "gross_margin": 0.4253393665158371,
@@ -14804,27 +14860,23 @@
   }
  },
  "fundamentals:PINS": {
-  "fetched_at": "2026-09-11T20:21:48.139922+00:00",
+  "fetched_at": "2026-11-17T12:34:54.561780+00:00",
   "value": {
    "description": "Pinterest, Inc. operates as a visual search and discovery platform in the United States, Canada, Europe, and internationally.",
-   "gross_margin": 0.7818394207114968,
-   "gross_margin_change": 0.018612309227189927,
+   "gross_margin": 0.7771713621522256,
+   "gross_margin_change": -0.004668058559271215,
    "industry": "Internet Content & Information",
    "last_earnings": {
-    "eps_actual": 0.43,
-    "eps_estimate": 0.35723,
-    "quarter": "2026-06-30"
+    "eps_actual": 0.46,
+    "eps_estimate": 0.48536,
+    "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-11-09",
-   "operating_margin": -0.03463981811615948,
-   "operating_margin_change": -0.0016923851276352542,
-   "profitable": false,
+   "latest_quarter": "2026-09-30",
+   "next_earnings": "2026-10-29",
+   "operating_margin": 0.029341638208102875,
+   "operating_margin_change": 0.06398145632426236,
+   "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 998227000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 1049205000.0
@@ -14840,10 +14892,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 1179654000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 1173929000.0
     }
    ],
-   "revenue_qoq": 0.1708561866137841,
-   "revenue_yoy": 0.18174924140501103,
+   "revenue_qoq": -0.004853117948144137,
+   "revenue_yoy": 0.11887476708555522,
    "sector": "Communication Services"
   }
  },
@@ -14892,27 +14948,23 @@
   }
  },
  "fundamentals:PLTR": {
-  "fetched_at": "2026-09-15T12:42:52.306522+00:00",
+  "fetched_at": "2026-11-17T12:34:55.010235+00:00",
   "value": {
    "description": "Palantir Technologies Inc. builds and deploys software platforms for the intelligence community to assist in counterterrorism investigations and operations in the United States, the United Kingdom, and internationally.",
-   "gross_margin": 0.8466155919200771,
-   "gross_margin_change": -0.02120246082211119,
+   "gross_margin": 0.8343199716781843,
+   "gross_margin_change": -0.01229562024189279,
    "industry": "Software - Infrastructure",
    "last_earnings": {
-    "eps_actual": 0.41,
-    "eps_estimate": 0.34596,
-    "quarter": "2026-06-30"
+    "eps_actual": 0.44,
+    "eps_estimate": 0.40585,
+    "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-11-02",
-   "operating_margin": 0.4712069043908851,
-   "operating_margin_change": 0.009363310527663427,
+   "latest_quarter": "2026-09-30",
+   "next_earnings": "2027-02-01",
+   "operating_margin": 0.46893742616422246,
+   "operating_margin_change": -0.0022694782266626246,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 1003697000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 1181092000.0
@@ -14928,10 +14980,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 1935464000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 2313411000.0
     }
    ],
-   "revenue_qoq": 0.18552257373744552,
-   "revenue_yoy": 0.928334945705726,
+   "revenue_qoq": 0.19527462148611385,
+   "revenue_yoy": 0.9587051643733087,
    "sector": "Technology"
   }
  },
@@ -15112,7 +15168,7 @@
   }
  },
  "fundamentals:PSX": {
-  "fetched_at": "2026-11-16T12:42:18.016574+00:00",
+  "fetched_at": "2026-11-17T12:34:54.976221+00:00",
   "value": {
    "description": "Phillips 66 operates as an integrated downstream energy provider in the United States, the United Kingdom, Germany, and internationally.",
    "gross_margin": 0.18074792243767313,
@@ -15416,7 +15472,7 @@
   }
  },
  "fundamentals:RBLX": {
-  "fetched_at": "2026-11-16T12:42:18.209939+00:00",
+  "fetched_at": "2026-11-17T12:34:54.275794+00:00",
   "value": {
    "description": "Roblox Corporation operates an immersive platform for connection and communication in the United States and internationally.",
    "gross_margin": 0.7977099236641222,
@@ -15548,7 +15604,7 @@
   }
  },
  "fundamentals:RDDT": {
-  "fetched_at": "2026-11-12T12:34:36.462661+00:00",
+  "fetched_at": "2026-11-17T12:34:54.670718+00:00",
   "value": {
    "description": "Reddit, Inc. operates a digital community in the United States and internationally.",
    "gross_margin": 0.9153177191753347,
@@ -15812,7 +15868,7 @@
   }
  },
  "fundamentals:RIOT": {
-  "fetched_at": "2026-11-16T12:42:17.607406+00:00",
+  "fetched_at": "2026-11-17T12:34:53.740297+00:00",
   "value": {
    "description": "Riot Platforms, Inc., together with its subsidiaries, operates as a Bitcoin mining company in the United States.",
    "gross_margin": 0.22793866369759572,
@@ -16384,7 +16440,7 @@
   }
  },
  "fundamentals:SEDG": {
-  "fetched_at": "2026-11-10T12:32:35.724544+00:00",
+  "fetched_at": "2026-11-17T12:34:54.561803+00:00",
   "value": {
    "description": "SolarEdge Technologies, Inc., together with its subsidiaries, operates as an energy technology company in the United States, Europe, and internationally.",
    "gross_margin": 0.3319318195758044,
@@ -16516,7 +16572,7 @@
   }
  },
  "fundamentals:SHOP": {
-  "fetched_at": "2026-11-06T12:33:11.525129+00:00",
+  "fetched_at": "2026-11-17T12:34:54.380230+00:00",
   "value": {
    "description": "Shopify Inc., a commerce technology company, provides tools to start, scale, market, and run a business of various sizes in Canada, the United States, Europe, the Middle East, Africa, the Asia Pacific, and Latin America.",
    "gross_margin": 0.47594869053981825,
@@ -17212,7 +17268,7 @@
   }
  },
  "fundamentals:SPCX": {
-  "fetched_at": "2026-11-16T12:42:18.766805+00:00",
+  "fetched_at": "2026-11-17T12:34:53.616433+00:00",
   "value": {
    "description": "Space Exploration Technologies Corp. provides satellite-based broadband services in the United States, Ireland, Canada, and internationally.",
    "gross_margin": 0.6241509433962265,
@@ -17520,27 +17576,23 @@
   }
  },
  "fundamentals:SU": {
-  "fetched_at": "2026-09-29T12:48:57.079887+00:00",
+  "fetched_at": "2026-11-17T12:34:54.561795+00:00",
   "value": {
    "description": "Suncor Energy Inc. operates as an integrated energy company in Canada, the United States, and internationally.",
-   "gross_margin": 0.49466042400967963,
-   "gross_margin_change": 0.006267219496646326,
+   "gross_margin": 0.4384877744151415,
+   "gross_margin_change": -0.05617264959453816,
    "industry": "Oil & Gas Integrated",
    "last_earnings": {
-    "eps_actual": 3.23,
-    "eps_estimate": 3.08168,
-    "quarter": "2026-06-30"
+    "eps_actual": 3.97,
+    "eps_estimate": 3.53367,
+    "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-11-03",
-   "operating_margin": 0.2760271450365616,
-   "operating_margin_change": 0.08785440479534776,
+   "latest_quarter": "2026-09-30",
+   "next_earnings": "2027-02-02",
+   "operating_margin": 0.23384733631166835,
+   "operating_margin_change": -0.04217980872489327,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 12749000000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 13565000000.0
@@ -17556,15 +17608,19 @@
     {
      "quarter": "2026-06-30",
      "revenue": 19009000000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 20817000000.0
     }
    ],
-   "revenue_qoq": 0.23258980676955,
-   "revenue_yoy": 0.4910189034434074,
+   "revenue_qoq": 0.09511284128570674,
+   "revenue_yoy": 0.5346111315886473,
    "sector": "Energy"
   }
  },
  "fundamentals:SYM": {
-  "fetched_at": "2026-09-11T20:21:45.419922+00:00",
+  "fetched_at": "2026-11-17T12:34:53.375267+00:00",
   "value": {
    "description": "Symbotic Inc., an automation technology company, develops technologies to enhance operating efficiencies in modern warehouses.",
    "gross_margin": 0.2232263005002511,
@@ -17576,7 +17632,7 @@
     "quarter": "2026-06-30"
    },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-11-16",
+   "next_earnings": "2026-11-23",
    "operating_margin": 0.045634386644433284,
    "operating_margin_change": 0.03661268607678901,
    "profitable": true,
@@ -17960,7 +18016,7 @@
   }
  },
  "fundamentals:TLN": {
-  "fetched_at": "2026-11-16T12:42:17.456680+00:00",
+  "fetched_at": "2026-11-17T12:34:53.952543+00:00",
   "value": {
    "description": "Talen Energy Corporation, an independent power producer and infrastructure company, produces and sells electricity, capacity, and ancillary services into wholesale power markets in the United States.",
    "gross_margin": 0.45695364238410596,
@@ -18092,7 +18148,7 @@
   }
  },
  "fundamentals:TMUS": {
-  "fetched_at": "2026-11-12T12:34:35.899668+00:00",
+  "fetched_at": "2026-11-17T12:34:54.345124+00:00",
   "value": {
    "description": "T-Mobile US, Inc., together with its subsidiaries, provides wireless communications services in the United States, Puerto Rico, and the United States Virgin Islands.",
    "gross_margin": 0.6416638398914518,
@@ -18268,7 +18324,7 @@
   }
  },
  "fundamentals:TSEM": {
-  "fetched_at": "2026-11-16T12:42:18.071809+00:00",
+  "fetched_at": "2026-11-17T12:34:53.356355+00:00",
   "value": {
    "description": "Tower Semiconductor Ltd., an independent semiconductor foundry, provides technology, development, and process platforms for integrated circuits in the United States, Japan, rest of Asia, and Europe.",
    "gross_margin": 0.3397420181275313,
@@ -18947,27 +19003,23 @@
   }
  },
  "fundamentals:UNP": {
-  "fetched_at": "2026-10-05T12:50:25.234686+00:00",
+  "fetched_at": "2026-11-17T12:34:53.624459+00:00",
   "value": {
    "description": "Union Pacific Corporation, through its subsidiary, Union Pacific Railroad Company, operates in the railroad business in the United States.",
-   "gross_margin": 0.4552738927738928,
-   "gross_margin_change": 0.001357212703119115,
+   "gross_margin": 0.4582464915937196,
+   "gross_margin_change": 0.0029725988198268105,
    "industry": "Railroads",
    "last_earnings": {
-    "eps_actual": 3.41,
-    "eps_estimate": 3.24241,
-    "quarter": "2026-06-30"
+    "eps_actual": 3.53,
+    "eps_estimate": 3.47583,
+    "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-22",
-   "operating_margin": 0.40253496503496505,
-   "operating_margin_change": 0.007167424420520763,
+   "latest_quarter": "2026-09-30",
+   "next_earnings": "2027-01-26",
+   "operating_margin": 0.40892038349312215,
+   "operating_margin_change": 0.006385418458157099,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 6154000000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 6244000000.0
@@ -18983,10 +19035,14 @@
     {
      "quarter": "2026-06-30",
      "revenue": 6864000000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 7197000000.0
     }
    ],
-   "revenue_qoq": 0.10406948689078344,
-   "revenue_yoy": 0.11537211569710748,
+   "revenue_qoq": 0.048513986013986043,
+   "revenue_yoy": 0.15262652146060218,
    "sector": "Industrials"
   }
  },
@@ -19431,7 +19487,7 @@
   }
  },
  "fundamentals:VG": {
-  "fetched_at": "2026-11-16T12:42:16.946891+00:00",
+  "fetched_at": "2026-11-17T12:34:53.756788+00:00",
   "value": {
    "description": "Venture Global, Inc., a liquefied natural gas (LNG) company, engages in the ownership, development, construction, and operation of LNG production facilities and associated infrastructure in the United States, Germany\u2026",
    "gross_margin": 0.5769554247266611,
@@ -19582,7 +19638,7 @@
   }
  },
  "fundamentals:VRT": {
-  "fetched_at": "2026-11-16T12:42:18.842966+00:00",
+  "fetched_at": "2026-11-17T12:34:53.740318+00:00",
   "value": {
    "description": "Vertiv Holdings Co designs, manufactures, and services critical digital infrastructure technologies and life cycle services for data centers, communication networks, and commercial and industrial environments in the\u2026",
    "gross_margin": 0.38105175292153587,
@@ -19670,7 +19726,7 @@
   }
  },
  "fundamentals:VST": {
-  "fetched_at": "2026-11-16T12:42:18.106967+00:00",
+  "fetched_at": "2026-11-17T12:34:53.091149+00:00",
   "value": {
    "description": "Vistra Corp., together with its subsidiaries, operates as an integrated retail electricity and power generation company in the United States.",
    "gross_margin": 0.493776587364109,
@@ -20538,7 +20594,7 @@
   }
  },
  "fundamentals:ZETA": {
-  "fetched_at": "2026-11-16T12:42:17.160513+00:00",
+  "fetched_at": "2026-11-17T12:34:52.789606+00:00",
   "value": {
    "description": "Zeta Global Holdings Corp. operates an omnichannel data-driven cloud platform that provides enterprises with consumer intelligence and marketing automation software in the United States and internationally.",
    "gross_margin": 0.6029030280640931,
