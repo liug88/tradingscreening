@@ -1,6 +1,6 @@
 {
  "cboe_weekly_equities": {
-  "fetched_at": "2026-11-18T12:34:13.489186+00:00",
+  "fetched_at": "2026-11-25T12:35:40.204909+00:00",
   "value": [
    "AA",
    "AAL",
@@ -46,6 +46,7 @@
    "AMZN",
    "ANET",
    "ANF",
+   "ANT",
    "ANVS",
    "APA",
    "APLD",
@@ -275,6 +276,7 @@
    "INFQ",
    "INO",
    "INOD",
+   "INSM",
    "INTC",
    "INTU",
    "IONQ",
@@ -456,6 +458,7 @@
    "RXT",
    "RZLV",
    "S",
+   "SA",
    "SAP",
    "SBET",
    "SBUX",
