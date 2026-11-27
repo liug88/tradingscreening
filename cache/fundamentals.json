@@ -88,7 +88,7 @@
   }
  },
  "fundamentals:AAOI": {
-  "fetched_at": "2026-11-23T12:35:46.885944+00:00",
+  "fetched_at": "2026-11-27T12:35:18.806599+00:00",
   "value": {
    "description": "Applied Optoelectronics, Inc. engages in the design, manufacture, and sale of fiber-optic networking products in the United States, Taiwan, and China.",
    "gross_margin": 0.2821861973135711,
@@ -352,7 +352,7 @@
   }
  },
  "fundamentals:ABVX": {
-  "fetched_at": "2026-11-25T12:35:56.665930+00:00",
+  "fetched_at": "2026-11-27T12:35:18.576856+00:00",
   "value": {
    "description": "ABIVAX Soci\u00e9t\u00e9 Anonyme, a clinical-stage biotechnology company, develops therapeutics that harness the body's natural regulatory mechanisms to stabilize the immune response in patients with chronic inflammatory diseases.",
    "gross_margin": null,
@@ -748,7 +748,7 @@
   }
  },
  "fundamentals:AEM": {
-  "fetched_at": "2026-11-12T12:34:35.995772+00:00",
+  "fetched_at": "2026-11-27T12:35:18.923394+00:00",
   "value": {
    "description": "Agnico Eagle Mines Limited, a gold mining company, engages in the exploration, development, and production of precious metals.",
    "gross_margin": 0.601001113681766,
@@ -760,7 +760,7 @@
     "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-09-30",
-   "next_earnings": "2026-10-28",
+   "next_earnings": "2027-02-11",
    "operating_margin": 0.5559574161131976,
    "operating_margin_change": -0.044109692015563806,
    "profitable": true,
@@ -1832,7 +1832,7 @@
   }
  },
  "fundamentals:AR": {
-  "fetched_at": "2026-11-16T12:42:17.858840+00:00",
+  "fetched_at": "2026-11-27T12:35:18.711290+00:00",
   "value": {
    "description": "Antero Resources Corporation, an independent oil and natural gas company, engages in the development, production, exploration, and acquisition of natural gas, natural gas liquids (NGLs), and oil properties in the United\u2026",
    "gross_margin": 0.21533468248303775,
@@ -1844,7 +1844,7 @@
     "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-09-30",
-   "next_earnings": "2026-10-28",
+   "next_earnings": "2027-02-10",
    "operating_margin": 0.16307922339570138,
    "operating_margin_change": 0.00879325699965805,
    "profitable": true,
@@ -2096,7 +2096,7 @@
   }
  },
  "fundamentals:ASST": {
-  "fetched_at": "2026-11-24T12:35:33.128223+00:00",
+  "fetched_at": "2026-11-27T12:35:18.991903+00:00",
   "value": {
    "description": "Strive, Inc. provides investment advisory and structured finance services.",
    "gross_margin": -5.385756676557864,
@@ -2140,7 +2140,7 @@
   }
  },
  "fundamentals:ASTS": {
-  "fetched_at": "2026-11-24T12:35:33.064016+00:00",
+  "fetched_at": "2026-11-27T12:35:18.936137+00:00",
   "value": {
    "description": "AST SpaceMobile, Inc., together with its subsidiaries, designs and develops the constellation of BlueBird satellites in the United States.",
    "gross_margin": 0.40185723399730633,
@@ -2272,7 +2272,7 @@
   }
  },
  "fundamentals:AXON": {
-  "fetched_at": "2026-11-25T12:35:55.648853+00:00",
+  "fetched_at": "2026-11-27T12:35:18.461160+00:00",
   "value": {
    "description": "Axon Enterprise, Inc. provides public safety technology solutions in the United States and internationally.",
    "gross_margin": 0.5668105583157412,
@@ -2624,27 +2624,23 @@
   }
  },
  "fundamentals:BBWI": {
-  "fetched_at": "2026-11-20T12:34:38.267870+00:00",
+  "fetched_at": "2026-11-27T12:35:18.953896+00:00",
   "value": {
    "description": "Bath & Body Works, Inc. operates as a specialty retailer of personal care and home fragrance products.",
-   "gross_margin": 0.4570673712021136,
-   "gross_margin_change": 0.031087690505451793,
+   "gross_margin": 0.40456563094483194,
+   "gross_margin_change": -0.05250174025728166,
    "industry": "Specialty Retail",
    "last_earnings": {
     "eps_actual": 0.26,
     "eps_estimate": 0.1194,
     "quarter": "2026-10-31"
    },
-   "latest_quarter": "2026-07-31",
+   "latest_quarter": "2026-10-31",
    "next_earnings": "2026-11-19",
-   "operating_margin": 0.142668428005284,
-   "operating_margin_change": -0.024965824534628894,
+   "operating_margin": 0.06848446417247939,
+   "operating_margin_change": -0.07418396383280462,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-07-31",
-     "revenue": 1549000000.0
-    },
     {
      "quarter": "2025-10-31",
      "revenue": 1594000000.0
@@ -2660,10 +2656,14 @@
     {
      "quarter": "2026-07-31",
      "revenue": 1514000000.0
+    },
+    {
+     "quarter": "2026-10-31",
+     "revenue": 1577000000.0
     }
    ],
-   "revenue_qoq": 0.09869375907111766,
-   "revenue_yoy": -0.022595222724338337,
+   "revenue_qoq": 0.04161162483487457,
+   "revenue_yoy": -0.010664993726474226,
    "sector": "Consumer Cyclical"
   }
  },
@@ -3232,7 +3232,7 @@
   }
  },
  "fundamentals:BROS": {
-  "fetched_at": "2026-11-16T12:42:19.046500+00:00",
+  "fetched_at": "2026-11-27T12:35:18.674352+00:00",
   "value": {
    "description": "Dutch Bros Inc., together with its subsidiaries, operates and franchises drive-thru shops in the United States.",
    "gross_margin": 0.23964833342123784,
@@ -3244,7 +3244,7 @@
     "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-09-30",
-   "next_earnings": "2026-11-04",
+   "next_earnings": "2027-02-11",
    "operating_margin": 0.09825239752000131,
    "operating_margin_change": -0.029558934400971876,
    "profitable": true,
@@ -5256,7 +5256,7 @@
   }
  },
  "fundamentals:CPNG": {
-  "fetched_at": "2026-11-25T12:35:55.648865+00:00",
+  "fetched_at": "2026-11-27T12:35:18.533428+00:00",
   "value": {
    "description": "Coupang, Inc., together with its subsidiaries, owns and operates retail business through its mobile applications and internet websites in South Korea and internationally.",
    "gross_margin": 0.2570768921903232,
@@ -6172,19 +6172,19 @@
   }
  },
  "fundamentals:DE": {
-  "fetched_at": "2026-10-05T12:50:25.817601+00:00",
+  "fetched_at": "2026-11-27T12:35:18.661697+00:00",
   "value": {
-   "description": "Deere & Company engages in the manufacture and distribution of various equipment worldwide.",
+   "description": "Deere & Company manufactures and distributes various equipment worldwide.",
    "gross_margin": 0.35727007772020725,
    "gross_margin_change": -0.011351981552631119,
    "industry": "Farm & Heavy Construction Machinery",
    "last_earnings": {
-    "eps_actual": 5.1,
-    "eps_estimate": 4.70933,
-    "quarter": "2026-07-31"
+    "eps_actual": 3.89,
+    "eps_estimate": 4.05358,
+    "quarter": "2026-10-31"
    },
    "latest_quarter": "2026-07-31",
-   "next_earnings": "2026-11-25",
+   "next_earnings": "2027-02-11",
    "operating_margin": 0.18911917098445596,
    "operating_margin_change": -0.01925235361071667,
    "profitable": true,
@@ -7844,7 +7844,7 @@
   }
  },
  "fundamentals:FIS": {
-  "fetched_at": "2026-11-23T12:35:47.235075+00:00",
+  "fetched_at": "2026-11-27T12:35:18.853587+00:00",
   "value": {
    "description": "Fidelity National Information Services, Inc. provides solutions to financial institutions, businesses, and developers worldwide.",
    "gross_margin": 0.37029530978575564,
@@ -7856,7 +7856,7 @@
     "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-09-30",
-   "next_earnings": "2026-11-04",
+   "next_earnings": "2027-02-23",
    "operating_margin": 0.1910828025477707,
    "operating_margin_change": 0.040949548179988665,
    "profitable": true,
@@ -8328,7 +8328,7 @@
   }
  },
  "fundamentals:GAP": {
-  "fetched_at": "2026-11-25T12:35:55.419878+00:00",
+  "fetched_at": "2026-11-27T12:35:18.567204+00:00",
   "value": {
    "description": "The Gap, Inc. operates as an apparel retail company in the United States, Canada, Japan, Taiwan, and internationally.",
    "gross_margin": 0.5283483976992605,
@@ -8416,7 +8416,7 @@
   }
  },
  "fundamentals:GDDY": {
-  "fetched_at": "2026-11-23T12:35:48.071736+00:00",
+  "fetched_at": "2026-11-27T12:35:18.861971+00:00",
   "value": {
    "description": "GoDaddy Inc. engages in the design and development of cloud-based products in the United States and internationally.",
    "gross_margin": 0.6282605455358473,
@@ -9560,7 +9560,7 @@
   }
  },
  "fundamentals:HPQ": {
-  "fetched_at": "2026-10-02T12:47:35.387242+00:00",
+  "fetched_at": "2026-11-27T12:35:18.495117+00:00",
   "value": {
    "description": "HP Inc. provides personal computing, printing, 3D printing, hybrid work, gaming, and other related technologies in the United States and internationally.",
    "gross_margin": 0.18785481916182944,
@@ -9568,11 +9568,11 @@
    "industry": "Computer Hardware",
    "last_earnings": {
     "eps_actual": 0.83,
-    "eps_estimate": 0.69175,
-    "quarter": "2026-07-31"
+    "eps_estimate": 0.7408,
+    "quarter": "2026-10-31"
    },
    "latest_quarter": "2026-07-31",
-   "next_earnings": "2026-11-24",
+   "next_earnings": "2027-02-23",
    "operating_margin": 0.06021560247496332,
    "operating_margin_change": -0.007871571317374267,
    "profitable": true,
@@ -10044,7 +10044,7 @@
   }
  },
  "fundamentals:INOD": {
-  "fetched_at": "2026-11-25T12:35:56.560764+00:00",
+  "fetched_at": "2026-11-27T12:35:18.877826+00:00",
   "value": {
    "description": "Innodata Inc. operates as a data engineering company in the United States, the United Kingdom, the Netherlands, Canada, Germany, Belgium, and internationally.",
    "gross_margin": 0.3716559643581752,
@@ -10528,7 +10528,7 @@
   }
  },
  "fundamentals:JD": {
-  "fetched_at": "2026-11-25T12:35:57.316641+00:00",
+  "fetched_at": "2026-11-27T12:35:18.731084+00:00",
   "value": {
    "description": "JD.com, Inc. operates as a supply chain-based technology and service provider in the People's Republic of China and Europe.",
    "gross_margin": 0.1807566708549612,
@@ -11276,27 +11276,23 @@
   }
  },
  "fundamentals:LHX": {
-  "fetched_at": "2026-09-15T12:42:52.983881+00:00",
+  "fetched_at": "2026-11-27T12:35:18.791196+00:00",
   "value": {
    "description": "L3Harris Technologies, Inc. provides mission-critical solutions for government and commercial customers worldwide.",
-   "gross_margin": 0.25539874171059346,
-   "gross_margin_change": 0.011317961766303758,
+   "gross_margin": 0.266006600660066,
+   "gross_margin_change": 0.010607858949472526,
    "industry": "Aerospace & Defense",
    "last_earnings": {
-    "eps_actual": 3.6295,
-    "eps_estimate": 2.83688,
-    "quarter": "2026-06-30"
+    "eps_actual": 3.28,
+    "eps_estimate": 2.94523,
+    "quarter": "2026-09-30"
    },
-   "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-10-29",
-   "operating_margin": 0.11290596837272572,
-   "operating_margin_change": 0.001137166144313459,
+   "latest_quarter": "2026-09-30",
+   "next_earnings": "2027-01-28",
+   "operating_margin": 0.13399339933993398,
+   "operating_margin_change": 0.021087430967208262,
    "profitable": true,
    "revenue_history": [
-    {
-     "quarter": "2025-06-30",
-     "revenue": 5426000000.0
-    },
     {
      "quarter": "2025-09-30",
      "revenue": 5659000000.0
@@ -11312,27 +11308,31 @@
     {
      "quarter": "2026-06-30",
      "revenue": 5881000000.0
+    },
+    {
+     "quarter": "2026-09-30",
+     "revenue": 6060000000.0
     }
    ],
-   "revenue_qoq": 0.023850974930362145,
-   "revenue_yoy": 0.08385551050497608,
+   "revenue_qoq": 0.03043700051011733,
+   "revenue_yoy": 0.07086057607351126,
    "sector": "Industrials"
   }
  },
  "fundamentals:LI": {
-  "fetched_at": "2026-09-11T20:21:47.376742+00:00",
+  "fetched_at": "2026-11-27T12:35:18.651950+00:00",
   "value": {
    "description": "Li Auto Inc. operates in the energy vehicle market in the People's Republic of China.",
    "gross_margin": 0.110494687903365,
    "gross_margin_change": 0.03182558458568692,
    "industry": "Auto Manufacturers",
    "last_earnings": {
-    "eps_actual": -1.49,
-    "eps_estimate": -1.46667,
-    "quarter": "2026-06-30"
+    "eps_actual": -0.12,
+    "eps_estimate": -0.83567,
+    "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-06-30",
-   "next_earnings": "2026-11-25",
+   "next_earnings": "2027-03-11",
    "operating_margin": -0.08964272648536695,
    "operating_margin_change": 0.04083639341376158,
    "profitable": false,
@@ -11892,7 +11892,7 @@
   }
  },
  "fundamentals:LYFT": {
-  "fetched_at": "2026-11-19T12:34:43.326237+00:00",
+  "fetched_at": "2026-11-27T12:35:18.878685+00:00",
   "value": {
    "description": "Lyft, Inc. operates multimodal transportation networks that offer access to various transportation options through platform and mobile based applications in the United States and internationally.",
    "gross_margin": 0.5216870802965383,
@@ -11904,7 +11904,7 @@
     "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-09-30",
-   "next_earnings": "2026-11-05",
+   "next_earnings": "2027-02-10",
    "operating_margin": -0.010636604454222202,
    "operating_margin_change": -0.03643799568762916,
    "profitable": false,
@@ -12368,7 +12368,7 @@
   }
  },
  "fundamentals:MELI": {
-  "fetched_at": "2026-11-25T12:35:56.456322+00:00",
+  "fetched_at": "2026-11-27T12:35:18.495600+00:00",
   "value": {
    "description": "MercadoLibre, Inc. operates online commerce platforms in Brazil, Mexico, Argentina, and internationally.",
    "gross_margin": 0.40781395348837207,
@@ -13716,7 +13716,7 @@
   }
  },
  "fundamentals:NU": {
-  "fetched_at": "2026-11-20T12:34:38.127179+00:00",
+  "fetched_at": "2026-11-27T12:35:18.784558+00:00",
   "value": {
    "description": "Nu Holdings Ltd. provides digital banking platform in Brazil, Mexico, Colombia, the Cayman Islands, and the United States.",
    "gross_margin": null,
@@ -14640,7 +14640,7 @@
   }
  },
  "fundamentals:PDD": {
-  "fetched_at": "2026-11-25T12:35:55.448501+00:00",
+  "fetched_at": "2026-11-27T12:35:18.578251+00:00",
   "value": {
    "description": "PDD Holdings Inc., a multinational commerce group that owns and operates a portfolio of businesses.",
    "gross_margin": 0.5824018607913901,
@@ -15296,7 +15296,7 @@
   }
  },
  "fundamentals:PYPL": {
-  "fetched_at": "2026-11-06T12:33:11.358045+00:00",
+  "fetched_at": "2026-11-27T12:35:18.738840+00:00",
   "value": {
    "description": "PayPal Holdings, Inc. operates a technology platform that enables digital payments for merchants and consumers worldwide.",
    "gross_margin": 0.4601584342963653,
@@ -15308,7 +15308,7 @@
     "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-09-30",
-   "next_earnings": "2026-10-27",
+   "next_earnings": "2027-02-02",
    "operating_margin": 0.1930335507921715,
    "operating_margin_change": 0.015655066571945736,
    "profitable": true,
@@ -15428,7 +15428,7 @@
   }
  },
  "fundamentals:QXO": {
-  "fetched_at": "2026-11-19T12:34:44.082327+00:00",
+  "fetched_at": "2026-11-27T12:35:18.640185+00:00",
   "value": {
    "description": "QXO, Inc. distributes roofing, waterproofing and complementary building products in the United States and Canada.",
    "gross_margin": 0.2819203268641471,
@@ -15956,7 +15956,7 @@
   }
  },
  "fundamentals:RIVN": {
-  "fetched_at": "2026-11-23T12:35:48.197326+00:00",
+  "fetched_at": "2026-11-27T12:35:18.798827+00:00",
   "value": {
    "description": "Rivian Automotive, Inc., together with its subsidiaries, develops, manufactures, and sells category-defining electric vehicles.",
    "gross_margin": 0.08167053364269142,
@@ -15968,7 +15968,7 @@
     "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-09-30",
-   "next_earnings": "2026-10-29",
+   "next_earnings": "2027-02-11",
    "operating_margin": -0.4088167053364269,
    "operating_margin_change": 0.09540524882521362,
    "profitable": false,
@@ -17840,7 +17840,7 @@
   }
  },
  "fundamentals:TECK": {
-  "fetched_at": "2026-11-24T12:35:33.103409+00:00",
+  "fetched_at": "2026-11-27T12:35:18.953910+00:00",
   "value": {
    "description": "Teck Resources Limited engages in research, exploration, development, processing, smelting, refining, and reclamation of mineral properties in Asia, the Americas, and Europe.",
    "gross_margin": 0.3736993579809608,
@@ -18060,7 +18060,7 @@
   }
  },
  "fundamentals:TJX": {
-  "fetched_at": "2026-11-25T12:35:55.420880+00:00",
+  "fetched_at": "2026-11-27T12:35:18.495140+00:00",
   "value": {
    "description": "The TJX Companies, Inc., together with its subsidiaries, operates as an off-price apparel and home fashions retailer worldwide.",
    "gross_margin": 0.3341238471673254,
@@ -20254,7 +20254,7 @@
   }
  },
  "fundamentals:WPM": {
-  "fetched_at": "2026-11-12T12:34:35.697139+00:00",
+  "fetched_at": "2026-11-27T12:35:18.721236+00:00",
   "value": {
    "description": "Wheaton Precious Metals Corp. operates as a precious metal streaming company.",
    "gross_margin": 0.697784469778447,
@@ -20262,7 +20262,7 @@
    "industry": "Gold",
    "last_earnings": {
     "eps_actual": 0.901,
-    "eps_estimate": 0.88939,
+    "eps_estimate": 0.88934,
     "quarter": "2026-09-30"
    },
    "latest_quarter": "2026-09-30",
@@ -20814,7 +20814,7 @@
   }
  },
  "fundamentals:ZS": {
-  "fetched_at": "2026-11-25T12:35:55.419902+00:00",
+  "fetched_at": "2026-11-27T12:35:18.603789+00:00",
   "value": {
    "description": "Zscaler, Inc. operates as a cloud security company worldwide.",
    "gross_margin": 0.7673485974493005,
